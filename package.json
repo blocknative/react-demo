@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bn-notify": "github:blocknative/notify#master",
+    "bn-onboard": "github:blocknative/onboard#master",
+    "bn-onboarding-modules": "github:blocknative/onboarding-modules#master",
+    "bn-wallet-modules": "github:blocknative/wallet-modules#master",
+    "ethers": "^4.0.37",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
