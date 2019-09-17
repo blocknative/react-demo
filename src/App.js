@@ -3,7 +3,7 @@ import { ethers } from "ethers"
 import getSigner from "./signer"
 import { initOnboard, initNotify } from "./services"
 
-import "./app.css"
+import "./App.css"
 
 let provider
 
