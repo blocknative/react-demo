@@ -127,6 +127,17 @@ function App() {
           >
             Watch Current Account
           </button>
+          <button
+            className="bn-demo-button"
+            onClick={() => {
+              const {update} = notify.notification('customNotification', {type: 'pending',
+          message: 'This is a custom notification triggered by the dapp'
+        });
+        setTimeout(() => update('customNotificationUpdate', {message: 'Updated status for custom notification', type: 'success'}), 4000)
+            }}
+          >
+            Custom Notification
+          </button>
         </div>
       </section>
       <section className="container">
@@ -148,6 +159,59 @@ function App() {
           }}
         >
           Light Mode
+        </button>
+      </section>
+      <section className="container">
+        <h2>Notification Placement</h2>
+        <h3>Desktop Positioning</h3>
+        <button
+          className="bn-demo-button"
+          onClick={() => {
+            notify.config({ desktopPosition: 'topLeft' })
+          }}
+        >
+          Top Left
+        </button>
+        <button
+          className="bn-demo-button"
+          onClick={() => {
+            notify.config({ desktopPosition: 'topRight' })
+          }}
+        >
+          Top Right
+        </button>
+        <button
+          className="bn-demo-button"
+          onClick={() => {
+            notify.config({ desktopPosition: 'bottomRight' })
+          }}
+        >
+          Bottom Right
+        </button>
+        <button
+          className="bn-demo-button"
+          onClick={() => {
+            notify.config({ desktopPosition: 'bottomLeft' })
+          }}
+        >
+          Bottom Left
+        </button>
+        <h3>Mobile Positioning</h3>
+        <button
+          className="bn-demo-button"
+          onClick={() => {
+            notify.config({ mobilePosition: 'top' })
+          }}
+        >
+          Top
+        </button>
+        <button
+          className="bn-demo-button"
+          onClick={() => {
+            notify.config({ mobilePosition: 'bottom' })
+          }}
+        >
+          Bottom
         </button>
       </section>
       <aside className="user-info">
