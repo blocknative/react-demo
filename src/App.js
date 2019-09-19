@@ -102,158 +102,156 @@ function App() {
 
   return onboard && notify ? (
     <main>
-      <section className="container">
-        <h2>Onboard</h2>
-        <div>
-          <button className="bn-demo-button" onClick={onboard.selectWallet}>
-            Select Wallet
-          </button>
+      <header className="user-info">
+        {address && <span>{address}</span>}
+        {balance != null && (
+          <span>
+            {balance > 0 ? balance / 1000000000000000000 : balance} ETH
+          </span>
+        )}
+        {network && <span>{networkName(network)} network</span>}
+      </header>
+      <section className="main">
+        <div className="container">
+          <h2>Onboard</h2>
+          <div>
+            <button className="bn-demo-button" onClick={onboard.selectWallet}>
+              Select Wallet
+            </button>
 
-          <button className="bn-demo-button" onClick={onboard.prepareWallet}>
-            Prepare Wallet
-          </button>
+            <button className="bn-demo-button" onClick={onboard.prepareWallet}>
+              Prepare Wallet
+            </button>
+          </div>
         </div>
-      </section>
-      <section className="container">
-        <h2>Notify</h2>
-        <div>
+        <div className="container">
+          <h2>Notify</h2>
+          <div>
+            <button
+              className="bn-demo-button"
+              onClick={async () => {
+                const ready = await readyToTransact()
+                if (!ready) return
+                sendHash()
+              }}
+            >
+              Hash
+            </button>
+            <button
+              className="bn-demo-button"
+              onClick={async () => {
+                const ready = await readyToTransact()
+                if (!ready) return
+                sendTransaction()
+              }}
+            >
+              Transaction
+            </button>
+            <button
+              className="bn-demo-button"
+              onClick={async () => {
+                if (!provider) {
+                  const walletSelected = await onboard.selectWallet()
+                  if (!walletSelected) return false
+                }
+                notify.account(onboard.getState().address)
+              }}
+            >
+              Watch Current Account
+            </button>
+            <button
+              className="bn-demo-button"
+              onClick={() => {
+                const { update } = notify.notification("customNotification", {
+                  type: "pending",
+                  message: "This is a custom notification triggered by the dapp"
+                })
+                setTimeout(
+                  () =>
+                    update("customNotificationUpdate", {
+                      message: "Updated status for custom notification",
+                      type: "success"
+                    }),
+                  4000
+                )
+              }}
+            >
+              Custom Notification
+            </button>
+          </div>
+        </div>
+        <div className="container">
+          <h2>UI Settings</h2>
           <button
             className="bn-demo-button"
-            onClick={async () => {
-              const ready = await readyToTransact()
-              if (!ready) return
-              sendHash()
+            onClick={() => {
+              notify.config({ darkMode: true })
+              onboard.config({ darkMode: true })
             }}
           >
-            Hash
-          </button>
-          <button
-            className="bn-demo-button"
-            onClick={async () => {
-              const ready = await readyToTransact()
-              if (!ready) return
-              sendTransaction()
-            }}
-          >
-            Transaction
-          </button>
-          <button
-            className="bn-demo-button"
-            onClick={async () => {
-              if (!provider) {
-                const walletSelected = await onboard.selectWallet()
-                if (!walletSelected) return false
-              }
-              notify.account(onboard.getState().address)
-            }}
-          >
-            Watch Current Account
+            Dark Mode
           </button>
           <button
             className="bn-demo-button"
             onClick={() => {
-              const { update } = notify.notification("customNotification", {
-                type: "pending",
-                message: "This is a custom notification triggered by the dapp"
-              })
-              setTimeout(
-                () =>
-                  update("customNotificationUpdate", {
-                    message: "Updated status for custom notification",
-                    type: "success"
-                  }),
-                4000
-              )
+              notify.config({ darkMode: false })
+              onboard.config({ darkMode: false })
             }}
           >
-            Custom Notification
+            Light Mode
+          </button>
+          <h3>Desktop Positioning</h3>
+          <button
+            className="bn-demo-button"
+            onClick={() => {
+              notify.config({ desktopPosition: "topLeft" })
+            }}
+          >
+            Top Left
+          </button>
+          <button
+            className="bn-demo-button"
+            onClick={() => {
+              notify.config({ desktopPosition: "topRight" })
+            }}
+          >
+            Top Right
+          </button>
+          <button
+            className="bn-demo-button"
+            onClick={() => {
+              notify.config({ desktopPosition: "bottomRight" })
+            }}
+          >
+            Bottom Right
+          </button>
+          <button
+            className="bn-demo-button"
+            onClick={() => {
+              notify.config({ desktopPosition: "bottomLeft" })
+            }}
+          >
+            Bottom Left
+          </button>
+          <h3>Mobile Positioning</h3>
+          <button
+            className="bn-demo-button"
+            onClick={() => {
+              notify.config({ mobilePosition: "top" })
+            }}
+          >
+            Top
+          </button>
+          <button
+            className="bn-demo-button"
+            onClick={() => {
+              notify.config({ mobilePosition: "bottom" })
+            }}
+          >
+            Bottom
           </button>
         </div>
       </section>
-      <section className="container">
-        <h2>UI Settings</h2>
-        <button
-          className="bn-demo-button"
-          onClick={() => {
-            notify.config({ darkMode: true })
-            onboard.config({ darkMode: true })
-          }}
-        >
-          Dark Mode
-        </button>
-        <button
-          className="bn-demo-button"
-          onClick={() => {
-            notify.config({ darkMode: false })
-            onboard.config({ darkMode: false })
-          }}
-        >
-          Light Mode
-        </button>
-      </section>
-      <section className="container">
-        <h2>Notification Placement</h2>
-        <h3>Desktop Positioning</h3>
-        <button
-          className="bn-demo-button"
-          onClick={() => {
-            notify.config({ desktopPosition: "topLeft" })
-          }}
-        >
-          Top Left
-        </button>
-        <button
-          className="bn-demo-button"
-          onClick={() => {
-            notify.config({ desktopPosition: "topRight" })
-          }}
-        >
-          Top Right
-        </button>
-        <button
-          className="bn-demo-button"
-          onClick={() => {
-            notify.config({ desktopPosition: "bottomRight" })
-          }}
-        >
-          Bottom Right
-        </button>
-        <button
-          className="bn-demo-button"
-          onClick={() => {
-            notify.config({ desktopPosition: "bottomLeft" })
-          }}
-        >
-          Bottom Left
-        </button>
-        <h3>Mobile Positioning</h3>
-        <button
-          className="bn-demo-button"
-          onClick={() => {
-            notify.config({ mobilePosition: "top" })
-          }}
-        >
-          Top
-        </button>
-        <button
-          className="bn-demo-button"
-          onClick={() => {
-            notify.config({ mobilePosition: "bottom" })
-          }}
-        >
-          Bottom
-        </button>
-      </section>
-      <aside className="user-info">
-        {address && <span>{address}</span>}
-        {balance != null && (
-          <span>
-            {balance > 0 ? balance / 1000000000000000000 : balance}
-            ETH
-          </span>
-        )}
-        {network && <span>{networkName(network)}</span>}
-      </aside>
     </main>
   ) : (
     <div>Loading...</div>
