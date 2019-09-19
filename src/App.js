@@ -53,6 +53,12 @@ function App() {
     })
 
     const emitter = notify.hash(hash)
+
+    emitter.on("txPool", console.log)
+    emitter.on("txConfirmed", console.log)
+    emitter.on("txSpeedUp", console.log)
+    emitter.on("txCancel", console.log)
+    emitter.on("txFailed", console.log)
   }
 
   async function sendTransaction() {
@@ -74,8 +80,24 @@ function App() {
       gasPrice,
       estimateGas,
       balance: onboard.getState().balance,
-      txDetails
+      txDetails,
+      listeners: {
+        txRequest: console.log,
+        nsfFail: console.log,
+        txRepeat: console.log,
+        txAwaitingApproval: console.log,
+        txConfirmReminder: console.log,
+        txSendFail: console.log,
+        txError: console.log,
+        txUnderPriced: console.log
+      }
     })
+
+    emitter.on("txPool", console.log)
+    emitter.on("txConfirmed", console.log)
+    emitter.on("txSpeedUp", console.log)
+    emitter.on("txCancel", console.log)
+    emitter.on("txFailed", console.log)
   }
 
   return onboard && notify ? (
@@ -130,10 +152,18 @@ function App() {
           <button
             className="bn-demo-button"
             onClick={() => {
-              const {update} = notify.notification('customNotification', {type: 'pending',
-          message: 'This is a custom notification triggered by the dapp'
-        });
-        setTimeout(() => update('customNotificationUpdate', {message: 'Updated status for custom notification', type: 'success'}), 4000)
+              const { update } = notify.notification("customNotification", {
+                type: "pending",
+                message: "This is a custom notification triggered by the dapp"
+              })
+              setTimeout(
+                () =>
+                  update("customNotificationUpdate", {
+                    message: "Updated status for custom notification",
+                    type: "success"
+                  }),
+                4000
+              )
             }}
           >
             Custom Notification
@@ -167,7 +197,7 @@ function App() {
         <button
           className="bn-demo-button"
           onClick={() => {
-            notify.config({ desktopPosition: 'topLeft' })
+            notify.config({ desktopPosition: "topLeft" })
           }}
         >
           Top Left
@@ -175,7 +205,7 @@ function App() {
         <button
           className="bn-demo-button"
           onClick={() => {
-            notify.config({ desktopPosition: 'topRight' })
+            notify.config({ desktopPosition: "topRight" })
           }}
         >
           Top Right
@@ -183,7 +213,7 @@ function App() {
         <button
           className="bn-demo-button"
           onClick={() => {
-            notify.config({ desktopPosition: 'bottomRight' })
+            notify.config({ desktopPosition: "bottomRight" })
           }}
         >
           Bottom Right
@@ -191,7 +221,7 @@ function App() {
         <button
           className="bn-demo-button"
           onClick={() => {
-            notify.config({ desktopPosition: 'bottomLeft' })
+            notify.config({ desktopPosition: "bottomLeft" })
           }}
         >
           Bottom Left
@@ -200,7 +230,7 @@ function App() {
         <button
           className="bn-demo-button"
           onClick={() => {
-            notify.config({ mobilePosition: 'top' })
+            notify.config({ mobilePosition: "top" })
           }}
         >
           Top
@@ -208,7 +238,7 @@ function App() {
         <button
           className="bn-demo-button"
           onClick={() => {
-            notify.config({ mobilePosition: 'bottom' })
+            notify.config({ mobilePosition: "bottom" })
           }}
         >
           Bottom

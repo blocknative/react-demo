@@ -12,11 +12,6 @@ export function initOnboard(subscriptions) {
       selectWallet: initWallets({
         fortmaticInit: { apiKey: "pk_test_886ADCAB855632AA" },
         portisInit: { apiKey: "d7d72646-709a-45ab-aa43-8de5307ae0df" },
-        trezorInit: {
-          email: "aaron@flexdapps.com",
-          appUrl: "https://flexdapps.com",
-          apiKey: "d5e29c9b9a9d4116a7348113f57770a8"
-        },
         networkId: 4
       }),
       prepareWallet: initOnboarding({
