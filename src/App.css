@@ -57,8 +57,9 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: row wrap;
   background: rgba(255, 255, 255, 0.6);
-  height: 3rem;
+  min-height: 3rem;
   margin: 0.25rem;
   border: 1px solid #eeeeee;
   border-radius: 4px;
@@ -83,6 +84,7 @@ section {
   padding: 0.55rem 1.4rem;
   color: #4a90e2;
   margin: 0.25rem 0.5rem;
+  transition: background 200ms ease-in-out, color 200ms ease-in-out;
 }
 
 .bn-demo-button:focus {

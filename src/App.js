@@ -15,6 +15,10 @@ function App() {
   const [onboard, setOnboard] = useState(null)
   const [notify, setNotify] = useState(null)
 
+  const [darkMode, setDarkMode] = useState(false)
+  const [desktopPosition, setDesktopPosition] = useState("bottomRight")
+  const [mobilePosition, setMobilePosition] = useState("bottom")
+
   useEffect(() => {
     setOnboard(
       initOnboard({
@@ -184,7 +188,12 @@ function App() {
           <h2>UI Settings</h2>
           <button
             className="bn-demo-button"
+            style={{
+              background: darkMode ? "#ab47bc" : "white",
+              color: darkMode ? "white" : "#4a90e2"
+            }}
             onClick={() => {
+              setDarkMode(true)
               notify.config({ darkMode: true })
               onboard.config({ darkMode: true })
             }}
@@ -193,7 +202,12 @@ function App() {
           </button>
           <button
             className="bn-demo-button"
+            style={{
+              background: !darkMode ? "#ab47bc" : "white",
+              color: !darkMode ? "white" : "#4a90e2"
+            }}
             onClick={() => {
+              setDarkMode(false)
               notify.config({ darkMode: false })
               onboard.config({ darkMode: false })
             }}
@@ -203,7 +217,12 @@ function App() {
           <h3>Desktop Positioning</h3>
           <button
             className="bn-demo-button"
+            style={{
+              background: desktopPosition === "topLeft" ? "#ab47bc" : "white",
+              color: desktopPosition === "topLeft" ? "white" : "#4a90e2"
+            }}
             onClick={() => {
+              setDesktopPosition("topLeft")
               notify.config({ desktopPosition: "topLeft" })
             }}
           >
@@ -211,7 +230,12 @@ function App() {
           </button>
           <button
             className="bn-demo-button"
+            style={{
+              background: desktopPosition === "topRight" ? "#ab47bc" : "white",
+              color: desktopPosition === "topRight" ? "white" : "#4a90e2"
+            }}
             onClick={() => {
+              setDesktopPosition("topRight")
               notify.config({ desktopPosition: "topRight" })
             }}
           >
@@ -219,7 +243,13 @@ function App() {
           </button>
           <button
             className="bn-demo-button"
+            style={{
+              background:
+                desktopPosition === "bottomRight" ? "#ab47bc" : "white",
+              color: desktopPosition === "bottomRight" ? "white" : "#4a90e2"
+            }}
             onClick={() => {
+              setDesktopPosition("bottomRight")
               notify.config({ desktopPosition: "bottomRight" })
             }}
           >
@@ -227,7 +257,13 @@ function App() {
           </button>
           <button
             className="bn-demo-button"
+            style={{
+              background:
+                desktopPosition === "bottomLeft" ? "#ab47bc" : "white",
+              color: desktopPosition === "bottomLeft" ? "white" : "#4a90e2"
+            }}
             onClick={() => {
+              setDesktopPosition("bottomLeft")
               notify.config({ desktopPosition: "bottomLeft" })
             }}
           >
@@ -236,7 +272,12 @@ function App() {
           <h3>Mobile Positioning</h3>
           <button
             className="bn-demo-button"
+            style={{
+              background: mobilePosition === "top" ? "#ab47bc" : "white",
+              color: mobilePosition === "top" ? "white" : "#4a90e2"
+            }}
             onClick={() => {
+              setMobilePosition("top")
               notify.config({ mobilePosition: "top" })
             }}
           >
@@ -244,7 +285,12 @@ function App() {
           </button>
           <button
             className="bn-demo-button"
+            style={{
+              background: mobilePosition === "bottom" ? "#ab47bc" : "white",
+              color: mobilePosition === "bottom" ? "white" : "#4a90e2"
+            }}
             onClick={() => {
+              setMobilePosition("bottom")
               notify.config({ mobilePosition: "bottom" })
             }}
           >
