@@ -158,6 +158,9 @@ function App() {
                   const walletSelected = await onboard.selectWallet()
                   if (!walletSelected) return false
                 }
+
+                await onboard.prepareWallet()
+                
                 notify.account(onboard.getState().address)
               }}
             >
