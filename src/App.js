@@ -58,6 +58,7 @@ function App() {
 
     const emitter = notify.hash(hash)
 
+    emitter.on("txSent", console.log)
     emitter.on("txPool", console.log)
     emitter.on("txConfirmed", console.log)
     emitter.on("txSpeedUp", console.log)
@@ -97,6 +98,7 @@ function App() {
       }
     })
 
+    emitter.on("txSent", console.log)
     emitter.on("txPool", console.log)
     emitter.on("txConfirmed", console.log)
     emitter.on("txSpeedUp", console.log)
@@ -160,7 +162,7 @@ function App() {
                 }
 
                 await onboard.prepareWallet()
-                
+
                 notify.account(onboard.getState().address)
               }}
             >

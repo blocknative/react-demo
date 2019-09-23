@@ -17,7 +17,7 @@ section {
   display: flex;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
   body {
     overflow: unset;
     overflow-x: hidden;
@@ -30,6 +30,10 @@ section {
 
   section {
     flex-direction: column;
+  }
+
+  div.container {
+    width: unset;
   }
 }
 
