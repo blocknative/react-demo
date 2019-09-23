@@ -17,7 +17,7 @@ function App() {
 
   const [darkMode, setDarkMode] = useState(false)
   const [desktopPosition, setDesktopPosition] = useState("bottomRight")
-  const [mobilePosition, setMobilePosition] = useState("bottom")
+  const [mobilePosition, setMobilePosition] = useState("top")
 
   useEffect(() => {
     setOnboard(
@@ -64,6 +64,10 @@ function App() {
     emitter.on("txSpeedUp", console.log)
     emitter.on("txCancel", console.log)
     emitter.on("txFailed", console.log)
+
+    // emitter.on("all", event => {
+    //   console.log("ALLLLLLL", event)
+    // })
   }
 
   async function sendTransaction() {
@@ -80,24 +84,24 @@ function App() {
     const estimateGas = () =>
       provider.estimateGas(txDetails).then(res => res.toString())
 
-    const { emitter } = await notify.transaction({
+    const { emitter, id } = await notify.transaction({
       sendTransaction,
       gasPrice,
       estimateGas,
       balance: onboard.getState().balance,
-      txDetails,
-      listeners: {
-        txRequest: console.log,
-        nsfFail: console.log,
-        txRepeat: console.log,
-        txAwaitingApproval: console.log,
-        txConfirmReminder: console.log,
-        txSendFail: console.log,
-        txError: console.log,
-        txUnderPriced: console.log
-      }
+      txDetails
     })
 
+    id.then(val => console.log("id:", val))
+
+    emitter.on("txRequest", console.log)
+    emitter.on("nsfFail", console.log)
+    emitter.on("txRepeat", console.log)
+    emitter.on("txAwaitingApproval", console.log)
+    emitter.on("txConfirmReminder", console.log)
+    emitter.on("txSendFail", console.log)
+    emitter.on("txError", console.log)
+    emitter.on("txUnderPriced", console.log)
     emitter.on("txSent", console.log)
     emitter.on("txPool", console.log)
     emitter.on("txConfirmed", console.log)
