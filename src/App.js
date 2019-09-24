@@ -159,21 +159,6 @@ function App() {
             </button>
             <button
               className="bn-demo-button"
-              onClick={async () => {
-                if (!provider) {
-                  const walletSelected = await onboard.selectWallet()
-                  if (!walletSelected) return false
-                }
-
-                await onboard.prepareWallet()
-
-                notify.account(onboard.getState().address)
-              }}
-            >
-              Watch Current Account
-            </button>
-            <button
-              className="bn-demo-button"
               onClick={() => {
                 const { update } = notify.notification("customNotification", {
                   type: "pending",
