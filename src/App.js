@@ -25,9 +25,9 @@ function App() {
         address: setAddress,
         network: setNetwork,
         balance: setBalance,
-        provider: p => {
-          if (p) {
-            provider = new ethers.providers.Web3Provider(p)
+        wallet: wallet => {
+          if (wallet.provider) {
+            provider = new ethers.providers.Web3Provider(wallet.provider)
           }
         }
       })
@@ -38,11 +38,11 @@ function App() {
 
   async function readyToTransact() {
     if (!provider) {
-      const walletSelected = await onboard.selectWallet()
+      const walletSelected = await onboard.walletSelect()
       if (!walletSelected) return false
     }
 
-    const readyToTransact = await onboard.prepareWallet()
+    const readyToTransact = await onboard.walletReady()
     if (!readyToTransact) return false
 
     return true
@@ -94,20 +94,20 @@ function App() {
 
     id.then(val => console.log("id:", val))
 
-    emitter.on("txRequest", console.log)
-    emitter.on("nsfFail", console.log)
-    emitter.on("txRepeat", console.log)
-    emitter.on("txAwaitingApproval", console.log)
-    emitter.on("txConfirmReminder", console.log)
-    emitter.on("txSendFail", console.log)
-    emitter.on("txError", console.log)
-    emitter.on("txUnderPriced", console.log)
-    emitter.on("txSent", console.log)
-    emitter.on("txPool", console.log)
-    emitter.on("txConfirmed", console.log)
-    emitter.on("txSpeedUp", console.log)
-    emitter.on("txCancel", console.log)
-    emitter.on("txFailed", console.log)
+    // emitter.on("txRequest", console.log)
+    // emitter.on("nsfFail", console.log)
+    // emitter.on("txRepeat", console.log)
+    // emitter.on("txAwaitingApproval", console.log)
+    // emitter.on("txConfirmReminder", console.log)
+    // emitter.on("txSendFail", console.log)
+    // emitter.on("txError", console.log)
+    // emitter.on("txUnderPriced", console.log)
+    // emitter.on("txSent", console.log)
+    // emitter.on("txPool", console.log)
+    // emitter.on("txConfirmed", console.log)
+    // emitter.on("txSpeedUp", console.log)
+    // emitter.on("txCancel", console.log)
+    // emitter.on("txFailed", console.log)
   }
 
   return onboard && notify ? (
@@ -125,12 +125,15 @@ function App() {
         <div className="container">
           <h2>Onboard</h2>
           <div>
-            <button className="bn-demo-button" onClick={onboard.selectWallet}>
-              Select Wallet
+            <button
+              className="bn-demo-button"
+              onClick={() => onboard.walletSelect()}
+            >
+              Wallet Select
             </button>
 
-            <button className="bn-demo-button" onClick={onboard.prepareWallet}>
-              Prepare Wallet
+            <button className="bn-demo-button" onClick={onboard.walletReady}>
+              Wallet Ready
             </button>
           </div>
         </div>
