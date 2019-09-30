@@ -28,6 +28,7 @@ function App() {
         wallet: wallet => {
           if (wallet.provider) {
             provider = new ethers.providers.Web3Provider(wallet.provider)
+            window.localStorage.setItem('selectedWallet', wallet.name)
           }
         }
       })
@@ -35,6 +36,14 @@ function App() {
 
     setNotify(initNotify())
   }, [])
+
+  useEffect(() => {
+    const previouslySelectedWallet = window.localStorage.getItem('selectedWallet')
+
+    if (previouslySelectedWallet &&  onboard) {
+      onboard.walletSelect(previouslySelectedWallet)
+    }
+  }, [onboard])
 
   async function readyToTransact() {
     if (!provider) {
@@ -92,22 +101,22 @@ function App() {
       txDetails
     })
 
-    id.then(val => console.log("id:", val))
+    // id.then(val => console.log("id:", val))
 
-    // emitter.on("txRequest", console.log)
-    // emitter.on("nsfFail", console.log)
-    // emitter.on("txRepeat", console.log)
-    // emitter.on("txAwaitingApproval", console.log)
-    // emitter.on("txConfirmReminder", console.log)
-    // emitter.on("txSendFail", console.log)
-    // emitter.on("txError", console.log)
-    // emitter.on("txUnderPriced", console.log)
-    // emitter.on("txSent", console.log)
-    // emitter.on("txPool", console.log)
-    // emitter.on("txConfirmed", console.log)
-    // emitter.on("txSpeedUp", console.log)
-    // emitter.on("txCancel", console.log)
-    // emitter.on("txFailed", console.log)
+    emitter.on("txRequest", console.log)
+    emitter.on("nsfFail", console.log)
+    emitter.on("txRepeat", console.log)
+    emitter.on("txAwaitingApproval", console.log)
+    emitter.on("txConfirmReminder", console.log)
+    emitter.on("txSendFail", console.log)
+    emitter.on("txError", console.log)
+    emitter.on("txUnderPriced", console.log)
+    emitter.on("txSent", console.log)
+    emitter.on("txPool", console.log)
+    emitter.on("txConfirmed", console.log)
+    emitter.on("txSpeedUp", console.log)
+    emitter.on("txCancel", console.log)
+    emitter.on("txFailed", console.log)
   }
 
   return onboard && notify ? (
@@ -125,16 +134,19 @@ function App() {
         <div className="container">
           <h2>Onboard</h2>
           <div>
-            <button
+          {!provider && <button
               className="bn-demo-button"
-              onClick={() => onboard.walletSelect()}
+              onClick={onboard.walletSelect}
             >
               Wallet Select
-            </button>
-
+            </button>}
             <button className="bn-demo-button" onClick={onboard.walletReady}>
               Wallet Ready
             </button>
+
+            {provider && <button className="bn-demo-button" onClick={onboard.walletSelect}>
+              Change Wallet
+            </button>}
           </div>
         </div>
         <div className="container">
