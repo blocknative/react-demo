@@ -1,5 +1,5 @@
-import notify from "bn-notify"
-import onboard from "bn-onboard"
+import notify from "bnc-notify"
+import onboard from "bnc-onboard"
 
 const {modules} = onboard
 
