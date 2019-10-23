@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bnc-notify": "./blocknative/bnc-notify-0.0.1.tgz",
-    "bnc-onboard": "./blocknative/bnc-onboard-0.0.1.tgz",
+    "bnc-notify": "^0.2.0",
+    "bnc-onboard": "^0.2.0",
     "ethers": "^4.0.37",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

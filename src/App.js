@@ -28,7 +28,8 @@ function App() {
         wallet: wallet => {
           if (wallet.provider) {
             provider = new ethers.providers.Web3Provider(wallet.provider)
-            window.localStorage.setItem('selectedWallet', wallet.name)
+            window.localStorage.setItem("selectedWallet", wallet.name)
+            // setTimeout(() => wallet.instance.changeNetwork('mainnet'), 4000)
           }
         }
       })
@@ -38,12 +39,18 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const previouslySelectedWallet = window.localStorage.getItem('selectedWallet')
+    const previouslySelectedWallet = window.localStorage.getItem(
+      "selectedWallet"
+    )
 
-    if (previouslySelectedWallet &&  onboard) {
+    if (previouslySelectedWallet && onboard) {
       onboard.walletSelect(previouslySelectedWallet)
     }
   }, [onboard])
+
+  useEffect(() => {
+    
+  })
 
   async function readyToTransact() {
     if (!provider) {
@@ -65,14 +72,14 @@ function App() {
       value: 100000000000000
     })
 
-    const emitter = notify.hash(hash)
+    const { emitter } = notify.hash(hash)
 
-    emitter.on("txSent", console.log)
-    emitter.on("txPool", console.log)
-    emitter.on("txConfirmed", console.log)
-    emitter.on("txSpeedUp", console.log)
-    emitter.on("txCancel", console.log)
-    emitter.on("txFailed", console.log)
+    // emitter.on("txSent", console.log)
+    // emitter.on("txPool", console.log)
+    // emitter.on("txConfirmed", console.log)
+    // emitter.on("txSpeedUp", console.log)
+    // emitter.on("txCancel", console.log)
+    // emitter.on("txFailed", console.log)
 
     // emitter.on("all", event => {
     //   console.log("ALLLLLLL", event)
@@ -87,13 +94,15 @@ function App() {
 
     const signer = getSigner(provider)
 
-    const sendTransaction = () => signer.sendTransaction(txDetails)
+    const sendTransaction = () =>
+      signer.sendTransaction(txDetails).then(tx => tx.hash)
+
     const gasPrice = () => provider.getGasPrice().then(res => res.toString())
 
     const estimateGas = () =>
       provider.estimateGas(txDetails).then(res => res.toString())
 
-    const { emitter, id } = await notify.transaction({
+    const { emitter, result } = await notify.transaction({
       sendTransaction,
       gasPrice,
       estimateGas,
@@ -103,20 +112,20 @@ function App() {
 
     // id.then(val => console.log("id:", val))
 
-    emitter.on("txRequest", console.log)
-    emitter.on("nsfFail", console.log)
-    emitter.on("txRepeat", console.log)
-    emitter.on("txAwaitingApproval", console.log)
-    emitter.on("txConfirmReminder", console.log)
-    emitter.on("txSendFail", console.log)
-    emitter.on("txError", console.log)
-    emitter.on("txUnderPriced", console.log)
-    emitter.on("txSent", console.log)
-    emitter.on("txPool", console.log)
-    emitter.on("txConfirmed", console.log)
-    emitter.on("txSpeedUp", console.log)
-    emitter.on("txCancel", console.log)
-    emitter.on("txFailed", console.log)
+    // emitter.on("txRequest", console.log)
+    // emitter.on("nsfFail", console.log)
+    // emitter.on("txRepeat", console.log)
+    // emitter.on("txAwaitingApproval", console.log)
+    // emitter.on("txConfirmReminder", console.log)
+    // emitter.on("txSendFail", console.log)
+    // emitter.on("txError", console.log)
+    // emitter.on("txUnderPriced", console.log)
+    // emitter.on("txSent", console.log)
+    // emitter.on("txPool", console.log)
+    // emitter.on("txConfirmed", console.log)
+    // emitter.on("txSpeedUp", console.log)
+    // emitter.on("txCancel", console.log)
+    // emitter.on("txFailed", console.log)
   }
 
   return onboard && notify ? (
@@ -134,19 +143,23 @@ function App() {
         <div className="container">
           <h2>Onboard</h2>
           <div>
-          {!provider && <button
-              className="bn-demo-button"
-              onClick={onboard.walletSelect}
-            >
-              Wallet Select
-            </button>}
-            <button className="bn-demo-button" onClick={onboard.walletReady}>
-              Wallet Ready
-            </button>
+            {!provider && (
+              <button className="bn-demo-button" onClick={onboard.walletSelect}>
+                Wallet Select
+              </button>
+            )}
 
-            {provider && <button className="bn-demo-button" onClick={onboard.walletSelect}>
-              Change Wallet
-            </button>}
+            {provider && (
+              <button className="bn-demo-button" onClick={onboard.walletReady}>
+                Wallet Ready
+              </button>
+            )}
+
+            {provider && (
+              <button className="bn-demo-button" onClick={onboard.walletSelect}>
+                Change Wallet
+              </button>
+            )}
           </div>
         </div>
         <div className="container">
@@ -175,13 +188,15 @@ function App() {
             <button
               className="bn-demo-button"
               onClick={() => {
-                const { update } = notify.notification("customNotification", {
+                const { update } = notify.notification({
+                  eventCode: "dbUpdate",
                   type: "pending",
                   message: "This is a custom notification triggered by the dapp"
                 })
                 setTimeout(
                   () =>
-                    update("customNotificationUpdate", {
+                    update({
+                      eventCode: "dbUpdateSuccess",
                       message: "Updated status for custom notification",
                       type: "success"
                     }),
