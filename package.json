@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "bnc-notify": "^0.2.0",
-    "bnc-onboard": "^0.2.0",
+    "bnc-onboard": "^0.2.1",
     "ethers": "^4.0.37",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
