@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bnc-notify": "^0.2.0",
-    "bnc-onboard": "^0.2.1",
+    "bnc-notify": "^0.2.4",
+    "bnc-onboard": "^0.2.5",
     "ethers": "^4.0.37",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
