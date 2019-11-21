@@ -1,85 +1,82 @@
-import React, { useState, useEffect } from "react"
-import { ethers } from "ethers"
-import getSigner from "./signer"
-import { initOnboard, initNotify } from "./services"
+import React, { useState, useEffect } from "react";
+import { ethers } from "ethers";
+import getSigner from "./signer";
+import { initOnboard, initNotify } from "./services";
 
-import "./App.css"
+import "./App.css";
 
-let provider
+let provider;
 
 function App() {
-  const [address, setAddress] = useState(null)
-  const [network, setNetwork] = useState(null)
-  const [balance, setBalance] = useState(null)
+  const [address, setAddress] = useState(null);
+  const [network, setNetwork] = useState(null);
+  const [balance, setBalance] = useState(null);
 
-  const [onboard, setOnboard] = useState(null)
-  const [notify, setNotify] = useState(null)
+  const [onboard, setOnboard] = useState(null);
+  const [notify, setNotify] = useState(null);
 
-  const [darkMode, setDarkMode] = useState(false)
-  const [desktopPosition, setDesktopPosition] = useState("bottomRight")
-  const [mobilePosition, setMobilePosition] = useState("top")
+  const [darkMode, setDarkMode] = useState(false);
+  const [desktopPosition, setDesktopPosition] = useState("bottomRight");
+  const [mobilePosition, setMobilePosition] = useState("top");
 
   useEffect(() => {
-    setOnboard(
-      initOnboard({
-        address: setAddress,
-        network: setNetwork,
-        balance: setBalance,
-        wallet: wallet => {
-          if (wallet.provider) {
-            provider = new ethers.providers.Web3Provider(wallet.provider)
-            window.localStorage.setItem("selectedWallet", wallet.name)
-            // setTimeout(() => wallet.instance.changeNetwork('mainnet'), 4000)
-          }
+    const onboard = initOnboard({
+      address: setAddress,
+      network: setNetwork,
+      balance: setBalance,
+      wallet: wallet => {
+        if (wallet.provider) {
+          provider = new ethers.providers.Web3Provider(wallet.provider);
+          window.localStorage.setItem("selectedWallet", wallet.name);
         }
-      })
-    )
+      }
+    });
 
-    setNotify(initNotify())
-  }, [])
+    setOnboard(onboard);
+
+    setNotify(initNotify());
+  }, []);
 
   useEffect(() => {
     const previouslySelectedWallet = window.localStorage.getItem(
       "selectedWallet"
-    )
+    );
 
     if (previouslySelectedWallet && onboard) {
-      onboard.walletSelect(previouslySelectedWallet)
+      onboard.walletSelect(previouslySelectedWallet);
     }
-  }, [onboard])
+  }, [onboard]);
 
-  useEffect(() => {
-    
-  })
+  useEffect(() => {});
 
   async function readyToTransact() {
     if (!provider) {
-      const walletSelected = await onboard.walletSelect()
-      if (!walletSelected) return false
+      const walletSelected = await onboard.walletSelect();
+      if (!walletSelected) return false;
     }
 
-    const readyToTransact = await onboard.walletReady()
-    if (!readyToTransact) return false
+    const readyToTransact = await onboard.walletCheck();
+    if (!readyToTransact) return false;
 
-    return true
+    return true;
   }
 
   async function sendHash() {
-    const signer = getSigner(provider)
+    const signer = getSigner(provider);
 
     const { hash } = await signer.sendTransaction({
       to: "0x6A4C1Fc1137C47707a931934c76d884454Ed2915",
       value: 100000000000000
-    })
+    });
 
-    const { emitter } = notify.hash(hash)
+    const { emitter } = notify.hash(hash);
 
-    // emitter.on("txSent", console.log)
-    // emitter.on("txPool", console.log)
-    // emitter.on("txConfirmed", console.log)
-    // emitter.on("txSpeedUp", console.log)
-    // emitter.on("txCancel", console.log)
-    // emitter.on("txFailed", console.log)
+    emitter.on("txSent", console.log);
+    emitter.on("txPool", console.log);
+    emitter.on("txConfirmed", console.log);
+    emitter.on("txSpeedUp", console.log);
+    emitter.on("txCancel", console.log);
+    emitter.on("txFailed", console.log);
 
     // emitter.on("all", event => {
     //   console.log("ALLLLLLL", event)
@@ -90,17 +87,17 @@ function App() {
     const txDetails = {
       to: "0x6A4C1Fc1137C47707a931934c76d884454Ed2915",
       value: 10000
-    }
+    };
 
-    const signer = getSigner(provider)
+    const signer = getSigner(provider);
 
     const sendTransaction = () =>
-      signer.sendTransaction(txDetails).then(tx => tx.hash)
+      signer.sendTransaction(txDetails).then(tx => tx.hash);
 
-    const gasPrice = () => provider.getGasPrice().then(res => res.toString())
+    const gasPrice = () => provider.getGasPrice().then(res => res.toString());
 
     const estimateGas = () =>
-      provider.estimateGas(txDetails).then(res => res.toString())
+      provider.estimateGas(txDetails).then(res => res.toString());
 
     const { emitter, result } = await notify.transaction({
       sendTransaction,
@@ -108,24 +105,22 @@ function App() {
       estimateGas,
       balance: onboard.getState().balance,
       txDetails
-    })
+    });
 
-    // id.then(val => console.log("id:", val))
-
-    // emitter.on("txRequest", console.log)
-    // emitter.on("nsfFail", console.log)
-    // emitter.on("txRepeat", console.log)
-    // emitter.on("txAwaitingApproval", console.log)
-    // emitter.on("txConfirmReminder", console.log)
-    // emitter.on("txSendFail", console.log)
-    // emitter.on("txError", console.log)
-    // emitter.on("txUnderPriced", console.log)
-    // emitter.on("txSent", console.log)
-    // emitter.on("txPool", console.log)
-    // emitter.on("txConfirmed", console.log)
-    // emitter.on("txSpeedUp", console.log)
-    // emitter.on("txCancel", console.log)
-    // emitter.on("txFailed", console.log)
+    emitter.on("txRequest", console.log);
+    emitter.on("nsfFail", console.log);
+    emitter.on("txRepeat", console.log);
+    emitter.on("txAwaitingApproval", console.log);
+    emitter.on("txConfirmReminder", console.log);
+    emitter.on("txSendFail", console.log);
+    emitter.on("txError", console.log);
+    emitter.on("txUnderPriced", console.log);
+    emitter.on("txSent", console.log);
+    emitter.on("txPool", console.log);
+    emitter.on("txConfirmed", console.log);
+    emitter.on("txSpeedUp", console.log);
+    emitter.on("txCancel", console.log);
+    emitter.on("txFailed", console.log);
   }
 
   return onboard && notify ? (
@@ -150,8 +145,8 @@ function App() {
             )}
 
             {provider && (
-              <button className="bn-demo-button" onClick={onboard.walletReady}>
-                Wallet Ready
+              <button className="bn-demo-button" onClick={onboard.walletCheck}>
+                Wallet Check
               </button>
             )}
 
@@ -168,9 +163,9 @@ function App() {
             <button
               className="bn-demo-button"
               onClick={async () => {
-                const ready = await readyToTransact()
-                if (!ready) return
-                sendHash()
+                const ready = await readyToTransact();
+                if (!ready) return;
+                sendHash();
               }}
             >
               Hash
@@ -178,9 +173,9 @@ function App() {
             <button
               className="bn-demo-button"
               onClick={async () => {
-                const ready = await readyToTransact()
-                if (!ready) return
-                sendTransaction()
+                const ready = await readyToTransact();
+                if (!ready) return;
+                sendTransaction();
               }}
             >
               Transaction
@@ -192,7 +187,7 @@ function App() {
                   eventCode: "dbUpdate",
                   type: "pending",
                   message: "This is a custom notification triggered by the dapp"
-                })
+                });
                 setTimeout(
                   () =>
                     update({
@@ -201,7 +196,7 @@ function App() {
                       type: "success"
                     }),
                   4000
-                )
+                );
               }}
             >
               Custom Notification
@@ -217,9 +212,9 @@ function App() {
               color: darkMode ? "white" : "#4a90e2"
             }}
             onClick={() => {
-              setDarkMode(true)
-              notify.config({ darkMode: true })
-              onboard.config({ darkMode: true })
+              setDarkMode(true);
+              notify.config({ darkMode: true });
+              onboard.config({ darkMode: true });
             }}
           >
             Dark Mode
@@ -231,9 +226,9 @@ function App() {
               color: !darkMode ? "white" : "#4a90e2"
             }}
             onClick={() => {
-              setDarkMode(false)
-              notify.config({ darkMode: false })
-              onboard.config({ darkMode: false })
+              setDarkMode(false);
+              notify.config({ darkMode: false });
+              onboard.config({ darkMode: false });
             }}
           >
             Light Mode
@@ -246,8 +241,8 @@ function App() {
               color: desktopPosition === "topLeft" ? "white" : "#4a90e2"
             }}
             onClick={() => {
-              setDesktopPosition("topLeft")
-              notify.config({ desktopPosition: "topLeft" })
+              setDesktopPosition("topLeft");
+              notify.config({ desktopPosition: "topLeft" });
             }}
           >
             Top Left
@@ -259,8 +254,8 @@ function App() {
               color: desktopPosition === "topRight" ? "white" : "#4a90e2"
             }}
             onClick={() => {
-              setDesktopPosition("topRight")
-              notify.config({ desktopPosition: "topRight" })
+              setDesktopPosition("topRight");
+              notify.config({ desktopPosition: "topRight" });
             }}
           >
             Top Right
@@ -273,8 +268,8 @@ function App() {
               color: desktopPosition === "bottomRight" ? "white" : "#4a90e2"
             }}
             onClick={() => {
-              setDesktopPosition("bottomRight")
-              notify.config({ desktopPosition: "bottomRight" })
+              setDesktopPosition("bottomRight");
+              notify.config({ desktopPosition: "bottomRight" });
             }}
           >
             Bottom Right
@@ -287,8 +282,8 @@ function App() {
               color: desktopPosition === "bottomLeft" ? "white" : "#4a90e2"
             }}
             onClick={() => {
-              setDesktopPosition("bottomLeft")
-              notify.config({ desktopPosition: "bottomLeft" })
+              setDesktopPosition("bottomLeft");
+              notify.config({ desktopPosition: "bottomLeft" });
             }}
           >
             Bottom Left
@@ -301,8 +296,8 @@ function App() {
               color: mobilePosition === "top" ? "white" : "#4a90e2"
             }}
             onClick={() => {
-              setMobilePosition("top")
-              notify.config({ mobilePosition: "top" })
+              setMobilePosition("top");
+              notify.config({ mobilePosition: "top" });
             }}
           >
             Top
@@ -314,8 +309,8 @@ function App() {
               color: mobilePosition === "bottom" ? "white" : "#4a90e2"
             }}
             onClick={() => {
-              setMobilePosition("bottom")
-              notify.config({ mobilePosition: "bottom" })
+              setMobilePosition("bottom");
+              notify.config({ mobilePosition: "bottom" });
             }}
           >
             Bottom
@@ -325,26 +320,26 @@ function App() {
     </main>
   ) : (
     <div>Loading...</div>
-  )
+  );
 }
 
 function networkName(id) {
   switch (Number(id)) {
     case 1:
-      return "main"
+      return "main";
     case 3:
-      return "ropsten"
+      return "ropsten";
     case 4:
-      return "rinkeby"
+      return "rinkeby";
     case 5:
-      return "goerli"
+      return "goerli";
     case 42:
-      return "kovan"
+      return "kovan";
     case "localhost":
-      return "localhost"
+      return "localhost";
     default:
-      return "local"
+      return "local";
   }
 }
 
-export default App
+export default App;
