@@ -19,7 +19,7 @@ export function initOnboard(subscriptions) {
     { name: "trust" },
     {
       name: "walletConnect",
-      infuraKey: "19ac568d0464497a9451cf9f388de2c3",
+      infuraKey: "d5e29c9b9a9d4116a7348113f57770a8",
       networkId
     }
   ]);

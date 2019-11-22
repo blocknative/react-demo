@@ -5,8 +5,6 @@ import { initOnboard, initNotify } from "./services";
 
 import "./App.css";
 
-let provider;
-
 function App() {
   const [address, setAddress] = useState(null);
   const [network, setNetwork] = useState(null);
@@ -14,6 +12,7 @@ function App() {
 
   const [onboard, setOnboard] = useState(null);
   const [notify, setNotify] = useState(null);
+  const [provider, setProvider] = useState(null);
 
   const [darkMode, setDarkMode] = useState(false);
   const [desktopPosition, setDesktopPosition] = useState("bottomRight");
@@ -26,7 +25,7 @@ function App() {
       balance: setBalance,
       wallet: wallet => {
         if (wallet.provider) {
-          provider = new ethers.providers.Web3Provider(wallet.provider);
+          setProvider(new ethers.providers.Web3Provider(wallet.provider));
           window.localStorage.setItem("selectedWallet", wallet.name);
         }
       }
@@ -62,21 +61,28 @@ function App() {
   }
 
   async function sendHash() {
+    console.log({ provider });
     const signer = getSigner(provider);
 
-    const { hash } = await signer.sendTransaction({
-      to: "0x6A4C1Fc1137C47707a931934c76d884454Ed2915",
-      value: 100000000000000
-    });
+    try {
+      const { hash } = await signer.sendTransaction({
+        to: "0x6A4C1Fc1137C47707a931934c76d884454Ed2915",
+        value: 100000
+      });
 
-    const { emitter } = notify.hash(hash);
+      console.log({ hash });
 
-    emitter.on("txSent", console.log);
-    emitter.on("txPool", console.log);
-    emitter.on("txConfirmed", console.log);
-    emitter.on("txSpeedUp", console.log);
-    emitter.on("txCancel", console.log);
-    emitter.on("txFailed", console.log);
+      const { emitter } = notify.hash(hash);
+
+      emitter.on("txSent", console.log);
+      emitter.on("txPool", console.log);
+      emitter.on("txConfirmed", console.log);
+      emitter.on("txSpeedUp", console.log);
+      emitter.on("txCancel", console.log);
+      emitter.on("txFailed", console.log);
+    } catch (error) {
+      console.log({ error });
+    }
 
     // emitter.on("all", event => {
     //   console.log("ALLLLLLL", event)
