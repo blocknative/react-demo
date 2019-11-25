@@ -46,8 +46,6 @@ function App() {
     }
   }, [onboard]);
 
-  useEffect(() => {});
-
   async function readyToTransact() {
     if (!provider) {
       const walletSelected = await onboard.walletSelect();
@@ -61,7 +59,6 @@ function App() {
   }
 
   async function sendHash() {
-    console.log({ provider });
     const signer = getSigner(provider);
 
     try {
