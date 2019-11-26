@@ -2933,10 +2933,10 @@ bnc-notify@^0.2.1:
     lodash.debounce "^4.0.8"
     uuid "^3.3.3"
 
-bnc-notify@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.0.6.tgz#244488a5047e6e166cb70824b97cd1d995a173b2"
-  integrity sha512-Qqg5DagzkPsyix2LCGuIgfdJKyfHZe8L9TYC33mJE74vgp6qJ5zWZfhGmVx7kvr3+TTHPMnpPlmDWQb8mRxC3Q==
+bnc-notify@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.0.9.tgz#19e12e9a07ac2d631f6e7d080b780c217610b133"
+  integrity sha512-bhlaweonZdBhhnx3R5HQ6qKR3fcxMkkRd1V7jYH4h47f1SRMYCgfV2f6iOhHwfqfdS+Z3AjtxbCJikI5+UbBQw==
   dependencies:
     bignumber.js "^9.0.0"
     bnc-sdk "1.0.2"
@@ -2944,10 +2944,10 @@ bnc-notify@^1.0.6:
     regenerator-runtime "^0.13.3"
     uuid "^3.3.3"
 
-bnc-onboard@1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.1.5.tgz#29c86a52e9b320140a199eed0c2ff7140201edf4"
-  integrity sha512-IArqpM44sOKv2sZM6qef8TlZoRm8FneD78VfrLOQQhruvQtIBFvXMQxM8ZYoTbzWB+UOu1bpU2692m2S2bbZkQ==
+bnc-onboard@1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.1.6.tgz#30ffa06e00a66e9c765d165b66c3a8538bef9f34"
+  integrity sha512-P9bpwqzunaIKELVdKjbKXasWtnqsRIVmwgHt/NFZac9aKa7ZD4xqCSM7q2sDeYDz1CMEfgrn7O7vBwEOUEneyQ==
   dependencies:
     "@portis/web3" "^2.0.0-beta.42"
     "@walletconnect/web3-provider" "^1.0.0-beta.36"
