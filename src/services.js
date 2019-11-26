@@ -1,6 +1,5 @@
 import notify from "bnc-notify";
 import onboard from "bnc-onboard";
-// import tokenBalance from "./tokenBalance";
 
 const networkId = 4;
 
@@ -32,11 +31,6 @@ export function initOnboard(subscriptions) {
       { checkName: "connect" },
       { checkName: "network" },
       { checkName: "balance", minimumBalance: "100000" }
-      // tokenBalance({
-      //   tokenAddress: "0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359",
-      //   tokenName: "Sai",
-      //   minimumBalance: 5
-      // })
     ]
   });
 }
@@ -44,7 +38,6 @@ export function initOnboard(subscriptions) {
 export function initNotify() {
   return notify({
     dappId: "12153f55-f29e-4f11-aa07-90f10da5d778",
-    networkId: 4,
-    darkMode: true
+    networkId: 4
   });
 }
