@@ -1,4 +1,4 @@
-# React | Onboard | Notify - Demo
+# onboard-notify-react
 
 A repository to demonstrate a basic integration of [Onboard.js](https://github.com/blocknative/onboard) and [Notify.js](https://github.com/blocknative/onboard) into a React project.
 
