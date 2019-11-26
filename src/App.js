@@ -125,7 +125,7 @@ function App() {
         {address && <span>{address}</span>}
         {balance != null && (
           <span>
-            {balance > 0 ? balance / 1000000000000000000 : balance} ETH
+            {Number(balance) > 0 ? balance / 1000000000000000000 : balance} ETH
           </span>
         )}
         {network && <span>{networkName(network)} network</span>}
