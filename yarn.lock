@@ -1488,9 +1488,9 @@
   integrity sha512-Il2DtDVRGDcqjDtE+rF8iqg1CArehSK84HZJCT7AMITlyXRBpuPhqGLDQMowraqqu1coEaimg4ZOqggt6L6L+A==
 
 "@types/node@*":
-  version "12.12.12"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.12.tgz#529bc3e73dbb35dd9e90b0a1c83606a9d3264bdb"
-  integrity sha512-MGuvYJrPU0HUwqF7LqvIj50RZUX23Z+m583KBygKYUZLlZ88n6w28XRNJRJgsHukLEnLz6w6SvxZoLgbr5wLqQ==
+  version "12.12.14"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.14.tgz#1c1d6e3c75dba466e0326948d56e8bd72a1903d2"
+  integrity sha512-u/SJDyXwuihpwjXy7hOOghagLEV1KdAST6syfnOk6QZAMzZuWZqXy5aYYZbh8Jdpd4escVFP0MvftHNDb9pruA==
 
 "@types/q@^1.5.1":
   version "1.5.2"
@@ -2127,16 +2127,16 @@ atob@^2.1.1:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 authereum@^0.0.4-beta.26:
-  version "0.0.4-beta.49"
-  resolved "https://registry.yarnpkg.com/authereum/-/authereum-0.0.4-beta.49.tgz#4ad75fcc9b360b8a53dfa45cd806d821165d2d6b"
-  integrity sha512-TKItUVxzaWTjCIAxTucxiqHLAb52+au6veB4yDxrYdULcEmSpEyRx6CHX9tnUdsEANp9Xqk695wiz32II/RfRg==
+  version "0.0.4-beta.53"
+  resolved "https://registry.yarnpkg.com/authereum/-/authereum-0.0.4-beta.53.tgz#ae69b404c39fb0772de5b624202555d5c12e1064"
+  integrity sha512-EL9ugU8DKkekVGrLuSSj6EdmXia41ANMIst5vdFokKPBtOXs+TDstCRm3xKirrmzEw+emgTZr1S/yxsi5nr+HA==
   dependencies:
     bnc-notify "^0.2.1"
     ethereum-private-key-to-address "0.0.3"
     ethers "^4.0.36"
     eventemitter3 "^4.0.0"
+    moment "^2.24.0"
     penpal "^4.1.1"
-    pify "^4.0.1"
     rollup-plugin-commonjs "^10.1.0"
     store "^2.0.12"
     web3-provider-engine "^15.0.3"
@@ -2933,29 +2933,30 @@ bnc-notify@^0.2.1:
     lodash.debounce "^4.0.8"
     uuid "^3.3.3"
 
-bnc-notify@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.0.4.tgz#d01353a15eb58f1ba6ca225f5b97cae1c14d339e"
-  integrity sha512-C+P+60KzyYvzy03C6pSE8KaD5UuSUK5uHq5nMDwRlnulkCrCSmyir1wYnuk3l4ZOFJ/yDElQ3kqbfxVsMkXfpQ==
+bnc-notify@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.0.6.tgz#244488a5047e6e166cb70824b97cd1d995a173b2"
+  integrity sha512-Qqg5DagzkPsyix2LCGuIgfdJKyfHZe8L9TYC33mJE74vgp6qJ5zWZfhGmVx7kvr3+TTHPMnpPlmDWQb8mRxC3Q==
   dependencies:
     bignumber.js "^9.0.0"
-    bnc-sdk "1.0.0"
+    bnc-sdk "1.0.2"
     lodash.debounce "^4.0.8"
     regenerator-runtime "^0.13.3"
     uuid "^3.3.3"
 
-bnc-onboard@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.1.3.tgz#7a4997761a9c6cf0fccb71be9b67d7caf985f681"
-  integrity sha512-1qFvNBXjT8D3vQPJ925RxPzO5PN/HDISPlvX+XjmKGFr9lBvGdYgCt7Xu+fZT1N/nR86bZZw5LoILxFOAZ4Fng==
+bnc-onboard@1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.1.5.tgz#29c86a52e9b320140a199eed0c2ff7140201edf4"
+  integrity sha512-IArqpM44sOKv2sZM6qef8TlZoRm8FneD78VfrLOQQhruvQtIBFvXMQxM8ZYoTbzWB+UOu1bpU2692m2S2bbZkQ==
   dependencies:
     "@portis/web3" "^2.0.0-beta.42"
     "@walletconnect/web3-provider" "^1.0.0-beta.36"
     authereum "^0.0.4-beta.26"
     bignumber.js "^9.0.0"
-    bnc-sdk "1.0.0"
+    bnc-sdk "1.0.2"
     bowser "^2.5.2"
     fortmatic "^0.8.2"
+    lodash.debounce "^4.0.8"
     promise-cancelable "^2.1.1"
     regenerator-runtime "^0.13.3"
     squarelink "^1.1.4"
@@ -2967,10 +2968,10 @@ bnc-sdk@0.2.3:
   dependencies:
     sturdy-websocket "^0.1.12"
 
-bnc-sdk@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-1.0.0.tgz#074545c3a33d9999d0118dca3270abe6de96c3c0"
-  integrity sha512-8rTWuh8pZ281vvtQPbND/AKPoYxPbdZxlmsl3GcnY8UfPgx6kCuPqia2OlRBCHx3J0UD0P0EG45xJRH1btEcnw==
+bnc-sdk@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-1.0.2.tgz#c06acb9f514663f218e305d222faef223bfbb650"
+  integrity sha512-MfP99PhZnyDO7ANiryLr6HpHVlUMPV18LmvK1WD24bwbUp4IQF92TRqlEx5x3BNR6uzM7q87qKgyaQ5CYy79sg==
   dependencies:
     sturdy-websocket "^0.1.12"
 
@@ -3310,9 +3311,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30000989, caniuse-lite@^1.0.30001010:
-  version "1.0.30001011"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001011.tgz#0d6c4549c78c4a800bb043a83ca0cbe0aee6c6e1"
-  integrity sha512-h+Eqyn/YA6o6ZTqpS86PyRmNWOs1r54EBDcd2NTwwfsXQ8re1B38SnB+p2RKF8OUsyEIjeDU8XGec1RGO/wYCg==
+  version "1.0.30001012"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001012.tgz#653ec635e815b9e0fb801890923b0c2079eb34ec"
+  integrity sha512-7RR4Uh04t9K1uYRWzOJmzplgEOAXbfK72oVNokCdMzA67trrhPzy93ahKk1AWHiA0c58tD2P+NHqxrA8FZ+Trg==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -4546,9 +4547,9 @@ error-ex@^1.2.0, error-ex@^1.3.1:
     is-arrayish "^0.2.1"
 
 es-abstract@^1.12.0, es-abstract@^1.15.0, es-abstract@^1.5.0, es-abstract@^1.5.1, es-abstract@^1.7.0:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.16.1.tgz#9edab53bec49b7d9cd513983520ed99703216a8a"
-  integrity sha512-38Pa/Asg/9i3Gkgj1oAK0WfWDv03ngRV39qgHdMSJZ23AAAWRKFJuwT5QPtCDg7paIWG1OEpt4QnzDFVXfJIAQ==
+  version "1.16.2"
+  resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.16.2.tgz#4e874331645e9925edef141e74fc4bd144669d34"
+  integrity sha512-jYo/J8XU2emLXl3OLwfwtuFfuF2w6DYPs+xy9ZfVyPkDcrauu6LYrw/q2TyCtrbc/KUdCiC5e9UajRhgNkVopA==
   dependencies:
     es-to-primitive "^1.2.1"
     function-bind "^1.1.1"
@@ -8129,6 +8130,11 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
+
+moment@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -11767,9 +11773,9 @@ uglify-js@3.4.x:
     source-map "~0.6.1"
 
 uglify-js@^3.1.4:
-  version "3.6.9"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.6.9.tgz#85d353edb6ddfb62a9d798f36e91792249320611"
-  integrity sha512-pcnnhaoG6RtrvHJ1dFncAe8Od6Nuy30oaJ82ts6//sGSXOP5UjBMEthiProjXmMNHOfd93sqlkztifFMcb+4yw==
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.7.0.tgz#14b854003386b7a7c045910f43afbc96d2aa5307"
+  integrity sha512-PC/ee458NEMITe1OufAjal65i6lB58R1HWMRcxwvdz1UopW0DYqlRL3xdu3IcTvTXsB02CRHykidkTRL+A3hQA==
   dependencies:
     commander "~2.20.3"
     source-map "~0.6.1"
