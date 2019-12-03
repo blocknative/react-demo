@@ -24,7 +24,9 @@ export function initOnboard(subscriptions) {
         {
           walletName: "walletConnect",
           infuraKey: "d5e29c9b9a9d4116a7348113f57770a8"
-        }
+        },
+        { walletName: "opera" },
+        { walletName: "operaTouch" }
       ]
     },
     walletCheck: [
