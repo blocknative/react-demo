@@ -11,8 +11,10 @@ export function initOnboard(subscriptions) {
     walletSelect: {
       wallets: [
         { walletName: "metamask" },
+        { walletName: "trezor", appUrl: 'https://blocknative.com', email: 'aaron@blocknative.com', rpcUrl: 'https://rinkeby.infura.io/v3/d5e29c9b9a9d4116a7348113f57770a8' },
         { walletName: "dapper" },
         { walletName: "coinbase" },
+        { walletName: "status" },
         {
           walletName: "portis",
           apiKey: "d7d72646-709a-45ab-aa43-8de5307ae0df"
