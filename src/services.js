@@ -11,19 +11,6 @@ export function initOnboard(subscriptions) {
     walletSelect: {
       wallets: [
         { walletName: "metamask" },
-        {
-          walletName: "trezor",
-          appUrl: "https://blocknative.com",
-          email: "aaron@blocknative.com",
-          rpcUrl:
-            "https://rinkeby.infura.io/v3/d5e29c9b9a9d4116a7348113f57770a8"
-        },
-        {
-          walletName: "ledger",
-          rpcUrl:
-            "https://rinkeby.infura.io/v3/d5e29c9b9a9d4116a7348113f57770a8"
-        },
-        { walletName: 'torus' },
         { walletName: "dapper" },
         { walletName: "coinbase" },
         { walletName: "status" },
@@ -32,6 +19,7 @@ export function initOnboard(subscriptions) {
           apiKey: "d7d72646-709a-45ab-aa43-8de5307ae0df"
         },
         { walletName: "fortmatic", apiKey: "pk_test_886ADCAB855632AA" },
+        { walletName: "torus" },
         { walletName: "squarelink", apiKey: "87288b677f8cfb09a986" },
         { walletName: "authereum" },
         { walletName: "trust" },
@@ -46,7 +34,6 @@ export function initOnboard(subscriptions) {
     walletCheck: [
       { checkName: "connect" },
       { checkName: "network" },
-      {checkName: 'accounts'},
       { checkName: "balance", minimumBalance: "100000" }
     ]
   });
