@@ -27,6 +27,8 @@ function App() {
         if (wallet.provider) {
           setProvider(new ethers.providers.Web3Provider(wallet.provider));
           window.localStorage.setItem("selectedWallet", wallet.name);
+        } else {
+          setProvider(null);
         }
       }
     });
@@ -64,7 +66,6 @@ function App() {
       to: "0x6A4C1Fc1137C47707a931934c76d884454Ed2915",
       value: 100000
     });
-
     const { emitter } = notify.hash(hash);
 
     emitter.on("txSent", console.log);
@@ -151,6 +152,12 @@ function App() {
                 Change Wallet
               </button>
             )}
+
+            {provider && (
+              <button className="bn-demo-button" onClick={onboard.walletReset}>
+                Reset Wallet
+              </button>
+            )}
           </div>
         </div>
         <div className="container">
@@ -175,6 +182,14 @@ function App() {
               }}
             >
               Transaction
+            </button>
+            <button
+              className="bn-demo-button"
+              onClick={() => {
+                address && notify.account(address);
+              }}
+            >
+              Watch Address
             </button>
             <button
               className="bn-demo-button"
