@@ -63,19 +63,24 @@ function App() {
 
   async function sendHash() {
     const signer = getSigner(provider)
-    const { hash } = await signer.sendTransaction({
-      to: '0x6A4C1Fc1137C47707a931934c76d884454Ed2915',
-      value: 100000
-    })
+    try{
+      const { hash } = await signer.sendTransaction({
+        to: '0x6A4C1Fc1137C47707a931934c76d884454Ed2915',
+        value: 100000
+      })
+      const { emitter } = notify.hash(hash)
 
-    const { emitter } = notify.hash(hash)
+    } catch(err) {
+      console.log({err})
+    }
 
-    emitter.on('txSent', console.log)
-    emitter.on('txPool', console.log)
-    emitter.on('txConfirmed', console.log)
-    emitter.on('txSpeedUp', console.log)
-    emitter.on('txCancel', console.log)
-    emitter.on('txFailed', console.log)
+
+    // emitter.on('txSent', console.log)
+    // emitter.on('txPool', console.log)
+    // emitter.on('txConfirmed', console.log)
+    // emitter.on('txSpeedUp', console.log)
+    // emitter.on('txCancel', console.log)
+    // emitter.on('txFailed', console.log)
 
     // emitter.on("all", event => {
     //   console.log("ALLLLLLL", event)

@@ -11,7 +11,19 @@ export function initOnboard(subscriptions) {
     walletSelect: {
       wallets: [
         { walletName: "metamask" },
-        { walletName: "trezor", appUrl: 'https://blocknative.com', email: 'aaron@blocknative.com', rpcUrl: 'https://rinkeby.infura.io/v3/d5e29c9b9a9d4116a7348113f57770a8' },
+        {
+          walletName: "trezor",
+          appUrl: "https://blocknative.com",
+          email: "aaron@blocknative.com",
+          rpcUrl:
+            "https://rinkeby.infura.io/v3/d5e29c9b9a9d4116a7348113f57770a8"
+        },
+        {
+          walletName: "ledger",
+          rpcUrl:
+            "https://rinkeby.infura.io/v3/d5e29c9b9a9d4116a7348113f57770a8"
+        },
+        { walletName: 'torus' },
         { walletName: "dapper" },
         { walletName: "coinbase" },
         { walletName: "status" },
@@ -34,6 +46,7 @@ export function initOnboard(subscriptions) {
     walletCheck: [
       { checkName: "connect" },
       { checkName: "network" },
+      {checkName: 'accounts'},
       { checkName: "balance", minimumBalance: "100000" }
     ]
   });
