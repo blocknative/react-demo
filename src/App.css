@@ -1,7 +1,9 @@
 body {
   font-family: "Helvetica Neue";
-  background: linear-gradient(#4d5f80, #ab47bc);
-  max-width: 100vw;
+  background-color: rgb(206, 175, 206);
+  background-image: url("bn-logo.png");
+  background-repeat: repeat;
+max-width: 100vw;
   overflow: hidden;
   margin: 0;
   padding: 0;
