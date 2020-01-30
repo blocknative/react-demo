@@ -20,11 +20,10 @@ function App() {
 
   useEffect(() => {
     const onboard = initOnboard({
-      address: a => console.log({ a }) || setAddress(a),
-      network: n => console.log({ n }) || setNetwork(n),
-      balance: b => console.log({ b }) || setBalance(b),
+      address: setAddress,
+      network: setNetwork,
+      balance: setBalance,
       wallet: wallet => {
-        console.log({ wallet });
         if (wallet.provider) {
           setProvider(new ethers.providers.Web3Provider(wallet.provider));
           window.localStorage.setItem("selectedWallet", wallet.name);
@@ -63,22 +62,18 @@ function App() {
 
   async function sendHash() {
     const signer = getSigner(provider);
-    try {
-      const { hash } = await signer.sendTransaction({
-        to: "0x6A4C1Fc1137C47707a931934c76d884454Ed2915",
-        value: 100000
-      });
-      const { emitter } = notify.hash(hash);
-    } catch (err) {
-      console.log({ err });
-    }
+    const { hash } = await signer.sendTransaction({
+      to: "0x6A4C1Fc1137C47707a931934c76d884454Ed2915",
+      value: 100000
+    });
+    const { emitter } = notify.hash(hash);
 
-    // emitter.on('txSent', console.log)
-    // emitter.on('txPool', console.log)
-    // emitter.on('txConfirmed', console.log)
-    // emitter.on('txSpeedUp', console.log)
-    // emitter.on('txCancel', console.log)
-    // emitter.on('txFailed', console.log)
+    emitter.on("txSent", console.log);
+    emitter.on("txPool", console.log);
+    emitter.on("txConfirmed", console.log);
+    emitter.on("txSpeedUp", console.log);
+    emitter.on("txCancel", console.log);
+    emitter.on("txFailed", console.log);
 
     // emitter.on("all", event => {
     //   console.log("ALLLLLLL", event)
