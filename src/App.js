@@ -185,7 +185,11 @@ function App() {
             </button>
             <button
               className="bn-demo-button"
-              onClick={() => {
+              onClick={async () => {
+                if (!address) {
+                 await readyToTransact()
+                }
+                
                 address && notify.account(address);
               }}
             >
