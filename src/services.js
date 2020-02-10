@@ -21,7 +21,7 @@ export function initOnboard(subscriptions) {
         { walletName: "fortmatic", apiKey: "pk_test_886ADCAB855632AA" },
         { walletName: "torus" },
         { walletName: "squarelink", apiKey: "87288b677f8cfb09a986" },
-        { walletName: "authereum" },
+        { walletName: "authereum", disableNotifications: true },
         { walletName: "trust" },
         {
           walletName: "walletConnect",

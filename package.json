@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "bnc-notify": "^1.0.10",
-    "bnc-onboard": "^1.2.2",
+    "bnc-onboard": "^1.2.3",
     "ethers": "^4.0.37",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

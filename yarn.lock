@@ -2295,10 +2295,10 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-authereum@^0.0.4-beta.26:
-  version "0.0.4-beta.78"
-  resolved "https://registry.yarnpkg.com/authereum/-/authereum-0.0.4-beta.78.tgz#5b6e65e9da5de3cb62330c7a7f1ef5105bf5812d"
-  integrity sha512-SbInyIsPrSynmFq3u9EXizYFs9w5WdzN6tRCmgo491O0LqaQeMOXkl0xKCVhOTUZMVoWutK00m7xx5kEzGs5eg==
+authereum@^0.0.4-beta.88:
+  version "0.0.4-beta.93"
+  resolved "https://registry.yarnpkg.com/authereum/-/authereum-0.0.4-beta.93.tgz#4063aa03f9e2c307779c5115f86698c38a40ce53"
+  integrity sha512-IyB5jduKcikS0oMgzYLKvgS/cumLd9jRBxnZHRxgNlMP59brq6gE/pxepvjB11baMUdjtEJxL2rEgJstU8NBmA==
   dependencies:
     async "^3.1.0"
     bnc-notify "^0.2.1"
@@ -3124,15 +3124,15 @@ bnc-notify@^1.0.10:
     regenerator-runtime "^0.13.3"
     uuid "^3.3.3"
 
-bnc-onboard@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.2.1.tgz#f240f04eb0b014cf3bf6a3d6166e41881018f26e"
-  integrity sha512-MJZuLzYFhhAHPjf7tHJsmMYgjO0eWRvj/L8GiOdpaTjZXV2JYn8tgbEf4PvugkImzKvJp0eMG4RDQdy48MfEPA==
+bnc-onboard@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.2.3.tgz#096d18aa5001bc15a35935232336c3e618ea483b"
+  integrity sha512-TVuaGZ56r/vHwdysjc92YNocfhmtbZzzuukExvXjq/GpZo6YVQn3yb/A7KLbO/el97LS7/hAmPgfUnGVAGEkZQ==
   dependencies:
     "@portis/web3" "^2.0.0-beta.42"
     "@toruslabs/torus-embed" "^0.2.11"
     "@walletconnect/web3-provider" "^1.0.0-beta.45"
-    authereum "^0.0.4-beta.26"
+    authereum "^0.0.4-beta.88"
     bignumber.js "^9.0.0"
     bnc-sdk "1.0.3"
     bowser "^2.5.2"
