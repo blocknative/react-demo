@@ -38,8 +38,6 @@ workflows:
   test_build:
     jobs:
       - deploy_stage:
-          requires:
-            - test
           filters:
             branches:
               only:
