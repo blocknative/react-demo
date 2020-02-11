@@ -45,8 +45,6 @@ workflows:
               only:
                 - develop
       - deploy_prod:
-          requires:
-            - test
           filters:
             branches:
               only:
