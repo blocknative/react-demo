@@ -18,6 +18,8 @@ function App() {
   const [desktopPosition, setDesktopPosition] = useState("bottomRight");
   const [mobilePosition, setMobilePosition] = useState("top");
 
+  const [toAddress, setToAddress] = useState('')
+
   useEffect(() => {
     const onboard = initOnboard({
       address: setAddress,
@@ -61,10 +63,14 @@ function App() {
   }
 
   async function sendHash() {
+    if (!toAddress) {
+      alert('An Ethereum address to send Eth to is required.')
+    }
+
     const signer = getSigner(provider);
     const { hash } = await signer.sendTransaction({
-      to: "0x6A4C1Fc1137C47707a931934c76d884454Ed2915",
-      value: 100000
+      to: toAddress,
+      value: 1000000000000000
     });
     const { emitter } = notify.hash(hash);
 
@@ -81,9 +87,13 @@ function App() {
   }
 
   async function sendTransaction() {
+    if (!toAddress) {
+      alert('An Ethereum address to send Eth to is required.')
+    }
+
     const txDetails = {
-      to: "0x6A4C1Fc1137C47707a931934c76d884454Ed2915",
-      value: 10000
+      to: toAddress,
+      value: 1000000000000000
     };
 
     const signer = getSigner(provider);
@@ -133,36 +143,41 @@ function App() {
       </header>
       <section className="main">
         <div className="container">
-          <h2>Onboard</h2>
+          <h2>Onboarding Users with Onboard.js</h2>
           <div>
             {!provider && (
               <button className="bn-demo-button" onClick={onboard.walletSelect}>
-                Wallet Select
+                Select a Wallet
               </button>
             )}
 
             {provider && (
               <button className="bn-demo-button" onClick={onboard.walletCheck}>
-                Wallet Check
+                Wallet Checks
               </button>
             )}
 
             {provider && (
               <button className="bn-demo-button" onClick={onboard.walletSelect}>
-                Change Wallet
+                Switch Wallets
               </button>
             )}
 
             {provider && (
               <button className="bn-demo-button" onClick={onboard.walletReset}>
-                Reset Wallet
+                Reset Wallet State
               </button>
             )}
           </div>
         </div>
         <div className="container">
-          <h2>Notify</h2>
-          <div>
+          <h2>Transaction Notifications with Notify.js</h2>
+          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '1rem'}}>
+            <div style={{marginBottom: '1rem'}}>
+              <label>Send 0.001 Rinkeby Eth to:</label>
+              <input type="text" style={{padding: '0.5rem', border: 'none', borderRadius: '10px', marginLeft: '0.5rem', width: '18rem'}} value={toAddress} placeholder="address" onChange={(e) => setToAddress(e.target.value)} />
+            </div>
+            <div>
             <button
               className="bn-demo-button"
               onClick={async () => {
@@ -171,8 +186,11 @@ function App() {
                 sendHash();
               }}
             >
-              Hash
+              Send
             </button>
+            with in-flight notifications
+            </div>
+            <div>
             <button
               className="bn-demo-button"
               onClick={async () => {
@@ -181,8 +199,12 @@ function App() {
                 sendTransaction();
               }}
             >
-              Transaction
+              Send
             </button>
+            with pre-flight and in-flight notifications
+            </div>
+          </div>
+          <div>
             <button
               className="bn-demo-button"
               onClick={async () => {
@@ -193,7 +215,7 @@ function App() {
                 address && notify.account(address);
               }}
             >
-              Watch Address
+              Watch Current Account
             </button>
             <button
               className="bn-demo-button"
@@ -219,7 +241,7 @@ function App() {
           </div>
         </div>
         <div className="container">
-          <h2>UI Settings</h2>
+          <h3>UI Settings</h3>
           <button
             className="bn-demo-button"
             style={{

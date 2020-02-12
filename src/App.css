@@ -3,7 +3,7 @@ body {
   background-color: rgb(206, 175, 206);
   background-image: url("bn-logo.png");
   background-repeat: repeat;
-max-width: 100vw;
+  max-width: 100vw;
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -46,7 +46,7 @@ section {
   align-items: center;
   flex-flow: column nowrap;
   padding: 1rem;
-  width: 20rem;
+  /* width: 20rem; */
   border: 1px solid #eeeeee;
   border-radius: 4px;
   margin: 0.25rem;
