@@ -5,6 +5,24 @@ import { initOnboard, initNotify } from "./services";
 
 import "./App.css";
 
+const internalTransferABI = [
+  {
+    inputs: [
+      {
+        internalType: "address payable",
+        name: "to",
+        type: "address"
+      }
+    ],
+    name: "internalTransfer",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function"
+  }
+];
+
+let internalTransferContract;
+
 function App() {
   const [address, setAddress] = useState(null);
   const [network, setNetwork] = useState(null);
@@ -18,7 +36,7 @@ function App() {
   const [desktopPosition, setDesktopPosition] = useState("bottomRight");
   const [mobilePosition, setMobilePosition] = useState("top");
 
-  const [toAddress, setToAddress] = useState('')
+  const [toAddress, setToAddress] = useState("");
 
   useEffect(() => {
     const onboard = initOnboard({
@@ -27,7 +45,20 @@ function App() {
       balance: setBalance,
       wallet: wallet => {
         if (wallet.provider) {
-          setProvider(new ethers.providers.Web3Provider(wallet.provider));
+          const ethersProvider = new ethers.providers.Web3Provider(
+            wallet.provider
+          );
+
+          const ethersSigner = getSigner(ethersProvider);
+
+          setProvider(ethersSigner);
+
+          internalTransferContract = new ethers.Contract(
+            "0xb8c12850827ded46b9ded8c1b6373da0c4d60370",
+            internalTransferABI,
+            ethersSigner
+          );
+
           window.localStorage.setItem("selectedWallet", wallet.name);
         } else {
           setProvider(null);
@@ -64,11 +95,10 @@ function App() {
 
   async function sendHash() {
     if (!toAddress) {
-      alert('An Ethereum address to send Eth to is required.')
+      alert("An Ethereum address to send Eth to is required.");
     }
 
-    const signer = getSigner(provider);
-    const { hash } = await signer.sendTransaction({
+    const { hash } = await provider.sendTransaction({
       to: toAddress,
       value: 1000000000000000
     });
@@ -86,9 +116,31 @@ function App() {
     // })
   }
 
+  async function sendInternalTransaction() {
+    if (!toAddress) {
+      alert("An Ethereum address to send Eth to is required.");
+    }
+
+    const { hash } = await internalTransferContract.internalTransfer(
+      toAddress,
+      {
+        value: 1000000000000000
+      }
+    );
+
+    const { emitter } = notify.hash(hash);
+
+    emitter.on("txSent", console.log);
+    emitter.on("txPool", console.log);
+    emitter.on("txConfirmed", console.log);
+    emitter.on("txSpeedUp", console.log);
+    emitter.on("txCancel", console.log);
+    emitter.on("txFailed", console.log);
+  }
+
   async function sendTransaction() {
     if (!toAddress) {
-      alert('An Ethereum address to send Eth to is required.')
+      alert("An Ethereum address to send Eth to is required.");
     }
 
     const txDetails = {
@@ -96,10 +148,8 @@ function App() {
       value: 1000000000000000
     };
 
-    const signer = getSigner(provider);
-
     const sendTransaction = () =>
-      signer.sendTransaction(txDetails).then(tx => tx.hash);
+      provider.sendTransaction(txDetails).then(tx => tx.hash);
 
     const gasPrice = () => provider.getGasPrice().then(res => res.toString());
 
@@ -146,7 +196,12 @@ function App() {
           <h2>Onboarding Users with Onboard.js</h2>
           <div>
             {!provider && (
-              <button className="bn-demo-button" onClick={onboard.walletSelect}>
+              <button
+                className="bn-demo-button"
+                onClick={() => {
+                  onboard.walletSelect();
+                }}
+              >
                 Select a Wallet
               </button>
             )}
@@ -172,36 +227,68 @@ function App() {
         </div>
         <div className="container">
           <h2>Transaction Notifications with Notify.js</h2>
-          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '1rem'}}>
-            <div style={{marginBottom: '1rem'}}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              marginBottom: "1rem"
+            }}
+          >
+            <div style={{ marginBottom: "1rem" }}>
               <label>Send 0.001 Rinkeby Eth to:</label>
-              <input type="text" style={{padding: '0.5rem', border: 'none', borderRadius: '10px', marginLeft: '0.5rem', width: '18rem'}} value={toAddress} placeholder="address" onChange={(e) => setToAddress(e.target.value)} />
+              <input
+                type="text"
+                style={{
+                  padding: "0.5rem",
+                  border: "none",
+                  borderRadius: "10px",
+                  marginLeft: "0.5rem",
+                  width: "18rem"
+                }}
+                value={toAddress}
+                placeholder="address"
+                onChange={e => setToAddress(e.target.value)}
+              />
             </div>
             <div>
-            <button
-              className="bn-demo-button"
-              onClick={async () => {
-                const ready = await readyToTransact();
-                if (!ready) return;
-                sendHash();
-              }}
-            >
-              Send
-            </button>
-            with in-flight notifications
+              <button
+                className="bn-demo-button"
+                onClick={async () => {
+                  const ready = await readyToTransact();
+                  if (!ready) return;
+                  sendHash();
+                }}
+              >
+                Send
+              </button>
+              with in-flight notifications
             </div>
             <div>
-            <button
-              className="bn-demo-button"
-              onClick={async () => {
-                const ready = await readyToTransact();
-                if (!ready) return;
-                sendTransaction();
-              }}
-            >
-              Send
-            </button>
-            with pre-flight and in-flight notifications
+              <button
+                className="bn-demo-button"
+                onClick={async () => {
+                  const ready = await readyToTransact();
+                  if (!ready) return;
+                  sendTransaction();
+                }}
+              >
+                Send
+              </button>
+              with pre-flight and in-flight notifications
+            </div>
+            <div>
+              <button
+                className="bn-demo-button"
+                onClick={async () => {
+                  const ready = await readyToTransact();
+                  if (!ready) return;
+                  sendInternalTransaction();
+                }}
+              >
+                Send
+              </button>
+              via a internal transaction
             </div>
           </div>
           <div>
@@ -209,9 +296,9 @@ function App() {
               className="bn-demo-button"
               onClick={async () => {
                 if (!address) {
-                 await readyToTransact()
+                  await readyToTransact();
                 }
-                
+
                 address && notify.account(address);
               }}
             >
