@@ -49,14 +49,12 @@ function App() {
             wallet.provider
           );
 
-          const ethersSigner = getSigner(ethersProvider);
-
-          setProvider(ethersSigner);
+          setProvider(ethersProvider);
 
           internalTransferContract = new ethers.Contract(
             "0xb8c12850827ded46b9ded8c1b6373da0c4d60370",
             internalTransferABI,
-            ethersSigner
+            getSigner(ethersProvider)
           );
 
           window.localStorage.setItem("selectedWallet", wallet.name);
@@ -143,13 +141,15 @@ function App() {
       alert("An Ethereum address to send Eth to is required.");
     }
 
+    const signer = getSigner(provider);
+
     const txDetails = {
       to: toAddress,
       value: 1000000000000000
     };
 
     const sendTransaction = () =>
-      provider.sendTransaction(txDetails).then(tx => tx.hash);
+      signer.sendTransaction(txDetails).then(tx => tx.hash);
 
     const gasPrice = () => provider.getGasPrice().then(res => res.toString());
 

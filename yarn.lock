@@ -2965,10 +2965,10 @@ bnc-notify@^1.0.10:
     regenerator-runtime "^0.13.3"
     uuid "^3.3.3"
 
-bnc-onboard@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.2.3.tgz#096d18aa5001bc15a35935232336c3e618ea483b"
-  integrity sha512-TVuaGZ56r/vHwdysjc92YNocfhmtbZzzuukExvXjq/GpZo6YVQn3yb/A7KLbO/el97LS7/hAmPgfUnGVAGEkZQ==
+bnc-onboard@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.2.4.tgz#3bcdc29c575266c324c57e459f3b414dc1ff28c6"
+  integrity sha512-rBgE7R8SDFV2I9ckmuRw5sfU4bkRY+WBQjjNWF4Z8J+Z7WZUNoJFW0aknyG2ZvVgNj45llyBwDFMOQjTV2yG6g==
   dependencies:
     "@portis/web3" "^2.0.0-beta.42"
     "@toruslabs/torus-embed" "^0.2.11"
