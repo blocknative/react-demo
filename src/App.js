@@ -96,7 +96,9 @@ function App() {
       alert("An Ethereum address to send Eth to is required.");
     }
 
-    const { hash } = await provider.sendTransaction({
+    const signer = getSigner(provider);
+
+    const { hash } = await signer.sendTransaction({
       to: toAddress,
       value: 1000000000000000
     });
