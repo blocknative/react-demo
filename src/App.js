@@ -94,6 +94,7 @@ function App() {
   async function sendHash() {
     if (!toAddress) {
       alert("An Ethereum address to send Eth to is required.");
+      return;
     }
 
     const signer = getSigner(provider);
@@ -119,6 +120,7 @@ function App() {
   async function sendInternalTransaction() {
     if (!toAddress) {
       alert("An Ethereum address to send Eth to is required.");
+      return;
     }
 
     const { hash } = await internalTransferContract.internalTransfer(
