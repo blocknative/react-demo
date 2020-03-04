@@ -310,6 +310,18 @@ function App() {
             </button>
             <button
               className="bn-demo-button"
+              onClick={async () => {
+                if (!address) {
+                  await readyToTransact();
+                }
+
+                address && notify.unsubscribe(address);
+              }}
+            >
+              Un-watch Current Account
+            </button>
+            <button
+              className="bn-demo-button"
               onClick={() => {
                 const { update } = notify.notification({
                   eventCode: "dbUpdate",
