@@ -8,9 +8,11 @@ export function initOnboard(subscriptions) {
     dappId: "12153f55-f29e-4f11-aa07-90f10da5d778",
     networkId,
     subscriptions,
+    // darkMode: true,
     walletSelect: {
       wallets: [
         { walletName: "metamask" },
+        // { walletName: 'unilogin' },
         {
           walletName: "trezor",
           appUrl: "https://reactdemo.blocknative.com",
@@ -24,6 +26,7 @@ export function initOnboard(subscriptions) {
             "https://rinkeby.infura.io/v3/d5e29c9b9a9d4116a7348113f57770a8"
         },
         { walletName: "dapper" },
+        // { walletName: "imToken" },
         { walletName: "coinbase" },
         { walletName: "status" },
         {
@@ -44,6 +47,7 @@ export function initOnboard(subscriptions) {
       ]
     },
     walletCheck: [
+      { checkName: "derivationPath" },
       { checkName: "connect" },
       { checkName: "accounts" },
       { checkName: "network" },

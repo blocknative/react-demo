@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import getSigner from "./signer";
 import { initOnboard, initNotify } from "./services";
+// import VConsole from "vconsole";
 
 import "./App.css";
+
+// const vconsole = new VConsole();
 
 const internalTransferABI = [
   {
@@ -27,6 +30,7 @@ function App() {
   const [address, setAddress] = useState(null);
   const [network, setNetwork] = useState(null);
   const [balance, setBalance] = useState(null);
+  const [isHardwareWallet, setHardwareWallet] = useState(false)
 
   const [onboard, setOnboard] = useState(null);
   const [notify, setNotify] = useState(null);
@@ -45,6 +49,8 @@ function App() {
       balance: setBalance,
       wallet: wallet => {
         if (wallet.provider) {
+          setHardwareWallet(wallet.type === 'hardware')
+  
           const ethersProvider = new ethers.providers.Web3Provider(
             wallet.provider
           );
@@ -60,6 +66,7 @@ function App() {
           window.localStorage.setItem("selectedWallet", wallet.name);
         } else {
           setProvider(null);
+          setHardwareWallet(false)
         }
       }
     });
@@ -103,6 +110,7 @@ function App() {
       to: toAddress,
       value: 1000000000000000
     });
+
     const { emitter } = notify.hash(hash);
 
     emitter.on("txSent", console.log);
@@ -225,6 +233,11 @@ function App() {
             {provider && (
               <button className="bn-demo-button" onClick={onboard.walletReset}>
                 Reset Wallet State
+              </button>
+            )}
+            {provider && isHardwareWallet && address && (
+              <button className="bn-demo-button" onClick={onboard.accountSelect}>
+                Switch Account
               </button>
             )}
           </div>
