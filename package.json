@@ -2,8 +2,8 @@
   "name": "onboard-notify-react",
   "version": "0.1.0",
   "dependencies": {
-    "bnc-notify": "^1.1.0",
-    "bnc-onboard": "^1.4.0",
+    "bnc-notify": "^1.1.1",
+    "bnc-onboard": "^1.4.1",
     "ethers": "^4.0.37",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
