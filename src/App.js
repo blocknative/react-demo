@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { ethers } from "ethers";
-import getSigner from "./signer";
-import { initOnboard, initNotify } from "./services";
+import React, { useState, useEffect } from 'react'
+import { ethers } from 'ethers'
+import getSigner from './signer'
+import { initOnboard, initNotify } from './services'
+import { version } from '../package.json'
 // import VConsole from "vconsole";
 
-import "./App.css";
+import './App.css'
 
 // const vconsole = new VConsole();
 
@@ -12,35 +13,35 @@ const internalTransferABI = [
   {
     inputs: [
       {
-        internalType: "address payable",
-        name: "to",
-        type: "address"
+        internalType: 'address payable',
+        name: 'to',
+        type: 'address'
       }
     ],
-    name: "internalTransfer",
+    name: 'internalTransfer',
     outputs: [],
-    stateMutability: "payable",
-    type: "function"
+    stateMutability: 'payable',
+    type: 'function'
   }
-];
+]
 
-let internalTransferContract;
+let internalTransferContract
 
 function App() {
-  const [address, setAddress] = useState(null);
-  const [network, setNetwork] = useState(null);
-  const [balance, setBalance] = useState(null);
+  const [address, setAddress] = useState(null)
+  const [network, setNetwork] = useState(null)
+  const [balance, setBalance] = useState(null)
   const [isHardwareWallet, setHardwareWallet] = useState(false)
 
-  const [onboard, setOnboard] = useState(null);
-  const [notify, setNotify] = useState(null);
-  const [provider, setProvider] = useState(null);
+  const [onboard, setOnboard] = useState(null)
+  const [notify, setNotify] = useState(null)
+  const [provider, setProvider] = useState(null)
 
-  const [darkMode, setDarkMode] = useState(false);
-  const [desktopPosition, setDesktopPosition] = useState("bottomRight");
-  const [mobilePosition, setMobilePosition] = useState("top");
+  const [darkMode, setDarkMode] = useState(false)
+  const [desktopPosition, setDesktopPosition] = useState('bottomRight')
+  const [mobilePosition, setMobilePosition] = useState('top')
 
-  const [toAddress, setToAddress] = useState("");
+  const [toAddress, setToAddress] = useState('')
 
   useEffect(() => {
     const onboard = initOnboard({
@@ -50,75 +51,75 @@ function App() {
       wallet: wallet => {
         if (wallet.provider) {
           setHardwareWallet(wallet.type === 'hardware')
-  
+
           const ethersProvider = new ethers.providers.Web3Provider(
             wallet.provider
-          );
+          )
 
-          setProvider(ethersProvider);
+          setProvider(ethersProvider)
 
           internalTransferContract = new ethers.Contract(
-            "0xb8c12850827ded46b9ded8c1b6373da0c4d60370",
+            '0xb8c12850827ded46b9ded8c1b6373da0c4d60370',
             internalTransferABI,
             getSigner(ethersProvider)
-          );
+          )
 
-          window.localStorage.setItem("selectedWallet", wallet.name);
+          window.localStorage.setItem('selectedWallet', wallet.name)
         } else {
-          setProvider(null);
+          setProvider(null)
           setHardwareWallet(false)
         }
       }
-    });
+    })
 
-    setOnboard(onboard);
+    setOnboard(onboard)
 
-    setNotify(initNotify());
-  }, []);
+    setNotify(initNotify())
+  }, [])
 
   useEffect(() => {
     const previouslySelectedWallet = window.localStorage.getItem(
-      "selectedWallet"
-    );
+      'selectedWallet'
+    )
 
     if (previouslySelectedWallet && onboard) {
-      onboard.walletSelect(previouslySelectedWallet);
+      onboard.walletSelect(previouslySelectedWallet)
     }
-  }, [onboard]);
+  }, [onboard])
 
   async function readyToTransact() {
     if (!provider) {
-      const walletSelected = await onboard.walletSelect();
-      if (!walletSelected) return false;
+      const walletSelected = await onboard.walletSelect()
+      if (!walletSelected) return false
     }
 
-    const readyToTransact = await onboard.walletCheck();
-    if (!readyToTransact) return false;
+    const readyToTransact = await onboard.walletCheck()
+    if (!readyToTransact) return false
 
-    return true;
+    return true
   }
 
   async function sendHash() {
     if (!toAddress) {
-      alert("An Ethereum address to send Eth to is required.");
-      return;
+      alert('An Ethereum address to send Eth to is required.')
+      return
     }
 
-    const signer = getSigner(provider);
+    const signer = getSigner(provider)
 
     const { hash } = await signer.sendTransaction({
       to: toAddress,
       value: 1000000000000000
-    });
+    })
 
-    const { emitter } = notify.hash(hash);
+    const { emitter } = notify.hash(hash)
 
-    emitter.on("txSent", console.log);
-    emitter.on("txPool", console.log);
-    emitter.on("txConfirmed", console.log);
-    emitter.on("txSpeedUp", console.log);
-    emitter.on("txCancel", console.log);
-    emitter.on("txFailed", console.log);
+    emitter.on('txSent', console.log)
+    emitter.on('txPool', console.log)
+    emitter.on('txConfirmed', console.log)
+    emitter.on('txSpeedUp', console.log)
+    emitter.on('txCancel', console.log)
+    emitter.on('txFailed', console.log)
 
     // emitter.on("all", event => {
     //   console.log("ALLLLLLL", event)
@@ -127,8 +128,8 @@ function App() {
 
   async function sendInternalTransaction() {
     if (!toAddress) {
-      alert("An Ethereum address to send Eth to is required.");
-      return;
+      alert('An Ethereum address to send Eth to is required.')
+      return
     }
 
     const { hash } = await internalTransferContract.internalTransfer(
@@ -136,37 +137,37 @@ function App() {
       {
         value: 1000000000000000
       }
-    );
+    )
 
-    const { emitter } = notify.hash(hash);
+    const { emitter } = notify.hash(hash)
 
-    emitter.on("txSent", console.log);
-    emitter.on("txPool", console.log);
-    emitter.on("txConfirmed", console.log);
-    emitter.on("txSpeedUp", console.log);
-    emitter.on("txCancel", console.log);
-    emitter.on("txFailed", console.log);
+    emitter.on('txSent', console.log)
+    emitter.on('txPool', console.log)
+    emitter.on('txConfirmed', console.log)
+    emitter.on('txSpeedUp', console.log)
+    emitter.on('txCancel', console.log)
+    emitter.on('txFailed', console.log)
   }
 
   async function sendTransaction() {
     if (!toAddress) {
-      alert("An Ethereum address to send Eth to is required.");
+      alert('An Ethereum address to send Eth to is required.')
     }
 
-    const signer = getSigner(provider);
+    const signer = getSigner(provider)
 
     const txDetails = {
       to: toAddress,
       value: 1000000000000000
-    };
+    }
 
     const sendTransaction = () =>
-      signer.sendTransaction(txDetails).then(tx => tx.hash);
+      signer.sendTransaction(txDetails).then(tx => tx.hash)
 
-    const gasPrice = () => provider.getGasPrice().then(res => res.toString());
+    const gasPrice = () => provider.getGasPrice().then(res => res.toString())
 
     const estimateGas = () =>
-      provider.estimateGas(txDetails).then(res => res.toString());
+      provider.estimateGas(txDetails).then(res => res.toString())
 
     const { emitter, result } = await notify.transaction({
       sendTransaction,
@@ -174,22 +175,22 @@ function App() {
       estimateGas,
       balance: onboard.getState().balance,
       txDetails
-    });
+    })
 
-    emitter.on("txRequest", console.log);
-    emitter.on("nsfFail", console.log);
-    emitter.on("txRepeat", console.log);
-    emitter.on("txAwaitingApproval", console.log);
-    emitter.on("txConfirmReminder", console.log);
-    emitter.on("txSendFail", console.log);
-    emitter.on("txError", console.log);
-    emitter.on("txUnderPriced", console.log);
-    emitter.on("txSent", console.log);
-    emitter.on("txPool", console.log);
-    emitter.on("txConfirmed", console.log);
-    emitter.on("txSpeedUp", console.log);
-    emitter.on("txCancel", console.log);
-    emitter.on("txFailed", console.log);
+    emitter.on('txRequest', console.log)
+    emitter.on('nsfFail', console.log)
+    emitter.on('txRepeat', console.log)
+    emitter.on('txAwaitingApproval', console.log)
+    emitter.on('txConfirmReminder', console.log)
+    emitter.on('txSendFail', console.log)
+    emitter.on('txError', console.log)
+    emitter.on('txUnderPriced', console.log)
+    emitter.on('txSent', console.log)
+    emitter.on('txPool', console.log)
+    emitter.on('txConfirmed', console.log)
+    emitter.on('txSpeedUp', console.log)
+    emitter.on('txCancel', console.log)
+    emitter.on('txFailed', console.log)
   }
 
   return onboard && notify ? (
@@ -211,7 +212,7 @@ function App() {
               <button
                 className="bn-demo-button"
                 onClick={() => {
-                  onboard.walletSelect();
+                  onboard.walletSelect()
                 }}
               >
                 Select a Wallet
@@ -236,7 +237,10 @@ function App() {
               </button>
             )}
             {provider && isHardwareWallet && address && (
-              <button className="bn-demo-button" onClick={onboard.accountSelect}>
+              <button
+                className="bn-demo-button"
+                onClick={onboard.accountSelect}
+              >
                 Switch Account
               </button>
             )}
@@ -246,22 +250,22 @@ function App() {
           <h2>Transaction Notifications with Notify.js</h2>
           <div
             style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-              marginBottom: "1rem"
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              marginBottom: '1rem'
             }}
           >
-            <div style={{ marginBottom: "1rem" }}>
+            <div style={{ marginBottom: '1rem' }}>
               <label>Send 0.001 Rinkeby Eth to:</label>
               <input
                 type="text"
                 style={{
-                  padding: "0.5rem",
-                  border: "none",
-                  borderRadius: "10px",
-                  marginLeft: "0.5rem",
-                  width: "18rem"
+                  padding: '0.5rem',
+                  border: 'none',
+                  borderRadius: '10px',
+                  marginLeft: '0.5rem',
+                  width: '18rem'
                 }}
                 value={toAddress}
                 placeholder="address"
@@ -272,9 +276,9 @@ function App() {
               <button
                 className="bn-demo-button"
                 onClick={async () => {
-                  const ready = await readyToTransact();
-                  if (!ready) return;
-                  sendHash();
+                  const ready = await readyToTransact()
+                  if (!ready) return
+                  sendHash()
                 }}
               >
                 Send
@@ -285,9 +289,9 @@ function App() {
               <button
                 className="bn-demo-button"
                 onClick={async () => {
-                  const ready = await readyToTransact();
-                  if (!ready) return;
-                  sendTransaction();
+                  const ready = await readyToTransact()
+                  if (!ready) return
+                  sendTransaction()
                 }}
               >
                 Send
@@ -298,9 +302,9 @@ function App() {
               <button
                 className="bn-demo-button"
                 onClick={async () => {
-                  const ready = await readyToTransact();
-                  if (!ready) return;
-                  sendInternalTransaction();
+                  const ready = await readyToTransact()
+                  if (!ready) return
+                  sendInternalTransaction()
                 }}
               >
                 Send
@@ -313,10 +317,10 @@ function App() {
               className="bn-demo-button"
               onClick={async () => {
                 if (!address) {
-                  await readyToTransact();
+                  await readyToTransact()
                 }
 
-                address && notify.account(address);
+                address && notify.account(address)
               }}
             >
               Watch Current Account
@@ -325,10 +329,10 @@ function App() {
               className="bn-demo-button"
               onClick={async () => {
                 if (!address) {
-                  await readyToTransact();
+                  await readyToTransact()
                 }
 
-                address && notify.unsubscribe(address);
+                address && notify.unsubscribe(address)
               }}
             >
               Un-watch Current Account
@@ -337,19 +341,19 @@ function App() {
               className="bn-demo-button"
               onClick={() => {
                 const { update } = notify.notification({
-                  eventCode: "dbUpdate",
-                  type: "pending",
-                  message: "This is a custom notification triggered by the dapp"
-                });
+                  eventCode: 'dbUpdate',
+                  type: 'pending',
+                  message: 'This is a custom notification triggered by the dapp'
+                })
                 setTimeout(
                   () =>
                     update({
-                      eventCode: "dbUpdateSuccess",
-                      message: "Updated status for custom notification",
-                      type: "success"
+                      eventCode: 'dbUpdateSuccess',
+                      message: 'Updated status for custom notification',
+                      type: 'success'
                     }),
                   4000
-                );
+                )
               }}
             >
               Custom Notification
@@ -361,13 +365,13 @@ function App() {
           <button
             className="bn-demo-button"
             style={{
-              background: darkMode ? "#ab47bc" : "white",
-              color: darkMode ? "white" : "#4a90e2"
+              background: darkMode ? '#ab47bc' : 'white',
+              color: darkMode ? 'white' : '#4a90e2'
             }}
             onClick={() => {
-              setDarkMode(true);
-              notify.config({ darkMode: true });
-              onboard.config({ darkMode: true });
+              setDarkMode(true)
+              notify.config({ darkMode: true })
+              onboard.config({ darkMode: true })
             }}
           >
             Dark Mode
@@ -375,13 +379,13 @@ function App() {
           <button
             className="bn-demo-button"
             style={{
-              background: !darkMode ? "#ab47bc" : "white",
-              color: !darkMode ? "white" : "#4a90e2"
+              background: !darkMode ? '#ab47bc' : 'white',
+              color: !darkMode ? 'white' : '#4a90e2'
             }}
             onClick={() => {
-              setDarkMode(false);
-              notify.config({ darkMode: false });
-              onboard.config({ darkMode: false });
+              setDarkMode(false)
+              notify.config({ darkMode: false })
+              onboard.config({ darkMode: false })
             }}
           >
             Light Mode
@@ -390,12 +394,12 @@ function App() {
           <button
             className="bn-demo-button"
             style={{
-              background: desktopPosition === "topLeft" ? "#ab47bc" : "white",
-              color: desktopPosition === "topLeft" ? "white" : "#4a90e2"
+              background: desktopPosition === 'topLeft' ? '#ab47bc' : 'white',
+              color: desktopPosition === 'topLeft' ? 'white' : '#4a90e2'
             }}
             onClick={() => {
-              setDesktopPosition("topLeft");
-              notify.config({ desktopPosition: "topLeft" });
+              setDesktopPosition('topLeft')
+              notify.config({ desktopPosition: 'topLeft' })
             }}
           >
             Top Left
@@ -403,12 +407,12 @@ function App() {
           <button
             className="bn-demo-button"
             style={{
-              background: desktopPosition === "topRight" ? "#ab47bc" : "white",
-              color: desktopPosition === "topRight" ? "white" : "#4a90e2"
+              background: desktopPosition === 'topRight' ? '#ab47bc' : 'white',
+              color: desktopPosition === 'topRight' ? 'white' : '#4a90e2'
             }}
             onClick={() => {
-              setDesktopPosition("topRight");
-              notify.config({ desktopPosition: "topRight" });
+              setDesktopPosition('topRight')
+              notify.config({ desktopPosition: 'topRight' })
             }}
           >
             Top Right
@@ -417,12 +421,12 @@ function App() {
             className="bn-demo-button"
             style={{
               background:
-                desktopPosition === "bottomRight" ? "#ab47bc" : "white",
-              color: desktopPosition === "bottomRight" ? "white" : "#4a90e2"
+                desktopPosition === 'bottomRight' ? '#ab47bc' : 'white',
+              color: desktopPosition === 'bottomRight' ? 'white' : '#4a90e2'
             }}
             onClick={() => {
-              setDesktopPosition("bottomRight");
-              notify.config({ desktopPosition: "bottomRight" });
+              setDesktopPosition('bottomRight')
+              notify.config({ desktopPosition: 'bottomRight' })
             }}
           >
             Bottom Right
@@ -431,12 +435,12 @@ function App() {
             className="bn-demo-button"
             style={{
               background:
-                desktopPosition === "bottomLeft" ? "#ab47bc" : "white",
-              color: desktopPosition === "bottomLeft" ? "white" : "#4a90e2"
+                desktopPosition === 'bottomLeft' ? '#ab47bc' : 'white',
+              color: desktopPosition === 'bottomLeft' ? 'white' : '#4a90e2'
             }}
             onClick={() => {
-              setDesktopPosition("bottomLeft");
-              notify.config({ desktopPosition: "bottomLeft" });
+              setDesktopPosition('bottomLeft')
+              notify.config({ desktopPosition: 'bottomLeft' })
             }}
           >
             Bottom Left
@@ -445,12 +449,12 @@ function App() {
           <button
             className="bn-demo-button"
             style={{
-              background: mobilePosition === "top" ? "#ab47bc" : "white",
-              color: mobilePosition === "top" ? "white" : "#4a90e2"
+              background: mobilePosition === 'top' ? '#ab47bc' : 'white',
+              color: mobilePosition === 'top' ? 'white' : '#4a90e2'
             }}
             onClick={() => {
-              setMobilePosition("top");
-              notify.config({ mobilePosition: "top" });
+              setMobilePosition('top')
+              notify.config({ mobilePosition: 'top' })
             }}
           >
             Top
@@ -458,41 +462,44 @@ function App() {
           <button
             className="bn-demo-button"
             style={{
-              background: mobilePosition === "bottom" ? "#ab47bc" : "white",
-              color: mobilePosition === "bottom" ? "white" : "#4a90e2"
+              background: mobilePosition === 'bottom' ? '#ab47bc' : 'white',
+              color: mobilePosition === 'bottom' ? 'white' : '#4a90e2'
             }}
             onClick={() => {
-              setMobilePosition("bottom");
-              notify.config({ mobilePosition: "bottom" });
+              setMobilePosition('bottom')
+              notify.config({ mobilePosition: 'bottom' })
             }}
           >
             Bottom
           </button>
         </div>
       </section>
+      <span style={{ position: 'fixed', bottom: '1rem', right: '1rem' }}>
+        Version: {version}
+      </span>
     </main>
   ) : (
     <div>Loading...</div>
-  );
+  )
 }
 
 function networkName(id) {
   switch (Number(id)) {
     case 1:
-      return "main";
+      return 'main'
     case 3:
-      return "ropsten";
+      return 'ropsten'
     case 4:
-      return "rinkeby";
+      return 'rinkeby'
     case 5:
-      return "goerli";
+      return 'goerli'
     case 42:
-      return "kovan";
-    case "localhost":
-      return "localhost";
+      return 'kovan'
+    case 'localhost':
+      return 'localhost'
     default:
-      return "local";
+      return 'local'
   }
 }
 
-export default App;
+export default App
