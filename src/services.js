@@ -31,6 +31,7 @@ export function initOnboard(subscriptions) {
           apiKey: 'd7d72646-709a-45ab-aa43-8de5307ae0df'
         },
         { walletName: 'fortmatic', apiKey: 'pk_test_886ADCAB855632AA' },
+        { walletName: 'unilogin' },
         { walletName: 'torus' },
         { walletName: 'squarelink', apiKey: '87288b677f8cfb09a986' },
         { walletName: 'authereum', disableNotifications: true },

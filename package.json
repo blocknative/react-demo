@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
     "bnc-notify": "^1.1.1",
     "bnc-onboard": "^1.7.1",
