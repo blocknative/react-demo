@@ -169,7 +169,7 @@ function App() {
     const estimateGas = () =>
       provider.estimateGas(txDetails).then(res => res.toString())
 
-    const { emitter, result } = await notify.transaction({
+    const { emitter } = await notify.transaction({
       sendTransaction,
       gasPrice,
       estimateGas,
