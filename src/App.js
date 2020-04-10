@@ -77,8 +77,6 @@ function App() {
 
     setOnboard(onboard)
 
-    onboard.walletSelect('MetaMask').then(onboard.walletCheck)
-
     setNotify(initNotify())
   }, [])
 
