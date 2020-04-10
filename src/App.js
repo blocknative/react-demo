@@ -3,11 +3,15 @@ import { ethers } from 'ethers'
 import getSigner from './signer'
 import { initOnboard, initNotify } from './services'
 import { version } from '../package.json'
-// import VConsole from "vconsole";
+import VConsole from 'vconsole'
 
 import './App.css'
 
-// const vconsole = new VConsole();
+if (window.innerWidth < 700) {
+  new VConsole()
+}
+
+let provider
 
 const internalTransferABI = [
   {
@@ -31,11 +35,10 @@ function App() {
   const [address, setAddress] = useState(null)
   const [network, setNetwork] = useState(null)
   const [balance, setBalance] = useState(null)
-  const [isHardwareWallet, setHardwareWallet] = useState(false)
+  const [wallet, setWallet] = useState(false)
 
   const [onboard, setOnboard] = useState(null)
   const [notify, setNotify] = useState(null)
-  const [provider, setProvider] = useState(null)
 
   const [darkMode, setDarkMode] = useState(false)
   const [desktopPosition, setDesktopPosition] = useState('bottomRight')
@@ -50,13 +53,13 @@ function App() {
       balance: setBalance,
       wallet: wallet => {
         if (wallet.provider) {
-          setHardwareWallet(wallet.type === 'hardware')
+          setWallet(wallet)
 
           const ethersProvider = new ethers.providers.Web3Provider(
             wallet.provider
           )
 
-          setProvider(ethersProvider)
+          provider = ethersProvider
 
           internalTransferContract = new ethers.Contract(
             '0xb8c12850827ded46b9ded8c1b6373da0c4d60370',
@@ -66,13 +69,15 @@ function App() {
 
           window.localStorage.setItem('selectedWallet', wallet.name)
         } else {
-          setProvider(null)
-          setHardwareWallet(false)
+          provider = null
+          setWallet({})
         }
       }
     })
 
     setOnboard(onboard)
+
+    onboard.walletSelect('MetaMask').then(onboard.walletCheck)
 
     setNotify(initNotify())
   }, [])
@@ -93,10 +98,8 @@ function App() {
       if (!walletSelected) return false
     }
 
-    const readyToTransact = await onboard.walletCheck()
-    if (!readyToTransact) return false
-
-    return true
+    const ready = await onboard.walletCheck()
+    return ready
   }
 
   async function sendHash() {
@@ -208,7 +211,7 @@ function App() {
         <div className="container">
           <h2>Onboarding Users with Onboard.js</h2>
           <div>
-            {!provider && (
+            {!wallet.provider && (
               <button
                 className="bn-demo-button"
                 onClick={() => {
@@ -219,24 +222,29 @@ function App() {
               </button>
             )}
 
-            {provider && (
+            {wallet.provider && (
               <button className="bn-demo-button" onClick={onboard.walletCheck}>
                 Wallet Checks
               </button>
             )}
 
-            {provider && (
+            {wallet.provider && (
               <button className="bn-demo-button" onClick={onboard.walletSelect}>
                 Switch Wallets
               </button>
             )}
 
-            {provider && (
+            {wallet.provider && (
               <button className="bn-demo-button" onClick={onboard.walletReset}>
                 Reset Wallet State
               </button>
             )}
-            {provider && isHardwareWallet && address && (
+            {wallet.provider && wallet.dashboard && (
+              <button className="bn-demo-button" onClick={wallet.dashboard}>
+                Open Wallet Dashboard
+              </button>
+            )}
+            {wallet.provider && wallet.type === 'hardware' && address && (
               <button
                 className="bn-demo-button"
                 onClick={onboard.accountSelect}
@@ -474,7 +482,7 @@ function App() {
           </button>
         </div>
       </section>
-      <span style={{ position: 'fixed', bottom: '1rem', right: '1rem' }}>
+      <span style={{ position: 'fixed', bottom: '1rem', left: '1rem' }}>
         Version: {version}
       </span>
     </main>
