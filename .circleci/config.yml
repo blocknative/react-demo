@@ -1,20 +1,5 @@
 version: 2
 jobs:
-  test:
-    docker:
-      - image: circleci/node:10.18.1-browsers
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: yarn
-      - run: yarn build
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
   deploy_stage:
     docker:
       - image: circleci/node:10.18.1-browsers
