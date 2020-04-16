@@ -7,8 +7,8 @@ jobs:
       - checkout
       - run: yarn
       - run: yarn build-staging
-      - run: scp -oStrictHostKeyChecking=no -v -r /home/circleci/project/build/* $EC2_PROD_USER@$EC2_PROD_IP:/home/ubuntu/reactdemo-stage/
-      - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo-stage"
+      - run: scp -oStrictHostKeyChecking=no -v -r /home/circleci/project/build/* $EC2_PROD_USER@$EC2_PROD_IP:/home/ubuntu/reactdemo-staging/
+      - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo-staging"
   deploy_prod:
     docker:
       - image: circleci/node:10.18.1-browsers
