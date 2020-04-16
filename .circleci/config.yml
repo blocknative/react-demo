@@ -1,20 +1,14 @@
 version: 2
 jobs:
-  test:
+  deploy_stage:
     docker:
       - image: circleci/node:10.18.1-browsers
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
       - run: yarn
-      - run: yarn build
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: yarn build-staging
+      - run: scp -oStrictHostKeyChecking=no -v -r /home/circleci/project/build/* $EC2_PROD_USER@$EC2_PROD_IP:/home/ubuntu/reactdemo-staging/
+      - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo-staging"
   deploy_prod:
     docker:
       - image: circleci/node:10.18.1-browsers
@@ -28,6 +22,11 @@ workflows:
   version: 2
   test_build:
     jobs:
+      - deploy_stage:
+          filters:
+            branches:
+              only:
+                - develop
       - deploy_prod:
           filters:
             branches:
