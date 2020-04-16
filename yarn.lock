@@ -3162,10 +3162,10 @@ bn.js@^5.1.1:
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-5.1.1.tgz#48efc4031a9c4041b9c99c6941d903463ab62eb5"
   integrity sha512-IUTD/REb78Z2eodka1QZyyEk66pciRcP6Sroka0aI3tG/iwIdYLrBD62RsubR7vqdt3WyX8p4jxeatzmRSphtA==
 
-bnc-notify@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.1.1.tgz#37766b66d59d1bf6830c31ded97539a5af9a773b"
-  integrity sha512-ES+YzySw0O63vHON/JTVhUwbDEM4lG3cE77xDAgnp6mdHcWsPZZ/SbZ/+04kbY4/pS3GAwT/CAeTbhWYBBn2KQ==
+bnc-notify@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.1.2.tgz#7462d855af958d982bb7dbacd288e40c2cc0f5f5"
+  integrity sha512-+RaZmOns4xDfpFu3WUqAHkaw83RcVKuDSLzANDOMVgAhLBgKM9QpXRByflJWcOySy1Bsl66+8FIycQBb5SX1Fg==
   dependencies:
     bignumber.js "^9.0.0"
     bnc-sdk "2.0.0"
@@ -3173,10 +3173,10 @@ bnc-notify@^1.1.1:
     regenerator-runtime "^0.13.3"
     uuid "^3.3.3"
 
-bnc-onboard@^1.7.3:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.7.3.tgz#6a1c53ba48a4061e72fff21a8cec8d7324c974ee"
-  integrity sha512-lR540qOWSFmr01XUv9tAPBIYG7Hv1z1+Eo3xhaMBtWoddXzOmI8fvJBf3irkUFe+i2RDZGw/B6oDKn+awLUrow==
+bnc-onboard@^1.7.5:
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.7.5.tgz#e45ae51101e66b29935c16696e1d23478f5a5c4a"
+  integrity sha512-cxxsMPN2yy4EzaWXJk5TS9A7YYtolE4cuoxjB40Rm9nuP6k03zp1RST3pMMHn7zTXKGfofv99Q+YDJtYrOyCKg==
   dependencies:
     "@ledgerhq/hw-app-eth" "^5.7.0"
     "@ledgerhq/hw-transport-u2f" "^5.7.0"
