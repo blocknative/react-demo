@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import getSigner from './signer'
 import { initOnboard, initNotify } from './services'
-import { version } from '../package.json'
+import { version, dependencies } from '../package.json'
 import VConsole from 'vconsole'
 
 import './App.css'
@@ -480,9 +480,25 @@ function App() {
           </button>
         </div>
       </section>
-      <span style={{ position: 'fixed', bottom: '1rem', left: '1rem' }}>
-        Version: {version}
-      </span>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          position: 'fixed',
+          bottom: '1rem',
+          left: '1rem'
+        }}
+      >
+        <span>
+          React Demo version: <i>{version}</i>
+        </span>
+        <span>
+          Onboard.js version: <i>{dependencies['bnc-onboard'].slice(1)}</i>
+        </span>
+        <span>
+          Notify.js version: <i>{dependencies['bnc-notify'].slice(1)}</i>
+        </span>
+      </div>
     </main>
   ) : (
     <div>Loading...</div>
