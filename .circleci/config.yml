@@ -37,7 +37,7 @@ workflows:
   version: 2
   test_build:
     jobs:
-    - deploy_stage:
+      - deploy_stage:
           filters:
             branches:
               only:
