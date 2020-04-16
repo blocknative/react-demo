@@ -15,15 +15,15 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-    deploy_stage:
-      docker:
-        - image: circleci/node:10.18.1-browsers
-      steps:
-        - checkout
-        - run: yarn
-        - run: yarn build-stage
-        - run: scp -oStrictHostKeyChecking=no -v -r /home/circleci/project/build/* $EC2_PROD_USER@$EC2_PROD_IP:/home/ubuntu/reactdemo-stage/
-        - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo-stage"
+  deploy_stage:
+    docker:
+      - image: circleci/node:10.18.1-browsers
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn build-stage
+      - run: scp -oStrictHostKeyChecking=no -v -r /home/circleci/project/build/* $EC2_PROD_USER@$EC2_PROD_IP:/home/ubuntu/reactdemo-stage/
+      - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo-stage"
   deploy_prod:
     docker:
       - image: circleci/node:10.18.1-browsers
