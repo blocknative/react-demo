@@ -7,6 +7,8 @@ import VConsole from 'vconsole'
 
 import './App.css'
 
+const staging = process.env.REACT_APP_STAGING
+
 if (window.innerWidth < 700) {
   new VConsole()
 }
@@ -490,13 +492,15 @@ function App() {
         }}
       >
         <span>
-          React Demo version: <i>{version}</i>
+          React Demo version: <i>{staging ? 'NEXT' : version}</i>
         </span>
         <span>
-          Onboard.js version: <i>{dependencies['bnc-onboard'].slice(1)}</i>
+          Onboard.js version:{' '}
+          <i>{staging ? 'NEXT' : dependencies['bnc-onboard'].slice(1)}</i>
         </span>
         <span>
-          Notify.js version: <i>{dependencies['bnc-notify'].slice(1)}</i>
+          Notify.js version:{' '}
+          <i>{staging ? 'NEXT' : dependencies['bnc-notify'].slice(1)}</i>
         </span>
       </div>
     </main>
