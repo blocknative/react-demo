@@ -3,7 +3,9 @@
   "version": "0.1.4",
   "dependencies": {
     "bnc-notify": "^1.1.2",
+    "bnc-notify-staging": "https://github.com/blocknative/notify#develop",
     "bnc-onboard": "^1.7.5",
+    "bnc-onboard-staging": "https://github.com/blocknative/onboard#develop",
     "ethers": "^4.0.37",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -12,9 +14,9 @@
   },
   "scripts": {
     "start": "HTTPS=true react-scripts start",
-    "start-staging": "REACT_APP_API_URL=wss://staging.api.blocknative.com/v0 HTTPS=true react-scripts start",
+    "start-staging": "REACT_APP_API_URL=wss://staging.api.blocknative.com/v0 REACT_APP_STAGING=true HTTPS=true react-scripts start",
     "build": "react-scripts build react-scripts build",
-    "build-staging": "REACT_APP_API_URL=wss://staging.api.blocknative.com/v0 react-scripts build",
+    "build-staging": "REACT_APP_API_URL=wss://staging.api.blocknative.com/v0 REACT_APP_STAGING=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
