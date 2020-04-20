@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:10.18.1-browsers
     steps:
       - checkout
-      - run: yarn install --network-concurrency 1
+      - run: rm -rf ./yarn.lock && yarn install --network-concurrency 1
       - run: yarn build-staging
       - run: scp -oStrictHostKeyChecking=no -v -r /home/circleci/project/build/* $EC2_PROD_USER@$EC2_PROD_IP:/home/ubuntu/reactdemo-staging/
       - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo-staging"

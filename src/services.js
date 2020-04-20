@@ -63,7 +63,6 @@ export function initOnboard(subscriptions) {
 
 export function initNotify() {
   const notify = staging ? stagingNotify : Notify
-  console.log('using staging notify', staging)
   return notify({
     dappId: '12153f55-f29e-4f11-aa07-90f10da5d778',
     networkId,
