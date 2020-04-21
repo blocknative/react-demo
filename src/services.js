@@ -1,11 +1,15 @@
-import notify from 'bnc-notify'
-import onboard from 'bnc-onboard'
+import stagingOnboard from 'bnc-onboard-staging'
+import stagingNotify from 'bnc-notify-staging'
+import Notify from 'bnc-notify'
+import Onboard from 'bnc-onboard'
 
 const networkId = 4
 const rpcUrl = 'https://rinkeby.infura.io/v3/d5e29c9b9a9d4116a7348113f57770a8'
 const apiUrl = process.env.REACT_APP_API_URL
+const staging = process.env.REACT_APP_STAGING
 
 export function initOnboard(subscriptions) {
+  const onboard = staging ? stagingOnboard : Onboard
   return onboard({
     dappId: '12153f55-f29e-4f11-aa07-90f10da5d778',
     networkId,
@@ -58,6 +62,7 @@ export function initOnboard(subscriptions) {
 }
 
 export function initNotify() {
+  const notify = staging ? stagingNotify : Notify
   return notify({
     dappId: '12153f55-f29e-4f11-aa07-90f10da5d778',
     networkId,
