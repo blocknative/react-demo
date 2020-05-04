@@ -20,6 +20,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "resolutions": {
+    "moment": "2.24.0"
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
