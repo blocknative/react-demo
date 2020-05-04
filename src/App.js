@@ -127,7 +127,7 @@ function App() {
     })
 
     emitter.on('txSent', console.log)
-    // emitter.on('txPool', console.log)
+    emitter.on('txPool', console.log)
     emitter.on('txConfirmed', console.log)
     emitter.on('txSpeedUp', console.log)
     emitter.on('txCancel', console.log)
