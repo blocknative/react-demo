@@ -1,10 +1,10 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "dependencies": {
     "bnc-notify": "^1.1.2",
     "bnc-notify-staging": "https://github.com/blocknative/notify#develop",
-    "bnc-onboard": "^1.7.7",
+    "bnc-onboard": "^1.7.8",
     "bnc-onboard-staging": "https://github.com/blocknative/onboard#develop",
     "ethers": "^4.0.37",
     "react": "^16.9.0",
@@ -20,6 +20,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "resolutions": {
+    "moment": "2.24.0"
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -34,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
   }
 }

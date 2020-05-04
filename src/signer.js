@@ -1,10 +1,10 @@
-import { ethers } from "ethers"
+import { ethers } from 'ethers'
 
 class UncheckedJsonRpcSigner extends ethers.Signer {
   constructor(signer) {
     super()
-    ethers.utils.defineReadOnly(this, "signer", signer)
-    ethers.utils.defineReadOnly(this, "provider", signer.provider)
+    ethers.utils.defineReadOnly(this, 'signer', signer)
+    ethers.utils.defineReadOnly(this, 'provider', signer.provider)
   }
 
   getAddress() {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
+import VConsole from 'vconsole'
 import getSigner from './signer'
 import { initOnboard, initNotify } from './services'
 import { version, dependencies } from '../package.json'
-import VConsole from 'vconsole'
 
 import './App.css'
 
@@ -37,7 +37,7 @@ function App() {
   const [address, setAddress] = useState(null)
   const [network, setNetwork] = useState(null)
   const [balance, setBalance] = useState(null)
-  const [wallet, setWallet] = useState(false)
+  const [wallet, setWallet] = useState({})
 
   const [onboard, setOnboard] = useState(null)
   const [notify, setNotify] = useState(null)
@@ -117,8 +117,17 @@ function App() {
 
     const { emitter } = notify.hash(hash)
 
+    emitter.on('txPool', transaction => {
+      console.log(transaction)
+      return {
+        // message: `Your transaction is pending, click <a href="https://rinkeby.etherscan.io/tx/${transaction.hash}" rel="noopener noreferrer" target="_blank">here</a> for more info.`,
+        // or you could use onclick for when someone clicks on the notification itself
+        onclick: () =>
+          window.open(`https://rinkeby.etherscan.io/tx/${transaction.hash}`)
+      }
+    })
+
     emitter.on('txSent', console.log)
-    emitter.on('txPool', console.log)
     emitter.on('txConfirmed', console.log)
     emitter.on('txSpeedUp', console.log)
     emitter.on('txCancel', console.log)
