@@ -23,9 +23,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "resolutions": {
-    "moment": "2.24.0"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
