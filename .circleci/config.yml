@@ -5,8 +5,8 @@ jobs:
       - image: circleci/node:10.18.1-browsers
     steps:
       - checkout
-      - run: npm install
-      - run: npm run build-staging
+      - run: yarn cache clean && rm -r node_modules && yarn install
+      - run: yarn build-staging
       - run: scp -oStrictHostKeyChecking=no -v -r /home/circleci/project/build/* $EC2_PROD_USER@$EC2_PROD_IP:/home/ubuntu/reactdemo-staging/
       - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo-staging"
   deploy_prod:
@@ -14,8 +14,8 @@ jobs:
       - image: circleci/node:10.18.1-browsers
     steps:
       - checkout
-      - run: npm install
-      - run: npm run build
+      - run: yarn cache clean && rm -r node_modules && yarn install
+      - run: yarn build
       - run: scp -oStrictHostKeyChecking=no -v -r /home/circleci/project/build/* $EC2_PROD_USER@$EC2_PROD_IP:/home/ubuntu/reactdemo/
       - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo"
 workflows:
