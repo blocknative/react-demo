@@ -2392,16 +2392,16 @@ atob@^2.1.2:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 authereum@^0.0.4-beta.131:
-  version "0.0.4-beta.140"
-  resolved "https://registry.yarnpkg.com/authereum/-/authereum-0.0.4-beta.140.tgz#0254b71973c22748805c861fd12dde8a721669b0"
-  integrity sha512-kFkP+kOH6wt5dBCv3PtS9pUmL0tCaPq05lOciWCpIh6QA9GTVUqnaoLl9nbDKNZwiAEN6L/oicIRVlXrH+i1uQ==
+  version "0.0.4-beta.141"
+  resolved "https://registry.yarnpkg.com/authereum/-/authereum-0.0.4-beta.141.tgz#81880e1451c23aa5ae98827735ff888bd673196c"
+  integrity sha512-cTFTYf88QuL08WS4mWG32hohfcHsNp+OCXZ8B58qlVTcaPXSXawY7KRH4jEqn4yni5aZE60iT65tkuFGK4q2RQ==
   dependencies:
     async "^3.1.0"
     ethereum-private-key-to-address "0.0.3"
     ethers "^4.0.36"
     eventemitter3 "^4.0.0"
     is-buffer "^2.0.4"
-    moment "^2.24.0"
+    moment "2.24.0"
     penpal "^4.1.1"
     pify "^4.0.1"
     querystring "^0.2.0"
@@ -3202,22 +3202,22 @@ bn.js@^5.1.1:
   integrity sha512-IUTD/REb78Z2eodka1QZyyEk66pciRcP6Sroka0aI3tG/iwIdYLrBD62RsubR7vqdt3WyX8p4jxeatzmRSphtA==
 
 "bnc-notify-staging@https://github.com/blocknative/notify#develop":
-  version "1.1.2"
-  resolved "https://github.com/blocknative/notify#7fabe221b1437bd853c13dfd2eb1935eb7e3d98b"
+  version "1.2.0"
+  resolved "https://github.com/blocknative/notify#7c62987465a3ee0156ab4c7a1e71a654c06d9fab"
   dependencies:
     bignumber.js "^9.0.0"
-    bnc-sdk "2.1.1"
+    bnc-sdk "2.1.2"
     lodash.debounce "^4.0.8"
     regenerator-runtime "^0.13.3"
     uuid "^3.3.3"
 
-bnc-notify@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.1.2.tgz#7462d855af958d982bb7dbacd288e40c2cc0f5f5"
-  integrity sha512-+RaZmOns4xDfpFu3WUqAHkaw83RcVKuDSLzANDOMVgAhLBgKM9QpXRByflJWcOySy1Bsl66+8FIycQBb5SX1Fg==
+bnc-notify@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.2.0.tgz#728ba427176639bd7bb6ec034440f499ec7b6efe"
+  integrity sha512-X8hPqV9D4pWJKMsrebiKKi+bU2oUUKk1rSIpjUCbkqOF6asTcX0LE6kfCzD+63VVnsa/U4huuz5p3L4eIFxKuA==
   dependencies:
     bignumber.js "^9.0.0"
-    bnc-sdk "2.0.0"
+    bnc-sdk "2.1.2"
     lodash.debounce "^4.0.8"
     regenerator-runtime "^0.13.3"
     uuid "^3.3.3"
@@ -3271,18 +3271,18 @@ bnc-onboard@^1.7.8:
     trezor-connect "7.0.1"
     web3-provider-engine "^15.0.4"
 
-bnc-sdk@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-2.0.0.tgz#90b5926a758b9c9050bcbd2854cf3502a5899aff"
-  integrity sha512-IPOtIR0qZ4MtnGlMXVsjxbShANbaIfxksVZOXh/4hjpcSRKI3Gc3N+hq+P0CqeN0nhTuDARkCavDrlq/oPKyUQ==
-  dependencies:
-    crypto-es "^1.2.2"
-    sturdy-websocket "^0.1.12"
-
 bnc-sdk@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-2.1.1.tgz#60ad6b012d99bac72e56b834d87c87cbd3aa1c16"
   integrity sha512-Y7x9sBDVtqj3wQbgkTIJajFtjklSRMqmsOJiuXIWFQrYY++7kcpaZ4UonwDna4OincHq/IZke6E+3KJCmc2+xg==
+  dependencies:
+    crypto-es "^1.2.2"
+    sturdy-websocket "^0.1.12"
+
+bnc-sdk@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-2.1.2.tgz#a7773bd537035fbdf4f85a8213ac390087a126df"
+  integrity sha512-8fttF4bXKHC5RnRD8Yn5zCnZFkiBCamtyYEN/Q71ldutoODXa5zfR/W2YaKEsnWl3mApk2ACosfFiyaa9hJNIA==
   dependencies:
     crypto-es "^1.2.2"
     sturdy-websocket "^0.1.12"
@@ -3640,9 +3640,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30000989, caniuse-lite@^1.0.30001039, caniuse-lite@^1.0.30001043:
-  version "1.0.30001050"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001050.tgz#11218af4b6b85dc1089536f31e10e3181e849e71"
-  integrity sha512-OvGZqalCwmapci76ISq5q4kuAskb1ebqF3FEQBv1LE1kWht0pojlDDqzFlmk5jgYkuZN7MNZ1n+ULwe/7MaDNQ==
+  version "1.0.30001051"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001051.tgz#8e944abf9c796bc7ea0bec3c3688a250561fc9ac"
+  integrity sha512-sw8UUnTlRevawTMZKN7vpfwSjCBVoiMPlYd8oT2VwNylyPCBdMAUmLGUApnYYTtIm5JXsQegUAY7GPHqgfDzjw==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -8600,10 +8600,10 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   dependencies:
     minimist "^1.2.5"
 
-moment@^2.24.0:
-  version "2.25.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.25.1.tgz#1cb546dca1eccdd607c9324747842200b683465d"
-  integrity sha512-nRKMf9wDS4Fkyd0C9LXh2FFXinD+iwbJ5p/lh3CHitW9kZbRbJ8hCruiadiIXZVbeAqKZzqcTvHnK3mRhFjb6w==
+moment@2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -10188,9 +10188,9 @@ postcss@7.0.14:
     supports-color "^6.1.0"
 
 postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.17, postcss@^7.0.2, postcss@^7.0.27, postcss@^7.0.5, postcss@^7.0.6:
-  version "7.0.28"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.28.tgz#d349ced7743475717ba91f6810efb58c51fb5dbb"
-  integrity sha512-YU6nVhyWIsVtlNlnAj1fHTsUKW5qxm3KEgzq2Jj6KTEFOTK8QWR12eIDvrlWhiSTK8WIBFTBhOJV4DY6dUuEbw==
+  version "7.0.29"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.29.tgz#d3a903872bd52280b83bce38cdc83ce55c06129e"
+  integrity sha512-ba0ApvR3LxGvRMMiUa9n0WR4HjzcYm7tS+ht4/2Nd0NLtHpPIH77fuB9Xh1/yJVz9O/E/95Y/dn8ygWsyffXtw==
   dependencies:
     chalk "^2.4.2"
     source-map "^0.6.1"
