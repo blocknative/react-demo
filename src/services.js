@@ -16,7 +16,6 @@ export function initOnboard(subscriptions) {
     networkId,
     apiUrl,
     subscriptions,
-    darkMode: true,
     walletSelect: {
       wallets: [
         { walletName: 'metamask' },
