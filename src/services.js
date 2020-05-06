@@ -12,10 +12,11 @@ export function initOnboard(subscriptions) {
   const onboard = staging ? stagingOnboard : Onboard
   return onboard({
     dappId: '12153f55-f29e-4f11-aa07-90f10da5d778',
+    hideBranding: false,
     networkId,
     apiUrl,
     subscriptions,
-    // darkMode: true,
+    darkMode: true,
     walletSelect: {
       wallets: [
         { walletName: 'metamask' },
