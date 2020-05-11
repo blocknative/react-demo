@@ -32,6 +32,7 @@ export function initOnboard(subscriptions) {
         { walletName: 'dapper' },
         { walletName: 'coinbase' },
         { walletName: 'status' },
+        { walletName: 'walletLink', rpcUrl },
         {
           walletName: 'portis',
           apiKey: 'd7d72646-709a-45ab-aa43-8de5307ae0df'

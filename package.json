@@ -4,7 +4,7 @@
   "dependencies": {
     "bnc-notify": "^1.2.0",
     "bnc-notify-staging": "https://github.com/blocknative/notify#develop",
-    "bnc-onboard": "^1.7.8",
+    "bnc-onboard": "^1.8.0",
     "bnc-onboard-staging": "https://github.com/blocknative/onboard#develop",
     "ethers": "^4.0.37",
     "react": "^16.9.0",
