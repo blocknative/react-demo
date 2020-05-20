@@ -1,10 +1,10 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "dependencies": {
     "bnc-notify": "^1.2.1",
     "bnc-notify-staging": "https://github.com/blocknative/notify#develop",
-    "bnc-onboard": "^1.9.0",
+    "bnc-onboard": "^1.9.1",
     "bnc-onboard-staging": "https://github.com/blocknative/onboard#develop",
     "ethers": "^4.0.37",
     "react": "^16.9.0",
@@ -19,9 +19,6 @@
     "build-staging": "REACT_APP_API_URL=wss://staging.api.blocknative.com/v0 REACT_APP_STAGING=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "resolutions": {
-    "moment": "2.24.0"
   },
   "eslintConfig": {
     "extends": "react-app"
