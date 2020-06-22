@@ -3353,13 +3353,13 @@ bn.js@^5.1.1, bn.js@^5.1.2:
     regenerator-runtime "^0.13.3"
     uuid "^3.3.3"
 
-bnc-notify@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.2.1.tgz#0929413c40c5d51e19cd66e616eee130d2716be7"
-  integrity sha512-ENi1EVWXLRUJNzMavhYlH+Q97SpIOzF14guUyWPNQOmgX3z7AtGTvuOouAyS6vXCOZArju2nLghygyP8Ux0CHA==
+bnc-notify@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.2.2.tgz#677eb2c55518220394b49e15b18bfd54c48cf135"
+  integrity sha512-KJ1OK3zR5e6vwuccv2vBq/Ima4G1vND4s+HR4/2lediX3keppL/v4tKd4288XJA8nAmG7lGnZNzn5swwT7I+bQ==
   dependencies:
     bignumber.js "^9.0.0"
-    bnc-sdk "^2.1.3"
+    bnc-sdk "^2.1.4"
     lodash.debounce "^4.0.8"
     regenerator-runtime "^0.13.3"
     uuid "^3.3.3"
