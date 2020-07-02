@@ -15,7 +15,7 @@ export function initOnboard(subscriptions) {
     hideBranding: false,
     networkId,
     apiUrl,
-    darkMode: true,
+    // darkMode: true,
     subscriptions,
     walletSelect: {
       wallets: [
