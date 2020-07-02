@@ -15,6 +15,7 @@ export function initOnboard(subscriptions) {
     hideBranding: false,
     networkId,
     apiUrl,
+    darkMode: true,
     subscriptions,
     walletSelect: {
       wallets: [
@@ -35,7 +36,7 @@ export function initOnboard(subscriptions) {
         { walletName: 'walletLink', rpcUrl },
         {
           walletName: 'portis',
-          apiKey: 'd7d72646-709a-45ab-aa43-8de5307ae0df'
+          apiKey: 'b2b7586f-2b1e-4c30-a7fb-c2d1533b153b'
         },
         { walletName: 'fortmatic', apiKey: 'pk_test_886ADCAB855632AA' },
         { walletName: 'unilogin' },
