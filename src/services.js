@@ -21,7 +21,6 @@ export function initOnboard(subscriptions) {
     walletSelect: {
       wallets: [
         { walletName: 'metamask' },
-        {walletName: 'meetone'},
         {
           walletName: 'trezor',
           appUrl: 'https://reactdemo.blocknative.com',
@@ -49,13 +48,11 @@ export function initOnboard(subscriptions) {
         {
           walletName: 'walletConnect',
           infuraKey: 'd5e29c9b9a9d4116a7348113f57770a8'
-          // rpc: {
-          //   [networkId]: rpcUrl,
-          // },
         },
         { walletName: 'opera' },
         { walletName: 'operaTouch' },
-        { walletName: 'imToken', rpcUrl }
+        { walletName: 'imToken', rpcUrl },
+        { walletName: 'meetone' }
       ]
     },
     walletCheck: [
