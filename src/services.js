@@ -53,7 +53,8 @@ export function initOnboard(subscriptions) {
         { walletName: 'operaTouch' },
         { walletName: 'imToken', rpcUrl },
         { walletName: 'meetone' },
-        { walletName: 'mykey' }
+        { walletName: 'mykey' },
+        { walletName: 'wallet.io' }
       ]
     },
     walletCheck: [
