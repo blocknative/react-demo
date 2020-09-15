@@ -54,7 +54,7 @@ export function initOnboard(subscriptions) {
         { walletName: 'imToken', rpcUrl },
         { walletName: 'meetone' },
         { walletName: 'mykey' },
-        { walletName: 'wallet.io' }
+        { walletName: 'wallet.io', rpcUrl }
       ]
     },
     walletCheck: [
