@@ -28,6 +28,11 @@ export function initOnboard(subscriptions) {
           rpcUrl
         },
         {
+          walletName: 'lattice',
+          appName: 'Onboard Demo',
+          rpcUrl
+        },
+        {
           walletName: 'ledger',
           rpcUrl
         },
