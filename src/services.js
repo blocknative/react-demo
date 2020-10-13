@@ -28,6 +28,11 @@ export function initOnboard(subscriptions) {
           rpcUrl
         },
         {
+          walletName: 'lattice',
+          appName: 'Onboard Demo',
+          rpcUrl
+        },
+        {
           walletName: 'ledger',
           rpcUrl
         },
@@ -52,7 +57,9 @@ export function initOnboard(subscriptions) {
         { walletName: 'opera' },
         { walletName: 'operaTouch' },
         { walletName: 'imToken', rpcUrl },
-        { walletName: 'meetone' }
+        { walletName: 'meetone' },
+        { walletName: 'mykey' },
+        { walletName: 'wallet.io', rpcUrl }
       ]
     },
     walletCheck: [

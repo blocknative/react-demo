@@ -118,7 +118,6 @@ function App() {
     const { emitter } = notify.hash(hash)
 
     emitter.on('txPool', transaction => {
-      console.log(transaction)
       return {
         // message: `Your transaction is pending, click <a href="https://rinkeby.etherscan.io/tx/${transaction.hash}" rel="noopener noreferrer" target="_blank">here</a> for more info.`,
         // or you could use onclick for when someone clicks on the notification itself
