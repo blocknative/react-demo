@@ -28,15 +28,15 @@ export function initOnboard(subscriptions) {
           rpcUrl
         },
         {
+          walletName: 'ledger',
+          rpcUrl
+        },
+        { walletName: 'authereum', disableNotifications: true },
+        {
           walletName: 'lattice',
           appName: 'Onboard Demo',
           rpcUrl
         },
-        {
-          walletName: 'ledger',
-          rpcUrl
-        },
-        { walletName: 'dapper' },
         { walletName: 'coinbase' },
         { walletName: 'status' },
         { walletName: 'walletLink', rpcUrl },
@@ -45,10 +45,7 @@ export function initOnboard(subscriptions) {
           apiKey: 'b2b7586f-2b1e-4c30-a7fb-c2d1533b153b'
         },
         { walletName: 'fortmatic', apiKey: 'pk_test_886ADCAB855632AA' },
-        { walletName: 'unilogin' },
         { walletName: 'torus' },
-        { walletName: 'squarelink', apiKey: '87288b677f8cfb09a986' },
-        { walletName: 'authereum', disableNotifications: true },
         { walletName: 'trust', rpcUrl },
         {
           walletName: 'walletConnect',
@@ -58,8 +55,11 @@ export function initOnboard(subscriptions) {
         { walletName: 'operaTouch' },
         { walletName: 'imToken', rpcUrl },
         { walletName: 'meetone' },
-        { walletName: 'mykey' },
-        { walletName: 'wallet.io', rpcUrl }
+        { walletName: 'mykey', rpcUrl },
+        { walletName: 'wallet.io', rpcUrl },
+        { walletName: 'huobiwallet', rpcUrl },
+        { walletName: 'hyperpay' },
+        { walletName: 'atoken' },
       ]
     },
     walletCheck: [
