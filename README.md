@@ -1,6 +1,10 @@
 # React Demo
 
-A repository to demonstrate a basic integration of [Onboard.js](https://github.com/blocknative/onboard) and [Notify.js](https://github.com/blocknative/onboard) into a React project.
+A repository to demonstrate a basic integration of 
+[Onboard.js](https://github.com/blocknative/onboard) 
+and [Notify.js](https://github.com/blocknative/onboard) into a React project.
+For detailed documentation, head to [docs.blocknative.com](https://docs.blocknative.com)
+
 
 <div align="center">
   <img style="border-radius: 8px" width="75%" src="assets/react-demo.png">
@@ -36,59 +40,9 @@ yarn start
 
 The project will be running on [localhost:3000](http://localhost:3000)
 
-## Local development
-Outlined below are the steps necessary to run the react-demo with a 
-local version of Onboard.js and Notify.js.
-
-### Using [yalc](https://www.npmjs.com/package/yalc)
-Yalc is a simple and straight forward way to including local npm modules.
-
-Install yalc
-```
-npm i yalc -g
-```
-
-In the onboard and notify directories run:
-```
-yalc publish
-```
-
-In the react-demo directory run:
-```
-yalc add bnc-onboard
-yalc add bnc-notify
-```
-
-Now you're all set! After making changes to either the bnc-onboard or bnc-notify
-packages simply run the following in the dependant package's directory to 
-propagate the file changes to the react-demo:
-```
-yalc push
-```
-
-### Using yarn/npm
-In the onboard and notify directories run:
-```
-yarn link
-```
-
-In the react-demo directory
-```
-yarn link bnc-onboard
-yarn link bnc-notify
-```
-
-After making changes to either the bnc-onboard or bnc-notify run the following in 
-the dependant package's directory to propagate changes:
-```
-yarn build
-```
-
 ### SSL
 Some wallets require that the website within which it runs be using a https 
 connection. If you are testing one of these wallets, Ledger is one, then you have
 two options:
  1. Setup a valid certificate for localhost using [this guide](https://www.freecodecamp.org/news/how-to-set-up-https-locally-with-create-react-app/).
  2. Allow invalid certificates for resources loaded from localhost by navigating here within a chrome based browser: [chrome://flags/#allow-insecure-localhost](chrome://flags/#allow-insecure-localhost)
-
-For detailed documentation, head to [docs.blocknative.com](https://docs.blocknative.com)
