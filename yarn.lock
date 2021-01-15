@@ -3497,28 +3497,26 @@ bnc-notify@^1.5.1:
     walletlink "^2.0.2"
     web3-provider-engine "^15.0.4"
 
-bnc-onboard@^1.17.1:
-  version "1.17.1"
-  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.17.1.tgz#b1178b2501fdabc9858458b6672af92697049dc2"
-  integrity sha512-moK0trz6bsLvd2ZHjkwJjg6jTZRslA9Q7FYcF3wKpS29Qgb64Xyypwj+6S9LtEptXtmWPPEweONAoAwQkiWcOw==
+bnc-onboard@^1.18.0:
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.18.0.tgz#136cd29fe48ced1726078393401c6e28618016d7"
+  integrity sha512-l2ruQT6Tvl0s/qU+IA6W/h+H6rgfuDCleGnxq6ZlR59pV0DR8v1QYkGzX21J6nTZapYaU+TIiqnCYGuNlVLSEA==
   dependencies:
     "@ledgerhq/hw-app-eth" "^5.21.0"
     "@ledgerhq/hw-transport-u2f" "^5.21.0"
     "@portis/web3" "^2.0.0-beta.57"
     "@toruslabs/torus-embed" "^1.9.2"
-    "@unilogin/provider" "^0.6.1"
     "@walletconnect/web3-provider" "^1.3.1"
     authereum "^0.1.12"
     bignumber.js "^9.0.0"
     bnc-sdk "^2.1.4"
     bowser "^2.10.0"
-    eth-lattice-keyring "^0.2.4"
+    eth-lattice-keyring "^0.2.7"
     ethereumjs-tx "^2.1.2"
     ethereumjs-util "^7.0.3"
     fortmatic "^2.2.1"
     hdkey "^2.0.1"
     regenerator-runtime "^0.13.7"
-    squarelink "^1.1.4"
     trezor-connect "^8.1.9"
     walletlink "^2.0.2"
     web3-provider-engine "^15.0.4"
@@ -5712,6 +5710,13 @@ eth-lattice-keyring@^0.2.4:
   dependencies:
     gridplus-sdk latest
 
+eth-lattice-keyring@^0.2.7:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/eth-lattice-keyring/-/eth-lattice-keyring-0.2.8.tgz#f4bf90eff5d9ece314a2993276c5b3329ba213ed"
+  integrity sha512-dgx1DfdutxVt7Vb/tyFq/U+e0GmXejctfhjyK2HVQHagPfTJj4gbWAMPXyGPPOcxQ4fPdfgr6PlWNTiy96fEKQ==
+  dependencies:
+    gridplus-sdk "^0.7.2"
+
 eth-lib@0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/eth-lib/-/eth-lib-0.2.7.tgz#2f93f17b1e23aec3759cd4a3fe20c1286a3fc1ca"
@@ -6768,6 +6773,25 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
+
+gridplus-sdk@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/gridplus-sdk/-/gridplus-sdk-0.7.2.tgz#ea46c565ea7f8e029b7a61283f25e9f175ddfa47"
+  integrity sha512-fCo9QGvpwTVbqobKmkkKQxRA/zgSy5KOfQrRv9jhnmlP4uHvURKuuqnJ07mRZr+0EbGifRJp9VRmZkKjKffp+Q==
+  dependencies:
+    aes-js "^3.1.1"
+    bignumber.js "^9.0.1"
+    bitwise "^2.0.4"
+    bs58 "^4.0.1"
+    bs58check "^2.1.2"
+    buffer "^5.6.0"
+    crc-32 "^1.2.0"
+    elliptic "6.5.3"
+    js-sha3 "^0.8.0"
+    lodash "^4.17.19"
+    rlp-browser "^1.0.1"
+    secp256k1 "4.0.2"
+    superagent "^3.8.3"
 
 gridplus-sdk@latest:
   version "0.7.1"
