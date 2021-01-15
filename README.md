@@ -1,19 +1,29 @@
-# onboard-notify-react
+# React Demo
 
-A repository to demonstrate a basic integration of [Onboard.js](https://github.com/blocknative/onboard) and [Notify.js](https://github.com/blocknative/onboard) into a React project.
+A repository to demonstrate a basic integration of 
+[Onboard.js](https://github.com/blocknative/onboard) 
+and [Notify.js](https://github.com/blocknative/onboard) into a React project.
+For detailed documentation, head to [docs.blocknative.com](https://docs.blocknative.com)
 
-To run the project locally:
+
+<div align="center">
+  <img style="border-radius: 8px" width="75%" src="assets/react-demo.png">
+</div>
+
+View live demo [here](https://reactdemo.blocknative.com/)!
+
+## Getting started
 
 Clone the repo:
 
 ```bash
-git clone https://github.com/blocknative/onboard-notify-react-demo.git
+git clone https://github.com/blocknative/react-demo.git
 ```
 
 Navigate to the project directory:
 
 ```bash
-cd onboard-notify-react-demo
+cd react-demo
 ```
 
 Install the dependencies:
@@ -30,4 +40,9 @@ yarn start
 
 The project will be running on [localhost:3000](http://localhost:3000)
 
-For detailed documentation, head to [docs.blocknative.com](https://docs.blocknative.com)
+### SSL
+Some wallets require that the website within which it runs be using a https 
+connection. If you are testing one of these wallets, Ledger is one, then you have
+two options:
+ 1. Setup a valid certificate for localhost using [this guide](https://www.freecodecamp.org/news/how-to-set-up-https-locally-with-create-react-app/).
+ 2. Allow invalid certificates for resources loaded from localhost by navigating here within a chrome based browser: [chrome://flags/#allow-insecure-localhost](chrome://flags/#allow-insecure-localhost)
