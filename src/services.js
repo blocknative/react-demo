@@ -60,6 +60,7 @@ export function initOnboard(subscriptions) {
         { walletName: 'huobiwallet', rpcUrl },
         { walletName: 'hyperpay' },
         { walletName: 'atoken' },
+        { walletName: 'liquality' },
       ]
     },
     walletCheck: [
