@@ -61,7 +61,8 @@ export function initOnboard(subscriptions) {
         { walletName: 'hyperpay' },
         { walletName: 'atoken' },
         { walletName: 'liquality' },
-        { walletName: 'frame' }
+        { walletName: 'frame' },
+        { walletName: 'tokenpocket', rpcUrl }
       ]
     },
     walletCheck: [
