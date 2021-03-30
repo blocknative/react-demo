@@ -31,7 +31,11 @@ export function initOnboard(subscriptions) {
           walletName: 'ledger',
           rpcUrl
         },
-        { walletName: 'authereum', disableNotifications: true },
+        {
+          walletName: 'walletConnect',
+          infuraKey: 'cea9deb6467748b0b81b920b005c10c1'
+        },
+        { walletName: 'cobovault', appName: 'React Demo', rpcUrl },
         {
           walletName: 'lattice',
           appName: 'Onboard Demo',
@@ -47,10 +51,6 @@ export function initOnboard(subscriptions) {
         { walletName: 'fortmatic', apiKey: 'pk_test_886ADCAB855632AA' },
         { walletName: 'torus' },
         { walletName: 'trust', rpcUrl },
-        {
-          walletName: 'walletConnect',
-          infuraKey: 'cea9deb6467748b0b81b920b005c10c1'
-        },
         { walletName: 'opera' },
         { walletName: 'operaTouch' },
         { walletName: 'imToken', rpcUrl },
@@ -61,7 +61,9 @@ export function initOnboard(subscriptions) {
         { walletName: 'hyperpay' },
         { walletName: 'atoken' },
         { walletName: 'liquality' },
-        { walletName: 'frame' }
+        { walletName: 'frame' },
+        { walletName: 'tokenpocket', rpcUrl },
+        { walletName: 'authereum', disableNotifications: true },
       ]
     },
     walletCheck: [
