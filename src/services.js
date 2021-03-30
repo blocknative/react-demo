@@ -62,6 +62,7 @@ export function initOnboard(subscriptions) {
         { walletName: 'atoken' },
         { walletName: 'liquality' },
         { walletName: 'frame' },
+        { walletName: 'tokenpocket', rpcUrl },
         { walletName: 'authereum', disableNotifications: true },
       ]
     },
