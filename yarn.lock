@@ -3811,10 +3811,10 @@ bnc-notify@^1.5.1:
     walletlink "^2.0.2"
     web3-provider-engine "^15.0.4"
 
-bnc-onboard@^1.21.0:
-  version "1.21.0"
-  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.21.0.tgz#fa3b28dbd8f451216dba56db8d4c2d87a11f3731"
-  integrity sha512-klFzITMVizcDdeBUAQzpMwLJ/4EN7xzOAz96t4GqL0jN2tfhjXbcyf3w7+etfi41X/N3nPJPtDemmtbEhTGhdw==
+bnc-onboard@^1.22.0:
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.22.0.tgz#3f81ea9405b9a5f1919785017beb148075500698"
+  integrity sha512-Vh9c+tDcs+Ca94KxutZk9xaQUFnlyHTg3zItAd2ivZwYFhoKAkvkV7CuEc3E7IIlP9y2ay+ghoBCbaicyVFHlQ==
   dependencies:
     "@cvbb/eth-keyring" "^1.1.0"
     "@ledgerhq/hw-app-eth" "^5.21.0"
