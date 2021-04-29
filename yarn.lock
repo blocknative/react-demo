@@ -1853,6 +1853,16 @@
     penpal "3.0.7"
     pocket-js-core "0.0.3"
 
+"@portis/web3@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@portis/web3/-/web3-4.0.0.tgz#4329f5eb6aac0924b23629ba06972f53c758fa4a"
+  integrity sha512-WAoqpmIuyR/k5U4X1P85HM6OyQJgHpaHy9LCcXGRecIQosl7BwZSOLcWVd3aepvM37o1Q9li/ad3F/Tdmd1mhg==
+  dependencies:
+    ethereumjs-util "5.2.0"
+    penpal "3.0.7"
+    pocket-js-core "0.0.3"
+    web3-provider-engine "16.0.1"
+
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-4.2.0.tgz#dadcb6218503532d6884b210e7f3c502caaa44b1"
@@ -2332,7 +2342,7 @@
     js-sha3 "0.8.0"
     query-string "6.13.5"
 
-"@walletconnect/web3-provider@^1.3.1":
+"@walletconnect/web3-provider@^1.3.1", "@walletconnect/web3-provider@^1.4.1":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@walletconnect/web3-provider/-/web3-provider-1.4.1.tgz#34f6319ab2473ab9ff0fcf1e8bc280c697fa01ff"
   integrity sha512-gUoBGM5hdtcXSoLXDTG1/WTamnUNpEWfaYMIVkfVnvVFd4whIjb0iOW5ywvDOf/49wq0C2+QThZL2Wc+r+jKLA==
@@ -3811,20 +3821,20 @@ bnc-notify@^1.5.1:
     walletlink "^2.0.2"
     web3-provider-engine "^15.0.4"
 
-bnc-onboard@^1.22.0:
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.22.0.tgz#3f81ea9405b9a5f1919785017beb148075500698"
-  integrity sha512-Vh9c+tDcs+Ca94KxutZk9xaQUFnlyHTg3zItAd2ivZwYFhoKAkvkV7CuEc3E7IIlP9y2ay+ghoBCbaicyVFHlQ==
+bnc-onboard@^1.24.0:
+  version "1.24.0"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.24.0.tgz#121edeba2844e19326264c7a47f4a89ead4e15c7"
+  integrity sha512-a8+eagu7SESqNoWPd/h7Y0wizGQeuWShZDJcOd2PzXL5w7dcH3VFVgmFue4Uhgjwz4zi07je91zYipYYasiZ6Q==
   dependencies:
     "@cvbb/eth-keyring" "^1.1.0"
     "@ledgerhq/hw-app-eth" "^5.21.0"
     "@ledgerhq/hw-transport-u2f" "^5.21.0"
-    "@portis/web3" "^2.0.0-beta.57"
+    "@portis/web3" "^4.0.0"
     "@toruslabs/torus-embed" "^1.9.2"
-    "@walletconnect/web3-provider" "^1.3.1"
+    "@walletconnect/web3-provider" "^1.4.1"
     authereum "^0.1.12"
     bignumber.js "^9.0.0"
-    bnc-sdk "^3.1.0"
+    bnc-sdk "^3.2.0"
     bowser "^2.10.0"
     eth-lattice-keyring "^0.2.7"
     eth-provider "^0.6.1"
@@ -3832,6 +3842,7 @@ bnc-onboard@^1.22.0:
     ethereumjs-util "^7.0.3"
     fortmatic "^2.2.1"
     hdkey "^2.0.1"
+    prettier-plugin-svelte "^2.2.0"
     regenerator-runtime "^0.13.7"
     trezor-connect "^8.1.9"
     walletlink "^2.0.2"
@@ -3849,6 +3860,15 @@ bnc-sdk@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-3.1.1.tgz#60f4a56ee4d7a7a0a6ccb7ae132b7f3a63297eb3"
   integrity sha512-bfQmWf8GlLBnZH0JwioImdU1PqDCjkpddwALBavOYDuKx/NMtJFwUzZP8525xxRrdGX0Lmn0BkJDAvdzJPVklg==
+  dependencies:
+    crypto-es "^1.2.2"
+    rxjs "^6.6.3"
+    sturdy-websocket "^0.1.12"
+
+bnc-sdk@^3.2.0:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-3.3.1.tgz#e8ee8061002062fd63db03057bc4bc2b6f20373e"
+  integrity sha512-6Eg+PVceS+KkdzGmTpNp9yotQdxseoDmCI5iGXx6QmScmnApj6EcdDWt8p/ZRcXS36T8nB7rqUKpqvVP6yDQXQ==
   dependencies:
     crypto-es "^1.2.2"
     rxjs "^6.6.3"
@@ -11113,6 +11133,11 @@ prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
   integrity sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=
+
+prettier-plugin-svelte@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-svelte/-/prettier-plugin-svelte-2.2.0.tgz#4bd94992fa5b76413a8a5556f90b128c4fdaf7a6"
+  integrity sha512-Xdmqgr71tAuMqqzNCK52/v94g/Yv7V7lz+nmbO9NEA+9ol15VV3uUHOfydMNOo3SWvFaVlBcp947ebEaMWqVfQ==
 
 prettier@^2.0.5:
   version "2.2.1"
