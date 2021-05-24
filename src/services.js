@@ -65,6 +65,9 @@ export function initOnboard(subscriptions) {
         { walletName: 'tokenpocket', rpcUrl },
         { walletName: 'authereum', disableNotifications: true },
         { walletName: 'ownbit'},
+        { walletName: 'gnosis' },
+        { walletName: 'bitpie' },
+        { walletName: 'xdefi' },
       ]
     },
     walletCheck: [
