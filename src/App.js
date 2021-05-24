@@ -529,6 +529,8 @@ function networkName(id) {
       return 'goerli'
     case 42:
       return 'kovan'
+    case 100:
+      return 'xdai'
     case 'localhost':
       return 'localhost'
     default:
