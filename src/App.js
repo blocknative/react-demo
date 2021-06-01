@@ -132,9 +132,6 @@ function App() {
     emitter.on('txCancel', console.log)
     emitter.on('txFailed', console.log)
 
-    // emitter.on("all", event => {
-    //   console.log("ALLLLLLL", event)
-    // })
   }
 
   async function sendInternalTransaction() {
