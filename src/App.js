@@ -132,9 +132,6 @@ function App() {
     emitter.on('txCancel', console.log)
     emitter.on('txFailed', console.log)
 
-    // emitter.on("all", event => {
-    //   console.log("ALLLLLLL", event)
-    // })
   }
 
   async function sendInternalTransaction() {
@@ -529,6 +526,8 @@ function networkName(id) {
       return 'goerli'
     case 42:
       return 'kovan'
+    case 100:
+      return 'xdai'
     case 'localhost':
       return 'localhost'
     default:
