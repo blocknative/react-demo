@@ -68,6 +68,7 @@ export function initOnboard(subscriptions) {
         { walletName: 'gnosis' },
         { walletName: 'bitpie' },
         { walletName: 'xdefi' },
+        { walletName: 'tp'}
       ]
     },
     walletCheck: [
