@@ -85,6 +85,7 @@ export function initNotify() {
   return notify({
     dappId,
     networkId,
-    apiUrl
+    apiUrl,
+    onerror: error => console.log(`Notify error: ${error.message}`)
   })
 }
