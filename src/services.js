@@ -20,6 +20,7 @@ export function initOnboard(subscriptions) {
     subscriptions,
     walletSelect: {
       wallets: [
+        { walletName: 'detectedwallet' },
         { walletName: 'metamask' },
         {
           walletName: 'trezor',
@@ -64,10 +65,11 @@ export function initOnboard(subscriptions) {
         { walletName: 'frame' },
         { walletName: 'tokenpocket', rpcUrl },
         { walletName: 'authereum', disableNotifications: true },
-        { walletName: 'ownbit'},
+        { walletName: 'ownbit' },
         { walletName: 'gnosis' },
         { walletName: 'bitpie' },
         { walletName: 'xdefi' },
+        { walletName: 'keepkey', rpcUrl }
       ]
     },
     walletCheck: [
