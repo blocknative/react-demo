@@ -20,6 +20,7 @@ export function initOnboard(subscriptions) {
     subscriptions,
     walletSelect: {
       wallets: [
+        { walletName: 'detectedwallet' },
         { walletName: 'metamask' },
         {
           walletName: 'trezor',
