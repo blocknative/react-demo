@@ -214,7 +214,7 @@ function App() {
       </header>
       <section className="main">
         <div className="container">
-          <h2>Onboarding Users with Onboard.js</h2>
+          <h2>Onboarding Users with Onboard</h2>
           <div>
             {!wallet.provider && (
               <button
@@ -260,7 +260,7 @@ function App() {
           </div>
         </div>
         <div className="container">
-          <h2>Transaction Notifications with Notify.js</h2>
+          <h2>Transaction Notifications with Notify</h2>
           <div
             style={{
               display: 'flex',
@@ -500,11 +500,11 @@ function App() {
           React Demo version: <i>{staging ? 'NEXT' : version}</i>
         </span>
         <span>
-          Onboard.js version:{' '}
+          Onboard version:{' '}
           <i>{staging ? 'NEXT' : dependencies['bnc-onboard'].slice(1)}</i>
         </span>
         <span>
-          Notify.js version:{' '}
+          Notify version:{' '}
           <i>{staging ? 'NEXT' : dependencies['bnc-notify'].slice(1)}</i>
         </span>
       </div>
