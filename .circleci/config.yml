@@ -2,7 +2,7 @@ version: 2
 jobs:
   deploy_stage:
     docker:
-      - image: circleci/node:12-browsers
+      - image: cimg/node:16.4.1
     steps:
       - checkout
       - run: rm yarn.lock && yarn install --network-concurrency 1
@@ -12,7 +12,7 @@ jobs:
       - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo-staging"
   deploy_prod:
     docker:
-      - image: circleci/node:12-browsers
+      - image: cimg/node:16.4.1
     steps:
       - checkout
       - run: yarn cache clean && yarn install --network-concurrency 1
