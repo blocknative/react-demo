@@ -49,7 +49,11 @@ function App() {
   const [toAddress, setToAddress] = useState('')
 
   useEffect(() => {
-    const onboard = initOnboard({
+    if (onboard) {
+      return
+    }
+
+    const newOnboard = initOnboard({
       address: setAddress,
       network: setNetwork,
       balance: setBalance,
@@ -77,10 +81,10 @@ function App() {
       }
     })
 
-    setOnboard(onboard)
+    setOnboard(newOnboard)
 
     setNotify(initNotify())
-  }, [])
+  }, [onboard, setAddress, setOnboard, setNetwork, setNotify])
 
   useEffect(() => {
     const previouslySelectedWallet = window.localStorage.getItem(
@@ -131,7 +135,6 @@ function App() {
     emitter.on('txSpeedUp', console.log)
     emitter.on('txCancel', console.log)
     emitter.on('txFailed', console.log)
-
   }
 
   async function sendInternalTransaction() {
