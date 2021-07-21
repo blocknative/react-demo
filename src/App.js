@@ -35,6 +35,7 @@ let internalTransferContract
 
 function App() {
   const [address, setAddress] = useState(null)
+  const [ens, setEns] = useState(null)
   const [network, setNetwork] = useState(null)
   const [balance, setBalance] = useState(null)
   const [wallet, setWallet] = useState({})
@@ -51,6 +52,7 @@ function App() {
   useEffect(() => {
     const onboard = initOnboard({
       address: setAddress,
+      ens: setEns,
       network: setNetwork,
       balance: setBalance,
       wallet: wallet => {
@@ -131,7 +133,6 @@ function App() {
     emitter.on('txSpeedUp', console.log)
     emitter.on('txCancel', console.log)
     emitter.on('txFailed', console.log)
-
   }
 
   async function sendInternalTransaction() {
@@ -205,6 +206,7 @@ function App() {
     <main>
       <header className="user-info">
         {address && <span>{address}</span>}
+        {ens && ens.name && <span>{ens.name}</span>}
         {balance != null && (
           <span>
             {Number(balance) > 0 ? balance / 1000000000000000000 : balance} ETH
