@@ -4054,8 +4054,8 @@ bnc-notify@^1.7.0:
     uuid "^3.3.3"
 
 "bnc-onboard-staging@https://github.com/blocknative/onboard#develop":
-  version "1.29.0-0.5.4"
-  resolved "https://github.com/blocknative/onboard#e0a0458e0c5aa4e8adbbd2ceb769b999a2cd5081"
+  version "1.29.0-0.5.6"
+  resolved "https://github.com/blocknative/onboard#f4cf098d8eabe3bc5acc66459ef0cb212880f9d3"
   dependencies:
     "@cvbb/eth-keyring" "^1.1.0"
     "@ensdomains/ensjs" "^2.0.1"
