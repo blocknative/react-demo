@@ -4054,8 +4054,8 @@ bnc-notify@^1.7.0:
     uuid "^3.3.3"
 
 "bnc-onboard-staging@https://github.com/blocknative/onboard#develop":
-  version "1.29.0-0.5.6"
-  resolved "https://github.com/blocknative/onboard#f4cf098d8eabe3bc5acc66459ef0cb212880f9d3"
+  version "1.29.0-0.5.9"
+  resolved "https://github.com/blocknative/onboard#6dd022bacf5bcf38760c47b1062e6878abbe87f4"
   dependencies:
     "@cvbb/eth-keyring" "^1.1.0"
     "@ensdomains/ensjs" "^2.0.1"
@@ -14487,9 +14487,9 @@ walker@^1.0.7, walker@~1.0.5:
     makeerror "1.0.x"
 
 walletlink@^2.1.0, walletlink@^2.1.6:
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/walletlink/-/walletlink-2.1.6.tgz#4e48310af09bb0c940a156c26c1d0b1b9506ddb9"
-  integrity sha512-4M+8GrDq4zUCcRsbpBVIwMLVxJ8Fg8ybWi1E6K9d2cYHO1S9WnzsV5MN6HDyThBci00a+O3tKeUD++nVaUyA5g==
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/walletlink/-/walletlink-2.1.7.tgz#fdfa3760cbed2b597ebaa4583a47ca63427173f1"
+  integrity sha512-PU3Ejmmd/et5x+yzJmikzABpltqV35LZIkieE6o58UOkRQ2WT6EZu1nneFFUxLiSSy2CO+qTjIWkWtaTrgmGeA==
   dependencies:
     "@metamask/safe-event-emitter" "2.0.0"
     bind-decorator "^1.0.11"
