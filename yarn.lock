@@ -4054,8 +4054,8 @@ bnc-notify@^1.7.0:
     uuid "^3.3.3"
 
 "bnc-onboard-staging@https://github.com/blocknative/onboard#develop":
-  version "1.29.0-0.5.8"
-  resolved "https://github.com/blocknative/onboard#2049d88179aa028a2646541d0ecf35fe544dded0"
+  version "1.29.0-0.5.9"
+  resolved "https://github.com/blocknative/onboard#6dd022bacf5bcf38760c47b1062e6878abbe87f4"
   dependencies:
     "@cvbb/eth-keyring" "^1.1.0"
     "@ensdomains/ensjs" "^2.0.1"
@@ -4087,13 +4087,12 @@ bnc-notify@^1.7.0:
     walletlink "^2.1.6"
     web3-provider-engine "^15.0.4"
 
-"bnc-onboard@file:.yalc/bnc-onboard":
-  version "1.29.0-0.5.8"
+bnc-onboard@^1.30.0:
+  version "1.30.0"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.30.0.tgz#44207f682f265c1cf02185d877353c8720e8e692"
+  integrity sha512-C9vzxbkIHgbw6YOplV9O5/4LECDQkZ7XG6Y3/JkndBodQCmnMa+JctueIKqxFAxhASRkDRwwuPuyTUfDKr2jUw==
   dependencies:
     "@cvbb/eth-keyring" "^1.1.0"
-    "@ensdomains/ensjs" "^2.0.1"
-    "@ethereumjs/common" "^2.0.0"
-    "@ethereumjs/tx" "^3.0.0"
     "@gnosis.pm/safe-apps-provider" "^0.5.0"
     "@gnosis.pm/safe-apps-sdk" "^3.0.0"
     "@ledgerhq/hw-app-eth" "^5.49.0"
@@ -4112,12 +4111,13 @@ bnc-notify@^1.7.0:
     eth-lattice-keyring "^0.2.7"
     eth-provider "^0.6.1"
     eth-sig-util "^3.0.1"
+    ethereumjs-tx "^2.1.2"
     ethereumjs-util "^7.0.3"
     fortmatic "^2.2.1"
     hdkey "^2.0.1"
     regenerator-runtime "^0.13.7"
     trezor-connect "^8.1.9"
-    walletlink "^2.1.6"
+    walletlink "^2.1.0"
     web3-provider-engine "^15.0.4"
 
 bnc-sdk@^3.4.1:
@@ -14486,7 +14486,7 @@ walker@^1.0.7, walker@~1.0.5:
   dependencies:
     makeerror "1.0.x"
 
-walletlink@^2.1.6:
+walletlink@^2.1.0, walletlink@^2.1.6:
   version "2.1.7"
   resolved "https://registry.yarnpkg.com/walletlink/-/walletlink-2.1.7.tgz#fdfa3760cbed2b597ebaa4583a47ca63427173f1"
   integrity sha512-PU3Ejmmd/et5x+yzJmikzABpltqV35LZIkieE6o58UOkRQ2WT6EZu1nneFFUxLiSSy2CO+qTjIWkWtaTrgmGeA==
