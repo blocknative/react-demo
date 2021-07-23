@@ -20,7 +20,6 @@ export function initOnboard(subscriptions) {
     subscriptions,
     walletSelect: {
       wallets: [
-        { walletName: 'detectedwallet' },
         { walletName: 'metamask' },
         {
           walletName: 'trezor',
@@ -59,6 +58,7 @@ export function initOnboard(subscriptions) {
         { walletName: 'mykey', rpcUrl },
         { walletName: 'wallet.io', rpcUrl },
         { walletName: 'huobiwallet', rpcUrl },
+        { walletName: 'alphawallet', rpcUrl },
         { walletName: 'hyperpay' },
         { walletName: 'atoken' },
         { walletName: 'liquality' },
@@ -67,6 +67,7 @@ export function initOnboard(subscriptions) {
         { walletName: 'authereum', disableNotifications: true },
         { walletName: 'ownbit' },
         { walletName: 'gnosis' },
+        { walletName: 'dcent' },
         { walletName: 'bitpie' },
         { walletName: 'xdefi' },
         { walletName: 'keepkey', rpcUrl }
