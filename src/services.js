@@ -36,6 +36,7 @@ export function initOnboard(subscriptions) {
           infuraKey: 'cea9deb6467748b0b81b920b005c10c1'
         },
         { walletName: 'cobovault', appName: 'React Demo', rpcUrl },
+        { walletName: 'keystone', appName: 'React Demo', rpcUrl },
         {
           walletName: 'lattice',
           appName: 'Onboard Demo',
