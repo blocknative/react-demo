@@ -4,6 +4,7 @@ import VConsole from 'vconsole'
 import getSigner from './signer'
 import { initOnboard, initNotify } from './services'
 import { version, dependencies } from '../package.json'
+import avatarPlaceholder from './avatar-placeholder.png'
 
 import './App.css'
 
@@ -205,8 +206,20 @@ function App() {
   return onboard && notify ? (
     <main>
       <header className="user-info">
-        {address && <span>{address}</span>}
-        {ens && ens.name && <span>{ens.name}</span>}
+        {ens && ens.name ? (
+          <span>
+            <img
+              className="user-avatar"
+              src={ens.avatar ? ens.avatar : avatarPlaceholder}
+              alt="avatar"
+            ></img>
+            <div style={{
+              marginLeft: '10px'
+            }}>{ens.name}</div>
+          </span>
+        ) : (
+          address && <span>{address}</span>
+        )}
         {balance != null && (
           <span>
             {Number(balance) > 0 ? balance / 1000000000000000000 : balance} ETH
