@@ -4214,10 +4214,10 @@ bnc-notify@^1.7.0:
     walletlink "^2.1.6"
     web3-provider-engine "^15.0.4"
 
-bnc-onboard@^1.32.0:
-  version "1.32.0"
-  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.32.0.tgz#7c6adaca61bdfb4a03882ae802c9021cc1f04291"
-  integrity sha512-+W/ev5PtPpHnQttCV4Dvtt12q+ZK3rqFFRzVd57rjJui7/wrGrWo1ZFt46mNAPoooXw77bIxlbSKd9jDF3wIWQ==
+bnc-onboard@1.33.0:
+  version "1.33.0"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.33.0.tgz#324249af603c88a3837e75911ad08f5e87885817"
+  integrity sha512-21pBZmmVIz9t3613vErvBHpiQxyp7b6BPUUs80zGpIMq27rGCXolzSNv51WH1khm4DI9afcBIfoLX+vWg2nIbQ==
   dependencies:
     "@cvbb/eth-keyring" "^1.1.0"
     "@ensdomains/ensjs" "^2.0.1"
@@ -4225,6 +4225,7 @@ bnc-onboard@^1.32.0:
     "@ethereumjs/tx" "^3.0.0"
     "@gnosis.pm/safe-apps-provider" "^0.5.0"
     "@gnosis.pm/safe-apps-sdk" "^3.0.0"
+    "@keystonehq/eth-keyring" "0.7.2"
     "@ledgerhq/hw-app-eth" "^5.49.0"
     "@ledgerhq/hw-transport-u2f" "^5.21.0"
     "@ledgerhq/hw-transport-webusb" "5.53.0"
