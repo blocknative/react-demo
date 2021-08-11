@@ -76,10 +76,20 @@ section {
   justify-content: center;
   align-items: center;
   padding: 0.25rem 1rem;
+  position: relative;
   margin: 1rem;
   border: 1px solid black;
   border-radius: 50px;
   margin: 0.25rem 1rem;
+}
+
+.user-avatar {
+  width: 32px;
+  border-radius: 100%;
+  border: 1px solid black;
+  left: 0;
+  transform: translate(-50%, 0);
+  position: absolute;
 }
 
 .bn-demo-button {
