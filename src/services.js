@@ -72,7 +72,8 @@ export function initOnboard(subscriptions) {
         { walletName: 'dcent' },
         { walletName: 'bitpie' },
         { walletName: 'xdefi' },
-        { walletName: 'binance' }
+        { walletName: 'binance' },
+        { walletName: 'tp' },
       ]
     },
     walletCheck: [
