@@ -37,6 +37,7 @@ export function initOnboard(subscriptions) {
         },
         { walletName: 'cobovault', appName: 'React Demo', rpcUrl },
         { walletName: 'keystone', appName: 'React Demo', rpcUrl },
+        { walletName: 'keepkey', rpcUrl },
         {
           walletName: 'lattice',
           appName: 'Onboard Demo',
@@ -71,7 +72,8 @@ export function initOnboard(subscriptions) {
         { walletName: 'dcent' },
         { walletName: 'bitpie' },
         { walletName: 'xdefi' },
-        { walletName: 'keepkey', rpcUrl }
+        { walletName: 'binance' },
+        { walletName: 'tp' },
       ]
     },
     walletCheck: [
