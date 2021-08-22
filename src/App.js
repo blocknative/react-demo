@@ -5,6 +5,13 @@ import getSigner from './signer'
 import { initOnboard, initNotify } from './services'
 import { version, dependencies } from '../package.json'
 import avatarPlaceholder from './avatar-placeholder.png'
+import {
+  web3Accounts,
+  web3Enable,
+  web3FromAddress,
+  web3ListRpcProviders,
+  web3UseRpcProvider
+} from '@polkadot/extension-dapp';
 
 import './App.css'
 
@@ -40,6 +47,8 @@ function App() {
   const [network, setNetwork] = useState(null)
   const [balance, setBalance] = useState(null)
   const [wallet, setWallet] = useState({})
+  const [phantom, setPhantom] = useState(null)
+  const [polkadot, setPolkadot] = useState(null)
 
   const [onboard, setOnboard] = useState(null)
   const [notify, setNotify] = useState(null)
@@ -49,6 +58,13 @@ function App() {
   const [mobilePosition, setMobilePosition] = useState('top')
 
   const [toAddress, setToAddress] = useState('')
+  const [chain, setChain] = useState('')
+
+  const chains = {
+    'solana': 'solana',
+    'polkadot': 'polkadot',
+    'ethereum': 'ethereum'
+  }
 
   useEffect(() => {
     const onboard = initOnboard({
@@ -72,10 +88,13 @@ function App() {
             getSigner(ethersProvider)
           )
 
+          setChain(chains['ethereum'])
+
           window.localStorage.setItem('selectedWallet', wallet.name)
         } else {
           provider = null
           setWallet({})
+          setChain('')
         }
       }
     })
@@ -95,7 +114,48 @@ function App() {
     }
   }, [onboard])
 
-  async function readyToTransact() {
+  useEffect(() => {
+    const phantom = () => {
+      if (window.solana) {
+        window.solana.connect()
+        window.solana.on("connect", () => {
+          console.log("connected to phantom wallet")
+          let address = window.solana.publicKey.toString()
+          setAddress(address)
+          setChain(chains['solana'])
+        })
+      }
+    }
+
+    setPhantom(phantom)
+  }, [phantom])
+
+  useEffect(() => {
+    const polkadot = () => {
+      alert('setting up polkadot!')
+    }
+
+    setPolkadot(polkadot)
+  }, [polkadot])
+
+  const resetPhantom = async() => {
+      window.solana.disconnect()
+      setAddress('')
+      setChain('')
+  }
+
+  const initPolkadot = async() => {
+      const allInjected = await web3Enable('React Demo')
+      const allAccounts = await web3Accounts();
+      if (allAccounts.length === 0) {
+        alert('Please create a Polkadot account, then continue')
+      } else {
+        setAddress(allAccounts[0].address)
+        console.dir(allInjected)
+      }
+  }
+
+  const readyToTransact = async() => {
     if (!provider) {
       const walletSelected = await onboard.walletSelect()
       if (!walletSelected) return false
@@ -105,7 +165,7 @@ function App() {
     return ready
   }
 
-  async function sendHash() {
+  const sendHash = async() => {
     if (!toAddress) {
       alert('An Ethereum address to send Eth to is required.')
       return
@@ -136,7 +196,7 @@ function App() {
     emitter.on('txFailed', console.log)
   }
 
-  async function sendInternalTransaction() {
+  const sendInternalTransaction = async() => {
     if (!toAddress) {
       alert('An Ethereum address to send Eth to is required.')
       return
@@ -159,7 +219,7 @@ function App() {
     emitter.on('txFailed', console.log)
   }
 
-  async function sendTransaction() {
+  const sendTransaction = async() => {
     if (!toAddress) {
       alert('An Ethereum address to send Eth to is required.')
     }
@@ -229,7 +289,7 @@ function App() {
       </header>
       <section className="main">
         <div className="container">
-          <h2>Onboarding Users with Onboard</h2>
+          <h2>Connect with Ethereum</h2>
           <div>
             {!wallet.provider && (
               <button
@@ -273,7 +333,52 @@ function App() {
               </button>
             )}
           </div>
-        </div>
+          <h2>Connect with Solana</h2>
+          <div>
+		
+            {(
+              <button
+                className="bn-demo-button"
+                onClick={setPhantom}
+              >
+                Select a Wallet
+              </button>
+            )}
+
+            {(
+               <button
+               className="bn-demo-button"
+                 onClick={resetPhantom}
+                >
+                Disconnect Phantom
+               </button>
+            )}
+
+          </div>
+          <h2>Connect with Polkadot.js</h2>
+          <div>
+		
+            {(
+              <button
+                className="bn-demo-button"
+                onClick={initPolkadot}
+              >
+                Select a Wallet
+              </button>
+            )}
+
+	    {(
+             <button
+             className="bn-demo-button"
+		         onClick={initPolkadot}
+              >
+              Disconnect Polkadot
+             </button>
+	    )}
+
+          </div>
+
+	    </div>
         <div className="container">
           <h2>Transaction Notifications with Notify</h2>
           <div
