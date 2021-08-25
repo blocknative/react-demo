@@ -11,6 +11,7 @@ import {
   web3FromAddress,
   web3ListRpcProviders,
   web3UseRpcProvider,
+  web3AccountsSubscribe,
   web3FromSource
 
 } from '@polkadot/extension-dapp';
@@ -60,11 +61,12 @@ let internalTransferContract
 function App() {
   const [address, setAddress] = useState(null)
   const [ens, setEns] = useState(null)
+  const [asset, setAsset] = useState(null)
   const [network, setNetwork] = useState(null)
   const [balance, setBalance] = useState(null)
   const [wallet, setWallet] = useState({})
-  const [phantom, setPhantom] = useState(null)
-  const [polkadot, setPolkadot] = useState(null)
+  //const [phantom, setPhantom] = useState(null)
+  //const [polkadot, setPolkadot] = useState(null)
 
   const [ethereum, setEthereum] = useState(null)
   const [notify, setNotify] = useState(null)
@@ -90,6 +92,7 @@ function App() {
           )
 
           provider.ETHEREUM = ethersProvider
+          setAsset('ETH')
 
           internalTransferContract = new ethers.Contract(
             '0xb8c12850827ded46b9ded8c1b6373da0c4d60370',
@@ -130,50 +133,58 @@ function App() {
     window.open("https://phantom.app/", "_blank");
   };
 
-  useEffect(() => {
-      const polkadot = () => {
-        // useEffect does not play nice w/ await/async. Ruined my life.
-        if (!!!provider.POLKADOT) {
-          return web3Enable('React Demo')
-          .then((extensions) => {
-            if (extensions.length === 0) {
-              // this means no web3 wallet is there or the user denied connecting * sad face *
-              return
-            }
-            provider.POLKADOT = extensions[0]
-            return web3Accounts()
-          }).then((allAccounts) => {
-              console.dir(allAccounts)
-              provider.POLKADOT.address = allAccounts[0].address
-              // for use during signing a new transaction
-              provider.POLKADOT.account = allAccounts[0]
-              setAddress(provider.POLKADOT.address)
-            return
-          })
+
+    const polkadot = async () => {
+      // useEffect does not play nice w/ await/async. Ruined my life.
+      if (!!!provider.POLKADOT) {
+        setBalance(0)
+        let extensions = await web3Enable('React Demo')
+        if (extensions.length === 0) {
+          // this means no web3 wallet is there or the user denied connecting * sad face *
+          return
         }
-      }
-      setPolkadot(polkadot)
+        provider.POLKADOT = extensions[0]
+        let allAccounts = await web3Accounts()
+        console.dir(allAccounts)
+        provider.POLKADOT.address = allAccounts[0].address
+        // for use during signing a new transaction
+        provider.POLKADOT.account = allAccounts[0]
+        setAddress(provider.POLKADOT.address)
+        setAsset('DOT')
+        setNetwork(7)
+        const wsProvider = new WsProvider('wss://rpc.polkadot.io');
+        const api = await ApiPromise.create({ provider: wsProvider })
+        const data = await api.query.system.account(provider.POLKADOT.address)
 
-  }, [polkadot])
-
-  useEffect(() => {
-    const phantom = () => {
-      const NETWORK = clusterApiUrl('mainnet-beta')
-      if ("solana" in window) {
-        window.solana.connect()
-        window.solana.on("connect", () => {
-          console.log("connected to phantom wallet")
-          let address = window.solana.publicKey.toString()
-          setAddress(address)
-        })
-        provider.SOLANA = getSolanaProvider()
-        provider.SOLANA.connection = new Connection("https://api.mainnet-beta.solana.com")
-        console.dir(provider.SOLANA)
+        console.dir('Polkadot account information')
+        setBalance(0)
+        setBalance(Number(data.data.free) * 10e7)
+        return
       }
     }
 
-    setPhantom(phantom)
-  }, [phantom])
+    const phantom = async () => {
+      const NETWORK = clusterApiUrl('mainnet-beta')
+      if ("solana" in window) {
+        window.solana.connect()
+        window.solana.on("connect", async () => {
+          console.log("connected to phantom wallet")
+          let address = window.solana.publicKey.toString()
+          setAddress(address)
+          provider.SOLANA = getSolanaProvider()
+          provider.SOLANA.connection = new Connection("https://api.mainnet-beta.solana.com")
+          console.dir(provider.SOLANA)
+          setNetwork(6)
+          setAsset('SOL')
+          if (!!address) {
+            let balance = await provider.SOLANA.connection.getBalance(window.solana.publicKey)
+            setBalance(balance * 10e8)
+          }
+        })
+
+      }
+    }
+
 
   const createSolanaTransaction = async () => {
     if (!provider.SOLANA.publicKey) {
@@ -245,7 +256,31 @@ function App() {
 
   const resetPhantom = async() => {
       window.solana.disconnect()
+      provider.SOLANA = null
       setAddress('')
+      setNetwork('')
+      setBalance(null)
+      setAsset(null)
+  }
+
+  const resetPolkadot = async() => {
+    provider.POLKADOT = null
+    setAddress('')
+    setNetwork('')
+    setBalance(null)
+    setAsset(null)
+    let unsubscribe; // this is the function of type `() => void` that should be called to unsubscribe
+
+    // we subscribe to any account change and log the new list.
+    // note that `web3AccountsSubscribe` returns the function to unsubscribe
+    unsubscribe = await web3AccountsSubscribe(( injectedAccounts ) => {
+      injectedAccounts.map(( accounts ) => {
+        console.log(accounts.address);
+      })
+    });
+
+    // don't forget to unsubscribe when needed, e.g when unmounting a component
+    unsubscribe && unsubscribe();
   }
 
   const readyToTransact = async() => {
@@ -375,9 +410,12 @@ function App() {
           address && <span>{address}</span>
         )}
         {balance != null && (
+          <div>
           <span>
-            {Number(balance) > 0 ? balance / 1000000000000000000 : balance} ETH
+            {Number(balance) > 0 ? balance / 1000000000000000000 : balance}
           </span>
+          {asset}
+          </div>
         )}
         {network && <span>{networkName(network)} network</span>}
       </header>
@@ -430,16 +468,16 @@ function App() {
           <h2>Connect with Solana</h2>
           <div>
 
-            {(
+            {!provider.SOLANA && (
               <button
                 className="bn-demo-button"
-                onClick={setPhantom}
+                onClick={phantom}
               >
                 Select a Wallet
               </button>
             )}
 
-            {(
+            {!!provider.SOLANA && (
                <button
                className="bn-demo-button"
                  onClick={resetPhantom}
@@ -452,19 +490,19 @@ function App() {
           <h2>Connect with Polkadot.js</h2>
           <div>
 		
-            {(
+            {!provider.POLKADOT && (
               <button
                 className="bn-demo-button"
-                onClick={setPolkadot}
+                onClick={polkadot}
               >
                 Select a Wallet
               </button>
             )}
 
-	          {(
+	          {!!provider.POLKADOT &&(
                <button
                className="bn-demo-button"
-               onClick={setPolkadot}
+               onClick={resetPolkadot}
                 >
                 Disconnect Polkadot
                </button>
@@ -603,7 +641,7 @@ function App() {
                   marginLeft: '0.5rem',
                   width: '18rem'
                 }}
-                value={provider.SOLANA.publicKey?.toBase58()}
+                value={!!provider.SOLANA ? provider.SOLANA.publicKey?.toBase58() : ''}
                 placeholder="address"
                 onChange={e => setToAddress(e.target.value)}
               />
@@ -639,7 +677,7 @@ function App() {
                   marginLeft: '0.5rem',
                   width: '18rem'
                 }}
-                value={toAddress}
+                value={!!provider.POLKADOT ? address : ''}
                 placeholder="address"
                 onChange={e => setToAddress(e.target.value)}
               />
@@ -808,6 +846,10 @@ function networkName(id) {
       return 'rinkeby'
     case 5:
       return 'goerli'
+    case 6:
+      return 'solana mainnet-beta'
+    case 7:
+      return 'polkadot relay chain'
     case 42:
       return 'kovan'
     case 100:
