@@ -210,7 +210,7 @@ function App() {
     const wsProvider = new WsProvider('wss://rpc.polkadot.io');
     const api = await ApiPromise.create({ provider: wsProvider });
     const transferExtrinsic = api.tx.balances.transfer(provider.POLKADOT.address, 1)
-    const injector = await web3FromSource(provider.POLKADOT.account.meta.source);
+    const injector = await web3FromSource(provider.POLKADOT.account.meta.source)
 
     // Because of the polkadot call back pattern on the signAndSend, need to send something out pre-flight
     const notificationObject = {
