@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
 import getSigner from './signer'
@@ -8,9 +9,6 @@ import avatarPlaceholder from './avatar-placeholder.png'
 import {
   web3Accounts,
   web3Enable,
-  web3FromAddress,
-  web3ListRpcProviders,
-  web3UseRpcProvider,
   web3AccountsSubscribe,
   web3FromSource
 
@@ -20,7 +18,6 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 
 import {
   Connection,
-  PublicKey,
   Transaction,
   clusterApiUrl,
   SystemProgram
@@ -134,56 +131,61 @@ function App() {
   };
 
 
-    const polkadot = async () => {
-      // useEffect does not play nice w/ await/async. Ruined my life.
-      if (!!!provider.POLKADOT) {
-        setBalance(0)
-        let extensions = await web3Enable('React Demo')
-        if (extensions.length === 0) {
-          // this means no web3 wallet is there or the user denied connecting * sad face *
-          return
-        }
-        provider.POLKADOT = extensions[0]
-        let allAccounts = await web3Accounts()
-        console.dir(allAccounts)
-        provider.POLKADOT.address = allAccounts[0].address
-        // for use during signing a new transaction
-        provider.POLKADOT.account = allAccounts[0]
-        setAddress(provider.POLKADOT.address)
-        setAsset('DOT')
-        setNetwork(7)
-        const wsProvider = new WsProvider('wss://rpc.polkadot.io');
-        const api = await ApiPromise.create({ provider: wsProvider })
-        const data = await api.query.system.account(provider.POLKADOT.address)
-
-        console.dir('Polkadot account information')
-        setBalance(0)
-        setBalance(Number(data.data.free) * 10e7)
+  const polkadot = async () => {
+    // useEffect does not play nice w/ await/async. Ruined my life.
+    if (!!!provider.POLKADOT) {
+      setBalance(0)
+      let extensions = await web3Enable('React Demo')
+      if (extensions.length === 0) {
+        // this means no web3 wallet is there or the user denied connecting * sad face *
         return
       }
-    }
 
-    const phantom = async () => {
-      const NETWORK = clusterApiUrl('mainnet-beta')
-      if ("solana" in window) {
-        window.solana.connect()
-        window.solana.on("connect", async () => {
-          console.log("connected to phantom wallet")
-          let address = window.solana.publicKey.toString()
-          setAddress(address)
-          provider.SOLANA = getSolanaProvider()
-          provider.SOLANA.connection = new Connection("https://api.mainnet-beta.solana.com")
-          console.dir(provider.SOLANA)
-          setNetwork(6)
-          setAsset('SOL')
-          if (!!address) {
-            let balance = await provider.SOLANA.connection.getBalance(window.solana.publicKey)
-            setBalance(balance * 10e8)
-          }
-        })
+      // set the polkadot provider
+      provider.POLKADOT = extensions[0]
+      let allAccounts = await web3Accounts()
 
-      }
+      // get and set the Polkadot address
+      provider.POLKADOT.address = allAccounts[0].address
+      setAddress(provider.POLKADOT.address)
+
+      // for use during signing a new transaction
+      provider.POLKADOT.account = allAccounts[0]
+
+      setAsset('DOT')
+      setNetwork(7)
+      const wsProvider = new WsProvider('wss://rpc.polkadot.io');
+      const api = await ApiPromise.create({ provider: wsProvider })
+      const data = await api.query.system.account(provider.POLKADOT.address)
+
+      console.dir('Polkadot account information')
+      setBalance(0)
+      setBalance(Number(data.data.free) * 10e7)
+      return
     }
+  }
+
+  const phantom = async () => {
+    const NETWORK = clusterApiUrl('mainnet-beta')
+    if ("solana" in window) {
+      window.solana.connect()
+      window.solana.on("connect", async () => {
+        console.log("connected to phantom wallet")
+        let address = window.solana.publicKey.toString()
+        setAddress(address)
+        provider.SOLANA = getSolanaProvider()
+        provider.SOLANA.connection = new Connection("https://api.mainnet-beta.solana.com")
+        console.dir(provider.SOLANA)
+        setNetwork(6)
+        setAsset('SOL')
+        if (!!address) {
+          let balance = await provider.SOLANA.connection.getBalance(window.solana.publicKey)
+          setBalance(balance * 10e8)
+        }
+      })
+
+    }
+  }
 
 
   const createSolanaTransaction = async () => {
@@ -211,16 +213,36 @@ function App() {
     const api = await ApiPromise.create({ provider: wsProvider });
     const transferExtrinsic = api.tx.balances.transfer(provider.POLKADOT.address, 1)
     const injector = await web3FromSource(provider.POLKADOT.account.meta.source);
-    return transferExtrinsic.signAndSend(provider.POLKADOT.address, { signer: injector.signer }, ({ status }) => {
+
+    // Because of the polkadot call back pattern on the signAndSend, need to send something out pre-flight
+    const notificationObject = {
+      eventCode: 'polkadotTxBuilding',
+      type: 'pending',
+      message: `Building your transaction`
+    }
+
+    const { update } = notify.notification(notificationObject)
+
+    transferExtrinsic.signAndSend(provider.POLKADOT.address, { signer: injector.signer }, ({ status }) => {
+      update({
+        eventCode: 'polkadotTxPending',
+        type: 'pending',
+        message: "Sending to the network with " +  "<a href='https://polkascan.io/polkadot/transaction/" + status.hash.toString() + "' target='_blank'>here</a>"
+      })
+
       if (status.isInBlock) {
         console.log(`Completed at block hash #${status.asInBlock.toString()}`);
+        update({
+          eventCode: 'polkadotTxComplete',
+          type: 'success',
+          message: "Transaction competed " +  "<a href='https://polkascan.io/polkadot/transaction/" + status.hash.toString() + "' target='_blank'>here</a>"
+        })
       } else {
         console.log(`Current status: ${status.type}`);
       }
     }).catch((error: any) => {
       console.log(':( transaction failed', error);
     });
-    return
   }
 
   const sendSolanaTransaction = async () => {
@@ -255,12 +277,12 @@ function App() {
   };
 
   const resetPhantom = async() => {
-      window.solana.disconnect()
-      provider.SOLANA = null
-      setAddress('')
-      setNetwork('')
-      setBalance(null)
-      setAsset(null)
+    window.solana.disconnect()
+    provider.SOLANA = null
+    setAddress('')
+    setNetwork('')
+    setBalance(null)
+    setAsset(null)
   }
 
   const resetPolkadot = async() => {
@@ -412,9 +434,8 @@ function App() {
         {balance != null && (
           <div>
           <span>
-            {Number(balance) > 0 ? balance / 1000000000000000000 : balance}
+            {(Number(balance).toFixed(2) > 0 ? (balance / 1000000000000000000).toFixed(2) : balance.toFixed(2)) + ' ' + asset}
           </span>
-          {asset}
           </div>
         )}
         {network && <span>{networkName(network)} network</span>}
@@ -478,18 +499,18 @@ function App() {
             )}
 
             {!!provider.SOLANA && (
-               <button
-               className="bn-demo-button"
-                 onClick={resetPhantom}
-                >
+              <button
+                className="bn-demo-button"
+                onClick={resetPhantom}
+              >
                 Disconnect Phantom
-               </button>
+              </button>
             )}
 
           </div>
-          <h2>Connect with Polkadot.js</h2>
+          <h2>Connect with Polkadot</h2>
           <div>
-		
+
             {!provider.POLKADOT && (
               <button
                 className="bn-demo-button"
@@ -499,200 +520,220 @@ function App() {
               </button>
             )}
 
-	          {!!provider.POLKADOT &&(
-               <button
-               className="bn-demo-button"
-               onClick={resetPolkadot}
-                >
+            {!!provider.POLKADOT &&(
+              <button
+                className="bn-demo-button"
+                onClick={resetPolkadot}
+              >
                 Disconnect Polkadot
-               </button>
-	          )}
+              </button>
+            )}
 
           </div>
 
-	    </div>
-        <div className="container">
-          <h2>Transaction Notifications with Notify</h2>
-          <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              marginBottom: '1rem'
-            }}
-          >
-            <div style={{ marginBottom: '1rem' }}>
-              <label>Send 0.001 Rinkeby Eth to:</label>
-              <input
-                type="text"
-                style={{
-                  padding: '0.5rem',
-                  border: 'none',
-                  borderRadius: '10px',
-                  marginLeft: '0.5rem',
-                  width: '18rem'
-                }}
-                value={toAddress}
-                placeholder="address"
-                onChange={e => setToAddress(e.target.value)}
-              />
-            </div>
+        </div>
+        <div className="container" style={{width: '70%'}}>
+          <div className="container" style={{minWidth: '400px', maxWidth: '500px'}}>
             <div>
-              <button
-                className="bn-demo-button"
-                onClick={async () => {
-                  const ready = await readyToTransact()
-                  if (!ready) return
-                  sendHash()
-                }}
-              >
-                Send
-              </button>
-              with in-flight notifications
+              {!provider.ETHEREUM && !provider.SOLANA && !provider.POLKADOT &&(
+                <h2>Please select a provider</h2>
+              )}
             </div>
-            <div>
-              <button
-                className="bn-demo-button"
-                onClick={async () => {
-                  const ready = await readyToTransact()
-                  if (!ready) return
-                  sendTransaction()
-                }}
-              >
-                Send
-              </button>
-              with pre-flight and in-flight notifications
-            </div>
-            <div>
-              <button
-                className="bn-demo-button"
-                onClick={async () => {
-                  const ready = await readyToTransact()
-                  if (!ready) return
-                  sendInternalTransaction()
-                }}
-              >
-                Send
-              </button>
-              via a internal transaction
-            </div>
-          </div>
-          <div>
-            <button
-              className="bn-demo-button"
-              onClick={async () => {
-                if (!address) {
-                  await readyToTransact()
-                }
-
-                address && notify.account(address)
-              }}
-            >
-              Watch Current Account
-            </button>
-            <button
-              className="bn-demo-button"
-              onClick={async () => {
-                if (!address) {
-                  await readyToTransact()
-                }
-                address && notify.unsubscribe(address)
-              }}
-            >
-              Un-watch Current Account
-            </button>
-            <button
-              className="bn-demo-button"
-              onClick={() => {
-                const { update } = notify.notification({
-                  eventCode: 'dbUpdate',
-                  type: 'pending',
-                  message: 'This is a custom notification triggered by the dapp'
-                })
-                setTimeout(
-                  () =>
-                    update({
-                      eventCode: 'dbUpdateSuccess',
-                      message: 'Updated status for custom notification',
-                      type: 'success'
-                    }),
-                  4000
-                )
-              }}
-            >
-              Custom Notification
-            </button>
-          </div>
-          <h2>Transaction Notifications with Phantom</h2>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            marginBottom: '1rem'
-          }}
-          >
-            <div style={{ marginBottom: '1rem' }}>
-              <label>Send 0.001 Solana to:</label>
-              <input
-                type="text"
-                style={{
-                  padding: '0.5rem',
-                  border: 'none',
-                  borderRadius: '10px',
-                  marginLeft: '0.5rem',
-                  width: '18rem'
-                }}
-                value={!!provider.SOLANA ? provider.SOLANA.publicKey?.toBase58() : ''}
-                placeholder="address"
-                onChange={e => setToAddress(e.target.value)}
-              />
-            </div>
-          </div>
-          <div>
-            <button
-              className="bn-demo-button"
-              onClick={async () => {
-                const ready = await sendSolanaTransaction()
-                if (!ready) return
-              }}
-            >
-              Send
-            </button>
-          </div>
-          <h2>Transaction Notifications with Polkadot</h2>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            marginBottom: '1rem'
-          }}
-          >
-            <div style={{ marginBottom: '1rem' }}>
-              <label>Send 0.001 DOT to:</label>
-              <input
-                type="text"
-                style={{
-                  padding: '0.5rem',
-                  border: 'none',
-                  borderRadius: '10px',
-                  marginLeft: '0.5rem',
-                  width: '18rem'
-                }}
-                value={!!provider.POLKADOT ? address : ''}
-                placeholder="address"
-                onChange={e => setToAddress(e.target.value)}
-              />
+            {!!provider.ETHEREUM && (
               <div>
-                <button
-                  className="bn-demo-button"
-                  onClick={async () => {
-                    const ready = await sendPolkadotTransaction()
-                    if (!ready) return
-                  }}
+                <h2>Transaction Notifications with Notify</h2>
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  marginBottom: '1rem'
+                }}
                 >
-                  Send
-                </button>
+                  <div style={{ marginBottom: '1rem' }}>
+                    <label>Send 0.001 Rinkeby Eth to:</label>
+                    <input
+                      type="text"
+                      style={{
+                        padding: '0.5rem',
+                        border: 'none',
+                        borderRadius: '10px',
+                        marginLeft: '0.5rem',
+                        width: '18rem'
+                      }}
+                      value={toAddress}
+                      placeholder="address"
+                      onChange={e => setToAddress(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <button
+                      className="bn-demo-button"
+                      onClick={async () => {
+                        const ready = await readyToTransact()
+                        if (!ready) return
+                        sendHash()
+                      }}
+                    >
+                      Send
+                    </button>
+                    with in-flight notifications
+                  </div>
+                  <div>
+                    <button
+                      className="bn-demo-button"
+                      onClick={async () => {
+                        const ready = await readyToTransact()
+                        if (!ready) return
+                        sendTransaction()
+                      }}
+                    >
+                      Send
+                    </button>
+                    with pre-flight and in-flight notifications
+                  </div>
+                  <div>
+                    <button
+                      className="bn-demo-button"
+                      onClick={async () => {
+                        const ready = await readyToTransact()
+                        if (!ready) return
+                        sendInternalTransaction()
+                      }}
+                    >
+                      Send
+                    </button>
+                    via a internal transaction
+                  </div>
+                </div>
+
+                <div>
+                  <button
+                    className="bn-demo-button"
+                    onClick={async () => {
+                      if (!address) {
+                        await readyToTransact()
+                      }
+
+                      address && notify.account(address)
+                    }}
+                  >
+                    Watch Current Account
+                  </button>
+                  <button
+                    className="bn-demo-button"
+                    onClick={async () => {
+                      if (!address) {
+                        await readyToTransact()
+                      }
+                      address && notify.unsubscribe(address)
+                    }}
+                  >
+                    Un-watch Current Account
+                  </button>
+                  <button
+                    className="bn-demo-button"
+                    onClick={() => {
+                      const { update } = notify.notification({
+                        eventCode: 'dbUpdate',
+                        type: 'pending',
+                        message: 'This is a custom notification triggered by the dapp'
+                      })
+                      setTimeout(
+                        () =>
+                          update({
+                            eventCode: 'dbUpdateSuccess',
+                            message: 'Updated status for custom notification',
+                            type: 'success'
+                          }),
+                        4000
+                      )
+                    }}
+                  >
+                    Custom Notification
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
+            {!!provider.SOLANA && (
+              <div>
+                <h2>Transaction Notifications with Phantom</h2>
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  marginBottom: '1rem'
+                }}
+                >
+                  <div style={{ marginBottom: '1rem' }}>
+                    <label>Send 0.001 Solana to:</label>
+                    <input
+                      type="text"
+                      style={{
+                        padding: '0.5rem',
+                        border: 'none',
+                        borderRadius: '10px',
+                        marginLeft: '0.5rem',
+                        width: '18rem'
+                      }}
+                      value={!!provider.SOLANA ? provider.SOLANA.publicKey?.toBase58() : ''}
+                      placeholder="address"
+                      onChange={e => setToAddress(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <button
+                    className="bn-demo-button"
+                    onClick={async () => {
+                      const ready = await sendSolanaTransaction()
+                      if (!ready) return
+                    }}
+                  >
+                    Send
+                  </button>
+                </div>
+              </div>
+            )}
+            {!!provider.POLKADOT && (
+              <div>
+                <h2>Transaction Notifications with Polkadot</h2>
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  marginBottom: '1rem'
+                }}
+                >
+                  <div style={{ marginBottom: '1rem' }}>
+                    <label>Send 0.001 DOT to:</label>
+                    <input
+                      type="text"
+                      style={{
+                        padding: '0.5rem',
+                        border: 'none',
+                        borderRadius: '10px',
+                        marginLeft: '0.5rem',
+                        width: '18rem'
+                      }}
+                      value={!!provider.POLKADOT ? address : ''}
+                      placeholder="address"
+                      onChange={e => setToAddress(e.target.value)}
+                    />
+                    <div>
+                      <button
+                        className="bn-demo-button"
+                        onClick={async () => {
+                          const ready = await sendPolkadotTransaction()
+                          if (!ready) return
+                        }}
+                      >
+                        Send
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="container">
