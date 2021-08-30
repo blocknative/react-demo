@@ -62,8 +62,6 @@ function App() {
   const [network, setNetwork] = useState(null)
   const [balance, setBalance] = useState(null)
   const [wallet, setWallet] = useState({})
-  //const [phantom, setPhantom] = useState(null)
-  //const [polkadot, setPolkadot] = useState(null)
 
   const [ethereum, setEthereum] = useState(null)
   const [notify, setNotify] = useState(null)
