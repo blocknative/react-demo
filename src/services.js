@@ -21,6 +21,7 @@ export function initOnboard(subscriptions) {
     walletSelect: {
       wallets: [
         { walletName: 'metamask' },
+        { walletName: 'mathwallet' },
         {
           walletName: 'trezor',
           appUrl: 'https://reactdemo.blocknative.com',
