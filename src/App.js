@@ -5,7 +5,7 @@ import getSigner from './signer'
 import { initOnboard, initNotify } from './services'
 import { version, dependencies } from '../package.json'
 import avatarPlaceholder from './avatar-placeholder.png'
-import networkEnum from './networksEnum'
+import networkEnum from './networkEnum'
 
 import './App.css'
 
