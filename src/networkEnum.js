@@ -1,5 +1,5 @@
 const networkEnum = Object.freeze({
-  1: 'Ethereum',
+  1: 'Ethereum Main',
   3: 'Ropsten',
   4: 'Rinkeby',
   5: 'Goerli',
