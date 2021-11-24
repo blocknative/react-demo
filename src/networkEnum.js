@@ -10,5 +10,5 @@ const networkEnum = Object.freeze({
   137: 'Polygon',
   250: 'Fantom',
   localhost: 'localhost'
-})
-export default networkEnum
+});
+export default networkEnum;
