@@ -5,6 +5,7 @@ import getSigner from './signer'
 import { initOnboard, initNotify } from './services'
 import { version, dependencies } from '../package.json'
 import avatarPlaceholder from './avatar-placeholder.png'
+import networkEnum from './networkEnum'
 
 import './App.css'
 
@@ -34,7 +35,7 @@ const internalTransferABI = [
 
 let internalTransferContract
 
-function App() {
+const App = () => {
   const [address, setAddress] = useState(null)
   const [ens, setEns] = useState(null)
   const [network, setNetwork] = useState(null)
@@ -86,16 +87,15 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const previouslySelectedWallet = window.localStorage.getItem(
-      'selectedWallet'
-    )
+    const previouslySelectedWallet =
+      window.localStorage.getItem('selectedWallet')
 
     if (previouslySelectedWallet && onboard) {
       onboard.walletSelect(previouslySelectedWallet)
     }
   }, [onboard])
 
-  async function readyToTransact() {
+  const readyToTransact = async () => {
     if (!provider) {
       const walletSelected = await onboard.walletSelect()
       if (!walletSelected) return false
@@ -105,7 +105,7 @@ function App() {
     return ready
   }
 
-  async function sendHash() {
+  const sendHash = async () => {
     if (!toAddress) {
       alert('An Ethereum address to send Eth to is required.')
       return
@@ -136,7 +136,7 @@ function App() {
     emitter.on('txFailed', console.log)
   }
 
-  async function sendInternalTransaction() {
+  const sendInternalTransaction = async () => {
     if (!toAddress) {
       alert('An Ethereum address to send Eth to is required.')
       return
@@ -159,7 +159,7 @@ function App() {
     emitter.on('txFailed', console.log)
   }
 
-  async function sendTransaction() {
+  const sendTransaction = async () => {
     if (!toAddress) {
       alert('An Ethereum address to send Eth to is required.')
     }
@@ -213,9 +213,13 @@ function App() {
               src={ens.avatar ? ens.avatar : avatarPlaceholder}
               alt="avatar"
             ></img>
-            <div style={{
-              marginLeft: '10px'
-            }}>{ens.name}</div>
+            <div
+              style={{
+                marginLeft: '10px'
+              }}
+            >
+              {ens.name}
+            </div>
           </span>
         ) : (
           address && <span>{address}</span>
@@ -225,7 +229,9 @@ function App() {
             {Number(balance) > 0 ? balance / 1000000000000000000 : balance} ETH
           </span>
         )}
-        {network && <span>{networkName(network)} network</span>}
+        {network && (
+          <span>{networkEnum?.[Number(network)] || 'local'} network</span>
+        )}
       </header>
       <section className="main">
         <div className="container">
@@ -527,27 +533,6 @@ function App() {
   ) : (
     <div>Loading...</div>
   )
-}
-
-function networkName(id) {
-  switch (Number(id)) {
-    case 1:
-      return 'main'
-    case 3:
-      return 'ropsten'
-    case 4:
-      return 'rinkeby'
-    case 5:
-      return 'goerli'
-    case 42:
-      return 'kovan'
-    case 100:
-      return 'xdai'
-    case 'localhost':
-      return 'localhost'
-    default:
-      return 'local'
-  }
 }
 
 export default App
