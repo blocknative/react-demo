@@ -74,7 +74,6 @@ const App = () => {
           )
 
           window.localStorage.setItem('selectedWallet', wallet.name)
-          console.log(wallet)
         } else {
           provider = null
           setWallet({})
@@ -173,13 +172,13 @@ const App = () => {
     }
 
     const sendTransaction = () => {
-      signer.sendTransaction(txDetails).then(tx => tx.hash)
+      return signer.sendTransaction(txDetails).then(tx => tx.hash)
     }
 
     const gasPrice = () => provider.getGasPrice().then(res => res.toString())
 
     const estimateGas = () => {
-      provider.estimateGas(txDetails).then(res => res.toString())
+      return provider.estimateGas(txDetails).then(res => res.toString())
     }
 
     const { emitter } = await notify.transaction({
