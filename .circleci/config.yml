@@ -3,6 +3,7 @@ jobs:
   deploy_stage:
     docker:
       - image: cimg/node:14.17.3
+    resource_class: medium+
     steps:
       - checkout
       - run: rm yarn.lock && yarn install --network-concurrency 1
@@ -10,9 +11,11 @@ jobs:
       - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/remove.sh reactdemo-staging"
       - run: scp -oStrictHostKeyChecking=no -v -r /home/circleci/project/build/* $EC2_PROD_USER@$EC2_PROD_IP:/home/ubuntu/reactdemo-staging/
       - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo-staging"
+  
   deploy_prod:
     docker:
       - image: cimg/node:14.17.3
+    resource_class: medium+
     steps:
       - checkout
       - run: yarn cache clean && yarn install --network-concurrency 1
