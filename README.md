@@ -7,7 +7,7 @@ For detailed documentation, head to [docs.blocknative.com](https://docs.blocknat
 
 
 <div align="center">
-  <img style="border-radius: 8px" width="75%" src="assets/react-demo.png">
+  <img style="border-radius: 8px" width="75%" src="assets/react-demo-updated.png">
 </div>
 
 View live demo [here](https://reactdemo.blocknative.com/)!
