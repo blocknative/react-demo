@@ -231,7 +231,7 @@ const App = () => {
           </span>
         )}
         {network && (
-          <span>{networkEnum?.[Number(network)] || 'local'} network</span>
+          <span>{networkEnum?.[Number(network)] || 'local'} Network</span>
         )}
       </header>
       <section className="main">

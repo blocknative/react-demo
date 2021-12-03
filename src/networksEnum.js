@@ -1,10 +1,10 @@
 const networkEnum = Object.freeze({
-  1: 'main',
-  3: 'ropsten',
-  4: 'rinkeby',
-  5: 'goerli',
-  42: 'kovan',
-  100: 'xdai',
-  'localhost': 'localhost'
+  1: 'Main',
+  3: 'Ropsten',
+  4: 'Rinkeby',
+  5: 'Goerli',
+  42: 'Kovan',
+  100: 'Xdai',
+  'localhost': 'Localhost'
 });
 export default networkEnum;
