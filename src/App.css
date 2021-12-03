@@ -104,7 +104,6 @@ main {
   border: 1px solid #eeeeee;
   border-radius: 8px;
   padding: 0.55rem 1.4rem;
-  /* color: #2d5d94; */
   color: #6370e5;
   margin: 0.4rem 0.75rem;
   transition: background 200ms ease-in-out, color 200ms ease-in-out;
