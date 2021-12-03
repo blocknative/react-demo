@@ -172,13 +172,15 @@ const App = () => {
       value: 1000000000000000
     }
 
-    const sendTransaction = () =>
-      signer.sendTransaction(txDetails).then(tx => tx.hash)
+    const sendTransaction = () => {
+      return signer.sendTransaction(txDetails).then(tx => tx.hash)
+    }
 
     const gasPrice = () => provider.getGasPrice().then(res => res.toString())
 
-    const estimateGas = () =>
-      provider.estimateGas(txDetails).then(res => res.toString())
+    const estimateGas = () => {
+      return provider.estimateGas(txDetails).then(res => res.toString())
+    }
 
     const { emitter } = await notify.transaction({
       sendTransaction,
@@ -204,7 +206,9 @@ const App = () => {
     emitter.on('txFailed', console.log)
   }
 
-  return onboard && notify ? (
+  if (!onboard || !notify) return <div>Loading...</div>
+
+  return (
     <main>
       <header className="user-info">
         {ens && ens.name ? (
@@ -536,8 +540,6 @@ const App = () => {
         </span>
       </div>
     </main>
-  ) : (
-    <div>Loading...</div>
   )
 }
 
