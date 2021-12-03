@@ -6,7 +6,7 @@
     "bnc-notify-staging": "https://github.com/blocknative/notify#develop",
     "bnc-onboard": "^1.35.4",
     "bnc-onboard-staging": "https://github.com/blocknative/onboard#develop",
-    "ethers": "^5.2.0",
+    "ethers": "^5.5.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1",
