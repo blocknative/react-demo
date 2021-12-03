@@ -1,6 +1,6 @@
 body {
   font-family: "Helvetica Neue";
-  background-color: #121212;
+  background-color: #1a1d26;
   background-image: url("bn-logo.png");
   background-repeat: repeat;
   max-width: 100vw;
@@ -13,10 +13,6 @@ main {
   height: 100vh;
   overflow: hidden;
   box-sizing: border-box;
-}
-
-section {
-  height: 80%;
 }
 
 @media screen and (max-width: 750px) {
@@ -49,7 +45,7 @@ section {
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.4);
+  background: #1c1c1cc4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,7 +53,10 @@ section {
   padding: 1.5rem;
   border: 1px solid #eeeeee;
   border-radius: 8px;
-  margin: 0.75rem;
+  margin: 0.75rem 1rem;
+  box-shadow: 3px 3px 3px #4a4949;;
+  border: 1px solid #a59393;
+  color: #d0d0d0;
 }
 
 
@@ -102,13 +101,14 @@ section {
 }
 
 .bn-demo-button {
-  background: #ffffff;
+  background: #ffffffee;
   font-size: 0.889rem;
   border: 1px solid #eeeeee;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 0.55rem 1.4rem;
-  color: #4a90e2;
-  margin: 0.25rem 0.5rem;
+  /* color: #2d5d94; */
+  color: #2E828B;
+  margin: 0.4rem 0.75rem;
   transition: background 200ms ease-in-out, color 200ms ease-in-out;
 }
 
@@ -118,4 +118,14 @@ section {
 
 .bn-demo-button:hover {
   cursor: pointer;
+}
+
+.selected-toggle-btn {
+  background: #3fa56b;
+  color: white;
+}
+
+.unselected-toggle-btn {
+  color: #2E828B;
+  background: #ffffffee;
 }
