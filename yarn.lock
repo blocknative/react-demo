@@ -4432,10 +4432,10 @@ bnb-javascript-sdk-nobroadcast@^2.16.14:
     regenerator-runtime "^0.13.3"
     uuid "^3.3.3"
 
-bnc-notify@^1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.9.1.tgz#cd8ec8e5f5482cf78b6caea7de35288ee73d6b32"
-  integrity sha512-OWXI6KIOU/0CWhlFBiIStfbio3X5uUTeBjG6h4R7Ng6MABqZHMFRCNOgVQ50HdwwZiaFMuA3l23cZLxJjyaY0Q==
+bnc-notify@^1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.9.2.tgz#f077559643ae0eed69759524dff904b7a9f2f07f"
+  integrity sha512-Eeo7NiPuZqhod2dEuL1M67SHUDVm4jExv70yubv5arexN2BhW/ruzCzklPExv/oqo8q6H4fQicQiT4jCN6zPPQ==
   dependencies:
     bignumber.js "^9.0.0"
     bnc-sdk "^3.5.0"
