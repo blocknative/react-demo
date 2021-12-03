@@ -37,6 +37,7 @@ main {
 .main-content {
   display: flex;
   justify-content: center;
+  padding-top: 24px;
 }
 
 .vertical-main-container {
