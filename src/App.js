@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
-import getSigner from './signer'
 import { initOnboard, initNotify } from './services'
 import { version, dependencies } from '../package.json'
 import avatarPlaceholder from './avatar-placeholder.png'
@@ -61,16 +60,12 @@ const App = () => {
         if (wallet.provider) {
           setWallet(wallet)
 
-          const ethersProvider = new ethers.providers.Web3Provider(
-            wallet.provider
-          )
-
-          provider = ethersProvider
+          provider = new ethers.providers.Web3Provider(wallet.provider, 'any')
 
           internalTransferContract = new ethers.Contract(
             '0xb8c12850827ded46b9ded8c1b6373da0c4d60370',
             internalTransferABI,
-            getSigner(ethersProvider)
+            provider.getUncheckedSigner()
           )
 
           window.localStorage.setItem('selectedWallet', wallet.name)
@@ -111,7 +106,7 @@ const App = () => {
       return
     }
 
-    const signer = getSigner(provider)
+    const signer = provider.getUncheckedSigner()
 
     const { hash } = await signer.sendTransaction({
       to: toAddress,
@@ -164,7 +159,7 @@ const App = () => {
       alert('An Ethereum address to send Eth to is required.')
     }
 
-    const signer = getSigner(provider)
+    const signer = provider.getUncheckedSigner()
 
     const txDetails = {
       to: toAddress,
