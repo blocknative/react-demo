@@ -3,7 +3,7 @@ jobs:
   deploy_stage:
     docker:
       - image: cimg/node:14.17.3
-    resource_class: medium+
+    resource_class: large
     steps:
       - checkout
       - run: rm yarn.lock && yarn install --network-concurrency 1
@@ -15,7 +15,7 @@ jobs:
   deploy_prod:
     docker:
       - image: cimg/node:14.17.3
-    resource_class: medium+
+    resource_class: large
     steps:
       - checkout
       - run: yarn cache clean && yarn install --network-concurrency 1

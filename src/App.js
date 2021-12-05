@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
-import getSigner from './signer'
 import { initOnboard, initNotify } from './services'
 import { version, dependencies } from '../package.json'
 import avatarPlaceholder from './avatar-placeholder.png'
@@ -61,16 +60,12 @@ const App = () => {
         if (wallet.provider) {
           setWallet(wallet)
 
-          const ethersProvider = new ethers.providers.Web3Provider(
-            wallet.provider
-          )
-
-          provider = ethersProvider
+          provider = new ethers.providers.Web3Provider(wallet.provider, 'any')
 
           internalTransferContract = new ethers.Contract(
             '0xb8c12850827ded46b9ded8c1b6373da0c4d60370',
             internalTransferABI,
-            getSigner(ethersProvider)
+            provider.getUncheckedSigner()
           )
 
           window.localStorage.setItem('selectedWallet', wallet.name)
@@ -111,7 +106,7 @@ const App = () => {
       return
     }
 
-    const signer = getSigner(provider)
+    const signer = provider.getUncheckedSigner()
 
     const { hash } = await signer.sendTransaction({
       to: toAddress,
@@ -164,7 +159,7 @@ const App = () => {
       alert('An Ethereum address to send Eth to is required.')
     }
 
-    const signer = getSigner(provider)
+    const signer = provider.getUncheckedSigner()
 
     const txDetails = {
       to: toAddress,
@@ -234,282 +229,290 @@ const App = () => {
           </span>
         )}
         {network && (
-          <span>{networkEnum?.[Number(network)] || 'local'} network</span>
+          <span>{networkEnum?.[Number(network)] || 'local'} Network</span>
         )}
       </header>
       <section className="main">
-        <div className="container">
-          <h2>Onboarding Users with Onboard</h2>
-          <div>
-            {!wallet.provider && (
-              <button
-                className="bn-demo-button"
-                onClick={() => {
-                  onboard.walletSelect()
-                }}
-              >
-                Select a Wallet
-              </button>
-            )}
+        <div className="main-content">
+          <div className="vertical-main-container">
+            <div className="container onboard">
+              <h2>Onboarding Users with Onboard</h2>
+              <div>
+                {!wallet.provider && (
+                  <button
+                    className="bn-demo-button"
+                    onClick={() => {
+                      onboard.walletSelect()
+                    }}
+                  >
+                    Select a Wallet
+                  </button>
+                )}
 
-            {wallet.provider && (
-              <button className="bn-demo-button" onClick={onboard.walletCheck}>
-                Wallet Checks
-              </button>
-            )}
+                {wallet.provider && (
+                  <button
+                    className="bn-demo-button"
+                    onClick={onboard.walletCheck}
+                  >
+                    Wallet Checks
+                  </button>
+                )}
 
-            {wallet.provider && (
-              <button className="bn-demo-button" onClick={onboard.walletSelect}>
-                Switch Wallets
-              </button>
-            )}
+                {wallet.provider && (
+                  <button
+                    className="bn-demo-button"
+                    onClick={onboard.walletSelect}
+                  >
+                    Switch Wallets
+                  </button>
+                )}
 
-            {wallet.provider && (
-              <button className="bn-demo-button" onClick={onboard.walletReset}>
-                Reset Wallet State
-              </button>
-            )}
-            {wallet.provider && wallet.dashboard && (
-              <button className="bn-demo-button" onClick={wallet.dashboard}>
-                Open Wallet Dashboard
-              </button>
-            )}
-            {wallet.provider && wallet.type === 'hardware' && address && (
-              <button
-                className="bn-demo-button"
-                onClick={onboard.accountSelect}
-              >
-                Switch Account
-              </button>
-            )}
-          </div>
-        </div>
-        <div className="container">
-          <h2>Transaction Notifications with Notify</h2>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              marginBottom: '1rem'
-            }}
-          >
-            <div style={{ marginBottom: '1rem' }}>
-              <label>Send 0.001 Rinkeby Eth to:</label>
-              <input
-                type="text"
+                {wallet.provider && (
+                  <button
+                    className="bn-demo-button"
+                    onClick={onboard.walletReset}
+                  >
+                    Reset Wallet State
+                  </button>
+                )}
+                {wallet.provider && wallet.dashboard && (
+                  <button className="bn-demo-button" onClick={wallet.dashboard}>
+                    Open Wallet Dashboard
+                  </button>
+                )}
+                {wallet.provider && wallet.type === 'hardware' && address && (
+                  <button
+                    className="bn-demo-button"
+                    onClick={onboard.accountSelect}
+                  >
+                    Switch Account
+                  </button>
+                )}
+              </div>
+            </div>
+            <div className="container notify">
+              <h2>Transaction Notifications with Notify</h2>
+              <div
                 style={{
-                  padding: '0.5rem',
-                  border: 'none',
-                  borderRadius: '10px',
-                  marginLeft: '0.5rem',
-                  width: '18rem'
-                }}
-                value={toAddress}
-                placeholder="address"
-                onChange={e => setToAddress(e.target.value)}
-              />
-            </div>
-            <div>
-              <button
-                className="bn-demo-button"
-                onClick={async () => {
-                  const ready = await readyToTransact()
-                  if (!ready) return
-                  sendHash()
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  marginBottom: '1rem'
                 }}
               >
-                Send
-              </button>
-              with in-flight notifications
-            </div>
-            <div>
-              <button
-                className="bn-demo-button"
-                onClick={async () => {
-                  const ready = await readyToTransact()
-                  if (!ready) return
-                  sendTransaction()
-                }}
-              >
-                Send
-              </button>
-              with pre-flight and in-flight notifications
-            </div>
-            <div>
-              <button
-                className="bn-demo-button"
-                onClick={async () => {
-                  const ready = await readyToTransact()
-                  if (!ready) return
-                  sendInternalTransaction()
-                }}
-              >
-                Send
-              </button>
-              via a internal transaction
+                <div style={{ marginBottom: '1rem' }}>
+                  <label>Send 0.001 Rinkeby Eth to:</label>
+                  <input
+                    type="text"
+                    style={{
+                      padding: '0.5rem',
+                      border: 'none',
+                      borderRadius: '10px',
+                      marginLeft: '0.5rem',
+                      width: '18rem'
+                    }}
+                    value={toAddress}
+                    placeholder="address"
+                    onChange={e => setToAddress(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <button
+                    className="bn-demo-button"
+                    onClick={async () => {
+                      const ready = await readyToTransact()
+                      if (!ready) return
+                      sendHash()
+                    }}
+                  >
+                    Send
+                  </button>
+                  with in-flight notifications
+                </div>
+                <div>
+                  <button
+                    className="bn-demo-button"
+                    onClick={async () => {
+                      const ready = await readyToTransact()
+                      if (!ready) return
+                      sendTransaction()
+                    }}
+                  >
+                    Send
+                  </button>
+                  with pre-flight and in-flight notifications
+                </div>
+                <div>
+                  <button
+                    className="bn-demo-button"
+                    onClick={async () => {
+                      const ready = await readyToTransact()
+                      if (!ready) return
+                      sendInternalTransaction()
+                    }}
+                  >
+                    Send
+                  </button>
+                  via a internal transaction
+                </div>
+              </div>
+              <div>
+                <button
+                  className="bn-demo-button"
+                  onClick={async () => {
+                    if (!address) {
+                      await readyToTransact()
+                    }
+
+                    address && notify.account(address)
+                  }}
+                >
+                  Watch Current Account
+                </button>
+                <button
+                  className="bn-demo-button"
+                  onClick={async () => {
+                    if (!address) {
+                      await readyToTransact()
+                    }
+
+                    address && notify.unsubscribe(address)
+                  }}
+                >
+                  Un-watch Current Account
+                </button>
+                <button
+                  className="bn-demo-button"
+                  onClick={() => {
+                    const { update } = notify.notification({
+                      eventCode: 'dbUpdate',
+                      type: 'pending',
+                      message:
+                        'This is a custom notification triggered by the dapp'
+                    })
+                    setTimeout(
+                      () =>
+                        update({
+                          eventCode: 'dbUpdateSuccess',
+                          message: 'Updated status for custom notification',
+                          type: 'success'
+                        }),
+                      4000
+                    )
+                  }}
+                >
+                  Custom Notification
+                </button>
+              </div>
             </div>
           </div>
-          <div>
+          <div className="container">
+            <h3>UI Settings</h3>
             <button
-              className="bn-demo-button"
-              onClick={async () => {
-                if (!address) {
-                  await readyToTransact()
-                }
-
-                address && notify.account(address)
-              }}
-            >
-              Watch Current Account
-            </button>
-            <button
-              className="bn-demo-button"
-              onClick={async () => {
-                if (!address) {
-                  await readyToTransact()
-                }
-
-                address && notify.unsubscribe(address)
-              }}
-            >
-              Un-watch Current Account
-            </button>
-            <button
-              className="bn-demo-button"
+              className={`bn-demo-button ${
+                darkMode ? 'selected-toggle-btn' : 'unselected-toggle-btn'
+              }`}
               onClick={() => {
-                const { update } = notify.notification({
-                  eventCode: 'dbUpdate',
-                  type: 'pending',
-                  message: 'This is a custom notification triggered by the dapp'
-                })
-                setTimeout(
-                  () =>
-                    update({
-                      eventCode: 'dbUpdateSuccess',
-                      message: 'Updated status for custom notification',
-                      type: 'success'
-                    }),
-                  4000
-                )
+                setDarkMode(true)
+                notify.config({ darkMode: true })
+                onboard.config({ darkMode: true })
               }}
             >
-              Custom Notification
+              Dark Mode
+            </button>
+            <button
+              className={`bn-demo-button ${
+                !darkMode ? 'selected-toggle-btn' : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setDarkMode(false)
+                notify.config({ darkMode: false })
+                onboard.config({ darkMode: false })
+              }}
+            >
+              Light Mode
+            </button>
+            <h3>Desktop Positioning</h3>
+            <button
+              className={`bn-demo-button ${
+                desktopPosition === 'topLeft'
+                  ? 'selected-toggle-btn'
+                  : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setDesktopPosition('topLeft')
+                notify.config({ desktopPosition: 'topLeft' })
+              }}
+            >
+              Top Left
+            </button>
+            <button
+              className={`bn-demo-button ${
+                desktopPosition === 'topRight'
+                  ? 'selected-toggle-btn'
+                  : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setDesktopPosition('topRight')
+                notify.config({ desktopPosition: 'topRight' })
+              }}
+            >
+              Top Right
+            </button>
+            <button
+              className={`bn-demo-button ${
+                desktopPosition === 'bottomRight'
+                  ? 'selected-toggle-btn'
+                  : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setDesktopPosition('bottomRight')
+                notify.config({ desktopPosition: 'bottomRight' })
+              }}
+            >
+              Bottom Right
+            </button>
+            <button
+              className={`bn-demo-button ${
+                desktopPosition === 'bottomLeft'
+                  ? 'selected-toggle-btn'
+                  : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setDesktopPosition('bottomLeft')
+                notify.config({ desktopPosition: 'bottomLeft' })
+              }}
+            >
+              Bottom Left
+            </button>
+            <h3>Mobile Positioning</h3>
+            <button
+              className={`bn-demo-button ${
+                mobilePosition === 'top'
+                  ? 'selected-toggle-btn'
+                  : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setMobilePosition('top')
+                notify.config({ mobilePosition: 'top' })
+              }}
+            >
+              Top
+            </button>
+            <button
+              className={`bn-demo-button ${
+                mobilePosition === 'bottom'
+                  ? 'selected-toggle-btn'
+                  : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setMobilePosition('bottom')
+                notify.config({ mobilePosition: 'bottom' })
+              }}
+            >
+              Bottom
             </button>
           </div>
-        </div>
-        <div className="container">
-          <h3>UI Settings</h3>
-          <button
-            className="bn-demo-button"
-            style={{
-              background: darkMode ? '#ab47bc' : 'white',
-              color: darkMode ? 'white' : '#4a90e2'
-            }}
-            onClick={() => {
-              setDarkMode(true)
-              notify.config({ darkMode: true })
-              onboard.config({ darkMode: true })
-            }}
-          >
-            Dark Mode
-          </button>
-          <button
-            className="bn-demo-button"
-            style={{
-              background: !darkMode ? '#ab47bc' : 'white',
-              color: !darkMode ? 'white' : '#4a90e2'
-            }}
-            onClick={() => {
-              setDarkMode(false)
-              notify.config({ darkMode: false })
-              onboard.config({ darkMode: false })
-            }}
-          >
-            Light Mode
-          </button>
-          <h3>Desktop Positioning</h3>
-          <button
-            className="bn-demo-button"
-            style={{
-              background: desktopPosition === 'topLeft' ? '#ab47bc' : 'white',
-              color: desktopPosition === 'topLeft' ? 'white' : '#4a90e2'
-            }}
-            onClick={() => {
-              setDesktopPosition('topLeft')
-              notify.config({ desktopPosition: 'topLeft' })
-            }}
-          >
-            Top Left
-          </button>
-          <button
-            className="bn-demo-button"
-            style={{
-              background: desktopPosition === 'topRight' ? '#ab47bc' : 'white',
-              color: desktopPosition === 'topRight' ? 'white' : '#4a90e2'
-            }}
-            onClick={() => {
-              setDesktopPosition('topRight')
-              notify.config({ desktopPosition: 'topRight' })
-            }}
-          >
-            Top Right
-          </button>
-          <button
-            className="bn-demo-button"
-            style={{
-              background:
-                desktopPosition === 'bottomRight' ? '#ab47bc' : 'white',
-              color: desktopPosition === 'bottomRight' ? 'white' : '#4a90e2'
-            }}
-            onClick={() => {
-              setDesktopPosition('bottomRight')
-              notify.config({ desktopPosition: 'bottomRight' })
-            }}
-          >
-            Bottom Right
-          </button>
-          <button
-            className="bn-demo-button"
-            style={{
-              background:
-                desktopPosition === 'bottomLeft' ? '#ab47bc' : 'white',
-              color: desktopPosition === 'bottomLeft' ? 'white' : '#4a90e2'
-            }}
-            onClick={() => {
-              setDesktopPosition('bottomLeft')
-              notify.config({ desktopPosition: 'bottomLeft' })
-            }}
-          >
-            Bottom Left
-          </button>
-          <h3>Mobile Positioning</h3>
-          <button
-            className="bn-demo-button"
-            style={{
-              background: mobilePosition === 'top' ? '#ab47bc' : 'white',
-              color: mobilePosition === 'top' ? 'white' : '#4a90e2'
-            }}
-            onClick={() => {
-              setMobilePosition('top')
-              notify.config({ mobilePosition: 'top' })
-            }}
-          >
-            Top
-          </button>
-          <button
-            className="bn-demo-button"
-            style={{
-              background: mobilePosition === 'bottom' ? '#ab47bc' : 'white',
-              color: mobilePosition === 'bottom' ? 'white' : '#4a90e2'
-            }}
-            onClick={() => {
-              setMobilePosition('bottom')
-              notify.config({ mobilePosition: 'bottom' })
-            }}
-          >
-            Bottom
-          </button>
         </div>
       </section>
       <div
@@ -518,7 +521,8 @@ const App = () => {
           flexDirection: 'column',
           position: 'fixed',
           bottom: '1rem',
-          left: '1rem'
+          left: '1rem',
+          color: '#716c6c'
         }}
       >
         <span>

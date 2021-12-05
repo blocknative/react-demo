@@ -1,8 +1,7 @@
 body {
-  font-family: "Helvetica Neue";
-  background-color: rgb(206, 175, 206);
-  background-image: url("bn-logo.png");
-  background-repeat: repeat;
+  font-family: sans-serif;;
+  font-style: normal;
+  background-color: #1a1d26;
   max-width: 100vw;
   overflow: hidden;
   margin: 0;
@@ -13,10 +12,6 @@ main {
   height: 100vh;
   overflow: hidden;
   box-sizing: border-box;
-}
-
-section {
-  display: flex;
 }
 
 @media screen and (max-width: 750px) {
@@ -39,18 +34,29 @@ section {
   }
 }
 
+.main-content {
+  display: flex;
+  justify-content: center;
+  padding-top: 24px;
+}
+
+.vertical-main-container {
+  display: grid;
+}
+
 .container {
-  background: rgba(255, 255, 255, 0.4);
+  background: #383c48;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column nowrap;
-  padding: 1rem;
-  /* width: 20rem; */
-  border: 1px solid #eeeeee;
-  border-radius: 4px;
-  margin: 0.25rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 0.75rem 1rem;
+  border: 1px solid #6c707d;
+  color: #fff;
 }
+
 
 .container div {
   display: flex;
@@ -93,13 +99,13 @@ section {
 }
 
 .bn-demo-button {
-  background: #ffffff;
+  background: #ffffffee;
   font-size: 0.889rem;
   border: 1px solid #eeeeee;
-  border-radius: 40px;
+  border-radius: 8px;
   padding: 0.55rem 1.4rem;
-  color: #4a90e2;
-  margin: 0.25rem 0.5rem;
+  color: #6370e5;
+  margin: 0.4rem 0.75rem;
   transition: background 200ms ease-in-out, color 200ms ease-in-out;
 }
 
@@ -109,4 +115,14 @@ section {
 
 .bn-demo-button:hover {
   cursor: pointer;
+}
+
+.selected-toggle-btn {
+  background: #6370e5;
+  color: white;
+}
+
+.unselected-toggle-btn {
+  color: #6370e5;
+  background: #ffffffee;
 }
