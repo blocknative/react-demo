@@ -75,6 +75,7 @@ export function initOnboard(subscriptions) {
         { walletName: 'binance' },
         { walletName: 'tp' },
         { walletName: 'tally' },
+        { walletName: 'blankwallet' }
       ]
     },
     walletCheck: [
