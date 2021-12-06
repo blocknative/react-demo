@@ -54,7 +54,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* flex-flow: row wrap; */
   background: rgba(255, 255, 255, 0.6);
   min-height: 4rem;
   margin: 0.25rem;
