@@ -74,6 +74,7 @@ export function initOnboard(subscriptions) {
         { walletName: 'xdefi' },
         { walletName: 'binance' },
         { walletName: 'tp' },
+        { walletName: 'tally' },
       ]
     },
     walletCheck: [

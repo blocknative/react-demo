@@ -4479,10 +4479,10 @@ bnc-notify@^1.9.2:
     walletlink "^2.1.6"
     web3-provider-engine "^15.0.4"
 
-bnc-onboard@^1.35.4:
-  version "1.35.4"
-  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.35.4.tgz#be6894c062fb829e609b447f5f0f64c2a75f349a"
-  integrity sha512-F3zMyosW4PLjIF5HeG/COaacVAdVEYqisFjubE4gY6heZfNTRobMmX1QTq0pL9MaNtW0W70r8LbobVQOVfya+A==
+bnc-onboard@^1.36.0:
+  version "1.36.0"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.36.0.tgz#ba870b47250a7c51becc924fa78097dbf75d5e67"
+  integrity sha512-+DzM3y4FiSo12VfWPTYKGIGPAyrS98H9fAkUlcBCx9guWCMTTYxlxWv09wq+6DuhCPZ1zMcItWxjZipzf/7KUw==
   dependencies:
     "@cvbb/eth-keyring" "^1.1.0"
     "@ensdomains/ensjs" "^2.0.1"
