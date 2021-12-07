@@ -4,6 +4,7 @@ import VConsole from 'vconsole'
 import { initOnboard, initNotify } from './services'
 import { version, dependencies } from '../package.json'
 import avatarPlaceholder from './avatar-placeholder.png'
+import BNLogo from './blocknative-logo-full.svg'
 import networkEnum from './networkEnum'
 
 import './App.css'
@@ -200,12 +201,113 @@ const App = () => {
     emitter.on('txFailed', console.log)
   }
 
+  const renderDeviceSettings = () => {
+    if (window.innerWidth < 700) {
+      return (
+        <div className={'conditional-ui-settings'}>
+          <h3>Notify Mobile Positioning</h3>
+          <button
+            className={`bn-demo-button ${
+              mobilePosition === 'top'
+                ? 'selected-toggle-btn'
+                : 'unselected-toggle-btn'
+            }`}
+            onClick={() => {
+              setMobilePosition('top')
+              notify.config({ mobilePosition: 'top' })
+            }}
+          >
+            Top
+          </button>
+          <button
+            className={`bn-demo-button ${
+              mobilePosition === 'bottom'
+                ? 'selected-toggle-btn'
+                : 'unselected-toggle-btn'
+            }`}
+            onClick={() => {
+              setMobilePosition('bottom')
+              notify.config({ mobilePosition: 'bottom' })
+            }}
+          >
+            Bottom
+          </button>
+        </div>
+      )
+    }
+
+    return (
+      <div className={'conditional-ui-settings'}>
+        {' '}
+        <h3>Notify Desktop Positioning</h3>
+        <button
+          className={`bn-demo-button ${
+            desktopPosition === 'topLeft'
+              ? 'selected-toggle-btn'
+              : 'unselected-toggle-btn'
+          }`}
+          onClick={() => {
+            setDesktopPosition('topLeft')
+            notify.config({ desktopPosition: 'topLeft' })
+          }}
+        >
+          Top Left
+        </button>
+        <button
+          className={`bn-demo-button ${
+            desktopPosition === 'topRight'
+              ? 'selected-toggle-btn'
+              : 'unselected-toggle-btn'
+          }`}
+          onClick={() => {
+            setDesktopPosition('topRight')
+            notify.config({ desktopPosition: 'topRight' })
+          }}
+        >
+          Top Right
+        </button>
+        <button
+          className={`bn-demo-button ${
+            desktopPosition === 'bottomRight'
+              ? 'selected-toggle-btn'
+              : 'unselected-toggle-btn'
+          }`}
+          onClick={() => {
+            setDesktopPosition('bottomRight')
+            notify.config({ desktopPosition: 'bottomRight' })
+          }}
+        >
+          Bottom Right
+        </button>
+        <button
+          className={`bn-demo-button ${
+            desktopPosition === 'bottomLeft'
+              ? 'selected-toggle-btn'
+              : 'unselected-toggle-btn'
+          }`}
+          onClick={() => {
+            setDesktopPosition('bottomLeft')
+            notify.config({ desktopPosition: 'bottomLeft' })
+          }}
+        >
+          Bottom Left
+        </button>
+      </div>
+    )
+  }
+
   if (!onboard || !notify) return <div>Loading...</div>
 
   return (
     <main>
-      <header className="user-info">
-        {ens && ens.name ? (
+      <header className="user-info-container">
+        <img
+          className="bn-logo"
+          src={BNLogo}
+          alt="Block Native Logo"
+        />
+        <div className='user-info'>
+        {ens?.name ? (
           <span>
             <img
               className="user-avatar"
@@ -221,7 +323,7 @@ const App = () => {
             </div>
           </span>
         ) : (
-          address && <span>{address}</span>
+          address && <span className='user-address'>{address}</span>
         )}
         {balance != null && (
           <span>
@@ -231,6 +333,7 @@ const App = () => {
         {network && (
           <span>{networkEnum?.[Number(network)] || 'local'} Network</span>
         )}
+        </div>
       </header>
       <section className="main">
         <div className="main-content">
@@ -316,7 +419,7 @@ const App = () => {
                     onChange={e => setToAddress(e.target.value)}
                   />
                 </div>
-                <div>
+                <div className={'send-transaction-container'}>
                   <button
                     className="bn-demo-button"
                     onClick={async () => {
@@ -329,7 +432,7 @@ const App = () => {
                   </button>
                   with in-flight notifications
                 </div>
-                <div>
+                <div className={'send-transaction-container'}>
                   <button
                     className="bn-demo-button"
                     onClick={async () => {
@@ -342,7 +445,7 @@ const App = () => {
                   </button>
                   with pre-flight and in-flight notifications
                 </div>
-                <div>
+                <div className={'send-transaction-container'}>
                   <button
                     className="bn-demo-button"
                     onClick={async () => {
@@ -406,7 +509,7 @@ const App = () => {
               </div>
             </div>
           </div>
-          <div className="container">
+          <div className="container ui-settings">
             <h3>UI Settings</h3>
             <button
               className={`bn-demo-button ${
@@ -432,99 +535,12 @@ const App = () => {
             >
               Light Mode
             </button>
-            <h3>Desktop Positioning</h3>
-            <button
-              className={`bn-demo-button ${
-                desktopPosition === 'topLeft'
-                  ? 'selected-toggle-btn'
-                  : 'unselected-toggle-btn'
-              }`}
-              onClick={() => {
-                setDesktopPosition('topLeft')
-                notify.config({ desktopPosition: 'topLeft' })
-              }}
-            >
-              Top Left
-            </button>
-            <button
-              className={`bn-demo-button ${
-                desktopPosition === 'topRight'
-                  ? 'selected-toggle-btn'
-                  : 'unselected-toggle-btn'
-              }`}
-              onClick={() => {
-                setDesktopPosition('topRight')
-                notify.config({ desktopPosition: 'topRight' })
-              }}
-            >
-              Top Right
-            </button>
-            <button
-              className={`bn-demo-button ${
-                desktopPosition === 'bottomRight'
-                  ? 'selected-toggle-btn'
-                  : 'unselected-toggle-btn'
-              }`}
-              onClick={() => {
-                setDesktopPosition('bottomRight')
-                notify.config({ desktopPosition: 'bottomRight' })
-              }}
-            >
-              Bottom Right
-            </button>
-            <button
-              className={`bn-demo-button ${
-                desktopPosition === 'bottomLeft'
-                  ? 'selected-toggle-btn'
-                  : 'unselected-toggle-btn'
-              }`}
-              onClick={() => {
-                setDesktopPosition('bottomLeft')
-                notify.config({ desktopPosition: 'bottomLeft' })
-              }}
-            >
-              Bottom Left
-            </button>
-            <h3>Mobile Positioning</h3>
-            <button
-              className={`bn-demo-button ${
-                mobilePosition === 'top'
-                  ? 'selected-toggle-btn'
-                  : 'unselected-toggle-btn'
-              }`}
-              onClick={() => {
-                setMobilePosition('top')
-                notify.config({ mobilePosition: 'top' })
-              }}
-            >
-              Top
-            </button>
-            <button
-              className={`bn-demo-button ${
-                mobilePosition === 'bottom'
-                  ? 'selected-toggle-btn'
-                  : 'unselected-toggle-btn'
-              }`}
-              onClick={() => {
-                setMobilePosition('bottom')
-                notify.config({ mobilePosition: 'bottom' })
-              }}
-            >
-              Bottom
-            </button>
+
+            {renderDeviceSettings()}
           </div>
         </div>
       </section>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          position: 'fixed',
-          bottom: '1rem',
-          left: '1rem',
-          color: '#716c6c'
-        }}
-      >
+      <div className={'versioning'}>
         <span>
           React Demo version: <i>{staging ? 'NEXT' : version}</i>
         </span>
