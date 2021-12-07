@@ -180,7 +180,6 @@ main {
 }
 
 @media screen and (max-width: 670px) {
-
   .main-content {
     flex-direction: column;
     align-items: center;
@@ -202,7 +201,6 @@ main {
 }
 
 @media screen and (max-width: 450px) {
-
   .user-info {
     width: 100%;
   }
