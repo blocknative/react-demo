@@ -30,6 +30,16 @@ main {
   display: grid;
 }
 
+.main-content {
+  display: flex;
+  justify-content: center;
+  padding-top: 24px;
+}
+
+.vertical-main-container {
+  display: grid;
+}
+
 .container {
   background: #383c48;
   display: flex;
@@ -42,6 +52,7 @@ main {
   border: 1px solid #6c707d;
   color: #fff;
 }
+
 
 .container div {
   display: flex;
