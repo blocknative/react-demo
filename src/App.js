@@ -523,7 +523,6 @@ const App = () => {
             >
               Dark Mode
             </button>
-            <h3>Desktop Positioning</h3>
             <button
               className={`bn-demo-button ${
                 !darkMode ? 'selected-toggle-btn' : 'unselected-toggle-btn'
