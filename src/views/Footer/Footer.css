@@ -96,3 +96,17 @@
 .terms-privacy-divider {
   margin: 0 8px;
 }
+
+@media screen and (max-width: 670px) {
+  .footer {
+    position: initial;
+  }
+
+  .footer-links {
+    flex-direction: row;
+  }
+  .social-links span {
+    text-align: center;
+  }
+
+}
