@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
 import { initOnboard, initNotify } from './services'
-import { version, dependencies } from '../package.json'
-import avatarPlaceholder from './avatar-placeholder.png'
-import BNLogo from './blocknative-logo-full.svg'
 import networkEnum from './networkEnum'
+import BNLogo from './icons/blocknative-logo-dark.svg'
+import avatarPlaceholder from './icons/avatar-placeholder.png'
 
+import Footer from './views/Footer/Footer.js'
 import './App.css'
-
-const staging = process.env.REACT_APP_STAGING
 
 if (window.innerWidth < 700) {
   new VConsole()
@@ -301,38 +299,35 @@ const App = () => {
   return (
     <main>
       <header className="user-info-container">
-        <img
-          className="bn-logo"
-          src={BNLogo}
-          alt="Block Native Logo"
-        />
-        <div className='user-info'>
-        {ens?.name ? (
-          <span>
-            <img
-              className="user-avatar"
-              src={ens.avatar ? ens.avatar : avatarPlaceholder}
-              alt="avatar"
-            ></img>
-            <div
-              style={{
-                marginLeft: '10px'
-              }}
-            >
-              {ens.name}
-            </div>
-          </span>
-        ) : (
-          address && <span className='user-address'>{address}</span>
-        )}
-        {balance != null && (
-          <span>
-            {Number(balance) > 0 ? balance / 1000000000000000000 : balance} ETH
-          </span>
-        )}
-        {network && (
-          <span>{networkEnum?.[Number(network)] || 'local'} Network</span>
-        )}
+        <img className="bn-logo" src={BNLogo} alt="Block Native Logo" />
+        <div className="user-info">
+          {ens?.name ? (
+            <span>
+              <img
+                className="user-avatar"
+                src={ens.avatar ? ens.avatar : avatarPlaceholder}
+                alt="avatar"
+              ></img>
+              <div
+                style={{
+                  marginLeft: '10px'
+                }}
+              >
+                {ens.name}
+              </div>
+            </span>
+          ) : (
+            address && <span className="user-address">{address}</span>
+          )}
+          {balance != null && (
+            <span>
+              {Number(balance) > 0 ? balance / 1000000000000000000 : balance}{' '}
+              ETH
+            </span>
+          )}
+          {network && (
+            <span>{networkEnum?.[Number(network)] || 'local'} Network</span>
+          )}
         </div>
       </header>
       <section className="main">
@@ -540,19 +535,7 @@ const App = () => {
           </div>
         </div>
       </section>
-      <div className={'versioning'}>
-        <span>
-          React Demo version: <i>{staging ? 'NEXT' : version}</i>
-        </span>
-        <span>
-          Onboard version:{' '}
-          <i>{staging ? 'NEXT' : dependencies['bnc-onboard'].slice(1)}</i>
-        </span>
-        <span>
-          Notify version:{' '}
-          <i>{staging ? 'NEXT' : dependencies['bnc-notify'].slice(1)}</i>
-        </span>
-      </div>
+      <Footer/>
     </main>
   )
 }
