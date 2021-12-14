@@ -40,6 +40,7 @@
 .social-links span {
   transition: all 250ms;
   margin-top: 4px;
+  text-align: center;
 }
 
 .social-links:hover > span {
@@ -108,10 +109,35 @@
   margin: 0 8px;
 }
 
-@media screen and (max-width: 765px) {
+@media screen and (max-width: 760px) {
+
+  .versioning {
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-direction: row;
+  }
+
+  .social-links span {
+    text-align: center;
+  }
+
+  .tech-links {
+    display: initial;
+    margin: 12px 0px;
+  }
+
+  .terms-privacy {
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width: 670px) {
   .footer {
     position: initial;
-    margin-top: 16px;
+    margin-top: auto;
   }
 
   .versioning {
