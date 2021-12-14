@@ -111,6 +111,16 @@
 @media screen and (max-width: 670px) {
   .footer {
     position: initial;
+    margin-top: 16px;
+  }
+
+  .versioning {
+    position: inherit;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    color: #716c6c;
+    margin: .5rem auto;
   }
 
   .footer-links {
@@ -123,7 +133,7 @@
 
   .tech-links {
     display: initial;
-    margin-right: 0px;
+    margin: 12px 0px;
   }
 
   .terms-privacy {

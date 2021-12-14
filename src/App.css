@@ -181,14 +181,6 @@ main {
     width: calc(100vw - 4rem);
     text-align: center;
   }
-  .versioning {
-    position: inherit;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    color: #716c6c;
-    margin: 1rem auto 2rem;
-  }
 }
 
 @media screen and (max-width: 450px) {
