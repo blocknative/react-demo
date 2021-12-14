@@ -15,9 +15,9 @@ main {
 }
 
 .bn-logo {
-  width: 12rem;
+  width: 16rem;
   position: absolute;
-  left: 4px;
+  left: 12px;
 }
 
 .main-content {
@@ -137,15 +137,6 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.versioning {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  bottom: 1rem;
-  left: 1rem;
-  color: #716c6c;
 }
 
 @media screen and (max-width: 1275px) {
