@@ -504,7 +504,7 @@ const App = () => {
             </div>
           </div>
           <div className="container ui-settings">
-            <h3>UI Settings</h3>
+            <h3>Onboard / Notify UI Settings</h3>
             <button
               className={`bn-demo-button ${
                 darkMode ? 'selected-toggle-btn' : 'unselected-toggle-btn'
@@ -534,7 +534,7 @@ const App = () => {
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </main>
   )
 }
