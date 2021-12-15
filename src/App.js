@@ -5,7 +5,6 @@ import { initOnboard, initNotify } from './services'
 import networkEnum from './networkEnum'
 import BNLogo from './icons/blocknative-logo-dark.svg'
 import avatarPlaceholder from './icons/avatar-placeholder.png'
-
 import Footer from './views/Footer/Footer.js'
 import './App.css'
 
