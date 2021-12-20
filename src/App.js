@@ -298,7 +298,7 @@ const App = () => {
   return (
     <main>
       <header className="user-info-container">
-        <img className="bn-logo" src={BNLogo} alt="Block Native Logo" />
+        <img className="bn-logo-demo" src={BNLogo} alt="Block Native Logo" />
         <div className="user-info">
           {ens?.name ? (
             <span>
