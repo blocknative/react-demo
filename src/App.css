@@ -14,7 +14,7 @@ main {
   box-sizing: border-box;
 }
 
-.bn-logo {
+.bn-logo-demo {
   width: 16rem;
   position: absolute;
   left: 12px;
@@ -144,7 +144,7 @@ main {
     flex-direction: column;
   }
 
-  .bn-logo {
+  .bn-logo-demo {
     position: initial;
     margin: auto;
   }
