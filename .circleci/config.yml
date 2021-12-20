@@ -22,6 +22,8 @@ jobs:
       - checkout
       - run: yarn cache clean && yarn install --network-concurrency 1
       - run: yarn build
+      - run: touch .env
+      - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
       - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/remove.sh reactdemo"
       - run: scp -oStrictHostKeyChecking=no -v -r /home/circleci/project/build/* $EC2_PROD_USER@$EC2_PROD_IP:/home/ubuntu/reactdemo/
       - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo"
