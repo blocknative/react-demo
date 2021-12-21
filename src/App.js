@@ -298,7 +298,13 @@ const App = () => {
   return (
     <main>
       <header className="user-info-container">
-        <img className="bn-logo-demo" src={BNLogo} alt="Block Native Logo" />
+      <a className='bn-logo-link'
+          href="https://www.blocknative.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Blocknative Site">
+          <img className="bn-logo-demo" src={BNLogo} alt="Block Native Logo" />
+        </a>
         <div className="user-info">
           {ens?.name ? (
             <span>
