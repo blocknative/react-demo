@@ -14,10 +14,13 @@ main {
   box-sizing: border-box;
 }
 
-.bn-logo {
-  width: 16rem;
+.bn-logo-link {
   position: absolute;
   left: 12px;
+}
+
+.bn-logo-demo {
+  width: 16rem;
 }
 
 .main-content {
@@ -139,12 +142,12 @@ main {
   justify-content: center;
 }
 
-@media screen and (max-width: 1275px) {
+@media screen and (max-width: 1375px) {
   .user-info-container {
     flex-direction: column;
   }
 
-  .bn-logo {
+  .bn-logo-link {
     position: initial;
     margin: auto;
   }
