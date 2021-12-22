@@ -1,0 +1,74 @@
+.bn-logo-link {
+  position: absolute;
+  left: 12px;
+}
+
+.bn-logo-demo {
+  width: 16rem;
+}
+
+.user-info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.6);
+  min-height: 4rem;
+  margin: 0.25rem;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+}
+
+.user-info {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  border-radius: 4px;
+}
+
+.user-info span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  position: relative;
+  margin: 1rem;
+  border: 1px solid black;
+  border-radius: 12px;
+  margin: 0.25rem 1rem;
+}
+
+.user-info .user-address {
+  max-width: 92%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.user-avatar {
+  width: 32px;
+  border-radius: 100%;
+  border: 1px solid black;
+  left: 0;
+  transform: translate(-50%, 0);
+  position: absolute;
+}
+
+@media screen and (max-width: 1375px) {
+  .user-info-container {
+    flex-direction: column;
+  }
+
+  .bn-logo-link {
+    position: initial;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .user-info {
+    width: 100%;
+  }
+}
