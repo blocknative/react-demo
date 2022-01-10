@@ -80,7 +80,7 @@ export function initOnboard(subscriptions) {
         // Ronin now only works on Axie's domains and will open
         // to be used by other domains when the Ronin chain is ready"
         // Info on Ronin setup/localDev/testing https://github.com/blocknative/onboard/pull/757#issue-1071697485
-        // q{ walletName: 'ronin' }
+        // { walletName: 'ronin' }
       ]
     },
     walletCheck: [
