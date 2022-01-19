@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.13.9-0.0.1",
+  "version": "0.13.10",
   "dependencies": {
     "bnc-notify": "^1.9.2",
     "bnc-notify-staging": "https://github.com/blocknative/notify#develop",
