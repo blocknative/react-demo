@@ -4479,10 +4479,10 @@ bnc-notify@^1.9.2:
     walletlink "^2.1.6"
     web3-provider-engine "^15.0.4"
 
-bnc-onboard@^1.37.0:
-  version "1.37.0"
-  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.37.0.tgz#837238933b7461d898bc8dfb3e56354004237b44"
-  integrity sha512-B1itICd54MUhbwTycRX03p5f2DgRmQmJ3TLbUugVfjEJW1hYdhZ3w2JWaiDiQrCPDdmu4qSook7RUghZrBi7Zg==
+bnc-onboard@^1.37.1:
+  version "1.37.1"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.37.1.tgz#6b9196ae188aabcf860580066cdb453cfb8ab25e"
+  integrity sha512-zAnmRXJHog2N7lbwqcsi+bdELVubWK4bP2SiJs2R9BKVWQav+meZyFJ6C/W/FR0a0vNELo5fV00fFw8qPUOYwA==
   dependencies:
     "@cvbb/eth-keyring" "^1.1.0"
     "@ensdomains/ensjs" "^2.0.1"
@@ -4513,7 +4513,7 @@ bnc-onboard@^1.37.0:
     hdkey "^2.0.1"
     regenerator-runtime "^0.13.7"
     trezor-connect "^8.1.9"
-    walletlink "^2.2.6"
+    walletlink "^2.4.4"
     web3-provider-engine "^15.0.4"
 
 bnc-sdk@^3.4.1, bnc-sdk@^3.5.0:
@@ -15074,15 +15074,14 @@ walletlink@^2.1.6:
     stream-browserify "^3.0.0"
     util "^0.12.4"
 
-walletlink@^2.2.6:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/walletlink/-/walletlink-2.2.6.tgz#cfea3ba94e5ea33e87b0a2f31151a77ee1a59d72"
-  integrity sha512-4TF1kkpo9aq1QlfKv6jTCEsV8Rc+1RIuXn2EtsTJt9/H02fG3oy7k49sqB4gXZ9CWN48yoXnmSwq1GdkvfYGjw==
+walletlink@^2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/walletlink/-/walletlink-2.4.4.tgz#dc2a71d1d235335ef844cfb83da7eb9c264521d0"
+  integrity sha512-BzEfSXhykuVYv0Ltv0nQtxkCzBGQk7tJ1D46wF7N/P23USiJap48i8YXa1o+5WmcxonWwA3//HWVkguJ6vHwMg==
   dependencies:
     "@metamask/safe-event-emitter" "2.0.0"
     bind-decorator "^1.0.11"
     bn.js "^5.1.1"
-    buffer "^6.0.3"
     clsx "^1.1.0"
     eth-block-tracker "4.4.3"
     eth-json-rpc-filters "4.2.2"
@@ -15093,7 +15092,6 @@ walletlink@^2.2.6:
     preact "^10.5.9"
     rxjs "^6.6.3"
     stream-browserify "^3.0.0"
-    util "^0.12.4"
 
 warning@^4.0.3:
   version "4.0.3"
