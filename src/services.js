@@ -43,9 +43,13 @@ export function initOnboard(subscriptions) {
           appName: 'Onboard Demo',
           rpcUrl
         },
+
+        // coinbase is mobile only
         { walletName: 'coinbase' },
-        { walletName: 'status' },
+        // walletLink is desktop support for Coinbase
         { walletName: 'walletLink', rpcUrl },
+        
+        { walletName: 'status' },
         {
           walletName: 'portis',
           apiKey: 'b2b7586f-2b1e-4c30-a7fb-c2d1533b153b'
