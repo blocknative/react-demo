@@ -43,9 +43,13 @@ export function initOnboard(subscriptions) {
           appName: 'Onboard Demo',
           rpcUrl
         },
+
+        // coinbase is mobile only
         { walletName: 'coinbase' },
-        { walletName: 'status' },
+        // walletLink is desktop support for Coinbase
         { walletName: 'walletLink', rpcUrl },
+        
+        { walletName: 'status' },
         {
           walletName: 'portis',
           apiKey: 'b2b7586f-2b1e-4c30-a7fb-c2d1533b153b'
@@ -77,6 +81,7 @@ export function initOnboard(subscriptions) {
         { walletName: 'tally' },
         { walletName: 'blankwallet' },
         { walletName: 'mathwallet' },
+        { walletName: '1inch' },
         // Ronin now only works on Axie's domains and will open
         // to be used by other domains when the Ronin chain is ready"
         // Info on Ronin setup/localDev/testing https://github.com/blocknative/onboard/pull/757#issue-1071697485
