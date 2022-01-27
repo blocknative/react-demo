@@ -77,6 +77,7 @@ export function initOnboard(subscriptions) {
         { walletName: 'tally' },
         { walletName: 'blankwallet' },
         { walletName: 'mathwallet' },
+        { walletName: '1inch' },
         // Ronin now only works on Axie's domains and will open
         // to be used by other domains when the Ronin chain is ready"
         // Info on Ronin setup/localDev/testing https://github.com/blocknative/onboard/pull/757#issue-1071697485
