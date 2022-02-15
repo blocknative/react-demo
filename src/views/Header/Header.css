@@ -1,6 +1,6 @@
 .bn-logo-link {
   position: absolute;
-  left: 12px;
+  left: 1.5rem;
 }
 
 .bn-logo-demo {
@@ -56,14 +56,14 @@
   position: absolute;
 }
 
-@media screen and (max-width: 1375px) {
+@media screen and (max-width: 1395px) {
   .user-info-container {
     flex-direction: column;
   }
 
   .bn-logo-link {
     position: initial;
-    margin: auto;
+    margin: 0.4rem auto;
   }
 }
 
