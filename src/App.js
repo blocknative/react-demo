@@ -40,7 +40,6 @@ const App = () => {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
   const connectedWallets = useWallets()
-  console.log(wallet, connecting, connectedChain, connectedWallets)
 
   const [web3Onboard, setWeb3Onboard] = useState(null)
   const [ens, setEns] = useState(null)
