@@ -39,17 +39,14 @@ const App = () => {
 
   const [{ wallet, connecting }, connect] = useConnectWallet()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
-  // const connectedWallets = useWallets()
+  const connectedWallets = useWallets()
 
   const [web3Onboard, setWeb3Onboard] = useState(null)
 
 
-  // const [address, setAddress] = useState(null)
   const [ens, setEns] = useState(null)
-  // const [network, setNetwork] = useState(null)
   const [balance, setBalance] = useState(null)
   const [address, setAddress] = useState(null)
-  // const [wallet, setWallet] = useState({})
   console.log(wallet, connecting, connectedChain)
 
   const [notify, setNotify] = useState(null)
@@ -61,30 +58,6 @@ const App = () => {
   const [toAddress, setToAddress] = useState('')
 
   useEffect(() => {
-    //     const onboard = initWeb3Onboard({
-    //   address: setAddress,
-    //   ens: setEns,
-    //   network: setNetwork,
-    //   balance: setBalance,
-    //   wallet: wallet => {
-    //     if (wallet.provider) {
-    //       setWallet(wallet)
-
-    //       provider = new ethers.providers.Web3Provider(wallet.provider, 'any')
-
-    //       internalTransferContract = new ethers.Contract(
-    //         '0xb8c12850827ded46b9ded8c1b6373da0c4d60370',
-    //         internalTransferABI,
-    //         provider.getUncheckedSigner()
-    //       )
-
-    //       window.localStorage.setItem('selectedWallet', wallet.name)
-    //     } else {
-    //       provider = null
-    //       setWallet({})
-    //     }
-    //   }
-    // })
 
     setWeb3Onboard(initWeb3Onboard)
 
@@ -93,22 +66,30 @@ const App = () => {
 
   useEffect(() => {
     if (connecting || !wallet) return
+
     setAddress(wallet.accounts[0].address)
     setBalance(wallet.accounts[0].balance)
     
-    console.log(wallet)
-  }, [wallet])
+  }, [wallet, connectedWallets])
+
+  useEffect(() => {
+    if (!connectedWallets.length) return
+    const connectedWalletsLabelArray = connectedWallets.map(({ label }) => label)
+    window.localStorage.setItem(
+      'connectedWallets',
+      JSON.stringify(connectedWalletsLabelArray)
+    )
+  }, [connectedWallets])
 
   useEffect(() => {
     const previouslyConnectedWallets =
-      window.localStorage.getItem('connectedWallets')
+      JSON.parse(window.localStorage.getItem('connectedWallets'))
 
-      console.log(previouslyConnectedWallets)
-
-    if (previouslyConnectedWallets && web3Onboard) {
-      // connect({ autoSelect: previouslyConnectedWallets[0] })
+    async function setWalletFromLocalStorage() {
+      await connect({ autoSelect: previouslyConnectedWallets[0] });
     }
-  }, [])
+    setWalletFromLocalStorage();
+  }, [web3Onboard])
 
   const readyToTransact = async () => {
     if (connecting || !wallet) {
@@ -116,7 +97,6 @@ const App = () => {
       if (!walletSelected) return false
     }
 
-    // const ready = await web3Onboard.walletCheck()
     return true
   }
 
