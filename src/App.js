@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
-import { initOnboard, initNotify } from './services'
+import { initWeb3Onboard, initNotify } from './services'
+import {
+  useConnectWallet,
+  useSetChain,
+  useWallets
+} from '@web3-onboard/react'
 import './App.css'
 import Header from './views/Header/Header.js'
 import Footer from './views/Footer/Footer.js'
@@ -31,15 +36,14 @@ const internalTransferABI = [
 let internalTransferContract
 
 const App = () => {
-  const [address, setAddress] = useState(null)
+
+  const [{ wallet, connecting }, connect, disconnect] = useConnectWallet()
+  const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
+  const connectedWallets = useWallets()
+
+  const [web3Onboard, setWeb3Onboard] = useState(null)
   const [ens, setEns] = useState(null)
-  const [network, setNetwork] = useState(null)
-  const [balance, setBalance] = useState(null)
-  const [wallet, setWallet] = useState({})
-
-  const [onboard, setOnboard] = useState(null)
   const [notify, setNotify] = useState(null)
-
   const [darkMode, setDarkMode] = useState(false)
   const [desktopPosition, setDesktopPosition] = useState('bottomRight')
   const [mobilePosition, setMobilePosition] = useState('top')
@@ -47,53 +51,59 @@ const App = () => {
   const [toAddress, setToAddress] = useState('')
 
   useEffect(() => {
-    const onboard = initOnboard({
-      address: setAddress,
-      ens: setEns,
-      network: setNetwork,
-      balance: setBalance,
-      wallet: wallet => {
-        if (wallet.provider) {
-          setWallet(wallet)
-
-          provider = new ethers.providers.Web3Provider(wallet.provider, 'any')
-
-          internalTransferContract = new ethers.Contract(
-            '0xb8c12850827ded46b9ded8c1b6373da0c4d60370',
-            internalTransferABI,
-            provider.getUncheckedSigner()
-          )
-
-          window.localStorage.setItem('selectedWallet', wallet.name)
-        } else {
-          provider = null
-          setWallet({})
-        }
-      }
-    })
-
-    setOnboard(onboard)
+    setWeb3Onboard(initWeb3Onboard)
 
     setNotify(initNotify())
   }, [])
 
-  useEffect(() => {
-    const previouslySelectedWallet =
-      window.localStorage.getItem('selectedWallet')
 
-    if (previouslySelectedWallet && onboard) {
-      onboard.walletSelect(previouslySelectedWallet)
+  useEffect(() => {
+    if (!connectedWallets.length) return
+
+    const connectedWalletsLabelArray = connectedWallets.map(({ label }) => label)
+    window.localStorage.setItem(
+      'connectedWallets',
+      JSON.stringify(connectedWalletsLabelArray)
+    )
+  }, [connectedWallets])
+
+
+  useEffect(() => {
+    if (!wallet?.provider) {
+      provider = null
+    } else {
+      provider = new ethers.providers.Web3Provider(wallet.provider, 'any')
+  
+      internalTransferContract = new ethers.Contract(
+        '0xb8c12850827ded46b9ded8c1b6373da0c4d60370',
+        internalTransferABI,
+        provider.getUncheckedSigner()
+      )
     }
-  }, [onboard])
+  }, [wallet])
+
+  useEffect(() => {
+    const previouslyConnectedWallets =
+      JSON.parse(window.localStorage.getItem('connectedWallets'))
+
+    if (previouslyConnectedWallets?.length) {
+      async function setWalletFromLocalStorage() {
+        await connect({ autoSelect: previouslyConnectedWallets[0] });
+      }
+      setWalletFromLocalStorage();
+    }
+
+  }, [web3Onboard, connect])
 
   const readyToTransact = async () => {
-    if (!provider) {
-      const walletSelected = await onboard.walletSelect()
+    if (!wallet) {
+      const walletSelected = await connect()
       if (!walletSelected) return false
     }
+    // prompt user to switch to Rinkeby for test
+    await setChain({ chainId: '0x4' })
 
-    const ready = await onboard.walletCheck()
-    return ready
+    return true
   }
 
   const sendHash = async () => {
@@ -176,7 +186,7 @@ const App = () => {
       sendTransaction,
       gasPrice,
       estimateGas,
-      balance: onboard.getState().balance,
+      balance: wallet.balance,
       txDetails
     })
 
@@ -291,68 +301,88 @@ const App = () => {
     )
   }
 
-  if (!onboard || !notify) return <div>Loading...</div>
+  if (!web3Onboard || !notify) return <div>Loading...</div>
 
   return (
     <main>
-      <Header network={network} address={address} balance={balance} ens={ens} />
+      <Header connectedChain={wallet ? connectedChain : null} address={wallet?.accounts[0]?.address} balance={wallet?.accounts[0]?.balance} ens={ens} />
       <section className="main">
         <div className="main-content">
           <div className="vertical-main-container">
             <div className="container onboard">
               <h2>Onboarding Users with Onboard</h2>
+              {wallet && (
+                  <div className="network-select">
+                    <label>Switch Chains</label>
+                    {settingChain ? (
+                      <span>Switching Chains...</span>
+                    ) : (
+                      <select
+                        onChange={({ target: { value } }) =>
+                          console.log('onChange called') || setChain({ chainId: value })
+                        }
+                        value={connectedChain.id}
+                      >
+                        {chains.map(({ id, label }) => {
+                          return <option value={id}>{label}</option>
+                        })}
+                      </select>
+                    )}
+                  </div>
+                )}
               <div>
-                {!wallet.provider && (
+                {!wallet && (
                   <button
                     className="bn-demo-button"
                     onClick={() => {
-                      onboard.walletSelect()
+                      connect()
                     }}
                   >
                     Select a Wallet
                   </button>
                 )}
 
-                {wallet.provider && (
+                {wallet && (
                   <button
                     className="bn-demo-button"
-                    onClick={onboard.walletCheck}
+                    onClick={() => {
+                      connect()
+                    }}
                   >
-                    Wallet Checks
+                    Connect Another Wallet
                   </button>
                 )}
 
-                {wallet.provider && (
+                {wallet && (
                   <button
                     className="bn-demo-button"
-                    onClick={onboard.walletSelect}
-                  >
-                    Switch Wallets
-                  </button>
-                )}
-
-                {wallet.provider && (
-                  <button
-                    className="bn-demo-button"
-                    onClick={onboard.walletReset}
+                    onClick={() => {
+                      disconnect(wallet)
+                      const connectedWalletsList = connectedWallets.map(({ label }) => label)
+                      window.localStorage.setItem(
+                        'connectedWallets',
+                        JSON.stringify(connectedWalletsList)
+                      )
+                    }}
                   >
                     Reset Wallet State
                   </button>
                 )}
-                {wallet.provider && wallet.dashboard && (
-                  <button className="bn-demo-button" onClick={wallet.dashboard}>
+                {wallet && wallet?.dashboard && (
+                  <button className="bn-demo-button" onClick={wallet?.dashboard}>
                     Open Wallet Dashboard
                   </button>
                 )}
-                {wallet.provider && wallet.type === 'hardware' && address && (
+                {wallet && wallet?.type === 'hardware' && wallet.accounts[0].address && (
                   <button
                     className="bn-demo-button"
-                    onClick={onboard.accountSelect}
+                    onClick={web3Onboard.accountSelect}
                   >
                     Switch Account
                   </button>
                 )}
               </div>
+
             </div>
             <div className="container notify">
               <h2>Transaction Notifications with Notify</h2>
@@ -424,11 +454,11 @@ const App = () => {
                 <button
                   className="bn-demo-button"
                   onClick={async () => {
-                    if (!address) {
+                    if (!wallet.accounts[0].address) {
                       await readyToTransact()
                     }
 
-                    address && notify.account(address)
+                    wallet.accounts[0].address && notify.account(wallet.accounts[0].address)
                   }}
                 >
                   Watch Current Account
@@ -436,11 +466,11 @@ const App = () => {
                 <button
                   className="bn-demo-button"
                   onClick={async () => {
-                    if (!address) {
+                    if (!wallet.accounts[0].address) {
                       await readyToTransact()
                     }
 
-                    address && notify.unsubscribe(address)
+                    wallet.accounts[0].address && notify.unsubscribe(wallet.accounts[0].address)
                   }}
                 >
                   Un-watch Current Account
@@ -479,7 +509,6 @@ const App = () => {
               onClick={() => {
                 setDarkMode(true)
                 notify.config({ darkMode: true })
-                onboard.config({ darkMode: true })
               }}
             >
               Dark Mode
@@ -491,7 +520,6 @@ const App = () => {
               onClick={() => {
                 setDarkMode(false)
                 notify.config({ darkMode: false })
-                onboard.config({ darkMode: false })
               }}
             >
               Light Mode

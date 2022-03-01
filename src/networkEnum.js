@@ -1,14 +1,14 @@
 const networkEnum = Object.freeze({
-  1: 'Ethereum Main',
-  3: 'Ropsten',
-  4: 'Rinkeby',
-  5: 'Goerli',
-  25: 'Cronos',
-  42: 'Kovan',
-  56: 'BSC',
-  100: 'XDai',
-  137: 'Polygon',
-  250: 'Fantom',
+  '0x1': 'Ethereum Main',
+  '0x3': 'Ropsten',
+  '0x4': 'Rinkeby',
+  '0x5': 'Goerli',
+  '0x25': 'Cronos',
+  '0x42': 'Kovan',
+  '0x56': 'BSC',
+  '0x100': 'XDai',
+  '0x137': 'Polygon',
+  '0x250': 'Fantom',
   localhost: 'localhost'
 });
 export default networkEnum;
