@@ -40,7 +40,7 @@ const App = () => {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
   const connectedWallets = useWallets()
-  console.log(wallet, connecting, connectedChain)
+  console.log(wallet, connecting, connectedChain, connectedWallets)
 
   const [web3Onboard, setWeb3Onboard] = useState(null)
   const [ens, setEns] = useState(null)
@@ -310,6 +310,25 @@ const App = () => {
           <div className="vertical-main-container">
             <div className="container onboard">
               <h2>Onboarding Users with Onboard</h2>
+              {wallet && (
+                  <div className="network-select">
+                    <label>Switch Chain</label>
+                    {settingChain ? (
+                      <span>Switching chain...</span>
+                    ) : (
+                      <select
+                        onChange={({ target: { value } }) =>
+                          console.log('onChange called') || setChain({ chainId: value })
+                        }
+                        value={connectedChain.id}
+                      >
+                        {chains.map(({ id, label }) => {
+                          return <option value={id}>{label}</option>
+                        })}
+                      </select>
+                    )}
+                  </div>
+                )}
               <div>
                 {!wallet && (
                   <button
@@ -362,6 +381,7 @@ const App = () => {
                   </button>
                 )}
               </div>
+
             </div>
             <div className="container notify">
               <h2>Transaction Notifications with Notify</h2>

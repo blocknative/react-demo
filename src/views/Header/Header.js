@@ -38,8 +38,9 @@ const Header = (props) => {
         )}
         {balance != null && (
           <span>
-            {Number(balance) > 0 ? balance / 1000000000000000000 : balance}{' '}
-            ETH
+            {
+              Object.keys(balance).map((val, k) => <div k={k}>{balance[val]}</div>)
+            }
           </span>
         )}
         {connectedChain && connectedChain?.id && (
