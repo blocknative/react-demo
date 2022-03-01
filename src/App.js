@@ -37,7 +37,7 @@ let internalTransferContract
 
 const App = () => {
 
-  const [{ wallet, connecting }, connect] = useConnectWallet()
+  const [{ wallet, connecting }, connect, disconnect] = useConnectWallet()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
   const connectedWallets = useWallets()
 
@@ -45,8 +45,8 @@ const App = () => {
 
 
   const [ens, setEns] = useState(null)
-  const [balance, setBalance] = useState(null)
-  const [address, setAddress] = useState(null)
+  // const [balance, setBalance] = useState(null)
+  // const [address, setAddress] = useState(null)
   console.log(wallet, connecting, connectedChain)
 
   const [notify, setNotify] = useState(null)
@@ -64,15 +64,18 @@ const App = () => {
     setNotify(initNotify())
   }, [])
 
-  useEffect(() => {
-    if (connecting || !wallet) return
+  // useEffect(() => {
+  //   if (connecting || !connectedWallets.length) return
 
-    setAddress(wallet.accounts[0].address)
-    setBalance(wallet.accounts[0].balance)
+  //   console.log(wallet, connectedWallets)
+
+  //   setAddress(wallet.accounts[0].address)
+  //   setBalance(wallet.accounts[0].balance)
     
-  }, [wallet, connectedWallets])
+  // }, [])
 
   useEffect(() => {
+    console.log(connectedWallets)
     if (!connectedWallets.length) return
     const connectedWalletsLabelArray = connectedWallets.map(({ label }) => label)
     window.localStorage.setItem(
@@ -82,13 +85,22 @@ const App = () => {
   }, [connectedWallets])
 
   useEffect(() => {
+    console.log('setting wallet on pageload')
     const previouslyConnectedWallets =
       JSON.parse(window.localStorage.getItem('connectedWallets'))
-
-    async function setWalletFromLocalStorage() {
-      await connect({ autoSelect: previouslyConnectedWallets[0] });
+    if (previouslyConnectedWallets?.length) {
+      async function setWalletFromLocalStorage() {
+        await connect({ autoSelect: previouslyConnectedWallets[0] });
+      }
+      setWalletFromLocalStorage();
     }
-    setWalletFromLocalStorage();
+
+    if (connecting || !connectedWallets.length) return
+
+    console.log(wallet, connectedWallets)
+
+    // setAddress(wallet.accounts[0].address)
+    // setBalance(wallet.accounts[0].balance)
   }, [web3Onboard])
 
   const readyToTransact = async () => {
@@ -296,11 +308,11 @@ const App = () => {
   }
 
   if (!web3Onboard || !notify) return <div>Loading...</div>
-  console.log(connectedChain, address, balance)
+  console.log(connectedChain, wallet?.accounts[0]?.address, wallet?.accounts[0]?.balance)
 
   return (
     <main>
-      <Header connectedChain={connectedChain} address={address} balance={null} ens={ens} />
+      <Header connectedChain={connectedChain} address={wallet?.accounts[0]?.address} balance={wallet?.accounts[0]?.balance} ens={ens} />
       <section className="main">
         <div className="main-content">
           <div className="vertical-main-container">
@@ -321,15 +333,6 @@ const App = () => {
                 {wallet && (
                   <button
                     className="bn-demo-button"
-                    onClick={web3Onboard.walletCheck}
-                  >
-                    Wallet Checks
-                  </button>
-                )}
-
-                {wallet && (
-                  <button
-                    className="bn-demo-button"
                     onClick={() => {
                       connect()
                     }}
@@ -341,7 +344,10 @@ const App = () => {
                 {wallet && (
                   <button
                     className="bn-demo-button"
-                    onClick={() => web3Onboard.disconnectWallet({ label: wallet?.label })}
+                    onClick={() => {
+                      disconnect(wallet)
+                      window.localStorage.removeItem('connectedWallets')
+                    }}
                   >
                     Reset Wallet State
                   </button>
