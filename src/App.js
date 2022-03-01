@@ -304,7 +304,7 @@ const App = () => {
 
   return (
     <main>
-      <Header connectedChain={connectedChain} address={wallet?.accounts[0]?.address} balance={wallet?.accounts[0]?.balance} ens={ens} />
+      <Header connectedChain={wallet ? connectedChain : null} address={wallet?.accounts[0]?.address} balance={wallet?.accounts[0]?.balance} ens={ens} />
       <section className="main">
         <div className="main-content">
           <div className="vertical-main-container">

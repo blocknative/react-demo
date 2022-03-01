@@ -2964,12 +2964,21 @@
     joi "^17.4.2"
     rxjs "^7.5.2"
 
-"@web3-onboard/core@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.0.0.tgz#034cc6ca66b7b082f87fa55da68216ef9015a02d"
-  integrity sha512-zXB7Dm8rQXf13B1s1psg1Lx4iSNgHBNRSTsg46jdGp7QVjUp58zdtRSM3j5h172qSp/5+Q30oYwtSmPdoZGpgg==
+"@web3-onboard/common@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/common/-/common-2.0.1.tgz#31355bb497ac13f77f816e7d34ad8b6d7d84ea74"
+  integrity sha512-y2eJEfekIJ1GS45ReDhAKsvOZCEf6LmD7F901qzPECy6cIV3IpyzPzneLLp31isPEOQm2IUwGBb3Y+iDKiDIDA==
   dependencies:
-    "@web3-onboard/common" "^2.0.0"
+    ethers "5.5.4"
+    joi "^17.4.2"
+    rxjs "^7.5.2"
+
+"@web3-onboard/core@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.0.2.tgz#af748ac798232f1c8d3562f67621440f2b9c981d"
+  integrity sha512-3WZIPyPLsekN7uNq72tWVXGxU/iUfwr/1Z3ArEkB+pEu7gjLqu4mDDMtcXnIBBKWKW/6ubhMwmqUSQAnXqQjPA==
+  dependencies:
+    "@web3-onboard/common" "^2.0.1"
     bowser "^2.11.0"
     ethers "5.5.3"
     eventemitter3 "^4.0.7"
@@ -3043,13 +3052,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.0.0"
 
-"@web3-onboard/react@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.0.0.tgz#a42555bba32e8aa78e97e84aa76ea66194357911"
-  integrity sha512-9vInZOoGsS3KZV6jx4Pj4v/7GWWYaScFeNe+kyceZpgA5Tb/JTCtC8BcBI8rzpXRJCEfwmeLwzzDrQqtdLSDuQ==
+"@web3-onboard/react@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.0.1.tgz#ada558616676a527c854f1add7be04a66e177d98"
+  integrity sha512-H6N7UxLQE9eT3cztWGfkn+j4b1Yd1tdBDFyxMFH6iD5xDQFfporEc4J+QsJr84WA6DS/wxSuPWFSOug/Is2lTg==
   dependencies:
-    "@web3-onboard/common" "^2.0.0"
-    "@web3-onboard/core" "^2.0.0"
+    "@web3-onboard/common" "^2.0.1"
+    "@web3-onboard/core" "^2.0.2"
 
 "@web3-onboard/torus@^2.0.0":
   version "2.0.0"
