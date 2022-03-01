@@ -64,30 +64,21 @@ const App = () => {
     setNotify(initNotify())
   }, [])
 
-  // useEffect(() => {
-  //   if (connecting || !connectedWallets.length) return
-
-  //   console.log(wallet, connectedWallets)
-
-  //   setAddress(wallet.accounts[0].address)
-  //   setBalance(wallet.accounts[0].balance)
-    
-  // }, [])
 
   useEffect(() => {
-    console.log(connectedWallets)
     if (!connectedWallets.length) return
     const connectedWalletsLabelArray = connectedWallets.map(({ label }) => label)
     window.localStorage.setItem(
       'connectedWallets',
       JSON.stringify(connectedWalletsLabelArray)
     )
+    
   }, [connectedWallets])
 
   useEffect(() => {
-    console.log('setting wallet on pageload')
     const previouslyConnectedWallets =
       JSON.parse(window.localStorage.getItem('connectedWallets'))
+
     if (previouslyConnectedWallets?.length) {
       async function setWalletFromLocalStorage() {
         await connect({ autoSelect: previouslyConnectedWallets[0] });
@@ -95,12 +86,6 @@ const App = () => {
       setWalletFromLocalStorage();
     }
 
-    if (connecting || !connectedWallets.length) return
-
-    console.log(wallet, connectedWallets)
-
-    // setAddress(wallet.accounts[0].address)
-    // setBalance(wallet.accounts[0].balance)
   }, [web3Onboard])
 
   const readyToTransact = async () => {
