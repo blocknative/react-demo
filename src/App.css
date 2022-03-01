@@ -55,7 +55,7 @@ select {
   background-repeat: no-repeat, repeat;
   background-position: right 1rem top 0.9rem, 0 0;
   background-size: 0.65em auto, 100%;
-  padding: 0.5rem 2rem 0.5rem 1rem;
+  padding: 0.4rem 2rem 0.4rem 1rem;
   scrollbar-width: none;
   -ms-overflow-style: none;
   border: 1px solid #6370e5;
