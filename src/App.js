@@ -40,17 +40,11 @@ const App = () => {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
   const connectedWallets = useWallets()
-
-  const [web3Onboard, setWeb3Onboard] = useState(null)
-
-
-  const [ens, setEns] = useState(null)
-  // const [balance, setBalance] = useState(null)
-  // const [address, setAddress] = useState(null)
   console.log(wallet, connecting, connectedChain)
 
+  const [web3Onboard, setWeb3Onboard] = useState(null)
+  const [ens, setEns] = useState(null)
   const [notify, setNotify] = useState(null)
-
   const [darkMode, setDarkMode] = useState(false)
   const [desktopPosition, setDesktopPosition] = useState('bottomRight')
   const [mobilePosition, setMobilePosition] = useState('top')
@@ -58,7 +52,6 @@ const App = () => {
   const [toAddress, setToAddress] = useState('')
 
   useEffect(() => {
-
     setWeb3Onboard(initWeb3Onboard)
 
     setNotify(initNotify())
@@ -67,13 +60,28 @@ const App = () => {
 
   useEffect(() => {
     if (!connectedWallets.length) return
+
     const connectedWalletsLabelArray = connectedWallets.map(({ label }) => label)
     window.localStorage.setItem(
       'connectedWallets',
       JSON.stringify(connectedWalletsLabelArray)
     )
-    
   }, [connectedWallets])
+
+
+  useEffect(() => {
+    if (!wallet?.provider) {
+      provider = null
+    } else {
+      provider = new ethers.providers.Web3Provider(wallet.provider, 'any')
+  
+      internalTransferContract = new ethers.Contract(
+        '0xb8c12850827ded46b9ded8c1b6373da0c4d60370',
+        internalTransferABI,
+        provider.getUncheckedSigner()
+      )
+    }
+  }, [wallet])
 
   useEffect(() => {
     const previouslyConnectedWallets =
@@ -86,10 +94,10 @@ const App = () => {
       setWalletFromLocalStorage();
     }
 
-  }, [web3Onboard])
+  }, [web3Onboard, connect])
 
   const readyToTransact = async () => {
-    if (connecting || !wallet) {
+    if (!wallet) {
       const walletSelected = await connect()
       if (!walletSelected) return false
     }
@@ -103,7 +111,7 @@ const App = () => {
       return
     }
 
-    const signer = wallet.provider.getUncheckedSigner()
+    const signer = provider.getUncheckedSigner()
 
     const { hash } = await signer.sendTransaction({
       to: toAddress,
@@ -156,7 +164,7 @@ const App = () => {
       alert('An Ethereum address to send Eth to is required.')
     }
 
-    const signer = wallet.provider.getUncheckedSigner()
+    const signer = provider.getUncheckedSigner()
 
     const txDetails = {
       to: toAddress,
@@ -167,7 +175,7 @@ const App = () => {
       return signer.sendTransaction(txDetails).then(tx => tx.hash)
     }
 
-    const gasPrice = () => wallet.provider.getGasPrice().then(res => res.toString())
+    const gasPrice = () => provider.getGasPrice().then(res => res.toString())
 
     const estimateGas = () => {
       return provider.estimateGas(txDetails).then(res => res.toString())
@@ -177,7 +185,7 @@ const App = () => {
       sendTransaction,
       gasPrice,
       estimateGas,
-      balance: wallet.balance,
+      balance: wallet?.accounts[0]?.balance,
       txDetails
     })
 
@@ -293,7 +301,6 @@ const App = () => {
   }
 
   if (!web3Onboard || !notify) return <div>Loading...</div>
-  console.log(connectedChain, wallet?.accounts[0]?.address, wallet?.accounts[0]?.balance)
 
   return (
     <main>
@@ -331,7 +338,11 @@ const App = () => {
                     className="bn-demo-button"
                     onClick={() => {
                       disconnect(wallet)
-                      window.localStorage.removeItem('connectedWallets')
+                      const connectedWalletsList = connectedWallets.map(({ label }) => label)
+                      window.localStorage.setItem(
+                        'connectedWallets',
+                        JSON.stringify(connectedWalletsList)
+                      )
                     }}
                   >
                     Reset Wallet State
@@ -477,7 +488,6 @@ const App = () => {
               onClick={() => {
                 setDarkMode(true)
                 notify.config({ darkMode: true })
-                // web3Onboard.config({ darkMode: true })
               }}
             >
               Dark Mode
@@ -489,7 +499,6 @@ const App = () => {
               onClick={() => {
                 setDarkMode(false)
                 notify.config({ darkMode: false })
-                // web3Onboard.config({ darkMode: false })
               }}
             >
               Light Mode
