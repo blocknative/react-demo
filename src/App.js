@@ -185,7 +185,7 @@ const App = () => {
       sendTransaction,
       gasPrice,
       estimateGas,
-      balance: wallet?.accounts[0]?.balance,
+      balance: wallet.balance,
       txDetails
     })
 
