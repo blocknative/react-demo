@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
-import { initOnboard, initNotify } from './services'
+import { initWeb3Onboard, initNotify } from './services'
+import {
+  useConnectWallet,
+  useSetChain,
+  useWallets
+} from '@web3-onboard/react'
 import './App.css'
 import Header from './views/Header/Header.js'
 import Footer from './views/Footer/Footer.js'
@@ -31,13 +36,22 @@ const internalTransferABI = [
 let internalTransferContract
 
 const App = () => {
-  const [address, setAddress] = useState(null)
-  const [ens, setEns] = useState(null)
-  const [network, setNetwork] = useState(null)
-  const [balance, setBalance] = useState(null)
-  const [wallet, setWallet] = useState({})
 
-  const [onboard, setOnboard] = useState(null)
+  const [{ wallet, connecting }, connect] = useConnectWallet()
+  const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
+  // const connectedWallets = useWallets()
+
+  const [web3Onboard, setWeb3Onboard] = useState(null)
+
+
+  // const [address, setAddress] = useState(null)
+  const [ens, setEns] = useState(null)
+  // const [network, setNetwork] = useState(null)
+  const [balance, setBalance] = useState(null)
+  const [address, setAddress] = useState(null)
+  // const [wallet, setWallet] = useState({})
+  console.log(wallet, connecting, connectedChain)
+
   const [notify, setNotify] = useState(null)
 
   const [darkMode, setDarkMode] = useState(false)
@@ -47,53 +61,63 @@ const App = () => {
   const [toAddress, setToAddress] = useState('')
 
   useEffect(() => {
-    const onboard = initOnboard({
-      address: setAddress,
-      ens: setEns,
-      network: setNetwork,
-      balance: setBalance,
-      wallet: wallet => {
-        if (wallet.provider) {
-          setWallet(wallet)
+    //     const onboard = initWeb3Onboard({
+    //   address: setAddress,
+    //   ens: setEns,
+    //   network: setNetwork,
+    //   balance: setBalance,
+    //   wallet: wallet => {
+    //     if (wallet.provider) {
+    //       setWallet(wallet)
 
-          provider = new ethers.providers.Web3Provider(wallet.provider, 'any')
+    //       provider = new ethers.providers.Web3Provider(wallet.provider, 'any')
 
-          internalTransferContract = new ethers.Contract(
-            '0xb8c12850827ded46b9ded8c1b6373da0c4d60370',
-            internalTransferABI,
-            provider.getUncheckedSigner()
-          )
+    //       internalTransferContract = new ethers.Contract(
+    //         '0xb8c12850827ded46b9ded8c1b6373da0c4d60370',
+    //         internalTransferABI,
+    //         provider.getUncheckedSigner()
+    //       )
 
-          window.localStorage.setItem('selectedWallet', wallet.name)
-        } else {
-          provider = null
-          setWallet({})
-        }
-      }
-    })
+    //       window.localStorage.setItem('selectedWallet', wallet.name)
+    //     } else {
+    //       provider = null
+    //       setWallet({})
+    //     }
+    //   }
+    // })
 
-    setOnboard(onboard)
+    setWeb3Onboard(initWeb3Onboard)
 
     setNotify(initNotify())
   }, [])
 
   useEffect(() => {
-    const previouslySelectedWallet =
-      window.localStorage.getItem('selectedWallet')
+    if (connecting || !wallet) return
+    setAddress(wallet.accounts[0].address)
+    setBalance(wallet.accounts[0].balance)
+    
+    console.log(wallet)
+  }, [wallet])
 
-    if (previouslySelectedWallet && onboard) {
-      onboard.walletSelect(previouslySelectedWallet)
+  useEffect(() => {
+    const previouslyConnectedWallets =
+      window.localStorage.getItem('connectedWallets')
+
+      console.log(previouslyConnectedWallets)
+
+    if (previouslyConnectedWallets && web3Onboard) {
+      // connect({ autoSelect: previouslyConnectedWallets[0] })
     }
-  }, [onboard])
+  }, [])
 
   const readyToTransact = async () => {
-    if (!provider) {
-      const walletSelected = await onboard.walletSelect()
+    if (connecting || !wallet) {
+      const walletSelected = await connect()
       if (!walletSelected) return false
     }
 
-    const ready = await onboard.walletCheck()
-    return ready
+    // const ready = await web3Onboard.walletCheck()
+    return true
   }
 
   const sendHash = async () => {
@@ -102,7 +126,7 @@ const App = () => {
       return
     }
 
-    const signer = provider.getUncheckedSigner()
+    const signer = wallet.provider.getUncheckedSigner()
 
     const { hash } = await signer.sendTransaction({
       to: toAddress,
@@ -155,7 +179,7 @@ const App = () => {
       alert('An Ethereum address to send Eth to is required.')
     }
 
-    const signer = provider.getUncheckedSigner()
+    const signer = wallet.provider.getUncheckedSigner()
 
     const txDetails = {
       to: toAddress,
@@ -166,7 +190,7 @@ const App = () => {
       return signer.sendTransaction(txDetails).then(tx => tx.hash)
     }
 
-    const gasPrice = () => provider.getGasPrice().then(res => res.toString())
+    const gasPrice = () => wallet.provider.getGasPrice().then(res => res.toString())
 
     const estimateGas = () => {
       return provider.estimateGas(txDetails).then(res => res.toString())
@@ -176,7 +200,7 @@ const App = () => {
       sendTransaction,
       gasPrice,
       estimateGas,
-      balance: onboard.getState().balance,
+      balance: wallet.balance,
       txDetails
     })
 
@@ -291,63 +315,66 @@ const App = () => {
     )
   }
 
-  if (!onboard || !notify) return <div>Loading...</div>
+  if (!web3Onboard || !notify) return <div>Loading...</div>
+  console.log(connectedChain, address, balance)
 
   return (
     <main>
-      <Header network={network} address={address} balance={balance} ens={ens} />
+      <Header connectedChain={connectedChain} address={address} balance={null} ens={ens} />
       <section className="main">
         <div className="main-content">
           <div className="vertical-main-container">
             <div className="container onboard">
               <h2>Onboarding Users with Onboard</h2>
               <div>
-                {!wallet.provider && (
+                {!wallet && (
                   <button
                     className="bn-demo-button"
                     onClick={() => {
-                      onboard.walletSelect()
+                      connect()
                     }}
                   >
                     Select a Wallet
                   </button>
                 )}
 
-                {wallet.provider && (
+                {wallet && (
                   <button
                     className="bn-demo-button"
-                    onClick={onboard.walletCheck}
+                    onClick={web3Onboard.walletCheck}
                   >
                     Wallet Checks
                   </button>
                 )}
 
-                {wallet.provider && (
+                {wallet && (
                   <button
                     className="bn-demo-button"
-                    onClick={onboard.walletSelect}
+                    onClick={() => {
+                      connect()
+                    }}
                   >
-                    Switch Wallets
+                    Connect Another Wallet
                   </button>
                 )}
 
-                {wallet.provider && (
+                {wallet && (
                   <button
                     className="bn-demo-button"
-                    onClick={onboard.walletReset}
+                    onClick={() => web3Onboard.disconnectWallet({ label: wallet?.label })}
                   >
                     Reset Wallet State
                   </button>
                 )}
-                {wallet.provider && wallet.dashboard && (
-                  <button className="bn-demo-button" onClick={wallet.dashboard}>
+                {wallet && wallet?.dashboard && (
+                  <button className="bn-demo-button" onClick={wallet?.dashboard}>
                     Open Wallet Dashboard
                   </button>
                 )}
-                {wallet.provider && wallet.type === 'hardware' && address && (
+                {wallet && wallet?.type === 'hardware' && wallet.accounts[0].address && (
                   <button
                     className="bn-demo-button"
-                    onClick={onboard.accountSelect}
+                    onClick={web3Onboard.accountSelect}
                   >
                     Switch Account
                   </button>
@@ -424,11 +451,11 @@ const App = () => {
                 <button
                   className="bn-demo-button"
                   onClick={async () => {
-                    if (!address) {
+                    if (!wallet.accounts[0].address) {
                       await readyToTransact()
                     }
 
-                    address && notify.account(address)
+                    wallet.accounts[0].address && notify.account(wallet.accounts[0].address)
                   }}
                 >
                   Watch Current Account
@@ -436,11 +463,11 @@ const App = () => {
                 <button
                   className="bn-demo-button"
                   onClick={async () => {
-                    if (!address) {
+                    if (!wallet.accounts[0].address) {
                       await readyToTransact()
                     }
 
-                    address && notify.unsubscribe(address)
+                    wallet.accounts[0].address && notify.unsubscribe(wallet.accounts[0].address)
                   }}
                 >
                   Un-watch Current Account
@@ -479,7 +506,7 @@ const App = () => {
               onClick={() => {
                 setDarkMode(true)
                 notify.config({ darkMode: true })
-                onboard.config({ darkMode: true })
+                // web3Onboard.config({ darkMode: true })
               }}
             >
               Dark Mode
@@ -491,7 +518,7 @@ const App = () => {
               onClick={() => {
                 setDarkMode(false)
                 notify.config({ darkMode: false })
-                onboard.config({ darkMode: false })
+                // web3Onboard.config({ darkMode: false })
               }}
             >
               Light Mode

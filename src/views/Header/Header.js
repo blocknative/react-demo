@@ -6,7 +6,7 @@ import './Header.css'
 
 
 const Header = (props) => {
-  const { network, address, balance, ens } = props;
+  const { connectedChain, address, balance, ens } = props;
 
   return (
     <header className="user-info-container">
@@ -42,8 +42,8 @@ const Header = (props) => {
             ETH
           </span>
         )}
-        {network && (
-          <span>{networkEnum?.[Number(network)] || 'local'} Network</span>
+        {connectedChain && connectedChain?.id && (
+          <span>{networkEnum?.[connectedChain.id] || 'local'} Network</span>
         )}
       </div>
     </header>
