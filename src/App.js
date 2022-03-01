@@ -101,6 +101,8 @@ const App = () => {
       const walletSelected = await connect()
       if (!walletSelected) return false
     }
+    // prompt user to switch to Rinkeby for test
+    await setChain({ chainId: '0x4' })
 
     return true
   }
