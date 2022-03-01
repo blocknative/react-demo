@@ -12,9 +12,9 @@ import portisModule from '@web3-onboard/portis'
 import fortmaticModule from '@web3-onboard/fortmatic'
 import torusModule from '@web3-onboard/torus'
 import keepkeyModule from '@web3-onboard/keepkey'
-// https://rinkeby.infura.io/v3/cea9deb6467748b0b81b920b005c10c1
+
 // Replace with your DApp's Infura ID
-const INFURA_ID = 'eb347fc6f4b84938bf8b111cc08a4814'
+const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
 
 const networkId = 4
 const apiUrl = process.env.REACT_APP_API_URL
