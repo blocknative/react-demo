@@ -312,9 +312,9 @@ const App = () => {
               <h2>Onboarding Users with Onboard</h2>
               {wallet && (
                   <div className="network-select">
-                    <label>Switch Chain</label>
+                    <label>Switch Chains</label>
                     {settingChain ? (
-                      <span>Switching chain...</span>
+                      <span>Switching Chains...</span>
                     ) : (
                       <select
                         onChange={({ target: { value } }) =>
