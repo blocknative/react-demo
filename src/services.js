@@ -1,5 +1,6 @@
 import stagingNotify from 'bnc-notify-staging'
 import Notify from 'bnc-notify'
+
 import blocknativeLogo from './icons/blocknative-logo'
 import blocknativeIcon from './icons/blocknative-icon'
 
