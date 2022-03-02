@@ -14,6 +14,7 @@ import portisModule from '@web3-onboard/portis'
 import fortmaticModule from '@web3-onboard/fortmatic'
 import torusModule from '@web3-onboard/torus'
 import keepkeyModule from '@web3-onboard/keepkey'
+import gnosisModule from '@web3-onboard/gnosis'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
@@ -39,6 +40,8 @@ const torus = torusModule()
 const ledger = ledgerModule()
 const keepkey = keepkeyModule()
 
+const gnosis = gnosisModule()
+
 const trezorOptions = {
   email: 'test@test.com',
   appUrl: 'https://www.blocknative.com'
@@ -50,11 +53,12 @@ export const initWeb3Onboard = init({
   wallets: [
     injected,
     ledger,
+    walletLink,
     trezor,
     walletConnect,
-    keepkey,
-    walletLink,
+    gnosis,
     fortmatic,
+    keepkey,
     portis,
     torus
   ],
