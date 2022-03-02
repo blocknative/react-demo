@@ -37,12 +37,12 @@ let internalTransferContract
 
 const App = () => {
 
-  const [{ wallet, connecting }, connect, disconnect] = useConnectWallet()
+  const [{ wallet }, connect, disconnect] = useConnectWallet()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
   const connectedWallets = useWallets()
 
   const [web3Onboard, setWeb3Onboard] = useState(null)
-  const [ens, setEns] = useState(null)
+  const [ens] = useState(null)
   const [notify, setNotify] = useState(null)
   const [darkMode, setDarkMode] = useState(false)
   const [desktopPosition, setDesktopPosition] = useState('bottomRight')
