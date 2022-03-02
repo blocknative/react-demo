@@ -39,7 +39,7 @@ const Header = (props) => {
         {balance != null && (
           <span>
             {
-              Object.keys(balance).map((val, k) => <div k={k}>{balance[val]}</div>)
+              Object.keys(balance).map((val, k) => <div k={k} key={k}>{balance[val]}</div>)
             }
           </span>
         )}
