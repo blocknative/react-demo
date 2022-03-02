@@ -76,10 +76,22 @@ export const initWeb3Onboard = init({
       rpcUrl: `https://rinkeby.infura.io/v3/${INFURA_ID}`
     },
     {
+      id: '0x38',
+      token: 'BNB',
+      label: 'Binance Smart Chain',
+      rpcUrl: 'https://bsc-dataseed.binance.org/'
+    },
+    {
       id: '0x89',
       token: 'MATIC',
       label: 'Matic Mainnet',
       rpcUrl: 'https://matic-mainnet.chainstacklabs.com'
+    },
+    {
+      id: '0xfa',
+      token: 'FTM',
+      label: 'Fantom Mainnet',
+      rpcUrl: 'https://rpc.ftm.tools/'
     }
   ],
   appMetadata: {

@@ -324,7 +324,7 @@ const App = () => {
                         value={connectedChain.id}
                       >
                         {chains.map(({ id, label }) => {
-                          return <option value={id}>{label}</option>
+                          return <option value={id} key={id}>{label}</option>
                         })}
                       </select>
                     )}
