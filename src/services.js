@@ -1,6 +1,7 @@
 import stagingNotify from 'bnc-notify-staging'
 import Notify from 'bnc-notify'
-import blocknativeLogo from "./icons/blocknative-logo";
+import blocknativeLogo from './icons/blocknative-logo'
+import blocknativeIcon from './icons/blocknative-icon'
 
 import { init } from '@web3-onboard/react'
 import injectedModule from '@web3-onboard/injected-wallets'
@@ -96,11 +97,12 @@ export const initWeb3Onboard = init({
   ],
   appMetadata: {
     name: 'Blocknative Web3-Onboard',
-    icon: blocknativeLogo,
+    icon: blocknativeIcon,
+    logo: blocknativeLogo,
     description: 'Demo app for Web3-Onboard',
     recommendedInjectedWallets: [
       { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },
-      { name: 'MetaMask', url: 'https://metamask.io' },
+      { name: 'MetaMask', url: 'https://metamask.io' }
     ]
   }
 })
