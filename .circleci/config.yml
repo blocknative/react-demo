@@ -2,7 +2,7 @@ version: 2
 jobs:
   deploy_stage:
     docker:
-      - image: cimg/node:14.17.3
+      - image: cimg/node:16.13.2
     resource_class: large
     steps:
       - checkout
@@ -16,7 +16,7 @@ jobs:
   
   deploy_prod:
     docker:
-      - image: cimg/node:14.17.3
+      - image: cimg/node:16.13.2
     resource_class: large
     steps:
       - checkout

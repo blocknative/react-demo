@@ -6,7 +6,7 @@ import './Header.css'
 
 
 const Header = (props) => {
-  const { network, address, balance, ens } = props;
+  const { connectedChain, address, balance, ens } = props;
 
   return (
     <header className="user-info-container">
@@ -38,12 +38,13 @@ const Header = (props) => {
         )}
         {balance != null && (
           <span>
-            {Number(balance) > 0 ? balance / 1000000000000000000 : balance}{' '}
-            ETH
+            {
+              Object.keys(balance).map((val, k) => <div k={k} key={k}>{balance[val]}</div>)
+            }
           </span>
         )}
-        {network && (
-          <span>{networkEnum?.[Number(network)] || 'local'} Network</span>
+        {connectedChain && connectedChain?.id && (
+          <span>{networkEnum?.[connectedChain.id] || 'local'} Network</span>
         )}
       </div>
     </header>

@@ -13,8 +13,8 @@ const Footer = () => {
           React Demo version: <i>{staging ? 'NEXT' : version}</i>
         </span>
         <span>
-          Onboard version:{' '}
-          <i>{staging ? 'NEXT' : dependencies['bnc-onboard'].slice(1)}</i>
+          Web3 Onboard React version:{' '}
+          <i>{staging ? 'NEXT' : dependencies['@web3-onboard/react'].slice(1)}</i>
         </span>
         <span>
           Notify version:{' '}
