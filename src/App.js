@@ -318,7 +318,6 @@ const App = () => {
                   ) : (
                     <select
                       onChange={({ target: { value } }) =>
-                        console.log('onChange called') ||
                         setChain({ chainId: value })
                       }
                       value={connectedChain.id}
