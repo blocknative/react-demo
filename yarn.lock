@@ -3068,10 +3068,10 @@
     "@toruslabs/torus-embed" "^1.18.3"
     "@web3-onboard/common" "^2.0.0"
 
-"@web3-onboard/trezor@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/trezor/-/trezor-2.0.0.tgz#45f176531899a1a3492332b794d39b39277472c9"
-  integrity sha512-IXuwF27YlwiM3otILPNkcOPAywL56VfN61R8078IzgCjPKFXkvk3Dr6SZkGok5z0Rthqk43y/ArD6x/nlrYZ0g==
+"@web3-onboard/trezor@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/trezor/-/trezor-2.0.1.tgz#429e705fab097932918efdd0c3cb7658bc33246c"
+  integrity sha512-zPzA9vEUwlyFkv7WUrYuZ7tJmCegYVEgLfi46EcaXNTq19Vev3viWv2VdnGfF2wIbrIbwCwSTaiII1bwKsRBfw==
   dependencies:
     "@ethereumjs/common" "^2.6.1"
     "@ethereumjs/tx" "^3.4.0"

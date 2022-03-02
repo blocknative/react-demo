@@ -4,17 +4,20 @@ import BNLogo from '../../icons/blocknative-logo-dark.svg'
 import avatarPlaceholder from '../../icons/avatar-placeholder.png'
 import './Header.css'
 
+const Header = props => {
+  const { connectedChain, address, balance, ens } = props
 
-const Header = (props) => {
-  const { connectedChain, address, balance, ens } = props;
+  console.log({ ens })
 
   return (
     <header className="user-info-container">
-      <a className='bn-logo-link'
+      <a
+        className="bn-logo-link"
         href="https://www.blocknative.com/"
         target="_blank"
         rel="noopener noreferrer"
-        title="Blocknative Site">
+        title="Blocknative Site"
+      >
         <img className="bn-logo-demo" src={BNLogo} alt="Block Native Logo" />
       </a>
       <div className="user-info">
@@ -38,9 +41,11 @@ const Header = (props) => {
         )}
         {balance != null && (
           <span>
-            {
-              Object.keys(balance).map((val, k) => <div k={k} key={k}>{balance[val]}</div>)
-            }
+            {Object.keys(balance).map((val, k) => (
+              <div k={k} key={k}>
+                {balance[val]}
+              </div>
+            ))}
           </span>
         )}
         {connectedChain && connectedChain?.id && (
