@@ -11,6 +11,7 @@ import ledgerModule from '@web3-onboard/ledger'
 import walletConnectModule from '@web3-onboard/walletconnect'
 import walletLinkModule from '@web3-onboard/walletlink'
 import portisModule from '@web3-onboard/portis'
+import magicModule from '@web3-onboard/magic'
 import fortmaticModule from '@web3-onboard/fortmatic'
 import torusModule from '@web3-onboard/torus'
 import keepkeyModule from '@web3-onboard/keepkey'
@@ -49,6 +50,10 @@ const trezorOptions = {
 
 const trezor = trezorModule(trezorOptions)
 
+const magic = magicModule({
+  apiKey: 'pk_live_02207D744E81C2BA'
+})
+
 export const initWeb3Onboard = init({
   wallets: [
     injected,
@@ -57,6 +62,7 @@ export const initWeb3Onboard = init({
     trezor,
     walletConnect,
     gnosis,
+    magic,
     fortmatic,
     keepkey,
     portis,
