@@ -1,10 +1,10 @@
 version: 2
 jobs:
   deploy_stage:
-    env:
-      CI: false
     docker:
       - image: cimg/node:16.13.2
+    environment:
+      CI: false
     resource_class: large
     steps:
       - checkout
