@@ -1,8 +1,8 @@
 # React Demo
 
 A repository to demonstrate a basic integration of 
-[Onboard](https://github.com/blocknative/onboard) 
-and [Notify](https://github.com/blocknative/onboard) into a React project.
+[Web3-Onboard](https://github.com/blocknative/web3-onboard) 
+and [Notify](https://github.com/blocknative/notify) into a React project.
 For detailed documentation, head to [docs.blocknative.com](https://docs.blocknative.com)
 
 

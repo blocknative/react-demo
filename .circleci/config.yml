@@ -3,6 +3,8 @@ jobs:
   deploy_stage:
     docker:
       - image: cimg/node:16.13.2
+    environment:
+      CI: false
     resource_class: large
     steps:
       - checkout
@@ -17,6 +19,8 @@ jobs:
   deploy_prod:
     docker:
       - image: cimg/node:16.13.2
+    environment:
+      CI: false
     resource_class: large
     steps:
       - checkout
