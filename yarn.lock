@@ -3118,10 +3118,10 @@
     joi "^17.4.2"
     lodash.uniqby "^4.7.0"
 
-"@web3-onboard/keepkey@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/keepkey/-/keepkey-2.0.0.tgz#086285555457cd02de85b80134abe0ea37214c04"
-  integrity sha512-SkY+q2a/Z2PZq3o5cLZ88IHZnziNxxBRGADKkmFIEwkxRZykmW+FVrIqiMaokuapC+TqiaVSuHHq9/Je8CXi1g==
+"@web3-onboard/keepkey@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/keepkey/-/keepkey-2.0.1.tgz#28adacde3a4602f2eb0270852fa4635c975eeb41"
+  integrity sha512-J4Sy9DRp+M+X3CLSc64MJG7W2jOkZ18N3sbKAhzP9RZPzxH93fMI9wOT9Xd5/DssU28tloTdhpPxtbzTiBemfA==
   dependencies:
     "@ethersproject/providers" "^5.5.0"
     "@shapeshiftoss/hdwallet-core" "^1.15.2"
@@ -3140,10 +3140,10 @@
     "@keystonehq/eth-keyring" "^0.11.2-alpha.2"
     "@web3-onboard/common" "^2.0.0"
 
-"@web3-onboard/ledger@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/ledger/-/ledger-2.0.0.tgz#01e03c75652b2344539fe66705ef9efcf147c64c"
-  integrity sha512-92jZMbShzM/hUWvPkHmOEKfsZ5f6luLNnzS3kp49qFUZEqvBlXNSBWnKnZ08SMnj422d28QxEBpj6JySfQcX0w==
+"@web3-onboard/ledger@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/ledger/-/ledger-2.0.1.tgz#5d844096c9a70a5c976386d69b96715fad22fd60"
+  integrity sha512-+0r+PtXHQd1kGgOQwDnfY7cgeIPhqTsyUx0+2ouUp4j0dpsxBOkMVqCXHLNYoz+Fo4i2oWBNEjdDZq7Ka6wLkQ==
   dependencies:
     "@ethereumjs/common" "^2.6.1"
     "@ethereumjs/tx" "^3.4.0"
@@ -3154,9 +3154,7 @@
     "@metamask/eth-sig-util" "^4.0.0"
     "@web3-onboard/common" "^2.0.0"
     buffer "^6.0.3"
-    eth-crypto "^2.1.0"
     ethereumjs-util "^7.1.3"
-    hdkey "^2.0.1"
 
 "@web3-onboard/magic@^2.0.0":
   version "2.0.0"
@@ -3175,10 +3173,10 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.0.0"
 
-"@web3-onboard/react@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.0.4.tgz#7f4f51e0c75605c56f3258b8e4346e2be3757e69"
-  integrity sha512-dYWl8F2Tiv+WHYagtaZUqgXrd6S8aSSPuxJLx2V3Oh11XU24XjdW6hovhoLZOLMOevhfjVg4tXQG6qAVzAW5fQ==
+"@web3-onboard/react@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.0.5.tgz#c778482c09fd1b7533dab3fcbb82715141534584"
+  integrity sha512-HkWE45dQlYQgLIsZBLfH1ldC1AxZUq9gvwP2Mf9X8B624Ht2ysSBBo3S6PIvHpTI29pUyCLaLyQ0aIAOHuNtnA==
   dependencies:
     "@web3-onboard/common" "^2.0.3"
     "@web3-onboard/core" "^2.0.11"
@@ -3191,10 +3189,10 @@
     "@toruslabs/torus-embed" "^1.18.3"
     "@web3-onboard/common" "^2.0.0"
 
-"@web3-onboard/trezor@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/trezor/-/trezor-2.0.1.tgz#429e705fab097932918efdd0c3cb7658bc33246c"
-  integrity sha512-zPzA9vEUwlyFkv7WUrYuZ7tJmCegYVEgLfi46EcaXNTq19Vev3viWv2VdnGfF2wIbrIbwCwSTaiII1bwKsRBfw==
+"@web3-onboard/trezor@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/trezor/-/trezor-2.0.2.tgz#e837585fbfb3b3b5c0ccb44819cac9157c01830e"
+  integrity sha512-y2gXFguwMLLReunvwCkdSxJ06BWR5ejI8Vv16zU98ObPPFyQN+EZsl09sFyZGSf0MiPP+xVTbV5vVs1Xi/koDg==
   dependencies:
     "@ethereumjs/common" "^2.6.1"
     "@ethereumjs/tx" "^3.4.0"

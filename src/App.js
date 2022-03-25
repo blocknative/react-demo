@@ -320,7 +320,7 @@ const App = () => {
                       onChange={({ target: { value } }) =>
                         setChain({ chainId: value })
                       }
-                      value={connectedChain.id}
+                      value={connectedChain?.id}
                     >
                       {chains.map(({ id, label }) => {
                         return (
