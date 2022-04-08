@@ -72,37 +72,37 @@ export const initWeb3Onboard = init({
     {
       id: '0x1',
       token: 'ETH',
-      label: 'Ethereum Mainnet',
+      label: 'Ethereum',
       rpcUrl: `https://mainnet.infura.io/v3/${INFURA_ID}`
     },
     {
       id: '0x3',
       token: 'tROP',
-      label: 'Ethereum Ropsten Testnet',
+      label: 'Ropsten',
       rpcUrl: `https://ropsten.infura.io/v3/${INFURA_ID}`
     },
     {
       id: '0x4',
       token: 'rETH',
-      label: 'Ethereum Rinkeby Testnet',
+      label: 'Rinkeby',
       rpcUrl: `https://rinkeby.infura.io/v3/${INFURA_ID}`
     },
     {
       id: '0x38',
       token: 'BNB',
-      label: 'Binance Smart Chain',
+      label: 'Binance',
       rpcUrl: 'https://bsc-dataseed.binance.org/'
     },
     {
       id: '0x89',
       token: 'MATIC',
-      label: 'Matic Mainnet',
+      label: 'Polygon',
       rpcUrl: 'https://matic-mainnet.chainstacklabs.com'
     },
     {
       id: '0xfa',
       token: 'FTM',
-      label: 'Fantom Mainnet',
+      label: 'Fantom',
       rpcUrl: 'https://rpc.ftm.tools/'
     }
   ],
@@ -114,7 +114,14 @@ export const initWeb3Onboard = init({
     recommendedInjectedWallets: [
       { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },
       { name: 'MetaMask', url: 'https://metamask.io' }
-    ]
+    ],
+    agreement: {
+      version: '1.0.0',
+      termsUrl: 'https://www.blocknative.com/terms-conditions',
+      privacyUrl: 'https://www.blocknative.com/privacy-policy'
+    },
+    gettingStartedGuide: 'https://blocknative.com',
+    explore: 'https://blocknative.com'
   }
 })
 
