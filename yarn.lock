@@ -3118,10 +3118,10 @@
     "@gnosis.pm/safe-apps-sdk" "^6.1.1"
     "@web3-onboard/common" "^2.0.0"
 
-"@web3-onboard/injected-wallets@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.0.2.tgz#bbc45baa8989aa3ce7c3e71917b9e3f8317e988a"
-  integrity sha512-0bJKwH7E6lW+RVmi6mCo44Y1Uji/oUGJ1Ul6vLljKlr9xE8slrrP+Ouu73lercFdqkvYeYfx0Eg5qV6ytanSlA==
+"@web3-onboard/injected-wallets@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.0.5.tgz#e9f8807201a9e09950b51854ae30dcd836d2dcad"
+  integrity sha512-Bt6CmQNrtHNEmW9W7ucGV782gwn1H3hrY7EZ9FUNtOYOOVVTZDOAAMWGfxVA7+7sumMAt2p8ETgFi8VN4Tk8UA==
   dependencies:
     "@web3-onboard/common" "^2.0.2"
     joi "^17.4.2"
