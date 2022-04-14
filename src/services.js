@@ -9,7 +9,7 @@ import injectedModule from '@web3-onboard/injected-wallets'
 import trezorModule from '@web3-onboard/trezor'
 import ledgerModule from '@web3-onboard/ledger'
 import walletConnectModule from '@web3-onboard/walletconnect'
-import walletLinkModule from '@web3-onboard/walletlink'
+import coinbaseModule from '@web3-onboard/coinbase'
 import portisModule from '@web3-onboard/portis'
 import magicModule from '@web3-onboard/magic'
 import fortmaticModule from '@web3-onboard/fortmatic'
@@ -26,7 +26,7 @@ const staging = process.env.REACT_APP_STAGING
 const dappId = '12153f55-f29e-4f11-aa07-90f10da5d778'
 
 const injected = injectedModule()
-const walletLink = walletLinkModule()
+const coinbase = coinbaseModule()
 const walletConnect = walletConnectModule()
 
 const portis = portisModule({
@@ -58,7 +58,7 @@ export const initWeb3Onboard = init({
   wallets: [
     injected,
     ledger,
-    walletLink,
+    coinbase,
     trezor,
     walletConnect,
     gnosis,
