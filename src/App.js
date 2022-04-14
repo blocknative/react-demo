@@ -60,7 +60,21 @@ const App = () => {
       'connectedWallets',
       JSON.stringify(connectedWalletsLabelArray)
     )
-  }, [connectedWallets])
+    
+    // Check for Magic Wallet user session
+    if (connectedWalletsLabelArray.includes('Magic Wallet')) {
+      const [magicWalletProvider] = connectedWallets.filter(provider => provider.label === 'Magic Wallet')
+      async function setMagicUser() {
+        try {
+          const { email } = await magicWalletProvider.instance.user.getMetadata();
+          localStorage.setItem('magicUserEmail', email) 
+        } catch(err) {
+          throw err
+        }
+      }
+      setMagicUser()
+    }
+  }, [connectedWallets, wallet])
 
   useEffect(() => {
     if (!wallet?.provider) {

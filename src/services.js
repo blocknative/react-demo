@@ -51,7 +51,8 @@ const trezorOptions = {
 const trezor = trezorModule(trezorOptions)
 
 const magic = magicModule({
-  apiKey: 'pk_live_02207D744E81C2BA'
+  apiKey: 'pk_live_02207D744E81C2BA',
+  userEmail: localStorage.getItem('magicUserEmail')
 })
 
 export const initWeb3Onboard = init({
