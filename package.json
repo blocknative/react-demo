@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.17.0-0.0.1",
+  "version": "0.17.0-0.0.2",
   "dependencies": {
     "@web3-onboard/fortmatic": "^2.0.2",
     "@web3-onboard/gnosis": "^2.0.1",

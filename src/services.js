@@ -51,7 +51,10 @@ const trezorOptions = {
 const trezor = trezorModule(trezorOptions)
 
 const magic = magicModule({
-  apiKey: 'pk_live_02207D744E81C2BA'
+  // Example api key, may need to be updated when max hits reached
+  // Get one to test with for free from https://magic.link/
+  apiKey: 'pk_live_02207D744E81C2BA',
+  userEmail: localStorage.getItem('magicUserEmail')
 })
 
 export const initWeb3Onboard = init({

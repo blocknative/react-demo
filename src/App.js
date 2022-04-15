@@ -60,7 +60,26 @@ const App = () => {
       'connectedWallets',
       JSON.stringify(connectedWalletsLabelArray)
     )
-  }, [connectedWallets])
+
+    // Check for Magic Wallet user session
+    if (connectedWalletsLabelArray.includes('Magic Wallet')) {
+      const [magicWalletProvider] = connectedWallets.filter(
+        provider => provider.label === 'Magic Wallet'
+      )
+      async function setMagicUser() {
+        try {
+          const { email } =
+            await magicWalletProvider.instance.user.getMetadata()
+          const magicUserEmail = localStorage.getItem('magicUserEmail')
+          if (!magicUserEmail || magicUserEmail !== email)
+            localStorage.setItem('magicUserEmail', email)
+        } catch (err) {
+          throw err
+        }
+      }
+      setMagicUser()
+    }
+  }, [connectedWallets, wallet])
 
   useEffect(() => {
     if (!wallet?.provider) {
@@ -361,13 +380,7 @@ const App = () => {
                     className="bn-demo-button"
                     onClick={() => {
                       disconnect(wallet)
-                      const connectedWalletsList = connectedWallets.map(
-                        ({ label }) => label
-                      )
-                      window.localStorage.setItem(
-                        'connectedWallets',
-                        JSON.stringify(connectedWalletsList)
-                      )
+                      window.localStorage.removeItem('connectedWallets')
                     }}
                   >
                     Reset Wallet State
