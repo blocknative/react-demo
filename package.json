@@ -2,6 +2,7 @@
   "name": "onboard-notify-react",
   "version": "0.17.1-0.0.1",
   "dependencies": {
+    "@web3-onboard/coinbase": "^2.0.0",
     "@web3-onboard/fortmatic": "^2.0.2",
     "@web3-onboard/gnosis": "^2.0.1",
     "@web3-onboard/injected-wallets": "^2.0.5",
@@ -14,7 +15,6 @@
     "@web3-onboard/torus": "^2.0.1",
     "@web3-onboard/trezor": "^2.0.2",
     "@web3-onboard/walletconnect": "^2.0.1",
-    "@web3-onboard/coinbase": "^2.0.0",
     "bnc-notify": "^1.9.4",
     "bnc-notify-staging": "https://github.com/blocknative/notify#develop",
     "ethers": "^5.5.2",
