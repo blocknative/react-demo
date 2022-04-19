@@ -3202,6 +3202,15 @@
     magic-sdk "^8.1.0"
     rxjs "^7.5.2"
 
+"@web3-onboard/magic@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/magic/-/magic-2.0.0.tgz#d66ba8e5a99c50fa3c78a43540442fc650d9f747"
+  integrity sha512-YC6FkxIKylXbQqUYGbBAaBDyCsU5HcAxBcDvW6qRmXwh+QjEI6ZZPpG3p+OUIt7c2LZSMG9V9YMuyiG42C4IyQ==
+  dependencies:
+    "@web3-onboard/common" "^2.0.3"
+    magic-sdk "^8.1.0"
+    rxjs "^7.5.2"
+
 "@web3-onboard/portis@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@web3-onboard/portis/-/portis-2.0.0.tgz#8bad9d337a044606cb5ce7d7e79910d386da207b"
