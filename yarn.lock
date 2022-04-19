@@ -1288,6 +1288,25 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@coinbase/wallet-sdk@^3.0.5":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@coinbase/wallet-sdk/-/wallet-sdk-3.0.6.tgz#7ea6010de4d944c79bc6d93656025300c27673b9"
+  integrity sha512-HKDStu0z+U9xUJFAr5Flk0LgsV9pUrkvErC1iEG4cRR4TEpb+Nv3INF2TiYDjRQObp1qLLBh+42DEnbWWQ2iqw==
+  dependencies:
+    "@metamask/safe-event-emitter" "2.0.0"
+    bind-decorator "^1.0.11"
+    bn.js "^5.1.1"
+    clsx "^1.1.0"
+    eth-block-tracker "4.4.3"
+    eth-json-rpc-filters "4.2.2"
+    eth-rpc-errors "4.0.2"
+    js-sha256 "0.9.0"
+    json-rpc-engine "6.1.0"
+    keccak "^3.0.1"
+    preact "^10.5.9"
+    rxjs "^6.6.3"
+    stream-browserify "^3.0.0"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -3058,6 +3077,14 @@
   dependencies:
     "@walletconnect/window-getters" "^1.0.0"
 
+"@web3-onboard/coinbase@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/coinbase/-/coinbase-2.0.0.tgz#64a2af020618a1a1be27181187ea6100c48ad998"
+  integrity sha512-8d2P4QS0iwGyPndl8aPGyj1xZPvhoa4fanX45Lk6n0clFx8UClKYpjUxFivVtqpFJpgw1u+wOlsXT5n6T5PfEg==
+  dependencies:
+    "@coinbase/wallet-sdk" "^3.0.5"
+    "@web3-onboard/common" "^2.0.0"
+
 "@web3-onboard/common@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@web3-onboard/common/-/common-2.0.0.tgz#a01ab542767f87f282a6ba79f5b2b0fb319defc8"
@@ -3085,12 +3112,12 @@
     joi "^17.4.2"
     rxjs "^7.5.2"
 
-"@web3-onboard/core@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.2.0.tgz#0b3080438285117096ab8af571d8acd02b4671fc"
-  integrity sha512-lKwhzIyjXQggd/uhXYkZGOXw/nMDuCgHDVl3l65JmQiMdqv4uSV3MLSu4aQEQYvIccOJ2hNFRs/a9zFoaDpAFQ==
+"@web3-onboard/core@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.2.3.tgz#2d1ef7d706f536a0f2621815aceedf8ea7f7062d"
+  integrity sha512-ykkDxfPaxWFi58zVZyh1Bc84Rl2pAEnkdIrOchGIIC3gRukFEz+7Y7+AQgtev9MFy7NjjKjykrSqzzQayP4R1Q==
   dependencies:
-    "@web3-onboard/common" "^2.0.2"
+    "@web3-onboard/common" "^2.0.5"
     bowser "^2.11.0"
     ethers "5.5.3"
     eventemitter3 "^4.0.7"
@@ -3138,10 +3165,10 @@
     "@web3-onboard/common" "^2.0.0"
     ethereumjs-util "^7.1.3"
 
-"@web3-onboard/keystone@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/keystone/-/keystone-2.0.0.tgz#39e9d77d9b4340f057c404f064f02cddcf5563f3"
-  integrity sha512-HdEypmZM/1FCozSmaR9ZSnZK6tirn3h2wFciioJ030MlG/pqPTBjC6ru2adfwGD1pd9oAkgtzFLY8WymhYdY6Q==
+"@web3-onboard/keystone@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/keystone/-/keystone-2.0.1.tgz#2d05837b7d2b6681ab0d65e04d658494680b55f0"
+  integrity sha512-7ekPtUZ+ga+2BG6OR1ZpnL1OC6fKLQq9Pi++mQvvKvTsOqyQ721zKLHj4QmtQsLK+TG66IyjX2tY+YpP0KtkFg==
   dependencies:
     "@ethereumjs/common" "^2.6.1"
     "@ethereumjs/tx" "^3.4.0"
@@ -3165,12 +3192,13 @@
     buffer "^6.0.3"
     ethereumjs-util "^7.1.3"
 
-"@web3-onboard/magic@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/magic/-/magic-2.0.0.tgz#d66ba8e5a99c50fa3c78a43540442fc650d9f747"
-  integrity sha512-YC6FkxIKylXbQqUYGbBAaBDyCsU5HcAxBcDvW6qRmXwh+QjEI6ZZPpG3p+OUIt7c2LZSMG9V9YMuyiG42C4IyQ==
+"@web3-onboard/magic@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/magic/-/magic-2.0.1.tgz#2ea7a51dd75edccc0bccb16cbf51571dd426e7f4"
+  integrity sha512-wNNXeM6324tQ8TjIPElTMTsu0cz9bWC/AWMlj91AXt8NkR5Y8AthTxi5gg4VqD0newbncUzkR7JJQ0idt37Q1g==
   dependencies:
-    "@web3-onboard/common" "^2.0.3"
+    "@web3-onboard/common" "^2.0.5"
+    joi "^17.4.2"
     magic-sdk "^8.1.0"
     rxjs "^7.5.2"
 
@@ -3191,13 +3219,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.0.0"
 
-"@web3-onboard/react@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.1.0.tgz#0a18fd1892dcbdb907e9f6029dd0d3edde49ff65"
-  integrity sha512-4RpX5n9KlK4AB8j6FjaEnSsZb7t77MUT+t9wh+kbMHrv1PSzJy/YLaUgii0s0ret0u45o/Qxn6RKPQcY6KmlpA==
+"@web3-onboard/react@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.1.2.tgz#af2ef2ba20213e83d81f1a847286a7020e3da017"
+  integrity sha512-JXM083A9ZRrwv3jbYcwt7WW9OxFsFvbnprWvN1ZcC9OiGTAjIDtU3/owO0JkTDBu4xS+UIcpDtJs1J2xefaPWg==
   dependencies:
     "@web3-onboard/common" "^2.0.5"
-    "@web3-onboard/core" "^2.2.0"
+    "@web3-onboard/core" "^2.2.3"
 
 "@web3-onboard/torus@^2.0.1":
   version "2.0.1"
@@ -3232,14 +3260,6 @@
     "@walletconnect/qrcode-modal" "^1.7.1"
     "@web3-onboard/common" "^2.0.0"
     rxjs "^7.5.2"
-
-"@web3-onboard/walletlink@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/walletlink/-/walletlink-2.0.0.tgz#4f81ca6e1e2e7538f075e2590f5805f92fc3ce5d"
-  integrity sha512-w0qCuZzC37qRmtgNpiRPnSdHRD/OJ8RDeGyEyKw7ucmpTc1KmhwIYZTncgQag7KP0xj7MIrV7OQxZamkQmbxYw==
-  dependencies:
-    "@web3-onboard/common" "^2.0.0"
-    walletlink "^2.5.0"
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
@@ -9856,9 +9876,9 @@ minimatch@3.0.4, minimatch@^3.0.4:
     brace-expansion "^1.1.7"
 
 minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+  integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
 mississippi@^3.0.0:
   version "3.0.0"
@@ -11811,15 +11831,14 @@ react-dom@16.13.1:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
-react-dom@^16.9.0:
-  version "16.14.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.14.0.tgz#7ad838ec29a777fb3c75c3a190f661cf92ab8b89"
-  integrity sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==
+react-dom@^17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
+  integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.19.1"
+    scheduler "^0.20.2"
 
 react-error-overlay@^6.0.3:
   version "6.0.9"
@@ -11925,14 +11944,13 @@ react@16.13.1:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
 
-react@^16.9.0:
-  version "16.14.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
-  integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
+react@^17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
+  integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    prop-types "^15.6.2"
 
 read-pkg-up@^2.0.0:
   version "2.0.0"
@@ -12464,6 +12482,14 @@ scheduler@^0.19.1:
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
   integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.20.2:
+  version "0.20.2"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.20.2.tgz#4baee39436e34aa93b4874bddcbf0fe8b8b50e91"
+  integrity sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -13989,25 +14015,6 @@ walker@^1.0.7, walker@~1.0.5:
   integrity sha1-L3+bj9ENZ3JisYqITijRlhjgKPs=
   dependencies:
     makeerror "1.0.x"
-
-walletlink@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/walletlink/-/walletlink-2.5.0.tgz#b8db10f4d9f124084feb16d1e2b2d08ba8c20d21"
-  integrity sha512-PBJmK5tZmonwKPABBI2/optaZ11O4kKmkmnU5eLKhk4XRlal5qJ1igZ4U5j3w6w8wxxdhCWpLMHzGWt3n/p7mw==
-  dependencies:
-    "@metamask/safe-event-emitter" "2.0.0"
-    bind-decorator "^1.0.11"
-    bn.js "^5.1.1"
-    clsx "^1.1.0"
-    eth-block-tracker "4.4.3"
-    eth-json-rpc-filters "4.2.2"
-    eth-rpc-errors "4.0.2"
-    js-sha256 "0.9.0"
-    json-rpc-engine "6.1.0"
-    keccak "^3.0.1"
-    preact "^10.5.9"
-    rxjs "^6.6.3"
-    stream-browserify "^3.0.0"
 
 warning@^4.0.3:
   version "4.0.3"
