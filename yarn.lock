@@ -3192,26 +3192,10 @@
     buffer "^6.0.3"
     ethereumjs-util "^7.1.3"
 
-<<<<<<< HEAD
 "@web3-onboard/magic@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@web3-onboard/magic/-/magic-2.0.3.tgz#40ae00541fe57b6642f8354929a24a56cac48908"
   integrity sha512-FSeJMe0rHsxJ6DWrZIDret5GYP6SJTjpFAOZNWqD3OR/kKaqFXJWV8U+ZyZNrmE4vNId7PIM1e95YHynbNeMag==
-=======
-"@web3-onboard/magic@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/magic/-/magic-2.0.1.tgz#2ea7a51dd75edccc0bccb16cbf51571dd426e7f4"
-  integrity sha512-wNNXeM6324tQ8TjIPElTMTsu0cz9bWC/AWMlj91AXt8NkR5Y8AthTxi5gg4VqD0newbncUzkR7JJQ0idt37Q1g==
-  dependencies:
-    "@web3-onboard/common" "^2.0.5"
-    joi "^17.4.2"
-    magic-sdk "^8.1.0"
-    rxjs "^7.5.2"
-
-"@web3-onboard/magic@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/magic/-/magic-2.0.0.tgz#d66ba8e5a99c50fa3c78a43540442fc650d9f747"
-  integrity sha512-YC6FkxIKylXbQqUYGbBAaBDyCsU5HcAxBcDvW6qRmXwh+QjEI6ZZPpG3p+OUIt7c2LZSMG9V9YMuyiG42C4IyQ==
   dependencies:
     "@web3-onboard/common" "^2.0.6"
     joi "^17.4.2"
