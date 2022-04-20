@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.17.2-0.0.1",
+  "version": "0.17.3",
   "dependencies": {
     "@web3-onboard/coinbase": "^2.0.0",
     "@web3-onboard/fortmatic": "^2.0.2",
