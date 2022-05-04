@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.18.0",
+  "version": "0.17.3",
   "dependencies": {
     "@craco/craco": "^5.8.3",
     "@web3-onboard/coinbase": "^2.0.0",
@@ -25,12 +25,12 @@
     "vconsole": "^3.3.4"
   },
   "scripts": {
-    "start": "craco start",
-    "start-staging": "REACT_APP_API_URL=wss://staging.api.blocknative.com/v0 REACT_APP_STAGING=true HTTPS=true craco start",
+    "start": "HTTPS=true react-scripts start",
+    "start-staging": "REACT_APP_API_URL=wss://staging.api.blocknative.com/v0 REACT_APP_STAGING=true HTTPS=true HTTPS=true react-scripts start",
     "start-local": "REACT_APP_API_URL=ws://localhost:54100/v0 REACT_APP_STAGING=true HTTPS=true react-scripts start",
     "build": "craco build",
     "build-staging": "REACT_APP_API_URL=wss://staging.api.blocknative.com/v0 REACT_APP_STAGING=true craco build",
-    "test": "craco test",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
