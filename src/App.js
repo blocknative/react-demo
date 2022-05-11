@@ -4,14 +4,6 @@ import VConsole from 'vconsole'
 import './App.css'
 import Header from './views/Header/Header.js'
 import Footer from './views/Footer/Footer.js'
-const environment = process.env.REACT_APP_ENVIRONMENT
-const { useConnectWallet, useSetChain, useWallets } =
-  environment === 'prod'
-    ? await import(`@web3-onboard/react`)
-    : await import(`@web3-onboard-staging/react`)
-const { initWeb3Onboard, initNotify } = await import(
-  `./services/${environment}.js`
-)
 
 if (window.innerWidth < 700) {
   new VConsole()
@@ -38,6 +30,17 @@ const internalTransferABI = [
 let internalTransferContract
 
 const App = () => {
+  const environment = process.env.REACT_APP_ENVIRONMENT
+  const { useConnectWallet, useSetChain, useWallets } = (async () => {
+    // Dynamically imported module (runtime)
+    return environment === 'prod'
+      ? await import('@web3-onboard/react')
+      : await import('@web3-onboard/react')
+  })()
+  const { initWeb3Onboard, initNotify } = (async () => {
+    await import(`./services/${environment}.js`)
+  })()
+
   const [{ wallet }, connect, disconnect] = useConnectWallet()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
   const connectedWallets = useWallets()
@@ -54,7 +57,7 @@ const App = () => {
     setWeb3Onboard(initWeb3Onboard)
 
     setNotify(initNotify())
-  }, [])
+  }, [initNotify, initWeb3Onboard])
 
   useEffect(() => {
     if (!connectedWallets.length) return

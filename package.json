@@ -38,7 +38,7 @@
     "vconsole": "^3.3.4"
   },
   "scripts": {
-    "start": "HTTPS=true react-scripts start",
+    "start": "HTTPS=true REACT_APP_ENVIRONMENT=prod react-scripts start",
     "start-staging": "REACT_APP_API_URL=wss://staging.api.blocknative.com/v0 REACT_APP_ENVIRONMENT=staging HTTPS=true HTTPS=true react-scripts start",
     "start-local": "REACT_APP_API_URL=ws://localhost:54100/v0 REACT_APP_ENVIRONMENT=staging HTTPS=true react-scripts start",
     "build": "REACT_APP_ENVIRONMENT=prod craco build",
