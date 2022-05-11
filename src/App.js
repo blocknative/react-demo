@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
-import { initWeb3Onboard, initNotify } from './services'
-import { initStagingWeb3Onboard, initStagingNotify } from './stagingServices'
-import { useConnectWallet, useSetChain, useWallets } from '@web3-onboard/react'
 import './App.css'
 import Header from './views/Header/Header.js'
 import Footer from './views/Footer/Footer.js'
-const staging = process.env.REACT_APP_STAGING
+const environment = process.env.REACT_APP_ENVIRONMENT
+const { useConnectWallet, useSetChain, useWallets } =
+  environment === 'prod'
+    ? await import(`@web3-onboard/react`)
+    : await import(`@web3-onboard-staging/react`)
+const { initWeb3Onboard, initNotify } = await import(
+  `./services/${environment}.js`
+)
 
 if (window.innerWidth < 700) {
   new VConsole()
@@ -47,9 +51,9 @@ const App = () => {
   const [toAddress, setToAddress] = useState('')
 
   useEffect(() => {
-    setWeb3Onboard(staging ? initWeb3Onboard : initStagingWeb3Onboard)
+    setWeb3Onboard(initWeb3Onboard)
 
-    setNotify(staging ? initNotify() : initStagingNotify)
+    setNotify(initNotify())
   }, [])
 
   useEffect(() => {
