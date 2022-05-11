@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
 import { initWeb3Onboard, initNotify } from './services'
+import { initStagingWeb3Onboard, initStagingNotify } from './stagingServices'
 import { useConnectWallet, useSetChain, useWallets } from '@web3-onboard/react'
 import './App.css'
 import Header from './views/Header/Header.js'
 import Footer from './views/Footer/Footer.js'
+const staging = process.env.REACT_APP_STAGING
 
 if (window.innerWidth < 700) {
   new VConsole()
@@ -45,9 +47,9 @@ const App = () => {
   const [toAddress, setToAddress] = useState('')
 
   useEffect(() => {
-    setWeb3Onboard(initWeb3Onboard)
+    setWeb3Onboard(staging ? initWeb3Onboard : initStagingWeb3Onboard)
 
-    setNotify(initNotify())
+    setNotify(staging ? initNotify() : initStagingNotify)
   }, [])
 
   useEffect(() => {
