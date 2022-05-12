@@ -130,7 +130,7 @@ export const initWeb3Onboard = init({
 
 export function initNotify() {
   const notify = staging ? stagingNotify : Notify
-    return notify({
+  return notify({
     dappId,
     networkId,
     apiUrl,
