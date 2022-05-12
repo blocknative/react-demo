@@ -14,7 +14,7 @@ const Footer = () => {
         </span>
         <span>
           Web3 Onboard React version:{' '}
-          <i>{staging ? 'NEXT' : dependencies['@web3-onboard/react'].slice(1)}</i>
+          <i>{dependencies['@web3-onboard/react'].slice(1)}</i>
         </span>
         <span>
           Notify version:{' '}

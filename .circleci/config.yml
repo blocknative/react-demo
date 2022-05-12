@@ -8,8 +8,9 @@ jobs:
     resource_class: large
     steps:
       - checkout
-      - run: yarn remove bnc-notify-staging && yarn add bnc-notify-staging@'https://github.com/blocknative/notify#develop' && yarn install --network-concurrency 1
+      - run: yarn remove bnc-notify-staging && yarn add bnc-notify-staging@'https://github.com/blocknative/notify#develop'
       - run: yarn up '@web3-onboard/*@next'
+      - run: yarn install --network-concurrency 1
       - run: yarn build-staging
       - run: touch .env
       - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
@@ -25,8 +26,9 @@ jobs:
     resource_class: large
     steps:
       - checkout
-      - run: yarn cache clean && yarn install --network-concurrency 1
+      - run: yarn cache clean
       - run: yarn up '@web3-onboard/*@latest'
+      - run: yarn install --network-concurrency 1
       - run: yarn build
       - run: touch .env
       - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
