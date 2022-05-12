@@ -4,21 +4,21 @@ import { version, dependencies } from '../../../package.json'
 import './Footer.css'
 
 const Footer = () => {
-  const env = process.env.REACT_APP_ENVIRONMENT
+  const staging = process.env.REACT_Footer_STAGING;
 
   return (
     <section className="footer">
       <div className="versioning">
         <span>
-          React Demo version: <i>{env === 'staging' ? 'NEXT' : version}</i>
+          React Demo version: <i>{staging ? 'NEXT' : version}</i>
         </span>
         <span>
           Web3 Onboard React version:{' '}
-          <i>{env === 'staging' ? 'NEXT' : dependencies['@web3-onboard/react'].slice(1)}</i>
+          <i>{staging ? 'NEXT' : dependencies['@web3-onboard/react'].slice(1)}</i>
         </span>
         <span>
           Notify version:{' '}
-          <i>{env === 'staging' ? 'NEXT' : dependencies['bnc-notify'].slice(1)}</i>
+          <i>{staging ? 'NEXT' : dependencies['bnc-notify'].slice(1)}</i>
         </span>
       </div>
       <section className="footer-links">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
+import { initWeb3Onboard, initNotify } from './services'
+import { useConnectWallet, useSetChain, useWallets } from '@web3-onboard/react'
 import './App.css'
 import Header from './views/Header/Header.js'
 import Footer from './views/Footer/Footer.js'
@@ -30,17 +32,6 @@ const internalTransferABI = [
 let internalTransferContract
 
 const App = () => {
-  const environment = process.env.REACT_APP_ENVIRONMENT
-  const { useConnectWallet, useSetChain, useWallets } = (async () => {
-    // Dynamically imported module (runtime)
-    return environment === 'prod'
-      ? await import('@web3-onboard/react')
-      : await import('@web3-onboard/react')
-  })()
-  const { initWeb3Onboard, initNotify } = (async () => {
-    await import(`./services/${environment}.js`)
-  })()
-
   const [{ wallet }, connect, disconnect] = useConnectWallet()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
   const connectedWallets = useWallets()
@@ -57,7 +48,7 @@ const App = () => {
     setWeb3Onboard(initWeb3Onboard)
 
     setNotify(initNotify())
-  }, [initNotify, initWeb3Onboard])
+  }, [])
 
   useEffect(() => {
     if (!connectedWallets.length) return
@@ -515,7 +506,8 @@ const App = () => {
                       eventCode: 'dbUpdate',
                       type: 'pending',
                       message:
-                        'This is a custom notification triggered by the dapp'
+                        'This is a custom notification triggered by the dapp',
+                      link: 'https://www.google.com'
                     })
                     setTimeout(
                       () =>
