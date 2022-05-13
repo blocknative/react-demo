@@ -20,7 +20,7 @@ jobs:
       - run: yarn upgrade "@web3-onboard/react@next"
       - run: yarn upgrade "@web3-onboard/torus@next"
       - run: yarn upgrade "@web3-onboard/trezor@next"
-      - run: yarn install
+      - run: yarn install --network-concurrency 1
       - run: yarn build-staging
       - run: touch .env
       - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
@@ -49,7 +49,7 @@ jobs:
       - run: yarn upgrade "@web3-onboard/react"
       - run: yarn upgrade "@web3-onboard/torus"
       - run: yarn upgrade "@web3-onboard/trezor"
-      - run: yarn install
+      - run: yarn install --network-concurrency 1
       - run: yarn build
       - run: touch .env
       - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
