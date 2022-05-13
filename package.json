@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.17.3-0.1.0",
+  "version": "0.19.0",
   "dependencies": {
     "@craco/craco": "^5.8.3",
     "@web3-onboard/coinbase": "^2.0.2",
@@ -24,8 +24,8 @@
     "vconsole": "^3.3.4"
   },
   "scripts": {
-    "setup-staging": "yarn up '@web3-onboard/*@next'",
-    "setup-prod": "yarn up '@web3-onboard/*@latest'",
+    "setup-staging-env": "yarn upgrade '@web3-onboard/coinbase@next' '@web3-onboard/fortmatic@next' '@web3-onboard/gnosis@next' '@web3-onboard/injected-wallets@next' '@web3-onboard/keepkey@next' '@web3-onboard/keystone@next' '@web3-onboard/ledger@next' '@web3-onboard/magic@next' '@web3-onboard/portis@next' '@web3-onboard/react@next' '@web3-onboard/torus@next' '@web3-onboard/trezor@next'",
+    "setup-prod-env": "yarn upgrade '@web3-onboard/coinbase' '@web3-onboard/fortmatic' '@web3-onboard/gnosis' '@web3-onboard/injected-wallets' '@web3-onboard/keepkey' '@web3-onboard/keystone' '@web3-onboard/ledger' '@web3-onboard/magic' '@web3-onboard/portis' '@web3-onboard/react' '@web3-onboard/torus' '@web3-onboard/trezor'",
     "start": "HTTPS=true react-scripts start",
     "start-staging": "REACT_APP_API_URL=wss://staging.api.blocknative.com/v0 REACT_APP_STAGING=true HTTPS=true HTTPS=true react-scripts start",
     "start-local": "REACT_APP_API_URL=ws://localhost:54100/v0 REACT_APP_STAGING=true HTTPS=true react-scripts start",
