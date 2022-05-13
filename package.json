@@ -24,8 +24,6 @@
     "vconsole": "^3.3.4"
   },
   "scripts": {
-    "setup-staging": "yarn up '@web3-onboard/*@next'",
-    "setup-prod": "yarn up '@web3-onboard/*@latest'",
     "start": "HTTPS=true react-scripts start",
     "start-staging": "REACT_APP_API_URL=wss://staging.api.blocknative.com/v0 REACT_APP_STAGING=true HTTPS=true HTTPS=true react-scripts start",
     "start-local": "REACT_APP_API_URL=ws://localhost:54100/v0 REACT_APP_STAGING=true HTTPS=true react-scripts start",
