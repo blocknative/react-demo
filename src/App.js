@@ -507,7 +507,7 @@ const App = () => {
                       type: 'pending',
                       message:
                         'This is a custom notification triggered by the dapp',
-                      link: 'https://www.google.com'
+                      link: 'https://github.com/blocknative/react-demo'
                     })
                     setTimeout(
                       () =>
