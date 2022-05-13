@@ -1,4 +1,3 @@
-import stagingNotify from 'bnc-notify-staging'
 import Notify from 'bnc-notify'
 
 import blocknativeLogo from './icons/blocknative-logo'
@@ -22,7 +21,6 @@ const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
 
 const networkId = 4
 const apiUrl = process.env.REACT_APP_API_URL
-const staging = process.env.REACT_APP_STAGING
 const dappId = '12153f55-f29e-4f11-aa07-90f10da5d778'
 
 const injected = injectedModule()
@@ -129,8 +127,7 @@ export const initWeb3Onboard = init({
 })
 
 export function initNotify() {
-  const notify = staging ? stagingNotify : Notify
-  return notify({
+  return Notify({
     dappId,
     networkId,
     apiUrl,
