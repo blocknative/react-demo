@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.17.3-0.1.0",
+  "version": "0.19.0",
   "dependencies": {
     "@craco/craco": "^5.8.3",
     "@web3-onboard/coinbase": "^2.0.2",
