@@ -1,5 +1,4 @@
 import Notify from 'bnc-notify'
-import stagingNotify from 'bnc-notify-staging'
 
 import blocknativeLogo from './icons/blocknative-logo'
 import blocknativeIcon from './icons/blocknative-icon'
@@ -129,8 +128,7 @@ export const initWeb3Onboard = init({
 })
 
 export function initNotify() {
-  const notify = staging ? stagingNotify : Notify
-  return notify({
+  return Notify({
     dappId,
     networkId,
     apiUrl,

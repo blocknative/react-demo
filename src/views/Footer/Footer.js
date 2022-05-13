@@ -18,7 +18,7 @@ const Footer = () => {
         </span>
         <span>
           Notify version:{' '}
-          <i>{staging ? 'NEXT' : dependencies['bnc-notify'].slice(1)}</i>
+          <i>{dependencies['bnc-notify'].slice(1)}</i>
         </span>
       </div>
       <section className="footer-links">
