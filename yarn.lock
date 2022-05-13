@@ -4365,7 +4365,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/coinbase@npm:latest":
+"@web3-onboard/coinbase@npm:^2.0.2":
   version: 2.0.2
   resolution: "@web3-onboard/coinbase@npm:2.0.2"
   dependencies:
@@ -4387,18 +4387,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/common@npm:latest":
-  version: 2.0.9-alpha.2
-  resolution: "@web3-onboard/common@npm:2.0.9-alpha.2"
-  dependencies:
-    "@ethereumjs/common": 2.6.2
-    ethers: 5.5.4
-    joi: ^17.4.2
-    rxjs: ^7.5.2
-  checksum: 6f2fda6a635dacf2a507a92fe208fbb1a0bf3deb7e824c08e1a1f1e11348d57fdbf7028793d9ee9f21b2b82eafb6f7d485205bd998a61eafc4993e52563cc93c
-  languageName: node
-  linkType: hard
-
 "@web3-onboard/core@npm:^2.2.7":
   version: 2.2.8
   resolution: "@web3-onboard/core@npm:2.2.8"
@@ -4417,7 +4405,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/fortmatic@npm:latest":
+"@web3-onboard/fortmatic@npm:^2.0.2":
   version: 2.0.2
   resolution: "@web3-onboard/fortmatic@npm:2.0.2"
   dependencies:
@@ -4427,7 +4415,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/gnosis@npm:latest":
+"@web3-onboard/gnosis@npm:^2.0.1":
   version: 2.0.1
   resolution: "@web3-onboard/gnosis@npm:2.0.1"
   dependencies:
@@ -4438,7 +4426,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/injected-wallets@npm:latest":
+"@web3-onboard/injected-wallets@npm:^2.0.6":
   version: 2.0.6
   resolution: "@web3-onboard/injected-wallets@npm:2.0.6"
   dependencies:
@@ -4449,7 +4437,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/keepkey@npm:latest":
+"@web3-onboard/keepkey@npm:^2.0.3":
   version: 2.0.3
   resolution: "@web3-onboard/keepkey@npm:2.0.3"
   dependencies:
@@ -4462,7 +4450,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/keystone@npm:latest":
+"@web3-onboard/keystone@npm:^2.0.3":
   version: 2.0.3
   resolution: "@web3-onboard/keystone@npm:2.0.3"
   dependencies:
@@ -4474,7 +4462,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/ledger@npm:latest":
+"@web3-onboard/ledger@npm:^2.0.4":
   version: 2.0.4
   resolution: "@web3-onboard/ledger@npm:2.0.4"
   dependencies:
@@ -4491,7 +4479,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/magic@npm:latest":
+"@web3-onboard/magic@npm:^2.0.3":
   version: 2.0.3
   resolution: "@web3-onboard/magic@npm:2.0.3"
   dependencies:
@@ -4503,7 +4491,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/portis@npm:latest":
+"@web3-onboard/portis@npm:^2.0.0":
   version: 2.0.0
   resolution: "@web3-onboard/portis@npm:2.0.0"
   dependencies:
@@ -4513,7 +4501,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/react@npm:latest":
+"@web3-onboard/react@npm:^2.1.6":
   version: 2.1.6
   resolution: "@web3-onboard/react@npm:2.1.6"
   dependencies:
@@ -4525,7 +4513,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/torus@npm:latest":
+"@web3-onboard/torus@npm:^2.0.1":
   version: 2.0.1
   resolution: "@web3-onboard/torus@npm:2.0.1"
   dependencies:
@@ -4535,7 +4523,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/trezor@npm:latest":
+"@web3-onboard/trezor@npm:^2.0.5":
   version: 2.0.5
   resolution: "@web3-onboard/trezor@npm:2.0.5"
   dependencies:
@@ -4551,7 +4539,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/walletconnect@npm:latest":
+"@web3-onboard/walletconnect@npm:^2.0.1":
   version: 2.0.1
   resolution: "@web3-onboard/walletconnect@npm:2.0.1"
   dependencies:
@@ -9253,7 +9241,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ethers@npm:^5.4.7":
+"ethers@npm:^5.4.7, ethers@npm:^5.5.4":
   version: 5.6.5
   resolution: "ethers@npm:5.6.5"
   dependencies:
@@ -14135,22 +14123,21 @@ __metadata:
   resolution: "onboard-notify-react@workspace:."
   dependencies:
     "@craco/craco": ^5.8.3
-    "@web3-onboard/coinbase": latest
-    "@web3-onboard/common": latest
-    "@web3-onboard/fortmatic": latest
-    "@web3-onboard/gnosis": latest
-    "@web3-onboard/injected-wallets": latest
-    "@web3-onboard/keepkey": latest
-    "@web3-onboard/keystone": latest
-    "@web3-onboard/ledger": latest
-    "@web3-onboard/magic": latest
-    "@web3-onboard/portis": latest
-    "@web3-onboard/react": latest
-    "@web3-onboard/torus": latest
-    "@web3-onboard/trezor": latest
-    "@web3-onboard/walletconnect": latest
+    "@web3-onboard/coinbase": ^2.0.2
+    "@web3-onboard/fortmatic": ^2.0.2
+    "@web3-onboard/gnosis": ^2.0.1
+    "@web3-onboard/injected-wallets": ^2.0.6
+    "@web3-onboard/keepkey": ^2.0.3
+    "@web3-onboard/keystone": ^2.0.3
+    "@web3-onboard/ledger": ^2.0.4
+    "@web3-onboard/magic": ^2.0.3
+    "@web3-onboard/portis": ^2.0.0
+    "@web3-onboard/react": ^2.1.6
+    "@web3-onboard/torus": ^2.0.1
+    "@web3-onboard/trezor": ^2.0.5
+    "@web3-onboard/walletconnect": ^2.0.1
     bnc-notify: ^1.9.4
-    ethers: 5.5.4
+    ethers: ^5.5.4
     prettier: ^2.0.5
     react: ^17.0.2
     react-dom: ^17.0.2
