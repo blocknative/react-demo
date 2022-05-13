@@ -8,7 +8,18 @@ jobs:
     resource_class: large
     steps:
       - checkout
-      - run: yarn up '@web3-onboard/*@next'
+      - run: yarn upgrade "@web3-onboard/coinbase@next"
+      - run: yarn upgrade "@web3-onboard/fortmatic@next"
+      - run: yarn upgrade "@web3-onboard/gnosis@next"
+      - run: yarn upgrade "@web3-onboard/injected-wallets@next"
+      - run: yarn upgrade "@web3-onboard/keepkey@next"
+      - run: yarn upgrade "@web3-onboard/keystone@next"
+      - run: yarn upgrade "@web3-onboard/ledger@next"
+      - run: yarn upgrade "@web3-onboard/magic@next"
+      - run: yarn upgrade "@web3-onboard/portis@next"
+      - run: yarn upgrade "@web3-onboard/react@next"
+      - run: yarn upgrade "@web3-onboard/torus@next"
+      - run: yarn upgrade "@web3-onboard/trezor@next"
       - run: yarn install
       - run: yarn build-staging
       - run: touch .env
@@ -26,7 +37,18 @@ jobs:
     steps:
       - checkout
       - run: yarn cache clean
-      - run: yarn up '@web3-onboard/*@latest'
+      - run: yarn upgrade "@web3-onboard/coinbase@latest"
+      - run: yarn upgrade "@web3-onboard/fortmatic@latest"
+      - run: yarn upgrade "@web3-onboard/gnosis@latest"
+      - run: yarn upgrade "@web3-onboard/injected-wallets@latest"
+      - run: yarn upgrade "@web3-onboard/keepkey@latest"
+      - run: yarn upgrade "@web3-onboard/keystone@latest"
+      - run: yarn upgrade "@web3-onboard/ledger@latest"
+      - run: yarn upgrade "@web3-onboard/magic@latest"
+      - run: yarn upgrade "@web3-onboard/portis@latest"
+      - run: yarn upgrade "@web3-onboard/react@latest"
+      - run: yarn upgrade "@web3-onboard/torus@latest"
+      - run: yarn upgrade "@web3-onboard/trezor@latest"
       - run: yarn install
       - run: yarn build
       - run: touch .env
