@@ -8,7 +8,19 @@ jobs:
     resource_class: large
     steps:
       - checkout
-      - run: yarn remove bnc-notify-staging && yarn add bnc-notify-staging@'https://github.com/blocknative/notify#develop' && yarn install --network-concurrency 1
+      - run: yarn upgrade "@web3-onboard/coinbase@next"
+      - run: yarn upgrade "@web3-onboard/fortmatic@next"
+      - run: yarn upgrade "@web3-onboard/gnosis@next"
+      - run: yarn upgrade "@web3-onboard/injected-wallets@next"
+      - run: yarn upgrade "@web3-onboard/keepkey@next"
+      - run: yarn upgrade "@web3-onboard/keystone@next"
+      - run: yarn upgrade "@web3-onboard/ledger@next"
+      - run: yarn upgrade "@web3-onboard/magic@next"
+      - run: yarn upgrade "@web3-onboard/portis@next"
+      - run: yarn upgrade "@web3-onboard/react@next"
+      - run: yarn upgrade "@web3-onboard/torus@next"
+      - run: yarn upgrade "@web3-onboard/trezor@next"
+      - run: yarn install
       - run: yarn build-staging
       - run: touch .env
       - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
@@ -24,7 +36,20 @@ jobs:
     resource_class: large
     steps:
       - checkout
-      - run: yarn cache clean && yarn install --network-concurrency 1
+      - run: yarn cache clean
+      - run: yarn upgrade "@web3-onboard/coinbase"
+      - run: yarn upgrade "@web3-onboard/fortmatic"
+      - run: yarn upgrade "@web3-onboard/gnosis"
+      - run: yarn upgrade "@web3-onboard/injected-wallets"
+      - run: yarn upgrade "@web3-onboard/keepkey"
+      - run: yarn upgrade "@web3-onboard/keystone"
+      - run: yarn upgrade "@web3-onboard/ledger"
+      - run: yarn upgrade "@web3-onboard/magic"
+      - run: yarn upgrade "@web3-onboard/portis"
+      - run: yarn upgrade "@web3-onboard/react"
+      - run: yarn upgrade "@web3-onboard/torus"
+      - run: yarn upgrade "@web3-onboard/trezor"
+      - run: yarn install
       - run: yarn build
       - run: touch .env
       - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env

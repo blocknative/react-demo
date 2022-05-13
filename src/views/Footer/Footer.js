@@ -4,7 +4,7 @@ import { version, dependencies } from '../../../package.json'
 import './Footer.css'
 
 const Footer = () => {
-  const staging = process.env.REACT_Footer_STAGING;
+  const staging = process.env.REACT_APP_STAGING;
 
   return (
     <section className="footer">
@@ -18,7 +18,7 @@ const Footer = () => {
         </span>
         <span>
           Notify version:{' '}
-          <i>{staging ? 'NEXT' : dependencies['bnc-notify'].slice(1)}</i>
+          <i>{dependencies['bnc-notify'].slice(1)}</i>
         </span>
       </div>
       <section className="footer-links">

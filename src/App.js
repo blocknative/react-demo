@@ -506,7 +506,8 @@ const App = () => {
                       eventCode: 'dbUpdate',
                       type: 'pending',
                       message:
-                        'This is a custom notification triggered by the dapp'
+                        'This is a custom notification triggered by the dapp',
+                      link: 'https://github.com/blocknative/react-demo'
                     })
                     setTimeout(
                       () =>
