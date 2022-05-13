@@ -4365,17 +4365,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/coinbase@npm:next":
-  version: 2.0.2-alpha.1
-  resolution: "@web3-onboard/coinbase@npm:2.0.2-alpha.1"
+"@web3-onboard/coinbase@npm:latest":
+  version: 2.0.2
+  resolution: "@web3-onboard/coinbase@npm:2.0.2"
   dependencies:
     "@coinbase/wallet-sdk": ^3.0.5
-    "@web3-onboard/common": ^2.0.7-alpha.1
-  checksum: e97d2904168fd353b175c46afdc24aac71f4f2d898b02a0546a29fa1a4f0c28d8e3c1d5616af21d6c0bf03ebfd352d5d3c4388442f7329393ae1430a921b0dce
+    "@web3-onboard/common": ^2.0.7
+  checksum: c86479851d52ca393c9e3e1222b24214e45dff9563ae505ff6bfdccbf3f91a458465b8cabe74d78fc9994bed9e7be990693f56dffa111ea3fecb9d94e6dcbc43
   languageName: node
   linkType: hard
 
-"@web3-onboard/common@npm:^2.0.7, @web3-onboard/common@npm:^2.0.7-alpha.1":
+"@web3-onboard/common@npm:^2.0.0, @web3-onboard/common@npm:^2.0.3, @web3-onboard/common@npm:^2.0.6, @web3-onboard/common@npm:^2.0.7":
   version: 2.0.9
   resolution: "@web3-onboard/common@npm:2.0.9"
   dependencies:
@@ -4387,19 +4387,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/common@npm:next":
-  version: 2.0.9-alpha.1
-  resolution: "@web3-onboard/common@npm:2.0.9-alpha.1"
+"@web3-onboard/common@npm:latest":
+  version: 2.0.9-alpha.2
+  resolution: "@web3-onboard/common@npm:2.0.9-alpha.2"
   dependencies:
     "@ethereumjs/common": 2.6.2
     ethers: 5.5.4
     joi: ^17.4.2
     rxjs: ^7.5.2
-  checksum: e1110c59d73e6ba51ca7ddad9e19a6c39b0bd9226e903a992b25d60676b34480dc2bab3ee7192e7292c690eb4e9a3f7a8bb3e36a9ec9fbc7bf9cde942d634cf8
+  checksum: 6f2fda6a635dacf2a507a92fe208fbb1a0bf3deb7e824c08e1a1f1e11348d57fdbf7028793d9ee9f21b2b82eafb6f7d485205bd998a61eafc4993e52563cc93c
   languageName: node
   linkType: hard
 
-"@web3-onboard/core@npm:^2.2.7-alpha.1":
+"@web3-onboard/core@npm:^2.2.7":
   version: 2.2.8
   resolution: "@web3-onboard/core@npm:2.2.8"
   dependencies:
@@ -4417,66 +4417,66 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3-onboard/fortmatic@npm:next":
-  version: 2.0.2-alpha.1
-  resolution: "@web3-onboard/fortmatic@npm:2.0.2-alpha.1"
+"@web3-onboard/fortmatic@npm:latest":
+  version: 2.0.2
+  resolution: "@web3-onboard/fortmatic@npm:2.0.2"
   dependencies:
-    "@web3-onboard/common": ^2.0.7-alpha.1
+    "@web3-onboard/common": ^2.0.3
     fortmatic: ^2.2.1
-  checksum: c26b655e4b1e5aa8522871fb4beae99b9d5710ed4de4bf9a4e7af97720eb43e2f7a436a1b844776eba89c755ecf3c6ab2b3a7510c52a805f06b5bc549d804d1d
+  checksum: dcec45a6bc950a9d948cd7a889be5e7bb5f89274429e45a56bf5c143596b3286acb770e19d12198fe278039db79294d77fc06d700324acee79f5cfdf6fd8b100
   languageName: node
   linkType: hard
 
-"@web3-onboard/gnosis@npm:next":
-  version: 2.0.1-alpha.1
-  resolution: "@web3-onboard/gnosis@npm:2.0.1-alpha.1"
+"@web3-onboard/gnosis@npm:latest":
+  version: 2.0.1
+  resolution: "@web3-onboard/gnosis@npm:2.0.1"
   dependencies:
     "@gnosis.pm/safe-apps-provider": ^0.9.2
     "@gnosis.pm/safe-apps-sdk": ^6.1.1
-    "@web3-onboard/common": ^2.0.7-alpha.1
-  checksum: dd8491ace0a3cf063d5c6f58a0041c9167f62edbb2b752d17b938e39defacd0ef12dffaab23582f397786d6c22499220a0d9bc91a0221e499bfe0d5f6dd6fa4d
+    "@web3-onboard/common": ^2.0.0
+  checksum: 30cc6dea151bf83addfd512a7f8a9dd0a038210710263a2433ed19f0e6e683c4ce98afb21223da2aa1c3bc4fcae15b51f53274d645ce792a32c8f6d874ab6aaa
   languageName: node
   linkType: hard
 
-"@web3-onboard/injected-wallets@npm:next":
-  version: 2.0.6-alpha.1
-  resolution: "@web3-onboard/injected-wallets@npm:2.0.6-alpha.1"
+"@web3-onboard/injected-wallets@npm:latest":
+  version: 2.0.6
+  resolution: "@web3-onboard/injected-wallets@npm:2.0.6"
   dependencies:
-    "@web3-onboard/common": ^2.0.7-alpha.1
+    "@web3-onboard/common": ^2.0.7
     joi: ^17.4.2
     lodash.uniqby: ^4.7.0
-  checksum: 64b101587c848b7794473c8be1a87f03820a954c3cf19f065e2beaf5a21e029dfde2c1cbabd899b221d12a1d5706fdb86d6072ce9ce072119142082a9c767fac
+  checksum: 235328ab77c6a379e16942d21372f8e17b2375d3e4c9ffc2c1f06473bf6475a4688f6cffeeb7af779336953ebed8e59d8682e927f4f5fd2a3dd07db773df80b3
   languageName: node
   linkType: hard
 
-"@web3-onboard/keepkey@npm:next":
-  version: 2.0.3-alpha.1
-  resolution: "@web3-onboard/keepkey@npm:2.0.3-alpha.1"
+"@web3-onboard/keepkey@npm:latest":
+  version: 2.0.3
+  resolution: "@web3-onboard/keepkey@npm:2.0.3"
   dependencies:
     "@ethersproject/providers": ^5.5.0
     "@shapeshiftoss/hdwallet-core": ^1.15.2
     "@shapeshiftoss/hdwallet-keepkey-webusb": ^1.15.2
-    "@web3-onboard/common": ^2.0.7-alpha.1
+    "@web3-onboard/common": ^2.0.7
     ethereumjs-util: ^7.1.3
-  checksum: 199213cee17fc05709ece0e5faafa9aca61272a5d1c3cbad4cbcbd0bd153abce1eb244572bf8cb159816f909710443c42b330f83d99069fc9f10d0388c642ea4
+  checksum: 1df8676e22033111333c665a80d4a9a1f46ce08f39fec9f4d178f737bc0286862d3086e404f1067fa70acef7a1bf98734b41c7220dc94629bb70a1b9da4a3745
   languageName: node
   linkType: hard
 
-"@web3-onboard/keystone@npm:next":
-  version: 2.0.3-alpha.1
-  resolution: "@web3-onboard/keystone@npm:2.0.3-alpha.1"
+"@web3-onboard/keystone@npm:latest":
+  version: 2.0.3
+  resolution: "@web3-onboard/keystone@npm:2.0.3"
   dependencies:
     "@ethereumjs/tx": ^3.4.0
     "@ethersproject/providers": ^5.5.0
     "@keystonehq/eth-keyring": ^0.11.2-alpha.2
-    "@web3-onboard/common": ^2.0.7-alpha.1
-  checksum: db18a56bd738eabb5b5760422e63dc38e952f2388c865c91150042bd03cd6dc1031ce66c50cb8d6de23ea6d3aec940b1c5880db6d742605bdd63a541a7c4342e
+    "@web3-onboard/common": ^2.0.7
+  checksum: 89661c1ce1539f2e62bf91a0d2cf8ec577bef070b46771b7ac3da05b755b12dbb59a9b26281dfaa369b8164c1529975c52421691b9756a1cb08c4aa1ed2acf62
   languageName: node
   linkType: hard
 
-"@web3-onboard/ledger@npm:next":
-  version: 2.0.4-alpha.1
-  resolution: "@web3-onboard/ledger@npm:2.0.4-alpha.1"
+"@web3-onboard/ledger@npm:latest":
+  version: 2.0.4
+  resolution: "@web3-onboard/ledger@npm:2.0.4"
   dependencies:
     "@ethereumjs/tx": ^3.4.0
     "@ethersproject/providers": ^5.5.0
@@ -4484,83 +4484,83 @@ __metadata:
     "@ledgerhq/hw-transport-u2f": ^5.36.0-deprecated
     "@ledgerhq/hw-transport-webusb": ^6.19.0
     "@metamask/eth-sig-util": ^4.0.0
-    "@web3-onboard/common": ^2.0.7-alpha.1
+    "@web3-onboard/common": ^2.0.7
     buffer: ^6.0.3
     ethereumjs-util: ^7.1.3
-  checksum: ef61413ff7f969ec86158538bbc88c9d5c7d3b989d48cca467ef24aca8e10c427e03171deefbbeb8e4ee51f7575c6b3daeda767c6d5ad49e44c6dc42e11f7418
+  checksum: 375fd4399b43c0e6060300b20ddd23d38e3628a84d76e6d16efb185e6cf5a5fc9abaacc8e64fd6f392c7eb364fa404f63c329dcab23d7c1a5e701a884e20484f
   languageName: node
   linkType: hard
 
-"@web3-onboard/magic@npm:next":
-  version: 2.0.3-alpha.1
-  resolution: "@web3-onboard/magic@npm:2.0.3-alpha.1"
+"@web3-onboard/magic@npm:latest":
+  version: 2.0.3
+  resolution: "@web3-onboard/magic@npm:2.0.3"
   dependencies:
-    "@web3-onboard/common": ^2.0.7-alpha.1
+    "@web3-onboard/common": ^2.0.6
     joi: ^17.4.2
     magic-sdk: ^8.1.0
     rxjs: ^7.5.2
-  checksum: 8e299b4a49bb1e9259932ec4c32ae1f5273d11f982d58410908f8c29febe4294bb6fe0e68bcfbcef6dbe81959df09fb52b2e74f4af83c068524a1d76dc6a2b14
+  checksum: cee14b0031e57751bdadf1e646159eb408fba3a080f9b71469e1a09d536b8a81caeded338b204ea4fe80ff7005c716338e0a1b353a2baa26d5129eec5248af75
   languageName: node
   linkType: hard
 
-"@web3-onboard/portis@npm:next":
-  version: 2.0.0-alpha
-  resolution: "@web3-onboard/portis@npm:2.0.0-alpha"
+"@web3-onboard/portis@npm:latest":
+  version: 2.0.0
+  resolution: "@web3-onboard/portis@npm:2.0.0"
   dependencies:
     "@portis/web3": ^4.0.6
-    "@web3-onboard/common": ^2.0.7
-  checksum: 21d8bd4d720ad2f6d84fe98b28bd5f1127cf073b35762862b0d458c40b3f0b06e958c58abd5ed2b944e69236840e8666379eccbb2d4dc3f13d635b8579c78e02
+    "@web3-onboard/common": ^2.0.0
+  checksum: 275ea8b2e614391db96206165be894cd2288170269d933b117416e9d0fceacf07c58754cfc82ad6dd26cdb57df25ed31148a7d51ad2d045b07a25683553dcd5b
   languageName: node
   linkType: hard
 
-"@web3-onboard/react@npm:next":
-  version: 2.1.6-alpha.1
-  resolution: "@web3-onboard/react@npm:2.1.6-alpha.1"
+"@web3-onboard/react@npm:latest":
+  version: 2.1.6
+  resolution: "@web3-onboard/react@npm:2.1.6"
   dependencies:
-    "@web3-onboard/common": ^2.0.7-alpha.1
-    "@web3-onboard/core": ^2.2.7-alpha.1
+    "@web3-onboard/common": ^2.0.7
+    "@web3-onboard/core": ^2.2.7
   peerDependencies:
     react: ^17.0.2
-  checksum: 50cf997955840b659eb8bc6296576bc02b38261fe5552de6d515ef208a8c0346fcf96ed5fccf046a75e635bff4cda74ae4d12d4d8663f821bc1a0a5525717ac6
+  checksum: 0b5cf908c9d225c669546bb39a813bb633f26e9eecc37ed83130db104cec87274e9e1cdbaf2bf26c76a9aceaa4d6a519fdbd5bb852a828768fc17b226e76ac5f
   languageName: node
   linkType: hard
 
-"@web3-onboard/torus@npm:next":
-  version: 2.0.1-alpha.1
-  resolution: "@web3-onboard/torus@npm:2.0.1-alpha.1"
+"@web3-onboard/torus@npm:latest":
+  version: 2.0.1
+  resolution: "@web3-onboard/torus@npm:2.0.1"
   dependencies:
     "@toruslabs/torus-embed": ^1.18.3
-    "@web3-onboard/common": ^2.0.7-alpha.1
-  checksum: 72e41aa767a2a9ac3dab098149015ef64d14b9d4dbd866e601262201f7317ee2473c820b14beaf32b7b25a17f1ac97bf928af9a2179520f3018d5795b4c84bf0
+    "@web3-onboard/common": ^2.0.0
+  checksum: a921f5af8e193593bc37b213916304f8d6b2ae954e3653c55464578a36251b31e996a3e213bb5a4b3958cb41603679f5bdabde8cefe3dab3a642241efb36348b
   languageName: node
   linkType: hard
 
-"@web3-onboard/trezor@npm:next":
-  version: 2.0.5-alpha.1
-  resolution: "@web3-onboard/trezor@npm:2.0.5-alpha.1"
+"@web3-onboard/trezor@npm:latest":
+  version: 2.0.5
+  resolution: "@web3-onboard/trezor@npm:2.0.5"
   dependencies:
     "@ethereumjs/tx": ^3.4.0
     "@ethersproject/providers": ^5.5.0
-    "@web3-onboard/common": ^2.0.7-alpha.1
+    "@web3-onboard/common": ^2.0.7
     buffer: ^6.0.3
     eth-crypto: ^2.1.0
     ethereumjs-util: ^7.1.3
     hdkey: ^2.0.1
     trezor-connect: ^8.2.6
-  checksum: 118edecce7e71a84695fd85b9d9b115ca3ff90017aaf0774f81fd8e91cf9fbb17bf1237b20257324e8940de3470e6296e30d40e7c6c9e7dfe9fafe1291164385
+  checksum: 1a42174c4a6e14ae4f27a2271ad98c2521548e8595a5a8c2c4a48dabfd4dc3d46e4759bd559ec7a8115e0c57da348f32ed790256657d8b70063d6ebec437e3db
   languageName: node
   linkType: hard
 
-"@web3-onboard/walletconnect@npm:next":
-  version: 2.0.1-alpha.1
-  resolution: "@web3-onboard/walletconnect@npm:2.0.1-alpha.1"
+"@web3-onboard/walletconnect@npm:latest":
+  version: 2.0.1
+  resolution: "@web3-onboard/walletconnect@npm:2.0.1"
   dependencies:
     "@ethersproject/providers": ^5.5.0
     "@walletconnect/client": ^1.7.1
     "@walletconnect/qrcode-modal": ^1.7.1
-    "@web3-onboard/common": ^2.0.7-alpha.1
+    "@web3-onboard/common": ^2.0.0
     rxjs: ^7.5.2
-  checksum: 9ca2627fb5d6378afc1bb35458db736b66a1e5249815a66215e0edf094ab84454896725eef5004225273aad0f14347b1306624ea92e6e065297f30b397fe80ad
+  checksum: 4eed33de91f2473ec9525546d8c8200fe50b005300b1653a95ff9be1c867e8fb6188204c8ed7a8fedc4c4875dac3bf57e1377beb35a90f0c2975ec74bf2a0189
   languageName: node
   linkType: hard
 
@@ -5950,19 +5950,6 @@ __metadata:
     uuid: ^3.3.2
     websocket-stream: ^5.5.0
   checksum: 21dfcc6ff54fb5caf3834b07732688b3cc77ef434bcb40e8d18a52616e549a143bf877d483ef4578eae5c5a1724f2ee9f19c73c95a474991bbb7a2b33541953e
-  languageName: node
-  linkType: hard
-
-"bnc-notify-staging@npm:bnc-notify@git+https://github.com/blocknative/notify.git#branch=develop":
-  version: 1.9.5
-  resolution: "bnc-notify@https://github.com/blocknative/notify.git#branch=develop&commit=054b42ac795a3f14e641d1412604219bf1a71890"
-  dependencies:
-    bignumber.js: ^9.0.0
-    bnc-sdk: 4.1.0
-    lodash.debounce: ^4.0.8
-    regenerator-runtime: ^0.13.3
-    uuid: ^3.3.3
-  checksum: dc6242078e1f40316f4edeb4025e7d7e74ccc6e162295daa47c4eb8ff2e2bb79025d1bf43092b292425a5c9bdfc48e6f8c48a8b2b92d4aa16a87cc76d97de757
   languageName: node
   linkType: hard
 
@@ -9266,7 +9253,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ethers@npm:^5.4.7, ethers@npm:^5.5.2":
+"ethers@npm:^5.4.7":
   version: 5.6.5
   resolution: "ethers@npm:5.6.5"
   dependencies:
@@ -14148,23 +14135,22 @@ __metadata:
   resolution: "onboard-notify-react@workspace:."
   dependencies:
     "@craco/craco": ^5.8.3
-    "@web3-onboard/coinbase": next
-    "@web3-onboard/common": next
-    "@web3-onboard/fortmatic": next
-    "@web3-onboard/gnosis": next
-    "@web3-onboard/injected-wallets": next
-    "@web3-onboard/keepkey": next
-    "@web3-onboard/keystone": next
-    "@web3-onboard/ledger": next
-    "@web3-onboard/magic": next
-    "@web3-onboard/portis": next
-    "@web3-onboard/react": next
-    "@web3-onboard/torus": next
-    "@web3-onboard/trezor": next
-    "@web3-onboard/walletconnect": next
+    "@web3-onboard/coinbase": latest
+    "@web3-onboard/common": latest
+    "@web3-onboard/fortmatic": latest
+    "@web3-onboard/gnosis": latest
+    "@web3-onboard/injected-wallets": latest
+    "@web3-onboard/keepkey": latest
+    "@web3-onboard/keystone": latest
+    "@web3-onboard/ledger": latest
+    "@web3-onboard/magic": latest
+    "@web3-onboard/portis": latest
+    "@web3-onboard/react": latest
+    "@web3-onboard/torus": latest
+    "@web3-onboard/trezor": latest
+    "@web3-onboard/walletconnect": latest
     bnc-notify: ^1.9.4
-    bnc-notify-staging: "npm:bnc-notify@git+https://github.com/blocknative/notify.git#branch=develop"
-    ethers: ^5.5.2
+    ethers: 5.5.4
     prettier: ^2.0.5
     react: ^17.0.2
     react-dom: ^17.0.2
