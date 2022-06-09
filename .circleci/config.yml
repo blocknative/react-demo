@@ -37,18 +37,6 @@ jobs:
     steps:
       - checkout
       - run: yarn cache clean
-      - run: yarn upgrade "@web3-onboard/coinbase"
-      - run: yarn upgrade "@web3-onboard/fortmatic"
-      - run: yarn upgrade "@web3-onboard/gnosis"
-      - run: yarn upgrade "@web3-onboard/injected-wallets"
-      - run: yarn upgrade "@web3-onboard/keepkey"
-      - run: yarn upgrade "@web3-onboard/keystone"
-      - run: yarn upgrade "@web3-onboard/ledger"
-      - run: yarn upgrade "@web3-onboard/magic"
-      - run: yarn upgrade "@web3-onboard/portis"
-      - run: yarn upgrade "@web3-onboard/react"
-      - run: yarn upgrade "@web3-onboard/torus"
-      - run: yarn upgrade "@web3-onboard/trezor"
       - run: yarn install --network-concurrency 1
       - run: yarn build
       - run: touch .env
