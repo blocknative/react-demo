@@ -20,6 +20,7 @@ jobs:
       - run: yarn upgrade "@web3-onboard/react@next"
       - run: yarn upgrade "@web3-onboard/torus@next"
       - run: yarn upgrade "@web3-onboard/trezor@next"
+      - run: yarn upgrade "@web3-onboard/web3auth@next"
       - run: yarn install --network-concurrency 1
       - run: yarn build-staging
       - run: touch .env
