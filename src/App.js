@@ -152,6 +152,7 @@ const App = () => {
     signer.sendTransaction(txDetails)
   }
 
+  // Will add the below back in after the development of Notification placement separate from the Account Center
   // const renderDeviceSettings = () => {
   //   if (window.innerWidth < 700) {
   //     return (

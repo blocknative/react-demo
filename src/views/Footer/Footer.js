@@ -28,7 +28,7 @@ const Footer = () => {
           >
             <p> </p>
           </a>
-          <span>Onboard Github</span>
+          <span>Web3-Onboard Github</span>
         </span>
         <span className="social-links">
           <a

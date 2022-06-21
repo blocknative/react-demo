@@ -13,6 +13,7 @@ import fortmaticModule from '@web3-onboard/fortmatic'
 import torusModule from '@web3-onboard/torus'
 import keepkeyModule from '@web3-onboard/keepkey'
 import gnosisModule from '@web3-onboard/gnosis'
+import web3authModule from '@web3-onboard/web3auth'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
@@ -51,6 +52,11 @@ const magic = magicModule({
   userEmail: localStorage.getItem('magicUserEmail')
 })
 
+const web3auth = web3authModule({
+  clientId:
+    'DJuUOKvmNnlzy6ruVgeWYWIMKLRyYtjYa9Y10VCeJzWZcygDlrYLyXsBQjpJ2hxlBO9dnl8t9GmAC2qOP5vnIGo'
+})
+
 export const initWeb3Onboard = init({
   wallets: [
     injected,
@@ -58,6 +64,7 @@ export const initWeb3Onboard = init({
     coinbase,
     trezor,
     walletConnect,
+    web3auth,
     gnosis,
     magic,
     fortmatic,
