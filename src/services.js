@@ -1,5 +1,3 @@
-import Notify from 'bnc-notify'
-
 import blocknativeLogo from './icons/blocknative-logo'
 import blocknativeIcon from './icons/blocknative-icon'
 
@@ -19,9 +17,7 @@ import gnosisModule from '@web3-onboard/gnosis'
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
 
-const networkId = 4
-const apiUrl = process.env.REACT_APP_API_URL
-const dappId = '12153f55-f29e-4f11-aa07-90f10da5d778'
+const dappId = '1730eff0-9d50-4382-a3fe-89f0d34a2070'
 
 const injected = injectedModule()
 const coinbase = coinbaseModule()
@@ -123,14 +119,22 @@ export const initWeb3Onboard = init({
     },
     gettingStartedGuide: 'https://blocknative.com',
     explore: 'https://blocknative.com'
+  },
+  apiKey: dappId,
+  notify: {
+    enabled: true,
+    transactionHandler: transaction => {
+      console.log({ transaction })
+      if (transaction.eventCode === 'txPool') {
+        return {
+          // autoDismiss set to zero will persist the notification until the user excuses it
+          autoDismiss: 0, 
+          // message: `Your transaction is pending, click <a href="https://rinkeby.etherscan.io/tx/${transaction.hash}" rel="noopener noreferrer" target="_blank">here</a> for more info.`,
+          // or you could use onClick for when someone clicks on the notification itself
+          onClick: () =>
+            window.open(`https://rinkeby.etherscan.io/tx/${transaction.hash}`)
+        }
+      }
+    }
   }
 })
-
-export function initNotify() {
-  return Notify({
-    dappId,
-    networkId,
-    apiUrl,
-    onerror: error => console.log(`Notify error: ${error.message}`)
-  })
-}
