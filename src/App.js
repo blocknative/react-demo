@@ -429,7 +429,7 @@ const App = () => {
                         eventCode: 'dbUpdate',
                         type: 'hint',
                         message: 'Custom hint notification created by the dapp',
-                        onclick: () =>
+                        onClick: () =>
                           window.open(
                             `https://www.blocknative.com`
                           )
