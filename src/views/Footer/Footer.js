@@ -16,10 +16,6 @@ const Footer = () => {
           Web3 Onboard React version:{' '}
           <i>{staging ? 'NEXT' : dependencies['@web3-onboard/react'].slice(1)}</i>
         </span>
-        <span>
-          Notify version:{' '}
-          <i>{dependencies['bnc-notify'].slice(1)}</i>
-        </span>
       </div>
       <section className="footer-links">
         <span className="social-links">
@@ -32,7 +28,7 @@ const Footer = () => {
           >
             <p> </p>
           </a>
-          <span>Onboard Github</span>
+          <span>Web3-Onboard Github</span>
         </span>
         <span className="social-links">
           <a

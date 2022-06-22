@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
-import { initWeb3Onboard, initNotify } from './services'
+import { initWeb3Onboard } from './services'
 import { useConnectWallet, useSetChain, useWallets } from '@web3-onboard/react'
 import './App.css'
 import Header from './views/Header/Header.js'
@@ -37,17 +37,11 @@ const App = () => {
   const connectedWallets = useWallets()
 
   const [web3Onboard, setWeb3Onboard] = useState(null)
-  const [notify, setNotify] = useState(null)
-  const [darkMode, setDarkMode] = useState(false)
-  const [desktopPosition, setDesktopPosition] = useState('bottomRight')
-  const [mobilePosition, setMobilePosition] = useState('top')
 
   const [toAddress, setToAddress] = useState('')
 
   useEffect(() => {
     setWeb3Onboard(initWeb3Onboard)
-
-    setNotify(initNotify())
   }, [])
 
   useEffect(() => {
@@ -127,27 +121,10 @@ const App = () => {
 
     const signer = provider.getUncheckedSigner()
 
-    const { hash } = await signer.sendTransaction({
+    await signer.sendTransaction({
       to: toAddress,
       value: 1000000000000000
     })
-
-    const { emitter } = notify.hash(hash)
-
-    emitter.on('txPool', transaction => {
-      return {
-        // message: `Your transaction is pending, click <a href="https://rinkeby.etherscan.io/tx/${transaction.hash}" rel="noopener noreferrer" target="_blank">here</a> for more info.`,
-        // or you could use onclick for when someone clicks on the notification itself
-        onclick: () =>
-          window.open(`https://rinkeby.etherscan.io/tx/${transaction.hash}`)
-      }
-    })
-
-    emitter.on('txSent', console.log)
-    emitter.on('txConfirmed', console.log)
-    emitter.on('txSpeedUp', console.log)
-    emitter.on('txCancel', console.log)
-    emitter.on('txFailed', console.log)
   }
 
   const sendInternalTransaction = async () => {
@@ -156,21 +133,9 @@ const App = () => {
       return
     }
 
-    const { hash } = await internalTransferContract.internalTransfer(
-      toAddress,
-      {
-        value: 1000000000000000
-      }
-    )
-
-    const { emitter } = notify.hash(hash)
-
-    emitter.on('txSent', console.log)
-    emitter.on('txPool', console.log)
-    emitter.on('txConfirmed', console.log)
-    emitter.on('txSpeedUp', console.log)
-    emitter.on('txCancel', console.log)
-    emitter.on('txFailed', console.log)
+    await internalTransferContract.internalTransfer(toAddress, {
+      value: 1000000000000000
+    })
   }
 
   const sendTransaction = async () => {
@@ -184,137 +149,100 @@ const App = () => {
       to: toAddress,
       value: 1000000000000000
     }
-
-    const sendTransaction = () => {
-      return signer.sendTransaction(txDetails).then(tx => tx.hash)
-    }
-
-    const gasPrice = () => provider.getGasPrice().then(res => res.toString())
-
-    const estimateGas = () => {
-      return provider.estimateGas(txDetails).then(res => res.toString())
-    }
-
-    const { emitter } = await notify.transaction({
-      sendTransaction,
-      gasPrice,
-      estimateGas,
-      balance: wallet.balance,
-      txDetails
-    })
-
-    emitter.on('txRequest', console.log)
-    emitter.on('nsfFail', console.log)
-    emitter.on('txRepeat', console.log)
-    emitter.on('txAwaitingApproval', console.log)
-    emitter.on('txConfirmReminder', console.log)
-    emitter.on('txSendFail', console.log)
-    emitter.on('txError', console.log)
-    emitter.on('txUnderPriced', console.log)
-    emitter.on('txSent', console.log)
-    emitter.on('txPool', console.log)
-    emitter.on('txConfirmed', console.log)
-    emitter.on('txSpeedUp', console.log)
-    emitter.on('txCancel', console.log)
-    emitter.on('txFailed', console.log)
+    signer.sendTransaction(txDetails)
   }
 
-  const renderDeviceSettings = () => {
-    if (window.innerWidth < 700) {
-      return (
-        <div className={'conditional-ui-settings'}>
-          <h3>Notify Mobile Positioning</h3>
-          <button
-            className={`bn-demo-button ${
-              mobilePosition === 'top'
-                ? 'selected-toggle-btn'
-                : 'unselected-toggle-btn'
-            }`}
-            onClick={() => {
-              setMobilePosition('top')
-              notify.config({ mobilePosition: 'top' })
-            }}
-          >
-            Top
-          </button>
-          <button
-            className={`bn-demo-button ${
-              mobilePosition === 'bottom'
-                ? 'selected-toggle-btn'
-                : 'unselected-toggle-btn'
-            }`}
-            onClick={() => {
-              setMobilePosition('bottom')
-              notify.config({ mobilePosition: 'bottom' })
-            }}
-          >
-            Bottom
-          </button>
-        </div>
-      )
-    }
+  // Will add the below back in after the development of Notification placement separate from the Account Center
+  // const renderDeviceSettings = () => {
+  //   if (window.innerWidth < 700) {
+  //     return (
+  //       <div className={'conditional-ui-settings'}>
+  //         <h3>Notify Mobile Positioning</h3>
+  //         <button
+  //           className={`bn-demo-button ${
+  //             mobilePosition === 'top'
+  //               ? 'selected-toggle-btn'
+  //               : 'unselected-toggle-btn'
+  //           }`}
+  //           onClick={() => {
+  //             setMobilePosition('top')
+  //           }}
+  //         >
+  //           Top
+  //         </button>
+  //         <button
+  //           className={`bn-demo-button ${
+  //             mobilePosition === 'bottom'
+  //               ? 'selected-toggle-btn'
+  //               : 'unselected-toggle-btn'
+  //           }`}
+  //           onClick={() => {
+  //             setMobilePosition('bottom')
+  //           }}
+  //         >
+  //           Bottom
+  //         </button>
+  //       </div>
+  //     )
+  //   }
 
-    return (
-      <div className={'conditional-ui-settings'}>
-        {' '}
-        <h3>Notify Desktop Positioning</h3>
-        <button
-          className={`bn-demo-button ${
-            desktopPosition === 'topLeft'
-              ? 'selected-toggle-btn'
-              : 'unselected-toggle-btn'
-          }`}
-          onClick={() => {
-            setDesktopPosition('topLeft')
-            notify.config({ desktopPosition: 'topLeft' })
-          }}
-        >
-          Top Left
-        </button>
-        <button
-          className={`bn-demo-button ${
-            desktopPosition === 'topRight'
-              ? 'selected-toggle-btn'
-              : 'unselected-toggle-btn'
-          }`}
-          onClick={() => {
-            setDesktopPosition('topRight')
-            notify.config({ desktopPosition: 'topRight' })
-          }}
-        >
-          Top Right
-        </button>
-        <button
-          className={`bn-demo-button ${
-            desktopPosition === 'bottomRight'
-              ? 'selected-toggle-btn'
-              : 'unselected-toggle-btn'
-          }`}
-          onClick={() => {
-            setDesktopPosition('bottomRight')
-            notify.config({ desktopPosition: 'bottomRight' })
-          }}
-        >
-          Bottom Right
-        </button>
-        <button
-          className={`bn-demo-button ${
-            desktopPosition === 'bottomLeft'
-              ? 'selected-toggle-btn'
-              : 'unselected-toggle-btn'
-          }`}
-          onClick={() => {
-            setDesktopPosition('bottomLeft')
-            notify.config({ desktopPosition: 'bottomLeft' })
-          }}
-        >
-          Bottom Left
-        </button>
-      </div>
-    )
-  }
+  //   return (
+  //     <div className={'conditional-ui-settings'}>
+  //       {' '}
+  //       <h3>Notify Desktop Positioning</h3>
+  //       <button
+  //         className={`bn-demo-button ${
+  //           desktopPosition === 'topLeft'
+  //             ? 'selected-toggle-btn'
+  //             : 'unselected-toggle-btn'
+  //         }`}
+  //         onClick={() => {
+  //           setDesktopPosition('topLeft')
+  //         }}
+  //       >
+  //         Top Left
+  //       </button>
+  //       <button
+  //         className={`bn-demo-button ${
+  //           desktopPosition === 'topRight'
+  //             ? 'selected-toggle-btn'
+  //             : 'unselected-toggle-btn'
+  //         }`}
+  //         onClick={() => {
+  //           setDesktopPosition('topRight')
+  //         }}
+  //       >
+  //         Top Right
+  //       </button>
+  //       <button
+  //         className={`bn-demo-button ${
+  //           desktopPosition === 'bottomRight'
+  //             ? 'selected-toggle-btn'
+  //             : 'unselected-toggle-btn'
+  //         }`}
+  //         onClick={() => {
+  //           setDesktopPosition('bottomRight')
+  //         }}
+  //       >
+  //         Bottom Right
+  //       </button>
+  //       <button
+  //         className={`bn-demo-button ${
+  //           desktopPosition === 'bottomLeft'
+  //             ? 'selected-toggle-btn'
+  //             : 'unselected-toggle-btn'
+  //         }`}
+  //         onClick={() => {
+  //           setDesktopPosition('bottomLeft')
+  //         }}
+  //       >
+  //         Bottom Left
+  //       </button>
+  //     </div>
+  //   )
+  // }
 
-  if (!web3Onboard || !notify) return <div>Loading...</div>
+  if (!web3Onboard) return <div>Loading...</div>
 
   return (
     <main>
@@ -479,9 +407,6 @@ const App = () => {
                     if (!wallet.accounts[0].address) {
                       await readyToTransact()
                     }
-
-                    wallet.accounts[0].address &&
-                      notify.account(wallet.accounts[0].address)
                   }}
                 >
                   Watch Current Account
@@ -492,9 +417,6 @@ const App = () => {
                     if (!wallet.accounts[0].address) {
                       await readyToTransact()
                     }
-
-                    wallet.accounts[0].address &&
-                      notify.unsubscribe(wallet.accounts[0].address)
                   }}
                 >
                   Un-watch Current Account
@@ -502,19 +424,23 @@ const App = () => {
                 <button
                   className="bn-demo-button"
                   onClick={() => {
-                    const { update } = notify.notification({
-                      eventCode: 'dbUpdate',
-                      type: 'pending',
-                      message:
-                        'This is a custom notification triggered by the dapp',
-                      link: 'https://github.com/blocknative/react-demo'
-                    })
+                    const { update } =
+                      web3Onboard.state.actions.customNotification({
+                        eventCode: 'dbUpdate',
+                        type: 'hint',
+                        message: 'Custom hint notification created by the dapp',
+                        onclick: () =>
+                          window.open(
+                            `https://www.blocknative.com`
+                          )
+                      })
                     setTimeout(
                       () =>
                         update({
                           eventCode: 'dbUpdateSuccess',
-                          message: 'Updated status for custom notification',
-                          type: 'success'
+                          message: 'Hint notification reason resolved!',
+                          type: 'success',
+                          autoDismiss: 5000
                         }),
                       4000
                     )
@@ -525,33 +451,10 @@ const App = () => {
               </div>
             </div>
           </div>
-          <div className="container ui-settings">
-            <h3>Onboard / Notify UI Settings</h3>
-            <button
-              className={`bn-demo-button ${
-                darkMode ? 'selected-toggle-btn' : 'unselected-toggle-btn'
-              }`}
-              onClick={() => {
-                setDarkMode(true)
-                notify.config({ darkMode: true })
-              }}
-            >
-              Dark Mode
-            </button>
-            <button
-              className={`bn-demo-button ${
-                !darkMode ? 'selected-toggle-btn' : 'unselected-toggle-btn'
-              }`}
-              onClick={() => {
-                setDarkMode(false)
-                notify.config({ darkMode: false })
-              }}
-            >
-              Light Mode
-            </button>
+          {/* <div className="container ui-settings">
 
             {renderDeviceSettings()}
-          </div>
+          </div> */}
         </div>
       </section>
       <Footer />
