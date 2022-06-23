@@ -434,19 +434,20 @@ const App = () => {
                             `https://www.blocknative.com`
                           )
                       })
-                    setTimeout(
-                      () =>
-                        update({
-                          eventCode: 'dbUpdateSuccess',
-                          message: 'Hint notification reason resolved!',
-                          type: 'success',
-                          autoDismiss: 5000
-                        }),
-                      4000
-                    )
+                    // Update your notification example below
+                    // setTimeout(
+                    //   () =>
+                    //     update({
+                    //       eventCode: 'dbUpdateSuccess',
+                    //       message: 'Hint notification reason resolved!',
+                    //       type: 'success',
+                    //       autoDismiss: 5000
+                    //     }),
+                    //   4000
+                    // )
                   }}
                 >
-                  Custom Notification
+                  Custom Hint Notification
                 </button>
               </div>
             </div>
