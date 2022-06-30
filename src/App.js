@@ -171,6 +171,39 @@ const App = () => {
   }
 
   const renderNotifySettings = () => {
+    if (window.innerWidth < 425) {
+      return (
+        <div className={'conditional-ui-settings'}>
+          <h3>Notify Mobile Positioning</h3>
+          <button
+            className={`bn-demo-button ${
+              notifyPosition === 'topRight'
+                ? 'selected-toggle-btn'
+                : 'unselected-toggle-btn'
+            }`}
+            onClick={() => {
+              setNotifyPosition('topRight')
+              updateNotify({ position: 'topRight' })
+            }}
+          >
+            Top
+          </button>
+          <button
+            className={`bn-demo-button ${
+              notifyPosition === 'bottomRight'
+                ? 'selected-toggle-btn'
+                : 'unselected-toggle-btn'
+            }`}
+            onClick={() => {
+              setNotifyPosition('bottomRight')
+              updateNotify({ position: 'bottomRight' })
+            }}
+          >
+            Bottom
+          </button>
+        </div>
+      )
+    }
     return (
       <div className={'conditional-ui-settings'}>
         {' '}
@@ -231,6 +264,43 @@ const App = () => {
     )
   }
   const renderAccountCenterSettings = () => {
+    if (window.innerWidth < 425) {
+      return (
+        <div className={'conditional-ui-settings'}>
+          <h3>Account Center Mobile Positioning</h3>
+          <button
+            className={`bn-demo-button ${
+              accountCenterPosition === 'topRight'
+                ? 'selected-toggle-btn'
+                : 'unselected-toggle-btn'
+            }`}
+            onClick={() => {
+              setAccountCenterPosition('topRight')
+              updateAccountCenter({
+                position: 'topRight'
+              })
+            }}
+          >
+            Top
+          </button>
+          <button
+            className={`bn-demo-button ${
+              accountCenterPosition === 'bottomRight'
+                ? 'selected-toggle-btn'
+                : 'unselected-toggle-btn'
+            }`}
+            onClick={() => {
+              setAccountCenterPosition('bottomRight')
+              updateAccountCenter({
+                position: 'bottomRight'
+              })
+            }}
+          >
+            Bottom
+          </button>
+        </div>
+      )
+    }
     return (
       <div className={'conditional-ui-settings'}>
         {' '}
@@ -382,10 +452,10 @@ const App = () => {
                 {wallet && (
                   <button
                     className="bn-demo-button"
-                    onClick={(e) => {
+                    onClick={e => {
                       updateLocale(locale === 'es' ? 'en' : 'es')
                       setLocale(locale === 'es' ? 'en' : 'es')
-                      updateAccountCenter({enabled: true, expanded:true})
+                      updateAccountCenter({ enabled: true, expanded: true })
                       e.stopPropagation()
                     }}
                   >
