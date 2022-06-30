@@ -521,7 +521,7 @@ const App = () => {
                   </button>
                   with in-flight notifications
                 </div>
-                <div className={'send-transaction-container'}>
+                {/* <div className={'send-transaction-container'}>
                   <button
                     className="bn-demo-button"
                     onClick={async () => {
@@ -533,7 +533,7 @@ const App = () => {
                     Send
                   </button>
                   with pre-flight and in-flight notifications
-                </div>
+                </div> */}
                 <div className={'send-transaction-container'}>
                   <button
                     className="bn-demo-button"
@@ -545,30 +545,10 @@ const App = () => {
                   >
                     Send
                   </button>
-                  via a internal transaction
+                  via an internal transaction
                 </div>
               </div>
               <div>
-                <button
-                  className="bn-demo-button"
-                  onClick={async () => {
-                    if (!wallet.accounts[0].address) {
-                      await readyToTransact()
-                    }
-                  }}
-                >
-                  Watch Current Account
-                </button>
-                <button
-                  className="bn-demo-button"
-                  onClick={async () => {
-                    if (!wallet.accounts[0].address) {
-                      await readyToTransact()
-                    }
-                  }}
-                >
-                  Un-watch Current Account
-                </button>
                 <button
                   className="bn-demo-button"
                   onClick={() => {
