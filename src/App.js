@@ -587,7 +587,7 @@ const App = () => {
                 <button
                   className="bn-demo-button"
                   onClick={() => {
-                    const { update } = customNotification({
+                    const { update, dismiss } = customNotification({
                       eventCode: 'dbUpdate',
                       type: 'hint',
                       message: 'Custom hint notification created by the dapp',
@@ -604,6 +604,12 @@ const App = () => {
                     //     }),
                     //   4000
                     // )
+                    setTimeout(
+                      () =>
+                        // use the dismiss method returned or add an autoDismiss prop to the notification
+                        dismiss(),
+                      4000
+                    )
                   }}
                 >
                   Custom Hint Notification
