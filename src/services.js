@@ -127,15 +127,54 @@ export const initWeb3Onboard = init({
     gettingStartedGuide: 'https://blocknative.com',
     explore: 'https://blocknative.com'
   },
+  accountCenter: {
+    desktop: {
+      position: 'topRight',
+      enabled: true,
+      minimal: false
+    }
+  },
+  // example customizing copy
+  i18n: {
+    es: {
+      connect: {
+        selectingWallet: {
+          header: 'Carteras disponibles',
+          sidebar: {
+            heading: 'Comenzar',
+            subheading: 'Conecta tu monedero',
+            paragraph:
+              'Conectar su billetera es como “iniciar sesión” en Web3. Seleccione su billetera de las opciones para comenzar.'
+          }
+        }
+      },
+      accountCenter: {
+        connectAnotherWallet: 'Conectar otro monedero',
+        disconnectAllWallets: 'Desconectar todos los monederos',
+        currentNetwork: 'Red actual',
+        appInfo: 'Información de la aplicación',
+        learnMore: 'Aprende más',
+        gettingStartedGuide: 'Guía de introducción',
+        smartContracts: 'Contrato(s) inteligente',
+        explore: 'Explorar',
+        backToApp: 'Volver a dapp',
+        poweredBy: 'Funciona con',
+        addAccount: 'Añadir cuenta',
+        setPrimaryAccount: 'Establecer cuenta principal',
+        disconnectWallet: 'Desconectar Wallet'
+      }
+    }
+  },
   apiKey: dappId,
   notify: {
     enabled: true,
+    position: 'bottomRight',
     transactionHandler: transaction => {
       console.log({ transaction })
       if (transaction.eventCode === 'txPool') {
         return {
           // autoDismiss set to zero will persist the notification until the user excuses it
-          autoDismiss: 0, 
+          autoDismiss: 0,
           // message: `Your transaction is pending, click <a href="https://rinkeby.etherscan.io/tx/${transaction.hash}" rel="noopener noreferrer" target="_blank">here</a> for more info.`,
           // or you could use onClick for when someone clicks on the notification itself
           onClick: () =>

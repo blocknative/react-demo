@@ -109,7 +109,7 @@
   margin: 0 8px;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 860px) {
 
   .versioning {
     text-align: center;
@@ -134,7 +134,7 @@
 
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 770px) {
   .footer {
     position: initial;
     margin-top: auto;

@@ -2,7 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
 import { initWeb3Onboard } from './services'
-import { useConnectWallet, useSetChain, useWallets } from '@web3-onboard/react'
+import {
+  useAccountCenter,
+  useConnectWallet,
+  useNotifications,
+  useSetChain,
+  useWallets,
+  useSetLocale
+} from '@web3-onboard/react'
 import './App.css'
 import Header from './views/Header/Header.js'
 import Footer from './views/Footer/Footer.js'
@@ -32,17 +39,30 @@ const internalTransferABI = [
 let internalTransferContract
 
 const App = () => {
-  const [{ wallet }, connect, disconnect] = useConnectWallet()
+  const [{ wallet }, connect, disconnect, updateBalances, setWalletModules] =
+    useConnectWallet()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
+  const [notifications, customNotification, updateNotify] = useNotifications()
   const connectedWallets = useWallets()
+  const updateAccountCenter = useAccountCenter()
+  const updateLocale = useSetLocale()
 
   const [web3Onboard, setWeb3Onboard] = useState(null)
 
   const [toAddress, setToAddress] = useState('')
+  const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
+  const [notifyPosition, setNotifyPosition] = useState('bottomRight')
+  const [locale, setLocale] = useState('en')
+  const [accountCenterSize, setAccountCenterSize] = useState('normal')
+  const [accountCenterExpanded, setAccountCenterExpanded] = useState(false)
 
   useEffect(() => {
     setWeb3Onboard(initWeb3Onboard)
   }, [])
+
+  useEffect(() => {
+    console.log(notifications)
+  }, [notifications])
 
   useEffect(() => {
     if (!connectedWallets.length) return
@@ -152,95 +172,204 @@ const App = () => {
     signer.sendTransaction(txDetails)
   }
 
-  // Will add the below back in after the development of Notification placement separate from the Account Center
-  // const renderDeviceSettings = () => {
-  //   if (window.innerWidth < 700) {
-  //     return (
-  //       <div className={'conditional-ui-settings'}>
-  //         <h3>Notify Mobile Positioning</h3>
-  //         <button
-  //           className={`bn-demo-button ${
-  //             mobilePosition === 'top'
-  //               ? 'selected-toggle-btn'
-  //               : 'unselected-toggle-btn'
-  //           }`}
-  //           onClick={() => {
-  //             setMobilePosition('top')
-  //           }}
-  //         >
-  //           Top
-  //         </button>
-  //         <button
-  //           className={`bn-demo-button ${
-  //             mobilePosition === 'bottom'
-  //               ? 'selected-toggle-btn'
-  //               : 'unselected-toggle-btn'
-  //           }`}
-  //           onClick={() => {
-  //             setMobilePosition('bottom')
-  //           }}
-  //         >
-  //           Bottom
-  //         </button>
-  //       </div>
-  //     )
-  //   }
-
-  //   return (
-  //     <div className={'conditional-ui-settings'}>
-  //       {' '}
-  //       <h3>Notify Desktop Positioning</h3>
-  //       <button
-  //         className={`bn-demo-button ${
-  //           desktopPosition === 'topLeft'
-  //             ? 'selected-toggle-btn'
-  //             : 'unselected-toggle-btn'
-  //         }`}
-  //         onClick={() => {
-  //           setDesktopPosition('topLeft')
-  //         }}
-  //       >
-  //         Top Left
-  //       </button>
-  //       <button
-  //         className={`bn-demo-button ${
-  //           desktopPosition === 'topRight'
-  //             ? 'selected-toggle-btn'
-  //             : 'unselected-toggle-btn'
-  //         }`}
-  //         onClick={() => {
-  //           setDesktopPosition('topRight')
-  //         }}
-  //       >
-  //         Top Right
-  //       </button>
-  //       <button
-  //         className={`bn-demo-button ${
-  //           desktopPosition === 'bottomRight'
-  //             ? 'selected-toggle-btn'
-  //             : 'unselected-toggle-btn'
-  //         }`}
-  //         onClick={() => {
-  //           setDesktopPosition('bottomRight')
-  //         }}
-  //       >
-  //         Bottom Right
-  //       </button>
-  //       <button
-  //         className={`bn-demo-button ${
-  //           desktopPosition === 'bottomLeft'
-  //             ? 'selected-toggle-btn'
-  //             : 'unselected-toggle-btn'
-  //         }`}
-  //         onClick={() => {
-  //           setDesktopPosition('bottomLeft')
-  //         }}
-  //       >
-  //         Bottom Left
-  //       </button>
-  //     </div>
-  //   )
-  // }
+  const renderNotifySettings = () => {
+    if (window.innerWidth < 425) {
+      return (
+        <div className={'conditional-ui-settings'}>
+          <h3>Notify Mobile Positioning</h3>
+          <button
+            className={`bn-demo-button ${
+              notifyPosition === 'topRight'
+                ? 'selected-toggle-btn'
+                : 'unselected-toggle-btn'
+            }`}
+            onClick={() => {
+              setNotifyPosition('topRight')
+              updateNotify({ position: 'topRight' })
+            }}
+          >
+            Top
+          </button>
+          <button
+            className={`bn-demo-button ${
+              notifyPosition === 'bottomRight'
+                ? 'selected-toggle-btn'
+                : 'unselected-toggle-btn'
+            }`}
+            onClick={() => {
+              setNotifyPosition('bottomRight')
+              updateNotify({ position: 'bottomRight' })
+            }}
+          >
+            Bottom
+          </button>
+        </div>
+      )
+    }
+    return (
+      <div className={'conditional-ui-settings'}>
+        {' '}
+        <h3>Notify Positioning</h3>
+        <button
+          className={`bn-demo-button ${
+            notifyPosition === 'topLeft'
+              ? 'selected-toggle-btn'
+              : 'unselected-toggle-btn'
+          }`}
+          onClick={() => {
+            setNotifyPosition('topLeft')
+            updateNotify({ position: 'topLeft' })
+          }}
+        >
+          Top Left
+        </button>
+        <button
+          className={`bn-demo-button ${
+            notifyPosition === 'topRight'
+              ? 'selected-toggle-btn'
+              : 'unselected-toggle-btn'
+          }`}
+          onClick={() => {
+            setNotifyPosition('topRight')
+            updateNotify({ position: 'topRight' })
+          }}
+        >
+          Top Right
+        </button>
+        <button
+          className={`bn-demo-button ${
+            notifyPosition === 'bottomRight'
+              ? 'selected-toggle-btn'
+              : 'unselected-toggle-btn'
+          }`}
+          onClick={() => {
+            setNotifyPosition('bottomRight')
+            updateNotify({ position: 'bottomRight' })
+          }}
+        >
+          Bottom Right
+        </button>
+        <button
+          className={`bn-demo-button ${
+            notifyPosition === 'bottomLeft'
+              ? 'selected-toggle-btn'
+              : 'unselected-toggle-btn'
+          }`}
+          onClick={() => {
+            setNotifyPosition('bottomLeft')
+            updateNotify({ position: 'bottomLeft' })
+          }}
+        >
+          Bottom Left
+        </button>
+      </div>
+    )
+  }
+  const renderAccountCenterSettings = () => {
+    if (window.innerWidth < 425) {
+      return (
+        <div className={'conditional-ui-settings'}>
+          <h3>Account Center Mobile Positioning</h3>
+          <button
+            className={`bn-demo-button ${
+              accountCenterPosition === 'topRight'
+                ? 'selected-toggle-btn'
+                : 'unselected-toggle-btn'
+            }`}
+            onClick={() => {
+              setAccountCenterPosition('topRight')
+              updateAccountCenter({
+                position: 'topRight'
+              })
+            }}
+          >
+            Top
+          </button>
+          <button
+            className={`bn-demo-button ${
+              accountCenterPosition === 'bottomRight'
+                ? 'selected-toggle-btn'
+                : 'unselected-toggle-btn'
+            }`}
+            onClick={() => {
+              setAccountCenterPosition('bottomRight')
+              updateAccountCenter({
+                position: 'bottomRight'
+              })
+            }}
+          >
+            Bottom
+          </button>
+        </div>
+      )
+    }
+    return (
+      <div className={'conditional-ui-settings'}>
+        {' '}
+        <h3>Account Center Positioning</h3>
+        <button
+          className={`bn-demo-button ${
+            accountCenterPosition === 'topLeft'
+              ? 'selected-toggle-btn'
+              : 'unselected-toggle-btn'
+          }`}
+          onClick={() => {
+            setAccountCenterPosition('topLeft')
+            updateAccountCenter({
+              position: 'topLeft'
+            })
+          }}
+        >
+          Top Left
+        </button>
+        <button
+          className={`bn-demo-button ${
+            accountCenterPosition === 'topRight'
+              ? 'selected-toggle-btn'
+              : 'unselected-toggle-btn'
+          }`}
+          onClick={() => {
+            setAccountCenterPosition('topRight')
+            updateAccountCenter({
+              position: 'topRight'
+            })
+          }}
+        >
+          Top Right
+        </button>
+        <button
+          className={`bn-demo-button ${
+            accountCenterPosition === 'bottomRight'
+              ? 'selected-toggle-btn'
+              : 'unselected-toggle-btn'
+          }`}
+          onClick={() => {
+            setAccountCenterPosition('bottomRight')
+            updateAccountCenter({
+              position: 'bottomRight'
+            })
+          }}
+        >
+          Bottom Right
+        </button>
+        <button
+          className={`bn-demo-button ${
+            accountCenterPosition === 'bottomLeft'
+              ? 'selected-toggle-btn'
+              : 'unselected-toggle-btn'
+          }`}
+          onClick={() => {
+            setAccountCenterPosition('bottomLeft')
+            updateAccountCenter({
+              position: 'bottomLeft'
+            })
+          }}
+        >
+          Bottom Left
+        </button>
+      </div>
+    )
+  }
 
   if (!web3Onboard) return <div>Loading...</div>
 
@@ -280,58 +409,112 @@ const App = () => {
                   )}
                 </div>
               )}
-              <div>
-                {!wallet && (
-                  <button
-                    className="bn-demo-button"
-                    onClick={() => {
-                      connect()
-                    }}
-                  >
-                    Select a Wallet
-                  </button>
-                )}
-
-                {wallet && (
-                  <button
-                    className="bn-demo-button"
-                    onClick={() => {
-                      connect()
-                    }}
-                  >
-                    Connect Another Wallet
-                  </button>
-                )}
-
-                {wallet && (
-                  <button
-                    className="bn-demo-button"
-                    onClick={() => {
-                      disconnect(wallet)
-                      window.localStorage.removeItem('connectedWallets')
-                    }}
-                  >
-                    Reset Wallet State
-                  </button>
-                )}
-                {wallet && wallet?.dashboard && (
-                  <button
-                    className="bn-demo-button"
-                    onClick={wallet?.dashboard}
-                  >
-                    Open Wallet Dashboard
-                  </button>
-                )}
-                {wallet &&
-                  wallet?.type === 'hardware' &&
-                  wallet.accounts[0].address && (
+              <div className="account-center-actions">
+                <div>
+                  {!wallet && (
                     <button
                       className="bn-demo-button"
-                      onClick={web3Onboard.accountSelect}
+                      onClick={() => {
+                        connect()
+                      }}
                     >
-                      Switch Account
+                      Select a Wallet
                     </button>
                   )}
+
+                  {wallet && (
+                    <button
+                      className="bn-demo-button"
+                      onClick={() => {
+                        connect()
+                      }}
+                    >
+                      Connect Another Wallet
+                    </button>
+                  )}
+
+                  {wallet && (
+                    <button
+                      className="bn-demo-button"
+                      onClick={() => {
+                        disconnect(wallet)
+                        window.localStorage.removeItem('connectedWallets')
+                      }}
+                    >
+                      Reset Wallet State
+                    </button>
+                  )}
+                  {wallet && wallet?.dashboard && (
+                    <button
+                      className="bn-demo-button"
+                      onClick={wallet?.dashboard}
+                    >
+                      Open Wallet Dashboard
+                    </button>
+                  )}
+                  {wallet &&
+                    wallet?.type === 'hardware' &&
+                    wallet.accounts[0].address && (
+                      <button
+                        className="bn-demo-button"
+                        onClick={web3Onboard.accountSelect}
+                      >
+                        Switch Account
+                      </button>
+                    )}
+                </div>
+                <div>
+                  {wallet && (
+                    <button
+                      className="bn-demo-button"
+                      onClick={() => updateBalances}
+                    >
+                      Update Balances
+                    </button>
+                  )}
+                  {wallet && (
+                    <button
+                      className="bn-demo-button"
+                      onClick={e => {
+                        updateLocale(locale === 'es' ? 'en' : 'es')
+                        setLocale(locale === 'es' ? 'en' : 'es')
+                        updateAccountCenter({ expanded: true })
+                        e.stopPropagation()
+                      }}
+                    >
+                      Set Locale To {locale === 'es' ? 'English' : 'Spanish'}
+                    </button>
+                  )}
+                  {wallet && (
+                    <button
+                      className="bn-demo-button"
+                      onClick={e => {
+                        setAccountCenterSize(prevState => {
+                          return prevState === 'minimal'
+                            ? 'normal'
+                            : prevState === 'normal'
+                            ? 'expanded'
+                            : 'minimal'
+                        })
+                        updateAccountCenter(
+                          accountCenterSize === 'minimal'
+                            ? { minimal: false }
+                            : accountCenterSize === 'normal'
+                            ? { minimal: true, expanded: true }
+                            : { minimal: true, expanded: false }
+                        )
+                        e.stopPropagation()
+                      }}
+                    >
+                      Set Account Center To{' '}
+                      {accountCenterSize === 'minimal'
+                        ? 'Collapsed'
+                        : accountCenterSize === 'normal'
+                        ? 'Expanded'
+                        : 'Minimal'}
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
             <div className="container notify">
@@ -373,7 +556,7 @@ const App = () => {
                   </button>
                   with in-flight notifications
                 </div>
-                <div className={'send-transaction-container'}>
+                {/* <div className={'send-transaction-container'}>
                   <button
                     className="bn-demo-button"
                     onClick={async () => {
@@ -385,7 +568,7 @@ const App = () => {
                     Send
                   </button>
                   with pre-flight and in-flight notifications
-                </div>
+                </div> */}
                 <div className={'send-transaction-container'}>
                   <button
                     className="bn-demo-button"
@@ -397,43 +580,19 @@ const App = () => {
                   >
                     Send
                   </button>
-                  via a internal transaction
+                  via an internal transaction
                 </div>
               </div>
               <div>
                 <button
                   className="bn-demo-button"
-                  onClick={async () => {
-                    if (!wallet.accounts[0].address) {
-                      await readyToTransact()
-                    }
-                  }}
-                >
-                  Watch Current Account
-                </button>
-                <button
-                  className="bn-demo-button"
-                  onClick={async () => {
-                    if (!wallet.accounts[0].address) {
-                      await readyToTransact()
-                    }
-                  }}
-                >
-                  Un-watch Current Account
-                </button>
-                <button
-                  className="bn-demo-button"
                   onClick={() => {
-                    const { update } =
-                      web3Onboard.state.actions.customNotification({
-                        eventCode: 'dbUpdate',
-                        type: 'hint',
-                        message: 'Custom hint notification created by the dapp',
-                        onClick: () =>
-                          window.open(
-                            `https://www.blocknative.com`
-                          )
-                      })
+                    const { update, dismiss } = customNotification({
+                      eventCode: 'dbUpdate',
+                      type: 'hint',
+                      message: 'Custom hint notification created by the dapp',
+                      onClick: () => window.open(`https://www.blocknative.com`)
+                    })
                     // Update your notification example below
                     // setTimeout(
                     //   () =>
@@ -445,6 +604,12 @@ const App = () => {
                     //     }),
                     //   4000
                     // )
+                    setTimeout(
+                      () =>
+                        // use the dismiss method returned or add an autoDismiss prop to the notification
+                        dismiss(),
+                      4000
+                    )
                   }}
                 >
                   Custom Hint Notification
@@ -452,10 +617,10 @@ const App = () => {
               </div>
             </div>
           </div>
-          {/* <div className="container ui-settings">
-
-            {renderDeviceSettings()}
-          </div> */}
+          <div className="container ui-settings">{renderNotifySettings()}</div>
+          <div className="container ui-settings">
+            {renderAccountCenterSettings()}
+          </div>
         </div>
       </section>
       <Footer />
