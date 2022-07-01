@@ -53,6 +53,8 @@ const App = () => {
   const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
   const [notifyPosition, setNotifyPosition] = useState('bottomRight')
   const [locale, setLocale] = useState('en')
+  const [accountCenterSize, setAccountCenterSize] = useState('normal')
+  const [accountCenterExpanded, setAccountCenterExpanded] = useState(false)
 
   useEffect(() => {
     setWeb3Onboard(initWeb3Onboard)
@@ -407,79 +409,112 @@ const App = () => {
                   )}
                 </div>
               )}
-              <div>
-                {!wallet && (
-                  <button
-                    className="bn-demo-button"
-                    onClick={() => {
-                      connect()
-                    }}
-                  >
-                    Select a Wallet
-                  </button>
-                )}
-
-                {wallet && (
-                  <button
-                    className="bn-demo-button"
-                    onClick={() => {
-                      connect()
-                    }}
-                  >
-                    Connect Another Wallet
-                  </button>
-                )}
-
-                {wallet && (
-                  <button
-                    className="bn-demo-button"
-                    onClick={() => {
-                      disconnect(wallet)
-                      window.localStorage.removeItem('connectedWallets')
-                    }}
-                  >
-                    Reset Wallet State
-                  </button>
-                )}
-                {wallet && (
-                  <button
-                    className="bn-demo-button"
-                    onClick={() => updateBalances}
-                  >
-                    Update Balances
-                  </button>
-                )}
-                {wallet && (
-                  <button
-                    className="bn-demo-button"
-                    onClick={e => {
-                      updateLocale(locale === 'es' ? 'en' : 'es')
-                      setLocale(locale === 'es' ? 'en' : 'es')
-                      updateAccountCenter({ enabled: true, expanded: true })
-                      e.stopPropagation()
-                    }}
-                  >
-                    Set Locale To {locale === 'es' ? 'English' : 'Spanish'}
-                  </button>
-                )}
-                {wallet && wallet?.dashboard && (
-                  <button
-                    className="bn-demo-button"
-                    onClick={wallet?.dashboard}
-                  >
-                    Open Wallet Dashboard
-                  </button>
-                )}
-                {wallet &&
-                  wallet?.type === 'hardware' &&
-                  wallet.accounts[0].address && (
+              <div className="account-center-actions">
+                <div>
+                  {!wallet && (
                     <button
                       className="bn-demo-button"
-                      onClick={web3Onboard.accountSelect}
+                      onClick={() => {
+                        connect()
+                      }}
                     >
-                      Switch Account
+                      Select a Wallet
                     </button>
                   )}
+
+                  {wallet && (
+                    <button
+                      className="bn-demo-button"
+                      onClick={() => {
+                        connect()
+                      }}
+                    >
+                      Connect Another Wallet
+                    </button>
+                  )}
+
+                  {wallet && (
+                    <button
+                      className="bn-demo-button"
+                      onClick={() => {
+                        disconnect(wallet)
+                        window.localStorage.removeItem('connectedWallets')
+                      }}
+                    >
+                      Reset Wallet State
+                    </button>
+                  )}
+                  {wallet && wallet?.dashboard && (
+                    <button
+                      className="bn-demo-button"
+                      onClick={wallet?.dashboard}
+                    >
+                      Open Wallet Dashboard
+                    </button>
+                  )}
+                  {wallet &&
+                    wallet?.type === 'hardware' &&
+                    wallet.accounts[0].address && (
+                      <button
+                        className="bn-demo-button"
+                        onClick={web3Onboard.accountSelect}
+                      >
+                        Switch Account
+                      </button>
+                    )}
+                </div>
+                <div>
+                  {wallet && (
+                    <button
+                      className="bn-demo-button"
+                      onClick={() => updateBalances}
+                    >
+                      Update Balances
+                    </button>
+                  )}
+                  {wallet && (
+                    <button
+                      className="bn-demo-button"
+                      onClick={e => {
+                        updateLocale(locale === 'es' ? 'en' : 'es')
+                        setLocale(locale === 'es' ? 'en' : 'es')
+                        updateAccountCenter({ expanded: true })
+                        e.stopPropagation()
+                      }}
+                    >
+                      Set Locale To {locale === 'es' ? 'English' : 'Spanish'}
+                    </button>
+                  )}
+                  {wallet && (
+                    <button
+                      className="bn-demo-button"
+                      onClick={e => {
+                        setAccountCenterSize(prevState => {
+                          return prevState === 'minimal'
+                            ? 'normal'
+                            : prevState === 'normal'
+                            ? 'expanded'
+                            : 'minimal'
+                        })
+                        updateAccountCenter(
+                          accountCenterSize === 'minimal'
+                            ? { minimal: false }
+                            : accountCenterSize === 'normal'
+                            ? { minimal: true, expanded: true }
+                            : { minimal: true, expanded: false }
+                        )
+                        e.stopPropagation()
+                      }}
+                    >
+                      Set Account Center To{' '}
+                      {accountCenterSize === 'minimal'
+                        ? 'Collapsed'
+                        : accountCenterSize === 'normal'
+                        ? 'Expanded'
+                        : 'Minimal'}
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
             <div className="container notify">

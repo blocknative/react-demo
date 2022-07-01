@@ -75,6 +75,14 @@ select {
   font-size: 0.8rem;
 }
 
+div.account-center-actions {
+  flex-direction: column;
+}
+
+div.account-center-actions > div {
+  margin: 8px;
+}
+
 .bn-demo-button {
   background: #ffffffee;
   font-size: 0.889rem;
