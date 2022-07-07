@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.22.0",
+  "version": "0.23.0",
   "dependencies": {
     "@craco/craco": "^5.8.3",
     "@web3-onboard/coinbase": "^2.0.7",
@@ -19,8 +19,8 @@
     "@web3-onboard/walletconnect": "^2.0.5",
     "@web3-onboard/web3auth": "^2.0.3",
     "ethers": "^5.5.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-scripts": "3.1.1",
     "vconsole": "^3.3.4"
   },
