@@ -4,7 +4,7 @@
   align-items: center;
   margin-top: auto;
   background: #383c48;
-  position: fixed;
+  position: relative;
   bottom: 0;
   padding: 4px 0 6px;
   width: 100%;

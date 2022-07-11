@@ -16,6 +16,7 @@
   margin: 0.25rem;
   border: 1px solid #eeeeee;
   border-radius: 4px;
+  position: relative;
 }
 
 .user-info {
