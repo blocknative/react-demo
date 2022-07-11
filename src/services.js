@@ -167,8 +167,6 @@ export const initWeb3Onboard = init({
   },
   apiKey: dappId,
   notify: {
-    enabled: true,
-    position: 'bottomRight',
     transactionHandler: transaction => {
       console.log({ transaction })
       if (transaction.eventCode === 'txPool') {

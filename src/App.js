@@ -54,7 +54,6 @@ const App = () => {
   const [notifyPosition, setNotifyPosition] = useState('bottomRight')
   const [locale, setLocale] = useState('en')
   const [accountCenterSize, setAccountCenterSize] = useState('normal')
-  const [accountCenterExpanded, setAccountCenterExpanded] = useState(false)
 
   useEffect(() => {
     setWeb3Onboard(initWeb3Onboard)
