@@ -161,6 +161,7 @@ const App = () => {
     if (!toAddress) {
       alert('An Ethereum address to send Eth to is required.')
     }
+    const balanceValue = Object.values(wallet.accounts[0].balance)[0]
 
     const signer = provider.getUncheckedSigner()
 
@@ -168,7 +169,27 @@ const App = () => {
       to: toAddress,
       value: 1000000000000000
     }
-    signer.sendTransaction(txDetails)
+
+    const sendTransaction = () => {
+      return signer.sendTransaction(txDetails).then(tx => tx.hash)
+    }
+
+    const gasPrice = () => provider.getGasPrice().then(res => res.toString())
+
+    const estimateGas = () => {
+      return provider.estimateGas(txDetails).then(res => res.toString())
+    }
+
+    // convert to hook when available
+    const transactionHash =
+      await web3Onboard.state.actions.preflightNotifications({
+        sendTransaction,
+        gasPrice,
+        estimateGas,
+        balance: balanceValue,
+        txDetails: txDetails
+      })
+    console.log(transactionHash)
   }
 
   const renderNotifySettings = () => {
@@ -464,6 +485,8 @@ const App = () => {
                 </div>
                 <div>
                   {wallet && (
+                    // If providing a DAppId w/ Notifications enabled within the 
+                    // onboard initialization balances are updated automatically
                     <button
                       className="bn-demo-button"
                       onClick={() => updateBalances}
@@ -555,7 +578,7 @@ const App = () => {
                   </button>
                   with in-flight notifications
                 </div>
-                {/* <div className={'send-transaction-container'}>
+                <div className={'send-transaction-container'}>
                   <button
                     className="bn-demo-button"
                     onClick={async () => {
@@ -567,7 +590,7 @@ const App = () => {
                     Send
                   </button>
                   with pre-flight and in-flight notifications
-                </div> */}
+                </div>
                 <div className={'send-transaction-container'}>
                   <button
                     className="bn-demo-button"
