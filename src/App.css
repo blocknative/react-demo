@@ -10,14 +10,16 @@ body {
 
 main {
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-content {
   display: flex;
   justify-content: center;
-  padding-top: 24px;
+  padding: 16px 0;
 }
 
 .vertical-main-container {
