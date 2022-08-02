@@ -8,20 +8,7 @@ jobs:
     resource_class: large
     steps:
       - checkout
-      - run: yarn upgrade "@web3-onboard/coinbase@next"
-      - run: yarn upgrade "@web3-onboard/fortmatic@next"
-      - run: yarn upgrade "@web3-onboard/gnosis@next"
-      - run: yarn upgrade "@web3-onboard/injected-wallets@next"
-      - run: yarn upgrade "@web3-onboard/keepkey@next"
-      - run: yarn upgrade "@web3-onboard/keystone@next"
-      - run: yarn upgrade "@web3-onboard/ledger@next"
-      - run: yarn upgrade "@web3-onboard/magic@next"
-      - run: yarn upgrade "@web3-onboard/portis@next"
-      - run: yarn upgrade "@web3-onboard/react@next"
-      - run: yarn upgrade "@web3-onboard/torus@next"
-      - run: yarn upgrade "@web3-onboard/trezor@next"
-      - run: yarn upgrade "@web3-onboard/web3auth@next"
-      - run: yarn install --network-concurrency 1
+      - run: yarn setup-staging-w3o-env
       - run: yarn build-staging
       - run: touch .env
       - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
@@ -38,6 +25,7 @@ jobs:
     steps:
       - checkout
       - run: yarn cache clean
+      - run: yarn setup-prod-w3o-env
       - run: yarn install --network-concurrency 1
       - run: yarn build
       - run: touch .env
