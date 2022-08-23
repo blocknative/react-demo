@@ -126,13 +126,6 @@ div.account-center-actions > div {
   justify-content: center;
 }
 
-@media screen and (max-width: 1375px) {
-  .bn-logo-link {
-    position: initial;
-    margin: auto;
-  }
-}
-
 @media screen and (max-width: 750px) {
   body {
     overflow: unset;

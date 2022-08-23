@@ -1,6 +1,7 @@
 .bn-logo-link {
   position: absolute;
   left: 1.5rem;
+  display: contents;
 }
 
 .bn-logo-demo {
@@ -9,14 +10,15 @@
 
 .user-info-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.6);
-  min-height: 4rem;
   margin: 0.25rem;
   border: 1px solid #eeeeee;
   border-radius: 4px;
   position: relative;
+  padding: 6px;
 }
 
 .user-info {
