@@ -1,6 +1,6 @@
 .bn-logo-link {
-  position: absolute;
-  left: 1.5rem;
+  position: initial;
+  margin: 0.4rem auto;
 }
 
 .bn-logo-demo {
@@ -11,6 +11,7 @@
 .user-info-container {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.6);
@@ -28,7 +29,6 @@
   align-items: center;
   flex-flow: row wrap;
   border-radius: 4px;
-  min-height: 38px;
 }
 
 .user-info span {
@@ -60,16 +60,6 @@
   position: absolute;
 }
 
-@media screen and (max-width: 1395px) {
-  .user-info-container {
-    flex-direction: column;
-  }
-
-  .bn-logo-link {
-    position: initial;
-    margin: 0.4rem auto;
-  }
-}
 
 @media screen and (max-width: 450px) {
   .user-info {
