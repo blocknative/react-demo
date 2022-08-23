@@ -1,16 +1,17 @@
 .bn-logo-link {
-  position: absolute;
-  left: 1.5rem;
-  display: contents;
+  position: initial;
+  margin: 0.4rem auto;
 }
 
 .bn-logo-demo {
   width: 16rem;
+  display: flex;
 }
 
 .user-info-container {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.6);
@@ -18,7 +19,7 @@
   border: 1px solid #eeeeee;
   border-radius: 4px;
   position: relative;
-  padding: 6px;
+  padding: 4px;
 }
 
 .user-info {
@@ -59,16 +60,6 @@
   position: absolute;
 }
 
-@media screen and (max-width: 1395px) {
-  .user-info-container {
-    flex-direction: column;
-  }
-
-  .bn-logo-link {
-    position: initial;
-    margin: 0.4rem auto;
-  }
-}
 
 @media screen and (max-width: 450px) {
   .user-info {
