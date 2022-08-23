@@ -1,11 +1,11 @@
 .bn-logo-link {
   position: absolute;
   left: 1.5rem;
-  display: contents;
 }
 
 .bn-logo-demo {
   width: 16rem;
+  display: flex;
 }
 
 .user-info-container {
@@ -18,7 +18,7 @@
   border: 1px solid #eeeeee;
   border-radius: 4px;
   position: relative;
-  padding: 6px;
+  padding: 4px;
 }
 
 .user-info {
@@ -28,6 +28,7 @@
   align-items: center;
   flex-flow: row wrap;
   border-radius: 4px;
+  min-height: 38px;
 }
 
 .user-info span {
