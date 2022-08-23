@@ -51,7 +51,7 @@ const App = () => {
 
   const [toAddress, setToAddress] = useState('')
   const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
-  const [notifyPosition, setNotifyPosition] = useState('bottomRight')
+  const [notifyPosition, setNotifyPosition] = useState('topRight')
   const [locale, setLocale] = useState('en')
   const [accountCenterSize, setAccountCenterSize] = useState('normal')
 
@@ -115,11 +115,14 @@ const App = () => {
 
     if (previouslyConnectedWallets?.length) {
       async function setWalletFromLocalStorage() {
-        await connect({ autoSelect: previouslyConnectedWallets[0] })
+        const walletConnected = await connect({
+          autoSelect: previouslyConnectedWallets[0]
+        })
+        console.log('connected wallets: ', walletConnected)
       }
       setWalletFromLocalStorage()
     }
-  }, [web3Onboard, connect])
+  }, [connect])
 
   const readyToTransact = async () => {
     if (!wallet) {
@@ -434,8 +437,9 @@ const App = () => {
                   {!wallet && (
                     <button
                       className="bn-demo-button"
-                      onClick={() => {
-                        connect()
+                      onClick={async () => {
+                        const walletsConnected = await connect()
+                        console.log('connected wallets: ', walletsConnected)
                       }}
                     >
                       Select a Wallet
@@ -445,8 +449,9 @@ const App = () => {
                   {wallet && (
                     <button
                       className="bn-demo-button"
-                      onClick={() => {
-                        connect()
+                      onClick={async () => {
+                        const walletsConnected = await connect()
+                        console.log('connected wallets: ', walletsConnected)
                       }}
                     >
                       Connect Another Wallet
@@ -456,8 +461,9 @@ const App = () => {
                   {wallet && (
                     <button
                       className="bn-demo-button"
-                      onClick={() => {
-                        disconnect(wallet)
+                      onClick={async () => {
+                        const walletsConnected = await disconnect(wallet)
+                        console.log('connected wallets: ', walletsConnected)
                         window.localStorage.removeItem('connectedWallets')
                       }}
                     >
@@ -485,7 +491,7 @@ const App = () => {
                 </div>
                 <div>
                   {wallet && (
-                    // If providing a DAppId w/ Notifications enabled within the 
+                    // If providing a DAppId w/ Notifications enabled within the
                     // onboard initialization balances are updated automatically
                     <button
                       className="bn-demo-button"
