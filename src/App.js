@@ -50,6 +50,7 @@ const App = () => {
   const [web3Onboard, setWeb3Onboard] = useState(null)
 
   const [toAddress, setToAddress] = useState('')
+  const [toChain, setToChain] = useState('0x3')
   const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
   const [notifyPosition, setNotifyPosition] = useState('topRight')
   const [locale, setLocale] = useState('en')
@@ -130,7 +131,7 @@ const App = () => {
       if (!walletSelected) return false
     }
     // prompt user to switch to Rinkeby for test
-    await setChain({ chainId: '0x3' })
+    await setChain({ chainId: toChain })
 
     return true
   }
@@ -416,6 +417,7 @@ const App = () => {
                     <span>Switching Chains...</span>
                   ) : (
                     <select
+                      className="chain-select"
                       onChange={({ target: { value } }) =>
                         setChain({ chainId: value })
                       }
@@ -556,7 +558,25 @@ const App = () => {
                 }}
               >
                 <div style={{ marginBottom: '1rem' }}>
-                  <label>Send 0.001 Rinkeby Eth to:</label>
+                  <label>
+                    Send 0.001{' '}
+                    <select
+                      onChange={({ target: { value } }) => setToChain(value)}
+                      value={connectedChain?.id}
+                    >
+                      {chains.map(({ id, label }) => {
+                        if (label === 'Ropsten' || label === 'Rinkeby') {
+                          return (
+                            <option value={id} key={id}>
+                              {label}
+                            </option>
+                          )
+                        }
+                        return null
+                      })}
+                    </select>{' '}
+                    Test Eth to:
+                  </label>
                   <input
                     type="text"
                     style={{
