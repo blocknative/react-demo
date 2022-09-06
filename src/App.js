@@ -50,7 +50,7 @@ const App = () => {
   const [web3Onboard, setWeb3Onboard] = useState(null)
 
   const [toAddress, setToAddress] = useState('')
-  const [toChain, setToChain] = useState('0x4')
+  const [toChain, setToChain] = useState('0x3')
   const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
   const [notifyPosition, setNotifyPosition] = useState('topRight')
   const [locale, setLocale] = useState('en')
@@ -562,7 +562,7 @@ const App = () => {
                     Send 0.001{' '}
                     <select
                       onChange={({ target: { value } }) => setToChain(value)}
-                      value={connectedChain?.id}
+                      value={toChain}
                     >
                       {chains.map(({ id, label }) => {
                         if (label === 'Ropsten' || label === 'Rinkeby') {
