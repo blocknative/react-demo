@@ -50,7 +50,7 @@ const App = () => {
   const [web3Onboard, setWeb3Onboard] = useState(null)
 
   const [toAddress, setToAddress] = useState('')
-  const [toChain, setToChain] = useState('0x3')
+  const [toChain, setToChain] = useState('0x4')
   const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
   const [notifyPosition, setNotifyPosition] = useState('topRight')
   const [locale, setLocale] = useState('en')
