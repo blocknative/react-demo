@@ -130,7 +130,7 @@ const App = () => {
       if (!walletSelected) return false
     }
     // prompt user to switch to Rinkeby for test
-    await setChain({ chainId: '0x4' })
+    await setChain({ chainId: '0x3' })
 
     return true
   }
