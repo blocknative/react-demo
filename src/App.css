@@ -47,7 +47,6 @@ main {
 }
 
 select {
-  display: block;
   margin: 0;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -66,6 +65,10 @@ select {
   color: #6370e5;
   transition: all 200ms ease-in-out;
   font-size: 0.889rem;
+}
+
+select.chain-select { 
+  display: block;
 }
 
 .container .network-select {
