@@ -76,11 +76,6 @@ export const initWeb3Onboard = init({
   ],
   chains: [
     {
-      id: 42220,
-      token: 'CELO',
-      label: 'Celo',
-      rpcUrl: `https://forno.celo.org`
-    },    {
       id: '0x1',
       token: 'ETH',
       label: 'Ethereum',
