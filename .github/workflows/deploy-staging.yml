@@ -14,9 +14,7 @@ jobs:
     container:
       image: node:16.13.1
   steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
+    - run: checkout
     - run: yarn setup-staging-w3o-env
     - run: yarn build-staging
     - run: touch .env
