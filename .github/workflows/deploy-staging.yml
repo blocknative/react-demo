@@ -14,8 +14,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.13.1
-    - run: yarn setup-staging-w3o-env
-    - run: yarn build-staging
+      - run: yarn setup-staging-w3o-env
+      - run: yarn build-staging
 
   steps:
     - run: touch .env
