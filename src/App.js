@@ -409,7 +409,7 @@ const App = () => {
         <div className="main-content">
           <div className="vertical-main-container">
             <div className="container onboard">
-              <h2>Onboarding Users with Web3-Onboard</h2>
+              <h2>Onboarding Users with Web3-Onboard-CI WORKING TEST!!!</h2>
               {wallet && (
                 <div className="network-select">
                   <label>Switch Chains</label>
