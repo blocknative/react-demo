@@ -1,0 +1,24 @@
+name: React Demo Deploy Staging
+
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      - feature/gh_actions_deploy
+jobs:
+  build: 
+    # No idea here
+    runs-on: ubuntu-latest
+
+    # Main container
+    container:
+      image: node:16.13.1
+  steps:
+    - uses: actions/checkout@v3
+    - run: yarn setup-staging-w3o-env
+    - run: yarn build-staging
+    - run: touch .env
+    - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
+    - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/remove.sh reactdemo-staging"
+    - run: scp -oStrictHostKeyChecking=no -v -r /home/circleci/project/build/* $EC2_PROD_USER@$EC2_PROD_IP:/home/ubuntu/reactdemo-staging/
+    - run: ssh -oStrictHostKeyChecking=no -v $EC2_PROD_USER@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo-staging"
