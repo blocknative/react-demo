@@ -20,7 +20,7 @@ jobs:
   #         CI: false
 
   deploy:
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     steps:
       - run: touch .env
