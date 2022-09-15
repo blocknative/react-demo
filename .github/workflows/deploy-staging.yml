@@ -28,13 +28,13 @@ jobs:
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/deploy.key
-          chmod 600 ~/.ssh/deploy.key
+          echo "$SSH_KEY" > ~/.ssh/id_rsa.key
+          chmod 600 ~/.ssh/id_rsa.key
           cat >>~/.ssh/config <<END
           Host deploy
             HostName $SSH_HOST
             User $SSH_USER
-            IdentityFile ~/.ssh/deploy.key
+            IdentityFile ~/.ssh/id_rsa.key
             StrictHostKeyChecking no
           END
         env:

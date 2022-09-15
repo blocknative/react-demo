@@ -15,6 +15,7 @@ import keepkeyModule from '@web3-onboard/keepkey'
 import gnosisModule from '@web3-onboard/gnosis'
 import web3authModule from '@web3-onboard/web3auth'
 import sequenceModule from '@web3-onboard/sequence'
+import tallyModule from '@web3-onboard/tallyho'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
@@ -38,6 +39,7 @@ const ledger = ledgerModule()
 const keepkey = keepkeyModule()
 const gnosis = gnosisModule()
 const sequence = sequenceModule()
+const tally = tallyModule()
 
 const trezorOptions = {
   email: 'test@test.com',
@@ -61,6 +63,7 @@ const web3auth = web3authModule({
 export const initWeb3Onboard = init({
   wallets: [
     injected,
+    tally,
     ledger,
     coinbase,
     trezor,
