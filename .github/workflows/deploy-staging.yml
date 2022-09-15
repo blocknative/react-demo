@@ -41,6 +41,6 @@ jobs:
           SSH_USER: ${{ secrets.EC2_PROD_USER }}
           SSH_KEY: ${{ secrets.ssh_private_key }}
           SSH_HOST: ${{ secrets.EC2_PROD_IP }}
-      - run: ssh deploy -v ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }} "sh /home/ubuntu/remove.sh reactdemo-staging"
+      - run: ssh deploy "sh /home/ubuntu/remove.sh reactdemo-staging"
       - run: scp deploy -v -r /home/circleci/project/build/* ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/
-      - run: ssh deploy -v ${{ secrets.EC2_PROD_USER }}@$EC2_PROD_IP "sh /home/ubuntu/move.sh reactdemo-staging"
+      - run: ssh deploy "sh /home/ubuntu/move.sh reactdemo-staging"
