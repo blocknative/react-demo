@@ -42,7 +42,6 @@ jobs:
           SSH_KEY: ${{ secrets.ssh_private_key }}
           SSH_HOST: ${{ secrets.EC2_PROD_IP }}
       - run: ssh deploy -v "ls"
-      - run: ssh deploy -v "cd /home/ubuntu/reactdemo-staging"
+      - run: ssh deploy "cd /home/ubuntu/reactdemo-staging && ls && git fetch && git reset --hard origin/develop && git pull origin develop"
       - run: ssh deploy -v "ls"
-      - run: ssh deploy "git fetch && git reset --hard origin/develop && git pull origin develop"
       - run: ssh deploy "sudo systemctl start my-application"
