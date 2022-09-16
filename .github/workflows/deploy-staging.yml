@@ -25,66 +25,24 @@ jobs:
     steps:
       - run: touch .env
       - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
-      # - name: Configure SSH
-      #   # run: |
-      #   #   mkdir -p ~/.ssh/
-      #   #   echo "$SSH_KEY" > ~/.ssh/deploy.key
-      #   #   chmod 600 ~/.ssh/deploy.key
-      #   #   cat >>~/.ssh/config <<END
-      #   #   Host deploy
-      #   #     HostName $SSH_HOST
-      #   #     User $SSH_USER
-      #   #     IdentityFile ~/.ssh/deploy.key
-      #   #     StrictHostKeyChecking no
-      #   #   END
-      #   env:
-      #     SSH_USER: ${{ secrets.EC2_PROD_USER }}
-      #     SSH_KEY: ${{ secrets.ssh_private_key }}
-      #     SSH_HOST: ${{ secrets.EC2_PROD_IP }}
-      #   run: |
-      #     echo "$SSH_KEY" > private_key && chmod 600 private_key
-      #     ssh -o StrictHostKeyChecking=no -i private_key ${SSH_USER}@${SSH_HOST} '
-      #     sh /home/ubuntu/remove.sh reactdemo-staging
-      #     '
       - name: Configure SSH
-        # run: |
-        #   mkdir -p ~/.ssh/
-        #   echo "$SSH_KEY" > ~/.ssh/deploy.key
-        #   chmod 600 ~/.ssh/deploy.key
-        #   cat >>~/.ssh/config <<END
-        #   Host deploy
-        #     HostName $SSH_HOST
-        #     User $SSH_USER
-        #     IdentityFile ~/.ssh/deploy.key
-        #     StrictHostKeyChecking no
-        #   END
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/deploy.key
+          chmod 600 ~/.ssh/deploy.key
+          cat >>~/.ssh/config <<END
+          Host deploy
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/deploy.key
+            StrictHostKeyChecking no
+          END
         env:
           SSH_USER: ${{ secrets.EC2_PROD_USER }}
           SSH_KEY: ${{ secrets.ssh_private_key }}
           SSH_HOST: ${{ secrets.EC2_PROD_IP }}
-        run: |
-          echo "$SSH_KEY" > private_key && chmod 600 private_key
-          scp -o StrictHostKeyChecking=no -i private_key ${SSH_USER}@${SSH_HOST} '
-          -r /build/* ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/
-          '
-      - name: Configure SSH
-        # run: |
-        #   mkdir -p ~/.ssh/
-        #   echo "$SSH_KEY" > ~/.ssh/deploy.key
-        #   chmod 600 ~/.ssh/deploy.key
-        #   cat >>~/.ssh/config <<END
-        #   Host deploy
-        #     HostName $SSH_HOST
-        #     User $SSH_USER
-        #     IdentityFile ~/.ssh/deploy.key
-        #     StrictHostKeyChecking no
-        #   END
-        env:
-          SSH_USER: ${{ secrets.EC2_PROD_USER }}
-          SSH_KEY: ${{ secrets.ssh_private_key }}
-          SSH_HOST: ${{ secrets.EC2_PROD_IP }}
-        run: |
-          echo "$SSH_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${SSH_USER}@${SSH_HOST} '
-          sh /home/ubuntu/move.sh reactdemo-staging
-          '
+      - run: ssh deploy "ls && cd reactdemo-staging && ls"
+      - run: ssh deploy "git init"
+      # - run: ssh deploy "sh /home/ubuntu/remove.sh reactdemo-staging"
+      # - run: scp deploy -v -r /build/* ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/
+      # - run: ssh deploy "sh /home/ubuntu/move.sh reactdemo-staging"
