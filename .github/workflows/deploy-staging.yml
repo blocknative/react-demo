@@ -42,6 +42,8 @@ jobs:
           SSH_KEY: ${{ secrets.ssh_private_key }}
           SSH_HOST: ${{ secrets.EC2_PROD_IP }}
       - run: ssh deploy "ls && cd reactdemo-staging && ls"
+      - run: ssh deploy "cd reactdemo-staging && git fetch origin"
+      - run: ssh deploy "cd reactdemo-staging && git rebase origin/master"
       - run: ssh deploy "cd reactdemo-staging  && git fetch --all && git checkout develop && git reset --hard HEAD && git rev-parse --abbrev-ref HEAD"
       # - run: ssh deploy "sh /home/ubuntu/remove.sh reactdemo-staging"
       # - run: scp deploy -v -r /build/* ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/
