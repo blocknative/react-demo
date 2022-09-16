@@ -6,21 +6,21 @@ on:
     branches:    
       - feature/gh_actions_deploy
 jobs:
-  build: 
-    runs-on: ubuntu-latest
+  # build: 
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16.13.1
-      - run: yarn setup-staging-w3o-env
-      - run: yarn build-staging
-        env:
-          CI: false
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16.13.1
+  #     - run: yarn setup-staging-w3o-env
+  #     - run: yarn build-staging
+  #       env:
+  #         CI: false
 
   deploy:
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     steps:
       - run: touch .env
@@ -41,9 +41,8 @@ jobs:
           SSH_USER: ${{ secrets.EC2_PROD_USER }}
           SSH_KEY: ${{ secrets.ssh_private_key }}
           SSH_HOST: ${{ secrets.EC2_PROD_IP }}
-      - run: ssh deploy "sudo systemctl stop reactdemo-staging"
       - run: ssh deploy "cd reactdemo-staging  && git fetch --all && git checkout develop && git reset --hard HEAD"
-      - run: ssh deploy "sudo systemctl start reactdemo-staging"
+      - run: ssh deploy "cd reactdemo-staging  && yarn setup-staging-w3o-env && yarn build-staging"
       # - run: ssh deploy "sh /home/ubuntu/remove.sh reactdemo-staging"
       # - run: scp deploy -v -r /build/* ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/
       # - run: ssh deploy "sh /home/ubuntu/move.sh reactdemo-staging"
