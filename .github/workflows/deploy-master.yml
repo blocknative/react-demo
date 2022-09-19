@@ -1,0 +1,50 @@
+name: React Demo Deploy Staging
+
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      - master
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.13.1
+      - run: yarn setup-prod-w3o-env
+      - run: yarn build
+        env:
+          CI: false
+      - run: touch .env
+      - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/deploy.key
+          chmod 600 ~/.ssh/deploy.key
+          cat >>~/.ssh/config <<END
+          Host deploy
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/deploy.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.EC2_PROD_USER }}
+          SSH_KEY: ${{ secrets.ssh_private_key }}
+          SSH_HOST: ${{ secrets.EC2_PROD_IP }}
+      - run: ssh deploy "ls && cd reactdemo && ls"
+      - name: Copying files to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_PROD_IP }}
+          username: ${{ secrets.EC2_PROD_USER }}
+          key: ${{ secrets.ssh_private_key }}
+          source: "./build/*"
+          target: "reactdemo"
+          # Moves content from build folder out so you dont end up with reactdemo/build/...
+          strip_components: 1
+      - run: ssh deploy "sh /home/ubuntu/move.sh reactdemo"
