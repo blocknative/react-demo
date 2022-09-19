@@ -43,7 +43,7 @@ jobs:
           SSH_HOST: ${{ secrets.EC2_PROD_IP }}
       - run: ssh deploy "ls && cd reactdemo-staging && ls"
       - run: ls
-      # - run: ssh deploy "sh /home/ubuntu/remove.sh reactdemo-staging"
+      - run: ssh deploy "sh /home/ubuntu/remove.sh reactdemo-staging"
       # - run: scp deploy -v -r /build/* ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/
       - name: Run a multi-line script
         run: |
