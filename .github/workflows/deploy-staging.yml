@@ -36,7 +36,7 @@ jobs:
           SSH_USER: ${{ secrets.EC2_PROD_USER }}
           SSH_KEY: ${{ secrets.ssh_private_key }}
           SSH_HOST: ${{ secrets.EC2_PROD_IP }}
-      - run: ssh deploy "ls && cd reactdemo-staging && ls"
+      - run: ssh deploy "ls && cd reactdemo && ls"
       # - run: ssh deploy "sh /home/ubuntu/remove.sh reactdemo-staging"
       # - name: Create copyable build file
       #   run: |
