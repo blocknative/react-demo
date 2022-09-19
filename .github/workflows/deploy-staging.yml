@@ -52,6 +52,6 @@ jobs:
           username: ${{ secrets.EC2_PROD_USER }}
           key: ${{ secrets.ssh_private_key }}
           source: "build/*"
-          target: "/home/ubuntu/reactdemo-staging/"
+          target: "reactdemo-staging"
       - run: ssh deploy "sh /home/ubuntu/move.sh reactdemo-staging"
       # - run: scp deploy -v -r build/* ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/
