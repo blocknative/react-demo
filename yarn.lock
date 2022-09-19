@@ -4731,10 +4731,10 @@
     ethers "5.5.4"
     joi "^17.4.2"
 
-"@web3-onboard/core@^2.8.2":
-  version "2.8.2"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.8.2.tgz#70d1730384a3e028bbe07769086361db5c631d78"
-  integrity sha512-AE2xQVKsmjtvW7lI7xFFdfAtoLxmZRa9qfCv5MtHRDY9Ojqkj06dLgteJmB4FBFZnh79iXoKbIj7N+vRpvjHIw==
+"@web3-onboard/core@^2.8.4":
+  version "2.8.4"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.8.4.tgz#10827c4005b3ebfcfa7b863e8eef99fe611665dd"
+  integrity sha512-Be3bj+k2AYsXLjvvFOf+OljmftVGHgUgf3Wj0IDZJLuF4zN+8Mnw+sKPHVOEXuL0b7FrSfDhK97Zd/guxYLS5g==
   dependencies:
     "@web3-onboard/common" "^2.2.2"
     bignumber.js "^9.0.0"
@@ -4798,10 +4798,10 @@
     joi "^17.4.2"
     rxjs "^7.5.2"
 
-"@web3-onboard/injected-wallets@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.2.1.tgz#178233ca61d43e40f9c4b5aae02d617216836833"
-  integrity sha512-1gGNEQ+XGto+ZO/5d8obmVtZ3Uo1OpGzGvNZNCbd6sTOwCA3zAPvdYpCsEdZpKZTddHwoxsuceLhBE3n8rXg4Q==
+"@web3-onboard/injected-wallets@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.2.3.tgz#419f388f31488939e49e61bb7c160b51e777a98c"
+  integrity sha512-d08kt3VNYaD2tLg0Kh8bge2yW5/uLgbdo3amx2nA8UxsnuRrRnwNqm+iEOQVeNBfd3zCMLwz/QV4UIneH2HEpA==
   dependencies:
     "@web3-onboard/common" "^2.2.2"
     joi "^17.4.2"
@@ -4864,13 +4864,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.2.2"
 
-"@web3-onboard/react@^2.3.2":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.3.2.tgz#9164de175b36bcd945136b3b92ef0c33ab4a2ec3"
-  integrity sha512-j8Phwx2/TP+OHHJoMxHjRhWNtUHJI7zTbJVqIG01UxgOZiE4CFoRIVJYjsDqm3rGgYyUnw9N8HLQ8iadTrKPFQ==
+"@web3-onboard/react@^2.3.4":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.3.4.tgz#99cf02e1c8ac6b91d041a93af5cef94c533187b9"
+  integrity sha512-OQ/FtEif+MqRi3yoPLIdP6ksouVqojenP4sUzfBbjR/p0Jd8cpkxfS4cQlsRCtAadTJqUKPleQUQf01//4+QMA==
   dependencies:
     "@web3-onboard/common" "^2.2.2"
-    "@web3-onboard/core" "^2.8.2"
+    "@web3-onboard/core" "^2.8.4"
     use-sync-external-store "1.0.0"
 
 "@web3-onboard/sequence@^2.0.1":
