@@ -45,13 +45,13 @@ jobs:
       - run: ls
       # - run: ssh deploy "sh /home/ubuntu/remove.sh reactdemo-staging"
       # - run: scp deploy -v -r /build/* ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/
-      # - name: Copying files to server
-      #   uses: appleboy/scp-action@master
-      #   with:
-      #     host: ${{ secrets.EC2_PROD_IP }}
-      #     username: ${{ secrets.EC2_PROD_USER }}
-      #     key: ${{ secrets.ssh_private_key }}
-      #     rm: true
-      #     source: "build/"
-      #     target: "${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/"
-      - run: scp deploy -v -r build/* ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/
+      - name: Copying files to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_PROD_IP }}
+          username: ${{ secrets.EC2_PROD_USER }}
+          key: ${{ secrets.ssh_private_key }}
+          source: "build/*"
+          target: "/home/ubuntu/reactdemo-staging/"
+      - run: ssh deploy "sh /home/ubuntu/move.sh reactdemo-staging"
+      # - run: scp deploy -v -r build/* ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/
