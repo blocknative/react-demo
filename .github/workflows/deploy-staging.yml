@@ -54,5 +54,6 @@ jobs:
           key: ${{ secrets.ssh_private_key }}
           source: "./build/*"
           target: "reactdemo-staging"
+          strip_components: 1
       - run: ssh deploy "ls && cd reactdemo-staging && ls"
       - run: ssh deploy "sh /home/ubuntu/move.sh reactdemo-staging"
