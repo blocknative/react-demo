@@ -14,12 +14,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.13.1
-      - run: yarn setup-staging-w3o-env
-      - run: yarn build-staging
-        env:
-          CI: false
-      - run: touch .env
-      - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
+      # - run: yarn setup-staging-w3o-env
+      # - run: yarn build-staging
+      #   env:
+      #     CI: false
+      # - run: touch .env
+      # - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
@@ -43,16 +43,16 @@ jobs:
       #     mkdir ../build
       #     cp -TR ./build ../build
       #     tar -cvf deploy.tar ../build/
-      - name: Copying project to build folder
-        run:  |
-          ls
-      - name: Copying files to server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.EC2_PROD_IP }}
-          username: ${{ secrets.EC2_PROD_USER }}
-          key: ${{ secrets.ssh_private_key }}
-          source: "./build/*"
-          target: "reactdemo-staging"
-      - run: ssh deploy "ls && cd reactdemo-staging && ls"
-      - run: ssh deploy "sh /home/ubuntu/move.sh reactdemo-staging"
+      # - name: Copying project to build folder
+      #   run:  |
+      #     ls
+      # - name: Copying files to server
+      #   uses: appleboy/scp-action@master
+      #   with:
+      #     host: ${{ secrets.EC2_PROD_IP }}
+      #     username: ${{ secrets.EC2_PROD_USER }}
+      #     key: ${{ secrets.ssh_private_key }}
+      #     source: "./build/*"
+      #     target: "reactdemo-staging"
+      # - run: ssh deploy "ls && cd reactdemo-staging && ls"
+      # - run: ssh deploy "sh /home/ubuntu/move.sh reactdemo-staging"
