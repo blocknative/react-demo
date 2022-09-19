@@ -18,6 +18,11 @@ jobs:
       - run: yarn build-staging
         env:
           CI: false
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - run: touch .env
       - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
       - name: Configure SSH
@@ -37,15 +42,6 @@ jobs:
           SSH_KEY: ${{ secrets.ssh_private_key }}
           SSH_HOST: ${{ secrets.EC2_PROD_IP }}
       - run: ssh deploy "ls && cd reactdemo-staging && ls"
-      # - run: ssh deploy "sh /home/ubuntu/remove.sh reactdemo-staging"
-      # - name: Create copyable build file
-      #   run: |
-      #     mkdir ../build
-      #     cp -TR ./build ../build
-      #     tar -cvf deploy.tar ../build/
-      - name: Copying project to build folder
-        run:  |
-          ls
       - name: Copying files to server
         uses: appleboy/scp-action@master
         with:
@@ -54,6 +50,6 @@ jobs:
           key: ${{ secrets.ssh_private_key }}
           source: "./build/*"
           target: "reactdemo-staging"
+          # Moves content from build folder out so you dont end up with reactdemo-staging/build/...
           strip_components: 1
-      - run: ssh deploy "ls && cd reactdemo-staging && ls"
       - run: ssh deploy "sh /home/ubuntu/move.sh reactdemo-staging"
