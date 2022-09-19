@@ -46,9 +46,6 @@ jobs:
       - name: Copying project to build folder
         run:  |
           ls
-          mkdir ../build
-          cp -R project/* ../build
-          ls
       - name: Copying files to server
         uses: appleboy/scp-action@master
         with:
