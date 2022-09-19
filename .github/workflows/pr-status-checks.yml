@@ -28,4 +28,6 @@ jobs:
         
       - name: Check that it builds
         run: yarn build
+        env:
+          CI: false
 
