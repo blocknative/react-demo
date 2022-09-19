@@ -74,8 +74,7 @@ export const initWeb3Onboard = init({
     fortmatic,
     keepkey,
     portis,
-    torus,
-    sequence
+    torus
   ],
   chains: [
     {
