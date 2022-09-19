@@ -4881,6 +4881,15 @@
     "0xsequence" "^0.40.5"
     "@web3-onboard/common" "^2.2.2"
 
+"@web3-onboard/tallyho@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/tallyho/-/tallyho-2.0.0.tgz#fdc9dc81500cfa8d3625cb6a4b716761a9bf0c38"
+  integrity sha512-4D0jmbq6rlvwbMsBffSgoBotK3IL9dg0Ai6RIU/gXaHWsRWFLVGczIADRanLxyvfD18dlKeFZ3H+qgZWDTkARA==
+  dependencies:
+    "@web3-onboard/common" "^2.2.2"
+    tallyho-detect-provider "^1.0.0"
+    tallyho-onboarding "^1.0.2"
+
 "@web3-onboard/torus@^2.1.2":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@web3-onboard/torus/-/torus-2.1.2.tgz#fdb2a81d4678cdb320f7059a5e5dd01c33792327"
@@ -6224,7 +6233,7 @@ borsh@^0.7.0:
     bs58 "^4.0.0"
     text-encoding-utf-8 "^1.0.2"
 
-bowser@^2.11.0:
+bowser@^2.11.0, bowser@^2.9.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/bowser/-/bowser-2.11.0.tgz#5ca3c35757a7aa5771500c70a73a9f91ef420a8f"
   integrity sha512-AlcaJBi/pqqJBIQ8U9Mcpc9i8Aqxn88Skv5d+xBX006BY5u8N3mGLHa5Lgppa7L/HfwgwLgZ6NYs+Ag6uUmJRA==
@@ -15758,6 +15767,18 @@ table@^5.2.3:
     lodash "^4.17.14"
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
+
+tallyho-detect-provider@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/tallyho-detect-provider/-/tallyho-detect-provider-1.0.2.tgz#6e462c34494217d39a83e22709dd855488b2d32d"
+  integrity sha512-VUGZiWUrKJUUjtnkib09tuNO7Kld4UWLs54nnNYP0tewvzmeb1VWDK0UTv88bEUcuRKx2YWGDIuOuK9v270Ewg==
+
+tallyho-onboarding@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/tallyho-onboarding/-/tallyho-onboarding-1.0.2.tgz#afc7dc4eb05b3a7861ead215e798585e1cbe2e91"
+  integrity sha512-bdFT/fNrFrq1BYVgjl/JKtwDmeS+z2u0415PoxmGmmYYRfdcKqXtEPImMoEbVwGtOeN0iFVohuS8ESrrAe+w7w==
+  dependencies:
+    bowser "^2.9.0"
 
 tapable@^1.0.0, tapable@^1.1.0, tapable@^1.1.3:
   version "1.1.3"
