@@ -46,7 +46,7 @@ jobs:
       - name: Create copyable build file
         run: |
           mkdir ../build
-          cp -TR . ../build
+          cp -TR ~/build ../build
           tar -cvf deploy.tar ../build/
       - name: Copying files to server
         uses: appleboy/scp-action@master
@@ -56,4 +56,5 @@ jobs:
           key: ${{ secrets.ssh_private_key }}
           source: "deploy.tar"
           target: "reactdemo-staging"
+      - run: ssh deploy "ls && cd reactdemo-staging && ls"
       - run: ssh deploy "sh /home/ubuntu/move.sh reactdemo-staging"
