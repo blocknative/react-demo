@@ -54,4 +54,4 @@ jobs:
       #     rm: true
       #     source: "build/"
       #     target: "${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/"
-      run: scp deploy -v -r build/* ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/
+      - run: scp deploy -v -r build/* ${{ secrets.EC2_PROD_USER }}@${{ secrets.EC2_PROD_IP }}:/home/ubuntu/reactdemo-staging/
