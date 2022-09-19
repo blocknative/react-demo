@@ -18,11 +18,6 @@ jobs:
       - run: yarn build-staging
         env:
           CI: false
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - run: touch .env
       - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
       - name: Configure SSH
