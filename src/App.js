@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
-import { initWeb3Onboard } from './services'
+import {
+  initWeb3Onboard,
+  ethMainnetGasBlockPrices,
+  infuraRPC,
+  alchemyRPC
+} from './services'
 import {
   useAccountCenter,
   useConnectWallet,
@@ -49,6 +54,9 @@ const App = () => {
 
   const [web3Onboard, setWeb3Onboard] = useState(null)
 
+  const [bnGasPrices, setBNGasPrices] = useState('')
+  const [rpcInfuraGasPrices, setRPCInfuraGasPrices] = useState('')
+  const [rpcAlchemyGasPrices, setRPCAlchemyGasPrices] = useState('')
   const [toAddress, setToAddress] = useState('')
   const [toChain, setToChain] = useState('0x4')
   const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
@@ -124,6 +132,45 @@ const App = () => {
       setWalletFromLocalStorage()
     }
   }, [connect])
+
+  useEffect(() => {
+    ethMainnetGasBlockPrices.subscribe(estimates => {
+      setBNGasPrices(estimates[0].blockPrices[0].estimatedPrices)
+    })
+  }, [])
+
+  useEffect(() => {
+    async function getEtherGasFromRPC() {
+      const customHttpProvider = new ethers.providers.JsonRpcProvider(infuraRPC)
+      const fee = await customHttpProvider.getFeeData()
+      const cleanFees = {
+        price: ethers.utils.formatUnits(fee.gasPrice, 'gwei'),
+        maxPriorityFeePerGas: ethers.utils.formatUnits(
+          fee.maxPriorityFeePerGas,
+          'gwei'
+        ),
+        maxFeePerGas: ethers.utils.formatUnits(fee.maxFeePerGas, 'gwei')
+      }
+      setRPCInfuraGasPrices(cleanFees)
+    }
+    getEtherGasFromRPC()
+  }, [bnGasPrices])
+  const gasView = gasObj => {
+    return Object.keys(gasObj)
+      .filter(prop => prop !== 'price')
+      .map(key => (
+        <option value={key}>
+          {key} : {gasObj[key]}
+        </option>
+      ))
+  }
+
+  const gasDiff = bnGas => {
+    const priFeeDiff =
+      rpcInfuraGasPrices.maxPriorityFeePerGas - bnGas.maxPriorityFeePerGas
+    const maxFeeDiff = rpcInfuraGasPrices.maxFeePerGas - bnGas.maxFeePerGas
+    return priFeeDiff + maxFeeDiff
+  }
 
   const readyToTransact = async () => {
     if (!wallet) {
@@ -670,6 +717,26 @@ const App = () => {
             {renderAccountCenterSettings()}
           </div>
         </div>
+        {bnGasPrices && (
+          <div className="bn-gas">
+            {bnGasPrices.map(conf => {
+              return (
+                <div className="gas-container">
+                  {gasView(conf)}
+                  {/* {rpcInfuraGasPrices && (
+                      <option>gwei saved : {gasDiff(conf)}</option>
+                    )} */}
+                </div>
+              )
+            })}
+          </div>
+        )}
+        {/* {rpcInfuraGasPrices && (
+            <div className="rpc-gas">
+              RPC Gas Pricing
+              <div className="container">{gasView(rpcInfuraGasPrices)}</div>
+            </div>
+          )} */}
       </section>
       <Footer />
     </main>
