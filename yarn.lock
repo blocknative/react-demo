@@ -4722,10 +4722,10 @@
     ethers "5.5.4"
     joi "^17.6.1"
 
-"@web3-onboard/core@^2.8.5":
-  version "2.8.5"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.8.5.tgz#1a53da35620f8519af0eacda017385c67a69c5b9"
-  integrity sha512-MxyhA4E8uivWUxh+HHIuFEeQ8YhAesvD08cCD1NExrTgLogyLovvnuFuE7zwMJaEF7s2U33s1O31kBoy1We95A==
+"@web3-onboard/core@^2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.9.0.tgz#123846c520b79d5fed156206d4a14faf2ba34eeb"
+  integrity sha512-utBdzL55NfhsnMxktM+KXRVKwSr2lxuBbbFBHJ6RHlijLzbSJYMWFGMiDgmO82FVc4R+zJ4AomBJODzL9Az79A==
   dependencies:
     "@web3-onboard/common" "^2.2.3"
     bignumber.js "^9.0.0"
@@ -4855,13 +4855,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.2.3"
 
-"@web3-onboard/react@^2.3.5":
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.3.5.tgz#9244dbd6bca1f086d700e9636ffb9062930591a4"
-  integrity sha512-zCj3BYhzWuIG3dDJelh4K3fepr4clxfk7dldt48oPwnMH0MkZKjidzJP2lX19rq4Llz0uQDgYmxz54oaa2Hpmw==
+"@web3-onboard/react@^2.3.6":
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.3.6.tgz#b16775d147961a83437c05eb1dd153b50d2f882c"
+  integrity sha512-V07Iw/8VRrJibrD7mzmRc+fAbF1yVVED4MKrLg4F8I/39IDzPF6RES5vtytoWSntg7KsJoEYiOW2VerjX0D8Og==
   dependencies:
     "@web3-onboard/common" "^2.2.3"
-    "@web3-onboard/core" "^2.8.5"
+    "@web3-onboard/core" "^2.9.0"
     use-sync-external-store "1.0.0"
 
 "@web3-onboard/sequence@^2.0.2":
