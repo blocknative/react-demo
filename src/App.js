@@ -56,7 +56,6 @@ const App = () => {
 
   const [bnGasPrices, setBNGasPrices] = useState('')
   const [rpcInfuraGasPrices, setRPCInfuraGasPrices] = useState('')
-  const [rpcAlchemyGasPrices, setRPCAlchemyGasPrices] = useState('')
   const [toAddress, setToAddress] = useState('')
   const [toChain, setToChain] = useState('0x4')
   const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
@@ -155,6 +154,7 @@ const App = () => {
     }
     getEtherGasFromRPC()
   }, [bnGasPrices])
+
   const gasView = gasObj => {
     return Object.keys(gasObj)
       .filter(prop => prop !== 'price')
@@ -178,9 +178,13 @@ const App = () => {
       if (!walletSelected) return false
     }
     // prompt user to switch to Rinkeby for test
-    await setChain({ chainId: toChain })
+    // await setChain({ chainId: toChain })
 
     return true
+  }
+
+  const gweiToWeiHex = gwei => {
+    return `0x${(gwei * 1e9).toString(16)}`
   }
 
   const sendHash = async () => {
@@ -191,10 +195,21 @@ const App = () => {
 
     const signer = provider.getUncheckedSigner()
 
-    await signer.sendTransaction({
+    // To set gas using the Web3-Onboard Gas package
+    // define desired confidence for transaction inclusion in block and set in transaction
+    // const bnGasForTransaction = bnGasPrices.find(gas => gas.confidence === 90)
+
+    const rc = await signer.sendTransaction({
       to: toAddress,
       value: 1000000000000000
+
+      // This will set the transaction gas based on desired confidence
+      // maxPriorityFeePerGas: gweiToWeiHex(
+      //   bnGasForTransaction.maxPriorityFeePerGas
+      // ),
+      // maxFeePerGas: gweiToWeiHex(bnGasForTransaction.maxFeePerGas)
     })
+    console.log(rc)
   }
 
   const sendInternalTransaction = async () => {
@@ -230,6 +245,7 @@ const App = () => {
     const estimateGas = () => {
       return provider.estimateGas(txDetails).then(res => res.toString())
     }
+    console.log(estimateGas)
 
     // convert to hook when available
     const transactionHash =
@@ -718,25 +734,30 @@ const App = () => {
           </div>
         </div>
         {bnGasPrices && (
-          <div className="bn-gas">
-            {bnGasPrices.map(conf => {
-              return (
-                <div className="gas-container">
-                  {gasView(conf)}
-                  {/* {rpcInfuraGasPrices && (
-                      <option>gwei saved : {gasDiff(conf)}</option>
-                    )} */}
-                </div>
-              )
-            })}
+          <div className="bn-gas-container">
+            Blocknative Mainnet Gas Pricing
+            <div className="bn-gas">
+              {bnGasPrices.map(conf => {
+                return (
+                  <div className="gas-container">
+                    {gasView(conf)}
+                    {rpcInfuraGasPrices && (
+                      <option>gwei saved : {gasDiff(conf).toFixed(3)}</option>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
           </div>
         )}
-        {/* {rpcInfuraGasPrices && (
-            <div className="rpc-gas">
-              RPC Gas Pricing
-              <div className="container">{gasView(rpcInfuraGasPrices)}</div>
+        {rpcInfuraGasPrices && (
+          <div className="rpc-gas-container">
+            Ethers.js Mainnet Gas Pricing
+            <div className="gas-container rpc-gas">
+              {gasView(rpcInfuraGasPrices)}
             </div>
-          )} */}
+          </div>
+        )}
       </section>
       <Footer />
     </main>

@@ -19,7 +19,7 @@ import tallyModule from '@web3-onboard/tallyho'
 import gas from '@web3-onboard/gas'
 
 // Replace with your DApp's Infura ID
-const INFURA_ID = '17c1e1500e384acfb6a72c5d2e67742e'
+const INFURA_ID = '33096fe5b9a043e6ad232be977a43bb6'
 
 const dappId = '1730eff0-9d50-4382-a3fe-89f0d34a2070'
 
