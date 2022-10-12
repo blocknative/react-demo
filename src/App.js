@@ -735,7 +735,7 @@ const App = () => {
         </div>
         {bnGasPrices && (
           <div className="bn-gas-container">
-            Blocknative Mainnet Gas Pricing
+            Web3-Onboard Gas Package Mainnet Pricing
             <div className="bn-gas">
               {bnGasPrices.map(conf => {
                 return (
