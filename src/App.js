@@ -178,7 +178,7 @@ const App = () => {
       if (!walletSelected) return false
     }
     // prompt user to switch to Rinkeby for test
-    // await setChain({ chainId: toChain })
+    await setChain({ chainId: toChain })
 
     return true
   }
@@ -195,7 +195,7 @@ const App = () => {
 
     const signer = provider.getUncheckedSigner()
 
-    // To set gas using the Web3-Onboard Gas package
+    // To set gas using the Web3-Onboard Gas package(support Eth Mainnet and Polygon)
     // define desired confidence for transaction inclusion in block and set in transaction
     // const bnGasForTransaction = bnGasPrices.find(gas => gas.confidence === 90)
 
