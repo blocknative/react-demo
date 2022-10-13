@@ -16,9 +16,12 @@ import gnosisModule from '@web3-onboard/gnosis'
 import web3authModule from '@web3-onboard/web3auth'
 import sequenceModule from '@web3-onboard/sequence'
 import tallyModule from '@web3-onboard/tallyho'
+import gas from '@web3-onboard/gas'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
+
+export const infuraRPC = `https://mainnet.infura.io/v3/${INFURA_ID}`
 
 const dappId = '1730eff0-9d50-4382-a3fe-89f0d34a2070'
 
@@ -82,7 +85,7 @@ export const initWeb3Onboard = init({
       id: '0x1',
       token: 'ETH',
       label: 'Ethereum',
-      rpcUrl: `https://mainnet.infura.io/v3/${INFURA_ID}`
+      rpcUrl: infuraRPC
     },
     {
       id: '0x3',
@@ -187,3 +190,12 @@ export const initWeb3Onboard = init({
     }
   }
 })
+
+// subscribe to a single chain for estimates using the default poll rate of 5 secs
+// API key is optional and if provided allows for faster poll rates
+export const ethMainnetGasBlockPrices = gas.stream({
+  chains: ['0x1'],
+  // apiKey: dappId,
+  endpoint: 'blockPrices'
+})
+

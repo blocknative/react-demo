@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import VConsole from 'vconsole'
-import { initWeb3Onboard } from './services'
+import {
+  initWeb3Onboard,
+  ethMainnetGasBlockPrices,
+  infuraRPC
+} from './services'
 import {
   useAccountCenter,
   useConnectWallet,
@@ -49,6 +53,8 @@ const App = () => {
 
   const [web3Onboard, setWeb3Onboard] = useState(null)
 
+  const [bnGasPrices, setBNGasPrices] = useState('')
+  const [rpcInfuraGasPrices, setRPCInfuraGasPrices] = useState('')
   const [toAddress, setToAddress] = useState('')
   const [toChain, setToChain] = useState('0x4')
   const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
@@ -125,6 +131,46 @@ const App = () => {
     }
   }, [connect])
 
+  useEffect(() => {
+    ethMainnetGasBlockPrices.subscribe(estimates => {
+      setBNGasPrices(estimates[0].blockPrices[0].estimatedPrices)
+    })
+  }, [])
+
+  useEffect(() => {
+    async function getEtherGasFromRPC() {
+      const customHttpProvider = new ethers.providers.JsonRpcProvider(infuraRPC)
+      const fee = await customHttpProvider.getFeeData()
+      const cleanFees = {
+        price: ethers.utils.formatUnits(fee.gasPrice, 'gwei'),
+        maxPriorityFeePerGas: ethers.utils.formatUnits(
+          fee.maxPriorityFeePerGas,
+          'gwei'
+        ),
+        maxFeePerGas: ethers.utils.formatUnits(fee.maxFeePerGas, 'gwei')
+      }
+      setRPCInfuraGasPrices(cleanFees)
+    }
+    getEtherGasFromRPC()
+  }, [bnGasPrices])
+
+  const gasView = gasObj => {
+    return Object.keys(gasObj)
+      .filter(prop => prop !== 'price')
+      .map(key => (
+        <section value={key} key={key}>
+          {key} : {gasObj[key]}
+        </section>
+      ))
+  }
+
+  const gasDiff = bnGas => {
+    const priFeeDiff =
+      rpcInfuraGasPrices.maxPriorityFeePerGas - bnGas.maxPriorityFeePerGas
+    const maxFeeDiff = rpcInfuraGasPrices.maxFeePerGas - bnGas.maxFeePerGas
+    return priFeeDiff + maxFeeDiff
+  }
+
   const readyToTransact = async () => {
     if (!wallet) {
       const walletSelected = await connect()
@@ -136,6 +182,10 @@ const App = () => {
     return true
   }
 
+  const gweiToWeiHex = gwei => {
+    return `0x${(gwei * 1e9).toString(16)}`
+  }
+
   const sendHash = async () => {
     if (!toAddress) {
       alert('An Ethereum address to send Eth to is required.')
@@ -144,10 +194,21 @@ const App = () => {
 
     const signer = provider.getUncheckedSigner()
 
-    await signer.sendTransaction({
+    // To set gas using the Web3-Onboard Gas package(support Eth Mainnet and Polygon)
+    // define desired confidence for transaction inclusion in block and set in transaction
+    // const bnGasForTransaction = bnGasPrices.find(gas => gas.confidence === 90)
+
+    const rc = await signer.sendTransaction({
       to: toAddress,
       value: 1000000000000000
+
+      // This will set the transaction gas based on desired confidence
+      // maxPriorityFeePerGas: gweiToWeiHex(
+      //   bnGasForTransaction.maxPriorityFeePerGas
+      // ),
+      // maxFeePerGas: gweiToWeiHex(bnGasForTransaction.maxFeePerGas)
     })
+    console.log(rc)
   }
 
   const sendInternalTransaction = async () => {
@@ -183,6 +244,7 @@ const App = () => {
     const estimateGas = () => {
       return provider.estimateGas(txDetails).then(res => res.toString())
     }
+    console.log(estimateGas)
 
     // convert to hook when available
     const transactionHash =
@@ -670,6 +732,31 @@ const App = () => {
             {renderAccountCenterSettings()}
           </div>
         </div>
+        {bnGasPrices && (
+          <div className="bn-gas-container">
+            Web3-Onboard Gas Package Mainnet Pricing
+            <div className="bn-gas">
+              {bnGasPrices.map(conf => {
+                return (
+                  <div className="gas-container" key={conf.confidence}>
+                    {gasView(conf)}
+                    {rpcInfuraGasPrices && (
+                      <section>gwei saved : {gasDiff(conf).toFixed(3)}</section>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+        {rpcInfuraGasPrices && (
+          <div className="rpc-gas-container">
+            Ethers.js Mainnet Gas Pricing
+            <div className="gas-container rpc-gas">
+              {gasView(rpcInfuraGasPrices)}
+            </div>
+          </div>
+        )}
       </section>
       <Footer />
     </main>
