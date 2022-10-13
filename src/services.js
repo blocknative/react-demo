@@ -21,6 +21,8 @@ import gas from '@web3-onboard/gas'
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
 
+export const infuraRPC = `https://mainnet.infura.io/v3/${INFURA_ID}`
+
 const dappId = '1730eff0-9d50-4382-a3fe-89f0d34a2070'
 
 const injected = injectedModule()
@@ -83,7 +85,7 @@ export const initWeb3Onboard = init({
       id: '0x1',
       token: 'ETH',
       label: 'Ethereum',
-      rpcUrl: `https://mainnet.infura.io/v3/${INFURA_ID}`
+      rpcUrl: infuraRPC
     },
     {
       id: '0x3',
@@ -197,4 +199,3 @@ export const ethMainnetGasBlockPrices = gas.stream({
   endpoint: 'blockPrices'
 })
 
-export const infuraRPC = `https://mainnet.infura.io/v3/${INFURA_ID}`

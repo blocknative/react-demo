@@ -4,8 +4,7 @@ import VConsole from 'vconsole'
 import {
   initWeb3Onboard,
   ethMainnetGasBlockPrices,
-  infuraRPC,
-  alchemyRPC
+  infuraRPC
 } from './services'
 import {
   useAccountCenter,
@@ -159,9 +158,9 @@ const App = () => {
     return Object.keys(gasObj)
       .filter(prop => prop !== 'price')
       .map(key => (
-        <option value={key}>
+        <section value={key} key={key}>
           {key} : {gasObj[key]}
-        </option>
+        </section>
       ))
   }
 
@@ -739,10 +738,10 @@ const App = () => {
             <div className="bn-gas">
               {bnGasPrices.map(conf => {
                 return (
-                  <div className="gas-container">
+                  <div className="gas-container" key={conf.confidence}>
                     {gasView(conf)}
                     {rpcInfuraGasPrices && (
-                      <option>gwei saved : {gasDiff(conf).toFixed(3)}</option>
+                      <section>gwei saved : {gasDiff(conf).toFixed(3)}</section>
                     )}
                   </div>
                 )
