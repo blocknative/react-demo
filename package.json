@@ -30,7 +30,7 @@
   "scripts": {
     "setup-staging-w3o-env": "yarn upgrade '@web3-onboard/coinbase@next' '@web3-onboard/fortmatic@next' '@web3-onboard/gnosis@next' '@web3-onboard/injected-wallets@next' '@web3-onboard/keepkey@next' '@web3-onboard/keystone@next' '@web3-onboard/ledger@next' '@web3-onboard/magic@next' '@web3-onboard/portis@next' '@web3-onboard/react@next' '@web3-onboard/torus@next' '@web3-onboard/trezor@next' '@web3-onboard/walletconnect@next'  '@web3-onboard/web3auth@next' '@web3-onboard/gas@next' '@web3-onboard/dcent@next' '@web3-onboard/sequence@next'",
     "setup-prod-w3o-env": "yarn add '@web3-onboard/coinbase' '@web3-onboard/fortmatic' '@web3-onboard/gnosis' '@web3-onboard/injected-wallets' '@web3-onboard/keepkey' '@web3-onboard/keystone' '@web3-onboard/ledger' '@web3-onboard/magic' '@web3-onboard/portis' '@web3-onboard/react' '@web3-onboard/torus' '@web3-onboard/trezor' '@web3-onboard/walletconnect' '@web3-onboard/web3auth' '@web3-onboard/gas' '@web3-onboard/dcent' '@web3-onboard/sequence'  --latest",
-    "start": "HTTPS=true react-scripts start",
+    "start": "HTTPS=false react-scripts start",
     "start-staging": "REACT_APP_API_URL=wss://staging.api.blocknative.com/v0 REACT_APP_STAGING=true HTTPS=true HTTPS=true react-scripts start",
     "start-local": "REACT_APP_API_URL=ws://localhost:54100/v0 REACT_APP_STAGING=true HTTPS=true react-scripts start",
     "build": "craco build",

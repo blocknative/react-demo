@@ -55,8 +55,8 @@ const App = () => {
 
   const [bnGasPrices, setBNGasPrices] = useState('')
   const [rpcInfuraGasPrices, setRPCInfuraGasPrices] = useState('')
-  const [toAddress, setToAddress] = useState('')
-  const [toChain, setToChain] = useState('0x4')
+  const [toAddress, setToAddress] = useState('0x2F5bE6af89B94fA5bF71ab2849a1f31Be184DFA0')
+  const [toChain, setToChain] = useState('0x5')
   const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
   const [notifyPosition, setNotifyPosition] = useState('topRight')
   const [locale, setLocale] = useState('en')
@@ -64,7 +64,8 @@ const App = () => {
 
   useEffect(() => {
     setWeb3Onboard(initWeb3Onboard)
-  }, [])
+    console.log(web3Onboard)
+  }, [web3Onboard])
 
   useEffect(() => {
     console.log(notifications)
@@ -120,10 +121,10 @@ const App = () => {
       window.localStorage.getItem('connectedWallets')
     )
 
-    if (previouslyConnectedWallets?.length) {
+    if (true) {
       async function setWalletFromLocalStorage() {
         const walletConnected = await connect({
-          autoSelect: previouslyConnectedWallets[0]
+          autoSelect: 'Gnosis Safe'
         })
         console.log('connected wallets: ', walletConnected)
       }
@@ -194,21 +195,25 @@ const App = () => {
 
     const signer = provider.getUncheckedSigner()
 
+    const tx = {
+      to: toAddress,
+      value: 1000000000000000,
+      data: '0x',
+      gasLimit: 500000,
+    }
+    const params = {
+      safeTxGas: 500000,
+    };
+    console.log(params, tx)
+    let trans = await wallet.instance.txs.send({txs:[tx], params})
+    console.log(trans)
+
     // To set gas using the Web3-Onboard Gas package(support Eth Mainnet and Polygon)
     // define desired confidence for transaction inclusion in block and set in transaction
     // const bnGasForTransaction = bnGasPrices.find(gas => gas.confidence === 90)
 
-    const rc = await signer.sendTransaction({
-      to: toAddress,
-      value: 1000000000000000
-
-      // This will set the transaction gas based on desired confidence
-      // maxPriorityFeePerGas: gweiToWeiHex(
-      //   bnGasForTransaction.maxPriorityFeePerGas
-      // ),
-      // maxFeePerGas: gweiToWeiHex(bnGasForTransaction.maxFeePerGas)
-    })
-    console.log(rc)
+    // const rc = await signer.sendTransaction(tx)
+    // console.log(rc)
   }
 
   const sendInternalTransaction = async () => {
@@ -627,7 +632,7 @@ const App = () => {
                       value={toChain}
                     >
                       {chains.map(({ id, label }) => {
-                        if (label === 'Ropsten' || label === 'Rinkeby') {
+                        if (label === 'Ropsten' || label === 'Rinkeby' || label === 'Goerli' || label === 'Polygon - Mumbai') {
                           return (
                             <option value={id} key={id}>
                               {label}
@@ -697,29 +702,29 @@ const App = () => {
                 <button
                   className="bn-demo-button"
                   onClick={() => {
-                    const { update, dismiss } = customNotification({
-                      eventCode: 'dbUpdate',
-                      type: 'hint',
+                    const { update, dismiss } = web3Onboard.state.actions.customNotification({
+                      type: 'pending',
                       message: 'Custom hint notification created by the dapp',
+                      autoDismiss: 0,
                       onClick: () => window.open(`https://www.blocknative.com`)
                     })
                     // Update your notification example below
-                    // setTimeout(
-                    //   () =>
-                    //     update({
-                    //       eventCode: 'dbUpdateSuccess',
-                    //       message: 'Hint notification reason resolved!',
-                    //       type: 'success',
-                    //       autoDismiss: 5000
-                    //     }),
-                    //   4000
-                    // )
                     setTimeout(
                       () =>
-                        // use the dismiss method returned or add an autoDismiss prop to the notification
-                        dismiss(),
+                        update({
+                          eventCode: 'dbUpdateSuccess',
+                          message: 'Hint notification reason resolved!',
+                          type: 'success',
+                          autoDismiss: 5000
+                        }),
                       4000
                     )
+                    // setTimeout(
+                    //   () =>
+                    //     // use the dismiss method returned or add an autoDismiss prop to the notification
+                    //     dismiss(),
+                    //   4000
+                    // )
                   }}
                 >
                   Custom Hint Notification

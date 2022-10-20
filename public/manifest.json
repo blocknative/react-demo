@@ -13,5 +13,8 @@
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "description": "A React Demo app for Web3-Onboard and Notify",
-  "iconPath": "blocknative-favicon.ico"
+  "iconPath": "blocknative-favicon.ico",
+  "Access-Control-Allow-Origin": "\/*",
+"Access-Control-Allow-Methods": "GET",
+"Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
 }

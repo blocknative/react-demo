@@ -19,11 +19,11 @@ import tallyModule from '@web3-onboard/tallyho'
 import gas from '@web3-onboard/gas'
 
 // Replace with your DApp's Infura ID
-const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
+const INFURA_ID = '33096fe5b9a043e6ad232be977a43bb6'
 
 export const infuraRPC = `https://mainnet.infura.io/v3/${INFURA_ID}`
 
-const dappId = '1730eff0-9d50-4382-a3fe-89f0d34a2070'
+const dappId = '7eeb406c-82cb-4348-8ab5-b8cd3b684fff'
 
 const injected = injectedModule()
 const coinbase = coinbaseModule()
@@ -72,13 +72,7 @@ export const initWeb3Onboard = init({
     trezor,
     walletConnect,
     web3auth,
-    gnosis,
-    magic,
-    fortmatic,
-    keepkey,
-    portis,
-    torus,
-    sequence
+    gnosis
   ],
   chains: [
     {
@@ -100,6 +94,18 @@ export const initWeb3Onboard = init({
       rpcUrl: `https://rinkeby.infura.io/v3/${INFURA_ID}`
     },
     {
+      id: '0x5',
+      token: 'ETH',
+      label: 'Goerli',
+      rpcUrl: `https://goerli.infura.io/v3/${INFURA_ID}`
+    },
+    {
+      id: '0x13881',
+      token: 'MATIC',
+      label: 'Polygon - Mumbai',
+      rpcUrl: 'https://matic-mumbai.chainstacklabs.com	'
+    },
+    {
       id: '0x38',
       token: 'BNB',
       label: 'Binance',
@@ -116,6 +122,18 @@ export const initWeb3Onboard = init({
       token: 'FTM',
       label: 'Fantom',
       rpcUrl: 'https://rpc.ftm.tools/'
+    },
+    {
+      id: 10,
+      token: 'OETH',
+      label: 'Optimism',
+      rpcUrl: 'https://mainnet.optimism.io'
+    },
+    {
+      id: 42161,
+      token: 'ARB-ETH',
+      label: 'Arbitrum',
+      rpcUrl: 'https://rpc.ankr.com/arbitrum'
     }
   ],
   appMetadata: {
@@ -198,4 +216,3 @@ export const ethMainnetGasBlockPrices = gas.stream({
   // apiKey: dappId,
   endpoint: 'blockPrices'
 })
-
