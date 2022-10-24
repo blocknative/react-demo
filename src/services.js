@@ -100,6 +100,18 @@ export const initWeb3Onboard = init({
       rpcUrl: `https://rinkeby.infura.io/v3/${INFURA_ID}`
     },
     {
+      id: '0x5',
+      token: 'ETH',
+      label: 'Goerli',
+      rpcUrl: `https://goerli.infura.io/v3/${INFURA_ID}`
+    },
+    {
+      id: '0x13881',
+      token: 'MATIC',
+      label: 'Polygon - Mumbai',
+      rpcUrl: 'https://matic-mumbai.chainstacklabs.com	'
+    },
+    {
       id: '0x38',
       token: 'BNB',
       label: 'Binance',
@@ -116,6 +128,18 @@ export const initWeb3Onboard = init({
       token: 'FTM',
       label: 'Fantom',
       rpcUrl: 'https://rpc.ftm.tools/'
+    },
+    {
+      id: 10,
+      token: 'OETH',
+      label: 'Optimism',
+      rpcUrl: 'https://mainnet.optimism.io'
+    },
+    {
+      id: 42161,
+      token: 'ARB-ETH',
+      label: 'Arbitrum',
+      rpcUrl: 'https://rpc.ankr.com/arbitrum'
     }
   ],
   appMetadata: {
