@@ -56,7 +56,8 @@ const App = () => {
   const [bnGasPrices, setBNGasPrices] = useState('')
   const [rpcInfuraGasPrices, setRPCInfuraGasPrices] = useState('')
   const [toAddress, setToAddress] = useState('')
-  const [toChain, setToChain] = useState('0x4')
+  // default test transaction to Goerli
+  const [toChain, setToChain] = useState('0x5')
   const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
   const [notifyPosition, setNotifyPosition] = useState('topRight')
   const [locale, setLocale] = useState('en')
@@ -627,7 +628,7 @@ const App = () => {
                       value={toChain}
                     >
                       {chains.map(({ id, label }) => {
-                        if (label === 'Ropsten' || label === 'Rinkeby') {
+                        if (label === 'Ropsten' || label === 'Rinkeby' || label === 'Goerli' || label === 'Polygon - Mumbai') {
                           return (
                             <option value={id} key={id}>
                               {label}
