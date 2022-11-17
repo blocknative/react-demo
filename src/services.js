@@ -65,10 +65,10 @@ const web3auth = web3authModule({
   clientId:
     'DJuUOKvmNnlzy6ruVgeWYWIMKLRyYtjYa9Y10VCeJzWZcygDlrYLyXsBQjpJ2hxlBO9dnl8t9GmAC2qOP5vnIGo'
 })
-const windowUrl = window.location.href
+
 const uauthOptions = {
-  clientID: 'a25c3a65-a1f2-46cc-a515-a46fe7acb78c',
-  redirectUri: 'https://staging.reactdemo.blocknative.com/',
+  clientID: '2d14b025-cb94-44b9-85ac-ce2397e6f10b',
+  redirectUri: window.location.href,
   scope:
     'openid wallet email:optional humanity_check:optional profile:optional social:optional'
 }
