@@ -16,6 +16,9 @@ import gnosisModule from '@web3-onboard/gnosis'
 import web3authModule from '@web3-onboard/web3auth'
 import sequenceModule from '@web3-onboard/sequence'
 import tallyModule from '@web3-onboard/tallyho'
+import enkryptModule from '@web3-onboard/enkrypt'
+import mewWalletModule from '@web3-onboard/mew-wallet'
+import uauthModule from '@web3-onboard/uauth'
 import gas from '@web3-onboard/gas'
 
 // Replace with your DApp's Infura ID
@@ -63,6 +66,16 @@ const web3auth = web3authModule({
     'DJuUOKvmNnlzy6ruVgeWYWIMKLRyYtjYa9Y10VCeJzWZcygDlrYLyXsBQjpJ2hxlBO9dnl8t9GmAC2qOP5vnIGo'
 })
 
+const uauthOptions = {
+  clientID: '2d14b025-cb94-44b9-85ac-ce2397e6f10b',
+  redirectUri: window.location.href,
+  scope:
+    'openid wallet email:optional humanity_check:optional profile:optional social:optional'
+}
+const uauth = uauthModule(uauthOptions)
+const enkrypt = enkryptModule()
+const mewWallet = mewWalletModule()
+
 export const initWeb3Onboard = init({
   wallets: [
     injected,
@@ -71,6 +84,9 @@ export const initWeb3Onboard = init({
     coinbase,
     trezor,
     walletConnect,
+    uauth,
+    enkrypt,
+    mewWallet,
     web3auth,
     gnosis,
     magic,
