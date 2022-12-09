@@ -1,4 +1,4 @@
-name: React Demo Deploy Staging
+name: React Demo Deploy Master
 
 on:
   push:
