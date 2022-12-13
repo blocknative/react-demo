@@ -1,8 +1,8 @@
 # React Demo
 
 A repository to demonstrate a basic integration of 
-[Web3-Onboard](https://github.com/blocknative/web3-onboard) 
-and [Notify](https://github.com/blocknative/notify) into a React project.
+[Web3-Onboard](https://github.com/blocknative/web3-onboard) official docs for W3O can be found [here](https://onboard.blocknative.com/docs/modules/core#install).
+This project uses [React App Rewired](https://www.npmjs.com/package/react-app-rewired) for building, checkout `config-overrides.js` for details.
 For detailed documentation, head to [docs.blocknative.com](https://docs.blocknative.com)
 
 

@@ -1,4 +1,4 @@
-name: React Demo Deploy Staging
+name: React Demo Deploy Master
 
 on:
   push:
@@ -17,6 +17,7 @@ jobs:
       - run: yarn setup-prod-w3o-env
       - run: yarn build
         env:
+          NODE_OPTIONS: "--max_old_space_size=8192"
           CI: false
       - run: touch .env
       - run: echo "REACT_APP_GOOGLE_ANALYTICS_ID=$REACT_APP_GOOGLE_ANALYTICS_ID" > .env
