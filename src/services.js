@@ -23,10 +23,9 @@ import gas from '@web3-onboard/gas'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
-
 export const infuraRPC = `https://mainnet.infura.io/v3/${INFURA_ID}`
 
-const dappId = '1730eff0-9d50-4382-a3fe-89f0d34a2070'
+const dappId = '937627e1-3507-44b8-af10-72728aa5f74b'
 
 const injected = injectedModule()
 const coinbase = coinbaseModule()
