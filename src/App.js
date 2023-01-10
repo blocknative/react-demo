@@ -24,24 +24,6 @@ if (window.innerWidth < 700) {
 
 let provider
 
-const internalTransferABI = [
-  {
-    inputs: [
-      {
-        internalType: 'address payable',
-        name: 'to',
-        type: 'address'
-      }
-    ],
-    name: 'internalTransfer',
-    outputs: [],
-    stateMutability: 'payable',
-    type: 'function'
-  }
-]
-
-let internalTransferContract
-
 const App = () => {
   const [{ wallet }, connect, disconnect, updateBalances, setWalletModules] =
     useConnectWallet()
@@ -108,11 +90,6 @@ const App = () => {
     } else {
       provider = new ethers.providers.Web3Provider(wallet.provider, 'any')
 
-      internalTransferContract = new ethers.Contract(
-        '0xb8c12850827ded46b9ded8c1b6373da0c4d60370',
-        internalTransferABI,
-        provider.getUncheckedSigner()
-      )
     }
   }, [wallet])
 
@@ -210,17 +187,6 @@ const App = () => {
       // maxFeePerGas: gweiToWeiHex(bnGasForTransaction.maxFeePerGas)
     })
     console.log(rc)
-  }
-
-  const sendInternalTransaction = async () => {
-    if (!toAddress) {
-      alert('An Ethereum address to send Eth to is required.')
-      return
-    }
-
-    await internalTransferContract.internalTransfer(toAddress, {
-      value: 1000000000000000
-    })
   }
 
   const sendTransaction = async () => {
@@ -679,19 +645,6 @@ const App = () => {
                     Send
                   </button>
                   with pre-flight and in-flight notifications
-                </div>
-                <div className={'send-transaction-container'}>
-                  <button
-                    className="bn-demo-button"
-                    onClick={async () => {
-                      const ready = await readyToTransact()
-                      if (!ready) return
-                      sendInternalTransaction()
-                    }}
-                  >
-                    Send
-                  </button>
-                  via an internal transaction
                 </div>
               </div>
               <div>
