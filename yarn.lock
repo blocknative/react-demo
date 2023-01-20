@@ -5399,10 +5399,10 @@
     ethers "5.5.4"
     joi "^17.6.1"
 
-"@web3-onboard/core@^2.13.0":
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.13.0.tgz#aebdade07387dc9057753e1bc0194740d0fd3470"
-  integrity sha512-qV0IDvcL+B4L2osynzeYFJOwblytYoFVwR0mQVccph5iCKDvmC+NfQWQUAhPzZj9wbPl/26DKjp2oK5bycPTQQ==
+"@web3-onboard/core@^2.13.1":
+  version "2.13.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.13.1.tgz#c9d953751b239798ba1792c480babbd5b03ba015"
+  integrity sha512-1NL7Eev7Pjy/KxE9LaeoAhaNT+/UVoezXiW/GGFCe7Qx2efb74doCRQjjCf82KInyQAvfr8a/0lOQie4xFZ6ig==
   dependencies:
     "@unstoppabledomains/resolution" "^8.0"
     "@web3-onboard/common" "^2.2.3"
@@ -5474,10 +5474,10 @@
     joi "^17.6.1"
     rxjs "^7.5.2"
 
-"@web3-onboard/injected-wallets@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.5.0.tgz#c81bbe13937a58533f7e179ad6d8f3115cefefe4"
-  integrity sha512-cn9b2V1hPm9vhTu+MYp4MakhxKD1soOHTEg98+LZd6dlzoB27pWtm52nb22pU+9f2YK0ho9NW8gBUCwvEg5Z3g==
+"@web3-onboard/injected-wallets@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.6.0.tgz#6f59ded7728da42a1015215df6f27d016e7094d9"
+  integrity sha512-j/7hZM4RDCcLwhAARvgX9vjAXkahD59r3YywCPLsttih9YEXAfwyEvbi2aOYXyTMtNt8sEowl0oRBzYA4v2Ckw==
   dependencies:
     "@web3-onboard/common" "^2.2.3"
     joi "^17.6.1"
@@ -5506,10 +5506,10 @@
     "@web3-onboard/common" "^2.2.3"
     "@web3-onboard/hw-common" "^2.0.4"
 
-"@web3-onboard/ledger@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/ledger/-/ledger-2.4.0.tgz#f98fee3b8b758a9f9a79565992997dda33343460"
-  integrity sha512-EWxiOIZNgLR8BPE/P5vbAhPg4mpdGDbPketP4nqB28Wxzi7TlRenscmsWMT2RWOtslQoMJp09KfdJ++cuvtt4w==
+"@web3-onboard/ledger@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/ledger/-/ledger-2.4.1.tgz#d719a4f3315ead3fce938d7cace7ef6c3f365cc3"
+  integrity sha512-ENA/kmLn2qgqx3SKziMo/10OPxEtEPjBe1e5eyMz7k7XOmb81+Q4rSXoIgTl0uoTu18Yn/5POGCV77/emR40IA==
   dependencies:
     "@ethersproject/providers" "^5.5.0"
     "@ledgerhq/connect-kit-loader" "^1.0.2"
@@ -5543,13 +5543,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.2.3"
 
-"@web3-onboard/react@^2.5.4":
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.5.4.tgz#1e3498b708380944bf92c7fe2d91234b99203f84"
-  integrity sha512-N+kI9YxNPkYTFGOoJg8Pt9RXPovU4xlCujLOBq1ZkwTvGvYyfbnb4qMxH+F7UnWL4TLwxOWe9JvvYtMT490Zeg==
+"@web3-onboard/react@^2.5.5":
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.5.5.tgz#009c437e279108e3d5453fd1fb86eada933f0f23"
+  integrity sha512-Pli/FIH1BjtAQiD/F9yI+AqmhYBZ3gnhSRMOgbWd10Kwj9E+4Lv49SJP91JJ7lFU34gQpLPNh3NoQxI5/f5VUw==
   dependencies:
     "@web3-onboard/common" "^2.2.3"
-    "@web3-onboard/core" "^2.13.0"
+    "@web3-onboard/core" "^2.13.1"
     use-sync-external-store "1.0.0"
 
 "@web3-onboard/sequence@^2.0.4":
@@ -5569,10 +5569,10 @@
     tallyho-detect-provider "^1.0.0"
     tallyho-onboarding "^1.0.2"
 
-"@web3-onboard/torus@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/torus/-/torus-2.2.0.tgz#6a844c99d783bbab2370f87b70f30a4cb8f36f07"
-  integrity sha512-0iaN3o13p5oCy//3FfEDdbRJnV1Y3QWXLWDTuaxJiYh/Qdj7tc7OORWxfAb3FB94vyaqIFV5jvLK8p7AYoQHmQ==
+"@web3-onboard/torus@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/torus/-/torus-2.2.1.tgz#9b82381c200cbf22ebccf08cfe2d84b5d48d0ce8"
+  integrity sha512-fF6yp2NX4kalClNcG0gR7HsVlcd6wFz3zLogVZ0mpLq0Y94K3B28r/N3HYmcbT/3y7rlUQdf7EJOZE4Pxn7UHg==
   dependencies:
     "@toruslabs/torus-embed" "1.38.2"
     "@web3-onboard/common" "^2.2.3"
