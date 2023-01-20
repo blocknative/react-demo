@@ -154,7 +154,7 @@ const App = () => {
       const walletSelected = await connect()
       if (!walletSelected) return false
     }
-    // prompt user to switch to Rinkeby for test
+    // prompt user to switch to Goerli for test
     await setChain({ chainId: toChain })
 
     return true
@@ -594,7 +594,7 @@ const App = () => {
                       value={toChain}
                     >
                       {chains.map(({ id, label }) => {
-                        if (label === 'Ropsten' || label === 'Rinkeby' || label === 'Goerli' || label === 'Polygon - Mumbai') {
+                        if (label === 'Goerli' || label === 'Polygon - Mumbai') {
                           return (
                             <option value={id} key={id}>
                               {label}
