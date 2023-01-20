@@ -103,18 +103,6 @@ export const initWeb3Onboard = init({
       rpcUrl: infuraRPC
     },
     {
-      id: '0x3',
-      token: 'tROP',
-      label: 'Ropsten',
-      rpcUrl: `https://ropsten.infura.io/v3/${INFURA_ID}`
-    },
-    {
-      id: '0x4',
-      token: 'rETH',
-      label: 'Rinkeby',
-      rpcUrl: `https://rinkeby.infura.io/v3/${INFURA_ID}`
-    },
-    {
       id: '0x5',
       token: 'ETH',
       label: 'Goerli',
@@ -220,10 +208,10 @@ export const initWeb3Onboard = init({
         return {
           // autoDismiss set to zero will persist the notification until the user excuses it
           autoDismiss: 0,
-          // message: `Your transaction is pending, click <a href="https://rinkeby.etherscan.io/tx/${transaction.hash}" rel="noopener noreferrer" target="_blank">here</a> for more info.`,
+          // message: `Your transaction is pending, click <a href="https://goerli.etherscan.io/tx/${transaction.hash}" rel="noopener noreferrer" target="_blank">here</a> for more info.`,
           // or you could use onClick for when someone clicks on the notification itself
           onClick: () =>
-            window.open(`https://rinkeby.etherscan.io/tx/${transaction.hash}`)
+            window.open(`https://goerli.etherscan.io/tx/${transaction.hash}`)
         }
       }
     }
