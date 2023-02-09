@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.34.3-0.0.1",
+  "version": "0.34.4",
   "dependencies": {
     "@web3-onboard/coinbase": "^2.2.0",
     "@web3-onboard/dcent": "^2.2.3",
