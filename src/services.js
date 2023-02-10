@@ -19,6 +19,8 @@ import tallyModule from '@web3-onboard/tallyho'
 import enkryptModule from '@web3-onboard/enkrypt'
 import mewWalletModule from '@web3-onboard/mew-wallet'
 import uauthModule from '@web3-onboard/uauth'
+import trustModule from '@web3-onboard/trust'
+import frontierModule from '@web3-onboard/frontier'
 import gas from '@web3-onboard/gas'
 
 // Replace with your DApp's Infura ID
@@ -45,6 +47,8 @@ const keepkey = keepkeyModule()
 const gnosis = gnosisModule()
 const sequence = sequenceModule()
 const tally = tallyModule()
+const trust = trustModule()
+const frontier = frontierModule()
 
 const trezorOptions = {
   email: 'test@test.com',
@@ -78,12 +82,13 @@ const mewWallet = mewWalletModule()
 export const initWeb3Onboard = init({
   wallets: [
     injected,
-    tally,
     ledger,
     coinbase,
     trezor,
-    walletConnect,
     uauth,
+    trust,
+    walletConnect,
+    tally,
     enkrypt,
     mewWallet,
     web3auth,
@@ -93,7 +98,8 @@ export const initWeb3Onboard = init({
     keepkey,
     portis,
     torus,
-    sequence
+    sequence,
+    frontier
   ],
   chains: [
     {
