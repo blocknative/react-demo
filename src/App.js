@@ -38,6 +38,7 @@ const App = () => {
   const [bnGasPrices, setBNGasPrices] = useState('')
   const [rpcInfuraGasPrices, setRPCInfuraGasPrices] = useState('')
   const [toAddress, setToAddress] = useState('')
+  const [tradeAmount, setTradeAmount] = useState('')
   // default test transaction to Goerli
   const [toChain, setToChain] = useState('0x5')
   const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
@@ -89,7 +90,6 @@ const App = () => {
       provider = null
     } else {
       provider = new ethers.providers.Web3Provider(wallet.provider, 'any')
-
     }
   }, [wallet])
 
@@ -223,6 +223,79 @@ const App = () => {
         txDetails: txDetails
       })
     console.log(transactionHash)
+  }
+
+  const approveTokenForSwap = async () => {
+    const signer = provider.getSigner()
+
+    const CONTRACT_ADDRESS = '0x7a250d5630b4cf539739df2c5dacb4c659f2488d'
+    const erc20_interface = [
+      'function approve(address _spender, uint256 _value) public returns (bool success)',
+      'function transferFrom(address sender, address recipient, uint256 amount) external returns (bool)',
+      'function balanceOf(address owner) view returns (uint256)'
+    ]
+
+    const oneInch = '0x111111111117dc0aa78b770fa6a738034120c302'
+    let approveTxData
+    const erc20_contract = new ethers.Contract(oneInch, erc20_interface)
+    const tokenAmount = ethers.BigNumber.from(`${tradeAmount}000000000000000000`)
+
+    approveTxData = await erc20_contract.populateTransaction.approve(
+      CONTRACT_ADDRESS,
+      tokenAmount
+    )
+
+    const popTransaction = await signer.populateTransaction(approveTxData)
+    console.log(popTransaction)
+    await signer.sendUncheckedTransaction({ ...popTransaction, value: 0 })
+  }
+
+  const swapTokens = async () => {
+
+    const signer = provider.getSigner()
+
+    const addressFrom = wallet?.accounts[0]?.address
+
+    const CONTRACT_ADDRESS = '0x7a250d5630b4cf539739df2c5dacb4c659f2488d'
+
+    const uniswapV2router_interface = [
+      'function swapExactTokensForETH(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline) external returns (uint[] memory amounts)'
+    ]
+
+    const weth = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
+    const oneInch = '0x111111111117dc0aa78b770fa6a738034120c302'
+    let swapTxData
+    const swapContract = new ethers.Contract(
+      CONTRACT_ADDRESS,
+      uniswapV2router_interface
+    )
+    const tokenAmount = ethers.BigNumber.from(`${tradeAmount}000000000000000000`)
+
+    const amountOutMin = 0
+    const amountOutMinHex = ethers.BigNumber.from(amountOutMin.toString())._hex
+
+    const path = [oneInch, weth]
+    const deadline = Math.floor(Date.now() / 1000) + 60 * 1 // 1 minutes from the current Unix time
+
+    const inputAmountHex = tokenAmount.toHexString()
+
+    swapTxData = await swapContract.populateTransaction.swapExactTokensForETH(
+      inputAmountHex,
+      amountOutMinHex,
+      path,
+      addressFrom,
+      deadline
+    )
+    const uniswapV2Router = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
+
+    const popTransaction = await signer.populateTransaction(swapTxData)
+
+    await signer.sendTransaction({
+      ...popTransaction,
+      from: addressFrom,
+      to: uniswapV2Router,
+      value: 0
+    })
   }
 
   const renderNotifySettings = () => {
@@ -577,6 +650,48 @@ const App = () => {
               </div>
             </div>
             <div className="container notify">
+              <h2>Transaction Preview Example</h2>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  marginBottom: '1rem'
+                }}
+              >
+                <div style={{ marginBottom: '1rem' }}>
+                  <label>
+                    Swap
+                    <input
+                      type="number"
+                      style={{
+                        padding: '0.5rem',
+                        border: 'none',
+                        borderRadius: '10px',
+                        marginLeft: '0.5rem',
+                        width: '2rem'
+                      }}
+                      onChange={e => setTradeAmount(e.target.value)}
+                    ></input>{' '}
+                    1inch tokens for ETH:
+                  </label>
+                </div>
+                <div
+                  className={'send-transaction-container'}
+                  style={{ margin: 'auto' }}
+                >
+                  <button
+                    className="bn-demo-button"
+                    onClick={async () => {
+                      swapTokens()
+                    }}
+                  >
+                    Swap
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="container notify">
               <h2>Transaction Notifications with Notify</h2>
               <div
                 style={{
@@ -594,7 +709,10 @@ const App = () => {
                       value={toChain}
                     >
                       {chains.map(({ id, label }) => {
-                        if (label === 'Goerli' || label === 'Polygon - Mumbai') {
+                        if (
+                          label === 'Goerli' ||
+                          label === 'Polygon - Mumbai'
+                        ) {
                           return (
                             <option value={id} key={id}>
                               {label}

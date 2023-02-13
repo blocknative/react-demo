@@ -21,13 +21,14 @@ import mewWalletModule from '@web3-onboard/mew-wallet'
 import uauthModule from '@web3-onboard/uauth'
 import trustModule from '@web3-onboard/trust'
 import frontierModule from '@web3-onboard/frontier'
+import transactionPreviewModule from '@web3-onboard/transaction-preview'
 import gas from '@web3-onboard/gas'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
 export const infuraRPC = `https://mainnet.infura.io/v3/${INFURA_ID}`
 
-const dappId = '937627e1-3507-44b8-af10-72728aa5f74b'
+const dappId = '7ed5f4aa-fb90-4124-8ef9-f69e3e8e666d'
 
 const injected = injectedModule()
 const coinbase = coinbaseModule()
@@ -79,7 +80,14 @@ const uauth = uauthModule(uauthOptions)
 const enkrypt = enkryptModule()
 const mewWallet = mewWalletModule()
 
+const transactionPreview = transactionPreviewModule({
+  requireTransactionApproval:true
+})
+
 export const initWeb3Onboard = init({
+  apiKey: dappId,
+  transactionPreview,
+  theme: 'dark',
   wallets: [
     injected,
     ledger,
@@ -153,8 +161,6 @@ export const initWeb3Onboard = init({
   ],
   appMetadata: {
     name: 'Blocknative Web3-Onboard',
-    icon: blocknativeIcon,
-    logo: blocknativeLogo,
     description: 'Demo app for Web3-Onboard',
     recommendedInjectedWallets: [
       { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },
@@ -175,53 +181,6 @@ export const initWeb3Onboard = init({
       minimal: false
     }
   },
-  // example customizing copy
-  i18n: {
-    es: {
-      connect: {
-        selectingWallet: {
-          header: 'Carteras disponibles',
-          sidebar: {
-            heading: 'Comenzar',
-            subheading: 'Conecta tu monedero',
-            paragraph:
-              'Conectar su billetera es como “iniciar sesión” en Web3. Seleccione su billetera de las opciones para comenzar.'
-          }
-        }
-      },
-      accountCenter: {
-        connectAnotherWallet: 'Conectar otro monedero',
-        disconnectAllWallets: 'Desconectar todos los monederos',
-        currentNetwork: 'Red actual',
-        appInfo: 'Información de la aplicación',
-        learnMore: 'Aprende más',
-        gettingStartedGuide: 'Guía de introducción',
-        smartContracts: 'Contrato(s) inteligente',
-        explore: 'Explorar',
-        backToApp: 'Volver a dapp',
-        poweredBy: 'Funciona con',
-        addAccount: 'Añadir cuenta',
-        setPrimaryAccount: 'Establecer cuenta principal',
-        disconnectWallet: 'Desconectar Wallet'
-      }
-    }
-  },
-  apiKey: dappId,
-  notify: {
-    transactionHandler: transaction => {
-      console.log({ transaction })
-      if (transaction.eventCode === 'txPool') {
-        return {
-          // autoDismiss set to zero will persist the notification until the user excuses it
-          autoDismiss: 0,
-          // message: `Your transaction is pending, click <a href="https://goerli.etherscan.io/tx/${transaction.hash}" rel="noopener noreferrer" target="_blank">here</a> for more info.`,
-          // or you could use onClick for when someone clicks on the notification itself
-          onClick: () =>
-            window.open(`https://goerli.etherscan.io/tx/${transaction.hash}`)
-        }
-      }
-    }
-  }
 })
 
 // subscribe to a single chain for estimates using the default poll rate of 5 secs
