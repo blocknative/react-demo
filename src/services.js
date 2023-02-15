@@ -80,6 +80,9 @@ const enkrypt = enkryptModule()
 const mewWallet = mewWalletModule()
 
 export const initWeb3Onboard = init({
+  connect: {
+    autoConnectLastWallet: true
+  },
   wallets: [
     injected,
     ledger,
@@ -221,7 +224,8 @@ export const initWeb3Onboard = init({
         }
       }
     }
-  }
+  },
+  theme: 'dark'
 })
 
 // subscribe to a single chain for estimates using the default poll rate of 5 secs

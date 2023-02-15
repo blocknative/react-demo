@@ -59,11 +59,6 @@ const App = () => {
     const connectedWalletsLabelArray = connectedWallets.map(
       ({ label }) => label
     )
-    window.localStorage.setItem(
-      'connectedWallets',
-      JSON.stringify(connectedWalletsLabelArray)
-    )
-
     // Check for Magic Wallet user session
     if (connectedWalletsLabelArray.includes('Magic Wallet')) {
       const [magicWalletProvider] = connectedWallets.filter(
@@ -92,22 +87,6 @@ const App = () => {
 
     }
   }, [wallet])
-
-  useEffect(() => {
-    const previouslyConnectedWallets = JSON.parse(
-      window.localStorage.getItem('connectedWallets')
-    )
-
-    if (previouslyConnectedWallets?.length) {
-      async function setWalletFromLocalStorage() {
-        const walletConnected = await connect({
-          autoSelect: previouslyConnectedWallets[0]
-        })
-        console.log('connected wallets: ', walletConnected)
-      }
-      setWalletFromLocalStorage()
-    }
-  }, [connect])
 
   useEffect(() => {
     ethMainnetGasBlockPrices.subscribe(estimates => {
