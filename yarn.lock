@@ -5399,15 +5399,15 @@
     ethers "5.5.4"
     joi "^17.6.1"
 
-"@web3-onboard/core@^2.14.1":
-  version "2.14.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.14.1.tgz#20d5f8196cdd4455a6e2daa69319fb697733934c"
-  integrity sha512-d5rG4wg2gOUsgiNAaAucJOzDdIM2WTxLPBN/sXR1V6eWatn6YcXyduW7Nr0n1Hl/2d8eRnlHTeSeb9YA50niVw==
+"@web3-onboard/core@^2.15.1":
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.15.1.tgz#96f199eba5263a67f7707b4ee0babc9ff2f19e3e"
+  integrity sha512-PFcZYN61b4Y2q06Tu+t7wchKWCEEl7QorSE+yjHTFbi8ICYUmZs04zMGLJdpEl659tYsh3N7mxl0/8TV9GX2kg==
   dependencies:
     "@unstoppabledomains/resolution" "^8.0"
     "@web3-onboard/common" "^2.2.3"
     bignumber.js "^9.0.0"
-    bnc-sdk "^4.6.5"
+    bnc-sdk "^4.6.7"
     bowser "^2.11.0"
     ethers "5.5.3"
     eventemitter3 "^4.0.7"
@@ -5437,10 +5437,10 @@
   dependencies:
     "@web3-onboard/common" "^2.2.3"
 
-"@web3-onboard/fortmatic@^2.0.14":
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/fortmatic/-/fortmatic-2.0.14.tgz#e62315c639e159690c0e12e94259be232b7442b9"
-  integrity sha512-l9Nd9ulSxYAfa0W1IdUBCnVbPcXXnA6q4ixxqWaudezMXKWmSmgDBew9ADxUwEBvWj3GPosY86NvJbGdyO6v6w==
+"@web3-onboard/fortmatic@^2.0.15":
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/fortmatic/-/fortmatic-2.0.15.tgz#0709a6b9bf4689244a8cb2245772ba3466e68b95"
+  integrity sha512-UbIuwNS2NNJMLOGwFEery5vwpettxcOe2Xve5QYxfp/qGsdGZ6K0CPR37f/BtKhuW7EU37mBAJ9a9bPDuV88Ow==
   dependencies:
     "@web3-onboard/common" "^2.2.3"
     fortmatic "^2.2.1"
@@ -5481,10 +5481,10 @@
     joi "^17.6.1"
     rxjs "^7.5.2"
 
-"@web3-onboard/injected-wallets@^2.6.2":
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.6.2.tgz#d6bebd623098c06868ad5c4efdaceb90082732e3"
-  integrity sha512-vOUWluIiYSrsC1TyFNFA0GXzcAFcfgy4mG6iXGJSjbNx9/54VilM6UtSaVhXb4diqQZyinuZj18UexdSxDAcfQ==
+"@web3-onboard/injected-wallets@^2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.8.0.tgz#6cec9ae8c834aaa2e82ffdf968d3b42d736adcfd"
+  integrity sha512-Rq3uyRfeTLwxXqKmDV/nHBaEbFRGrEMqmpkEHM8PDxmN9/94ahUrhNMeVfJNcpJnG5cin9/GR4ZYPAqlSrlyCA==
   dependencies:
     "@web3-onboard/common" "^2.2.3"
     joi "^17.6.1"
@@ -5550,13 +5550,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.2.3"
 
-"@web3-onboard/react@^2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.6.1.tgz#1f5a6fad1d47b1ccbec6eace22deb68d175a214b"
-  integrity sha512-en2TVoiT4BaRGNoQ4+OvSFntEVNZytwhnUMRBOcuf5NWfvFMv3IbzpPQRuOjhDFQEy8PF22uH7DTu1ZqXWSUJg==
+"@web3-onboard/react@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.6.3.tgz#d22eb3a593ad3029145c3663db8aec51443288a9"
+  integrity sha512-l5YS7Mj9do9MJ7tGbGJ3/BGsfviZE5G/hBRUbwwqTHYnPi4JedW9jHZtSSspCT8OSfmz1zUm23/Awmm4a5ZCJA==
   dependencies:
     "@web3-onboard/common" "^2.2.3"
-    "@web3-onboard/core" "^2.14.1"
+    "@web3-onboard/core" "^2.15.1"
     use-sync-external-store "1.0.0"
 
 "@web3-onboard/sequence@^2.0.4":
@@ -6818,10 +6818,10 @@ bnb-javascript-sdk-nobroadcast@^2.16.14:
     uuid "^3.3.2"
     websocket-stream "^5.5.0"
 
-bnc-sdk@^4.6.5:
-  version "4.6.5"
-  resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-4.6.5.tgz#9f91eb2f213c0c4abf8b5f134f673a3f9a981ea2"
-  integrity sha512-W++M1kY5SensQUpig+EXqKEOfRgKrrobd8l3r9oOa06xJmxmMH4DPUm28IcESVX6NWj4I+bhgghOVDh/SFdE8Q==
+bnc-sdk@^4.6.7:
+  version "4.6.7"
+  resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-4.6.7.tgz#138a22e04c95c2c697fb836092358d21957e2114"
+  integrity sha512-jIQ6cmeRBgvH/YDLuYRr2+kxDGcAAi0SOvjlO5nQ5cWdbslw+ASWftd1HmxiVLNCiwEH5bSc/t8a0agZ5njTUQ==
   dependencies:
     crypto-es "^1.2.2"
     nanoid "^3.3.1"
