@@ -151,9 +151,19 @@ const App = () => {
 
     const signer = provider.getUncheckedSigner()
 
+    // To set gas using the Web3-Onboard Gas package(support Eth Mainnet and Polygon)
+    // define desired confidence for transaction inclusion in block and set in transaction
+    // const bnGasForTransaction = bnGasPrices.find(gas => gas.confidence === 90)
+
     const rc = await signer.sendTransaction({
       to: toAddress,
       value: 1000000000000000
+
+      // This will set the transaction gas based on desired confidence
+      // maxPriorityFeePerGas: gweiToWeiHex(
+      //   bnGasForTransaction.maxPriorityFeePerGas
+      // ),
+      // maxFeePerGas: gweiToWeiHex(bnGasForTransaction.maxFeePerGas)
     })
     console.log(rc)
   }
