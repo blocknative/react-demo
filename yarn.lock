@@ -5399,15 +5399,15 @@
     ethers "5.5.4"
     joi "^17.6.1"
 
-"@web3-onboard/core@^2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.15.0.tgz#23b0532c9d01aefed086725eeab2ad060a5b4057"
-  integrity sha512-YE4nBNT90VYxKCfpeyJEACA1W36kmuOlVcaGk/IMrZRUqKxtxFRdvheK7PhD6A5n4u5sEpDafSr7+bH6w6DiOw==
+"@web3-onboard/core@^2.15.1":
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.15.1.tgz#96f199eba5263a67f7707b4ee0babc9ff2f19e3e"
+  integrity sha512-PFcZYN61b4Y2q06Tu+t7wchKWCEEl7QorSE+yjHTFbi8ICYUmZs04zMGLJdpEl659tYsh3N7mxl0/8TV9GX2kg==
   dependencies:
     "@unstoppabledomains/resolution" "^8.0"
     "@web3-onboard/common" "^2.2.3"
     bignumber.js "^9.0.0"
-    bnc-sdk "^4.6.6"
+    bnc-sdk "^4.6.7"
     bowser "^2.11.0"
     ethers "5.5.3"
     eventemitter3 "^4.0.7"
@@ -5481,10 +5481,10 @@
     joi "^17.6.1"
     rxjs "^7.5.2"
 
-"@web3-onboard/injected-wallets@^2.7.0":
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.7.0.tgz#31725e026b52d55e49ebb2d2bed6d77c1090a4cc"
-  integrity sha512-Prz9Ts38NnptpPOvBzzk0KyIDDqZ5x18U/CSLE9yqvbovQxlHteBGqWduJKmV4R5fvOHcggpZRD+EaExkpmFlg==
+"@web3-onboard/injected-wallets@^2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.8.0.tgz#6cec9ae8c834aaa2e82ffdf968d3b42d736adcfd"
+  integrity sha512-Rq3uyRfeTLwxXqKmDV/nHBaEbFRGrEMqmpkEHM8PDxmN9/94ahUrhNMeVfJNcpJnG5cin9/GR4ZYPAqlSrlyCA==
   dependencies:
     "@web3-onboard/common" "^2.2.3"
     joi "^17.6.1"
@@ -5550,13 +5550,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.2.3"
 
-"@web3-onboard/react@^2.6.2":
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.6.2.tgz#330f8f1f162466bbddff89a4a6c6d041d175d811"
-  integrity sha512-5Q2YBnyiLdVAvDJXrHGORsXvUAeZGDl5fb/MWVF1J9+AguNgqkH0LpFrl4DF5pDwBYWTGUW21y9YkuUszOiX+g==
+"@web3-onboard/react@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.6.3.tgz#d22eb3a593ad3029145c3663db8aec51443288a9"
+  integrity sha512-l5YS7Mj9do9MJ7tGbGJ3/BGsfviZE5G/hBRUbwwqTHYnPi4JedW9jHZtSSspCT8OSfmz1zUm23/Awmm4a5ZCJA==
   dependencies:
     "@web3-onboard/common" "^2.2.3"
-    "@web3-onboard/core" "^2.15.0"
+    "@web3-onboard/core" "^2.15.1"
     use-sync-external-store "1.0.0"
 
 "@web3-onboard/sequence@^2.0.4":
@@ -6818,10 +6818,10 @@ bnb-javascript-sdk-nobroadcast@^2.16.14:
     uuid "^3.3.2"
     websocket-stream "^5.5.0"
 
-bnc-sdk@^4.6.6:
-  version "4.6.6"
-  resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-4.6.6.tgz#ef5501a0c68014efae24d00d2e3fb706318fa00d"
-  integrity sha512-cpavy/WBQrkw5PZpnuUAvxzj/RjmP1vSldOEG+nonf7n/4sykScDO6KrJN2oVhEMaxHOqOVf2rOugSL5t515eA==
+bnc-sdk@^4.6.7:
+  version "4.6.7"
+  resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-4.6.7.tgz#138a22e04c95c2c697fb836092358d21957e2114"
+  integrity sha512-jIQ6cmeRBgvH/YDLuYRr2+kxDGcAAi0SOvjlO5nQ5cWdbslw+ASWftd1HmxiVLNCiwEH5bSc/t8a0agZ5njTUQ==
   dependencies:
     crypto-es "^1.2.2"
     nanoid "^3.3.1"
