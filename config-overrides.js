@@ -35,7 +35,7 @@ module.exports = function override(config) {
     new webpack.IgnorePlugin({
       resourceRegExp: /genesisStates\/[a-z]*\.json$/,
       contextRegExp: /@ethereumjs\/common/,
-    }),
+    }), 
     new BundleAnalyzerPlugin({
       analyzerMode: "disabled"
     }),

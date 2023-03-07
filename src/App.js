@@ -60,11 +60,6 @@ const App = () => {
     const connectedWalletsLabelArray = connectedWallets.map(
       ({ label }) => label
     )
-    window.localStorage.setItem(
-      'connectedWallets',
-      JSON.stringify(connectedWalletsLabelArray)
-    )
-
     // Check for Magic Wallet user session
     if (connectedWalletsLabelArray.includes('Magic Wallet')) {
       const [magicWalletProvider] = connectedWallets.filter(
@@ -92,22 +87,6 @@ const App = () => {
       provider = new ethers.providers.Web3Provider(wallet.provider, 'any')
     }
   }, [wallet])
-
-  useEffect(() => {
-    const previouslyConnectedWallets = JSON.parse(
-      window.localStorage.getItem('connectedWallets')
-    )
-
-    if (previouslyConnectedWallets?.length) {
-      async function setWalletFromLocalStorage() {
-        const walletConnected = await connect({
-          autoSelect: previouslyConnectedWallets[0]
-        })
-        console.log('connected wallets: ', walletConnected)
-      }
-      setWalletFromLocalStorage()
-    }
-  }, [connect])
 
   useEffect(() => {
     ethMainnetGasBlockPrices.subscribe(estimates => {
@@ -269,7 +248,7 @@ const App = () => {
       CONTRACT_ADDRESS,
       uniswapV2router_interface
     )
-    const tokenAmount = ethers.BigNumber.from(`${tradeAmount}000000000000000000`)
+    const tokenAmount = ethers.BigNumber.from(`${tradeAmount}00000000000000000`)
 
     const amountOutMin = 0
     const amountOutMinHex = ethers.BigNumber.from(amountOutMin.toString())._hex
