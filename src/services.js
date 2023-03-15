@@ -15,7 +15,7 @@ import keepkeyModule from '@web3-onboard/keepkey'
 import gnosisModule from '@web3-onboard/gnosis'
 import web3authModule from '@web3-onboard/web3auth'
 import sequenceModule from '@web3-onboard/sequence'
-import tallyModule from '@web3-onboard/tallyho'
+import tahoModule from '@web3-onboard/taho'
 import enkryptModule from '@web3-onboard/enkrypt'
 import mewWalletModule from '@web3-onboard/mew-wallet'
 import uauthModule from '@web3-onboard/uauth'
@@ -46,7 +46,7 @@ const ledger = ledgerModule()
 const keepkey = keepkeyModule()
 const gnosis = gnosisModule()
 const sequence = sequenceModule()
-const tally = tallyModule()
+const taho = tahoModule()
 const trust = trustModule()
 const frontier = frontierModule()
 
@@ -91,7 +91,7 @@ export const initWeb3Onboard = init({
     uauth,
     trust,
     walletConnect,
-    tally,
+    taho,
     enkrypt,
     mewWallet,
     web3auth,
@@ -152,6 +152,12 @@ export const initWeb3Onboard = init({
       token: 'ARB-ETH',
       label: 'Arbitrum',
       rpcUrl: 'https://rpc.ankr.com/arbitrum'
+    },
+    {
+      id: 84531,
+      token: 'ETH',
+      label: 'Base Goerli',
+      rpcUrl: 'https://goerli.base.org'
     }
   ],
   appMetadata: {
