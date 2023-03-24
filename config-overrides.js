@@ -1,5 +1,4 @@
 const webpack = require("webpack");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const path = require("path");
 
 module.exports = function override(config) {
@@ -35,9 +34,6 @@ module.exports = function override(config) {
     new webpack.IgnorePlugin({
       resourceRegExp: /genesisStates\/[a-z]*\.json$/,
       contextRegExp: /@ethereumjs\/common/,
-    }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: "disabled"
     }),
   ]);
   config.ignoreWarnings = [/Failed to parse source map/];
