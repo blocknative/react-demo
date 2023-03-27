@@ -65,7 +65,7 @@ const magic = magicModule({
 
 const web3auth = web3authModule({
   clientId:
-    'BLWG0JGx3W-gcoT8YD75ZNue-TZpfP4REAIJF690Mg1KZfhEVWN_78auymc9j5yWeUz7tZRuheF0drsk_aUI5-A'
+    'BIl6MmnHyru8YiDNhWd8b7Xmcn4kIq3YC13SpmpQ8k_i9qAOJetZEpaw1-8u2EYWhUSmb4zLB_Me0U1_v4FmKqY'
 })
 
 const uauthOptions = {
@@ -80,7 +80,7 @@ const mewWallet = mewWalletModule()
 
 export const initWeb3Onboard = init({
   connect: {
-    autoConnectLastWallet: true
+    autoConnectAllPreviousWallet: true
   },
   wallets: [
     injected,
@@ -239,4 +239,3 @@ export const ethMainnetGasBlockPrices = gas.stream({
   // apiKey: dappId,
   endpoint: 'blockPrices'
 })
-
