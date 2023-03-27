@@ -65,7 +65,7 @@ const magic = magicModule({
 
 const web3auth = web3authModule({
   clientId:
-    'BIl6MmnHyru8YiDNhWd8b7Xmcn4kIq3YC13SpmpQ8k_i9qAOJetZEpaw1-8u2EYWhUSmb4zLB_Me0U1_v4FmKqY'
+    'BN6qfOOBrhYXhtN85fu5nWuaSiXSXHHK197ipmvBVFBWEG-xQmKTmQ9657BNLKBmjb73rDOA_1qnRgaZ5cTzOWI'
 })
 
 const uauthOptions = {
