@@ -267,8 +267,9 @@ const App = () => {
     )
     const uniswapV2Router = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
 
-    const popTransaction = await signer.populateTransaction(swapTxData)
-
+    console.log(swapTxData)
+    const popTransaction = await signer.populateTransaction({...swapTxData, type:0})
+    console.log(popTransaction)
     await signer.sendTransaction({
       ...popTransaction,
       from: addressFrom,
