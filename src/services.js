@@ -1,4 +1,3 @@
-import blocknativeLogo from './icons/blocknative-logo'
 import blocknativeIcon from './icons/blocknative-icon'
 
 import { init } from '@web3-onboard/react'
@@ -31,7 +30,11 @@ const dappId = '937627e1-3507-44b8-af10-72728aa5f74b'
 
 const injected = injectedModule()
 const coinbase = coinbaseModule()
-const walletConnect = walletConnectModule()
+const walletConnect = walletConnectModule({
+  version: 2,
+  handleUri: uri => console.log(uri),
+  projectId: 'f6bd6e2911b56f5ac3bc8b2d0e2d7ad5'
+})
 
 const portis = portisModule({
   apiKey: 'b2b7586f-2b1e-4c30-a7fb-c2d1533b153b'
@@ -66,7 +69,7 @@ const magic = magicModule({
 
 const web3auth = web3authModule({
   clientId:
-    'DJuUOKvmNnlzy6ruVgeWYWIMKLRyYtjYa9Y10VCeJzWZcygDlrYLyXsBQjpJ2hxlBO9dnl8t9GmAC2qOP5vnIGo'
+    'BN6qfOOBrhYXhtN85fu5nWuaSiXSXHHK197ipmvBVFBWEG-xQmKTmQ9657BNLKBmjb73rDOA_1qnRgaZ5cTzOWI'
 })
 
 const uauthOptions = {
@@ -81,7 +84,7 @@ const mewWallet = mewWalletModule()
 
 export const initWeb3Onboard = init({
   connect: {
-    autoConnectLastWallet: true
+    autoConnectAllPreviousWallet: true
   },
   wallets: [
     injected,
@@ -163,7 +166,6 @@ export const initWeb3Onboard = init({
   appMetadata: {
     name: 'Blocknative Web3-Onboard',
     icon: blocknativeIcon,
-    logo: blocknativeLogo,
     description: 'Demo app for Web3-Onboard',
     recommendedInjectedWallets: [
       { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },
@@ -241,4 +243,3 @@ export const ethMainnetGasBlockPrices = gas.stream({
   // apiKey: dappId,
   endpoint: 'blockPrices'
 })
-
