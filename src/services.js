@@ -30,7 +30,11 @@ const dappId = '937627e1-3507-44b8-af10-72728aa5f74b'
 
 const injected = injectedModule()
 const coinbase = coinbaseModule()
-const walletConnect = walletConnectModule()
+const walletConnect = walletConnectModule({
+  version: 2,
+  handleUri: uri => console.log(uri),
+  projectId: 'f6bd6e2911b56f5ac3bc8b2d0e2d7ad5'
+})
 
 const portis = portisModule({
   apiKey: 'b2b7586f-2b1e-4c30-a7fb-c2d1533b153b'
