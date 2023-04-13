@@ -23,7 +23,7 @@ const Header = props => {
           <span>
             <img
               className="user-avatar"
-              src={ens.avatar ? ens.avatar : avatarPlaceholder}
+              src={ens.avatar ? ens.avatar.url : avatarPlaceholder}
               alt="avatar"
             ></img>
             <div

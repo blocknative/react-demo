@@ -205,77 +205,97 @@ const App = () => {
   }
 
   const approveTokenForSwap = async () => {
+    if (!provider || !wallet?.accounts?.length || !tradeAmount) return
+
     const signer = provider.getSigner()
 
+    // Contract addresses
     const CONTRACT_ADDRESS = '0x7a250d5630b4cf539739df2c5dacb4c659f2488d'
+    const oneInch = '0x111111111117dc0aa78b770fa6a738034120c302'
+
     const erc20_interface = [
       'function approve(address _spender, uint256 _value) public returns (bool success)',
       'function transferFrom(address sender, address recipient, uint256 amount) external returns (bool)',
       'function balanceOf(address owner) view returns (uint256)'
     ]
 
-    const oneInch = '0x111111111117dc0aa78b770fa6a738034120c302'
-    let approveTxData
     const erc20_contract = new ethers.Contract(oneInch, erc20_interface)
-    const tokenAmount = ethers.BigNumber.from(`${tradeAmount}000000000000000000`)
-
-    approveTxData = await erc20_contract.populateTransaction.approve(
-      CONTRACT_ADDRESS,
-      tokenAmount
+    const tokenAmount = ethers.BigNumber.from(
+      `${tradeAmount}000000000000000000`
     )
 
-    const popTransaction = await signer.populateTransaction(approveTxData)
-    console.log(popTransaction)
-    await signer.sendUncheckedTransaction({ ...popTransaction, value: 0 })
+    try {
+      const approveTxData = await erc20_contract.populateTransaction.approve(
+        CONTRACT_ADDRESS,
+        tokenAmount
+      )
+
+      const popTransaction = await signer.populateTransaction(approveTxData)
+      await signer.sendUncheckedTransaction({ ...popTransaction, value: 0 })
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const swapTokens = async () => {
+    if (!provider || !wallet?.accounts?.length || !tradeAmount) return
 
     const signer = provider.getSigner()
 
-    const addressFrom = wallet?.accounts[0]?.address
+    // Get end user current primary address from web3-onboard
+    const addressFrom = wallet.accounts[0].address
 
-    const CONTRACT_ADDRESS = '0x7a250d5630b4cf539739df2c5dacb4c659f2488d'
+    // Contract addresses
+    const uniswapV2Router = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
+    const eth = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
+    const oneInch = '0x111111111117dc0aa78b770fa6a738034120c302'
 
     const uniswapV2router_interface = [
       'function swapExactTokensForETH(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline) external returns (uint[] memory amounts)'
     ]
 
-    const weth = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
-    const oneInch = '0x111111111117dc0aa78b770fa6a738034120c302'
-    let swapTxData
     const swapContract = new ethers.Contract(
-      CONTRACT_ADDRESS,
+      uniswapV2Router,
       uniswapV2router_interface
     )
-    const tokenAmount = ethers.BigNumber.from(`${tradeAmount}00000000000000000`)
+    const tokenAmountHex = ethers.BigNumber.from(
+      `${tradeAmount}000000000000000000`
+    )
 
     const amountOutMin = 0
-    const amountOutMinHex = ethers.BigNumber.from(amountOutMin.toString())._hex
+    const amountOutMinHex = ethers.BigNumber.from(
+      amountOutMin.toString()
+    ).toHexString()
 
-    const path = [oneInch, weth]
+    const path = [oneInch, eth]
     const deadline = Math.floor(Date.now() / 1000) + 60 * 1 // 1 minutes from the current Unix time
 
-    const inputAmountHex = tokenAmount.toHexString()
+    try {
+      const swapTxData =
+        await swapContract.populateTransaction.swapExactTokensForETH(
+          tokenAmountHex,
+          amountOutMinHex,
+          path,
+          addressFrom,
+          deadline
+        )
 
-    swapTxData = await swapContract.populateTransaction.swapExactTokensForETH(
-      inputAmountHex,
-      amountOutMinHex,
-      path,
-      addressFrom,
-      deadline
-    )
-    const uniswapV2Router = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
+      const popTransaction = await signer.populateTransaction({
+        ...swapTxData,
+        type: 0
+      })
 
-    console.log(swapTxData)
-    const popTransaction = await signer.populateTransaction({...swapTxData, type:0})
-    console.log(popTransaction)
-    await signer.sendTransaction({
-      ...popTransaction,
-      from: addressFrom,
-      to: uniswapV2Router,
-      value: 0
-    })
+      // Handle transaction receipt
+      await signer.sendTransaction({
+        ...popTransaction,
+        from: addressFrom,
+        to: uniswapV2Router,
+        value: 0
+      })
+
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const renderNotifySettings = () => {
