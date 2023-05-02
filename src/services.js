@@ -20,6 +20,7 @@ import mewWalletModule from '@web3-onboard/mew-wallet'
 import uauthModule from '@web3-onboard/uauth'
 import trustModule from '@web3-onboard/trust'
 import frontierModule from '@web3-onboard/frontier'
+import cedeStoreModule from '@web3-onboard/cede-store'
 import gas from '@web3-onboard/gas'
 
 // Replace with your DApp's Infura ID
@@ -52,6 +53,7 @@ const sequence = sequenceModule()
 const taho = tahoModule()
 const trust = trustModule()
 const frontier = frontierModule()
+const cedeStore = cedeStoreModule()
 
 const trezorOptions = {
   email: 'test@test.com',
@@ -95,6 +97,7 @@ export const initWeb3Onboard = init({
     trust,
     walletConnect,
     taho,
+    cedeStore,
     enkrypt,
     mewWallet,
     web3auth,
