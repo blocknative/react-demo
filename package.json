@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.34.11-0.0.2",
+  "version": "0.34.11-0.0.3",
   "dependencies": {
     "@web3-onboard/cede-store": "^2.0.1-alpha.2",
     "@web3-onboard/coinbase": "^2.2.3-alpha.2",
@@ -17,7 +17,7 @@
     "@web3-onboard/magic": "^2.1.6-alpha.2",
     "@web3-onboard/mew-wallet": "^2.0.3-alpha.2",
     "@web3-onboard/portis": "^2.1.6-alpha.2",
-    "@web3-onboard/react": "^2.8.2-alpha.3",
+    "@web3-onboard/react": "^2.8.2-alpha.4",
     "@web3-onboard/sequence": "^2.0.7-alpha.2",
     "@web3-onboard/taho": "^2.0.3-alpha.2",
     "@web3-onboard/torus": "^2.2.4-alpha.2",
