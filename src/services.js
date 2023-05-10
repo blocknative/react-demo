@@ -22,6 +22,7 @@ import trustModule from '@web3-onboard/trust'
 import frontierModule from '@web3-onboard/frontier'
 import cedeStoreModule from '@web3-onboard/cede-store'
 import gas from '@web3-onboard/gas'
+import frameModule from '@web3-onboard/frame'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
@@ -54,6 +55,7 @@ const taho = tahoModule()
 const trust = trustModule()
 const frontier = frontierModule()
 const cedeStore = cedeStoreModule()
+const frameWallet = frameModule()
 
 const trezorOptions = {
   email: 'test@test.com',
@@ -108,7 +110,8 @@ export const initWeb3Onboard = init({
     portis,
     torus,
     sequence,
-    frontier
+    frontier,
+    frameWallet
   ],
   chains: [
     {
