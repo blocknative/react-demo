@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.34.11-0.0.4",
+  "version": "0.34.11-0.0.5",
   "dependencies": {
     "@web3-onboard/cede-store": "^2.0.1-alpha.2",
     "@web3-onboard/coinbase": "^2.2.3-alpha.2",
