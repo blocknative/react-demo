@@ -6169,7 +6169,7 @@
     ethers "5.5.4"
     joi "17.8.1"
 
-"@web3-onboard/common@^2.3.1", "@web3-onboard/common@^2.3.1-alpha.1":
+"@web3-onboard/common@^2.3.1":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@web3-onboard/common/-/common-2.3.1.tgz#69ad0d5167e5103086c34a4f7e8af90681d71be4"
   integrity sha512-VRIsJLW92Q+bu6w9WSlTrPIk0vGmFvVwnoAKy1ubKuBvSKKhMUmrnv8N5tusr0mk+gcUuUdDF6gLDCABqrfC7g==
@@ -6348,10 +6348,10 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.3.2-alpha.2"
 
-"@web3-onboard/react@^2.8.2-alpha.4":
-  version "2.8.2-alpha.4"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.2-alpha.4.tgz#adbbdaeae5fc7a4b9ecfdc88c5a208f38fe46277"
-  integrity sha512-dbEqamp6kGQZrkUWaajGsTLI6ogKUBHYvSBybBwMHLaVGfBZxz+/OWrIx6ey0l8WCcNXKbynomXxpElgJz9R8w==
+"@web3-onboard/react@^2.8.2-alpha.5":
+  version "2.8.2-alpha.5"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.2-alpha.5.tgz#05d25e896ae0ce935149e02959f36ee7384cf9a9"
+  integrity sha512-629lgL+xNdUQ/NCKJmG3ybxJK8zwbr0NX01VYlRXs2Png1t6cgArXSZDnKEb/NkaLWbsbQXraluvl04oWSC/0Q==
   dependencies:
     "@web3-onboard/common" "^2.3.2-alpha.2"
     "@web3-onboard/core" "^2.18.0-alpha.3"
@@ -6430,13 +6430,13 @@
     "@web3modal/standalone" "2.2.2"
     rxjs "^7.5.2"
 
-"@web3-onboard/web3auth@^2.2.1-alpha.1":
-  version "2.2.1-alpha.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/web3auth/-/web3auth-2.2.1-alpha.1.tgz#e4f2f7692bfb22fb63d7d05ca57f0e3f11589a4e"
-  integrity sha512-ZhF7r0nkpIPCEST3EAUPd8rkddJmSpIUwnlOOjCvUq1TkQjaRQNHzKvEJAiRKUqdEKzRoL79uEi7qrqRZi69MA==
+"@web3-onboard/web3auth@^2.2.2-alpha.2":
+  version "2.2.2-alpha.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/web3auth/-/web3auth-2.2.2-alpha.2.tgz#891bd41a1ab55fa85b7fcbcd319a3eda35d8ddac"
+  integrity sha512-u91wuaPYSoTkRE1esVwatrJiJePxoLMYeMn5p6ILfjRjOQYNTy4FP8hw+QnG7bhTyF8xJbutxOe9eOcLJ10SKg==
   dependencies:
     "@solana/web3.js" "^1.73.0"
-    "@web3-onboard/common" "^2.3.1-alpha.1"
+    "@web3-onboard/common" "^2.3.2-alpha.2"
     "@web3auth/base" "^5.0.1"
     "@web3auth/modal" "^5.0.1"
     react-dom "^18.2.0"
