@@ -449,7 +449,7 @@ const App = () => {
                       className="bn-demo-button"
                       onClick={async () => {
                         const walletsConnected = await connect()
-                        console.log('connected wallets: ', walletsConnected)
+                        console.log('connected wallets1: ', walletsConnected)
                       }}
                     >
                       Select a Wallet
