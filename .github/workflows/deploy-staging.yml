@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.13.1
-      - run: yarn setup-staging-w3o-env
+      - run: yarn w3o-latest-alpha
       - run: yarn build-staging
         env:
           NODE_OPTIONS: "--max_old_space_size=8192"

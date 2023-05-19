@@ -15,6 +15,7 @@ import gnosisModule from '@web3-onboard/gnosis'
 import web3authModule from '@web3-onboard/web3auth'
 import sequenceModule from '@web3-onboard/sequence'
 import tahoModule from '@web3-onboard/taho'
+import keystoneModule from '@web3-onboard/keystone'
 import enkryptModule from '@web3-onboard/enkrypt'
 import mewWalletModule from '@web3-onboard/mew-wallet'
 import uauthModule from '@web3-onboard/uauth'
@@ -23,6 +24,12 @@ import frontierModule from '@web3-onboard/frontier'
 import cedeStoreModule from '@web3-onboard/cede-store'
 import gas from '@web3-onboard/gas'
 import frameModule from '@web3-onboard/frame'
+import infinityWalletModule from '@web3-onboard/infinity-wallet'
+import xdefiWalletModule from '@web3-onboard/xdefi'
+import zealModule from '@web3-onboard/zeal'
+import phantomModule from '@web3-onboard/phantom'
+import dcentModule from '@web3-onboard/dcent'
+import transactionPreviewModule from '@web3-onboard/transaction-preview'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
@@ -30,14 +37,61 @@ export const infuraRPC = `https://mainnet.infura.io/v3/${INFURA_ID}`
 
 const dappId = '937627e1-3507-44b8-af10-72728aa5f74b'
 
-const injected = injectedModule()
-const coinbase = coinbaseModule()
-const walletConnect = walletConnectModule({
-  version: 2,
-  handleUri: uri => console.log(uri),
-  projectId: 'f6bd6e2911b56f5ac3bc8b2d0e2d7ad5'
+const injected = injectedModule({
+  custom: [
+    // include custom (not natively supported) injected wallet modules here
+  ]
+  // display all wallets even if they are unavailable
+  // displayUnavailable: true
+  // but only show Binance and Bitski wallet if they are available
+  // filter: {
+  //   [ProviderLabel.Binance]: 'unavailable',
+  //   [ProviderLabel.Bitski]: 'unavailable'
+  // }
+  // do a manual sort of injected wallets so that MetaMask and Coinbase are ordered first
+  // sort: wallets => {
+  //   const metaMask = wallets.find(
+  //     ({ label }) => label === ProviderLabel.MetaMask
+  //   )
+  //   const coinbase = wallets.find(
+  //     ({ label }) => label === ProviderLabel.Coinbase
+  //   )
+
+  //   return (
+  //     [
+  //       metaMask,
+  //       coinbase,
+  //       ...wallets.filter(
+  //         ({ label }) =>
+  //           label !== ProviderLabel.MetaMask &&
+  //           label !== ProviderLabel.Coinbase
+  //       )
+  //     ]
+  //       // remove undefined values
+  //       .filter(wallet => wallet)
+  //   )
+  // }
+  // walletUnavailableMessage: wallet => `Oops ${wallet.label} is unavailable!`
 })
 
+const coinbase = coinbaseModule()
+
+const walletConnect = walletConnectModule({
+  connectFirstChainId: true,
+  version: 2,
+  handleUri: uri => console.log(uri),
+  projectId: 'f6bd6e2911b56f5ac3bc8b2d0e2d7ad5',
+  qrcodeModalOptions: {
+    mobileLinks: [
+      'rainbow',
+      'metamask',
+      'argent',
+      'trust',
+      'imtoken',
+      'pillar'
+    ]
+  }
+})
 const portis = portisModule({
   apiKey: 'b2b7586f-2b1e-4c30-a7fb-c2d1533b153b'
 })
@@ -46,45 +100,56 @@ const fortmatic = fortmaticModule({
   apiKey: 'pk_test_886ADCAB855632AA'
 })
 
+const web3auth = web3authModule({
+  clientId:
+    'DJuUOKvmNnlzy6ruVgeWYWIMKLRyYtjYa9Y10VCeJzWZcygDlrYLyXsBQjpJ2hxlBO9dnl8t9GmAC2qOP5vnIGo'
+})
+
 const torus = torusModule()
+const infinityWallet = infinityWalletModule()
 const ledger = ledgerModule()
 const keepkey = keepkeyModule()
+const keystone = keystoneModule()
 const gnosis = gnosisModule()
-const sequence = sequenceModule()
 const taho = tahoModule()
+const xdefi = xdefiWalletModule()
+const zeal = zealModule()
+const phantom = phantomModule()
 const trust = trustModule()
 const frontier = frontierModule()
 const cedeStore = cedeStoreModule()
-const frameWallet = frameModule()
 
 const trezorOptions = {
   email: 'test@test.com',
-  appUrl: 'https://www.blocknative.com'
+  appUrl: 'https://www.blocknative.com',
+  consecutiveEmptyAccountThreshold: 10
+  // containerElement: '#sample-container-el'
 }
-
 const trezor = trezorModule(trezorOptions)
 
-const magic = magicModule({
-  // Example api key, may need to be updated when max hits reached
-  // Get one to test with for free from https://magic.link/
-  apiKey: 'pk_live_02207D744E81C2BA',
-  userEmail: localStorage.getItem('magicUserEmail')
-})
-
-const web3auth = web3authModule({
-  clientId:
-    'BN6qfOOBrhYXhtN85fu5nWuaSiXSXHHK197ipmvBVFBWEG-xQmKTmQ9657BNLKBmjb73rDOA_1qnRgaZ5cTzOWI'
-})
-
 const uauthOptions = {
-  clientID: '2d14b025-cb94-44b9-85ac-ce2397e6f10b',
-  redirectUri: window.location.href,
+  clientID: 'a25c3a65-a1f2-46cc-a515-a46fe7acb78c',
+  redirectUri: 'http://localhost:8080/',
   scope:
     'openid wallet email:optional humanity_check:optional profile:optional social:optional'
 }
 const uauth = uauthModule(uauthOptions)
+
+const magic = magicModule({
+  apiKey: 'pk_live_02207D744E81C2BA'
+  // userEmail: 'test@test.com'
+  // userEmail is optional - if user has already logged in and/or session is still active a login modal will not appear
+  // for more info see the @web3-onboard/magic docs
+})
+
+const dcent = dcentModule()
+const frameWallet = frameModule()
+const sequence = sequenceModule()
 const enkrypt = enkryptModule()
 const mewWallet = mewWalletModule()
+const transactionPreview = transactionPreviewModule({
+  requireTransactionApproval: true
+})
 
 export const initWeb3Onboard = init({
   connect: {
@@ -93,25 +158,31 @@ export const initWeb3Onboard = init({
   wallets: [
     injected,
     ledger,
-    coinbase,
     trezor,
-    uauth,
-    trust,
     walletConnect,
-    taho,
-    cedeStore,
-    enkrypt,
-    mewWallet,
-    web3auth,
+    coinbase,
+    phantom,
     gnosis,
+    trust,
+    taho,
+    enkrypt,
+    infinityWallet,
+    mewWallet,
+    keepkey,
+    keystone,
     magic,
     fortmatic,
-    keepkey,
     portis,
     torus,
+    dcent,
     sequence,
+    uauth,
+    web3auth,
+    zeal,
     frontier,
-    frameWallet
+    xdefi,
+    frameWallet,
+    cedeStore
   ],
   chains: [
     {
