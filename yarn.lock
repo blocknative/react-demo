@@ -6178,7 +6178,7 @@
     ethers "5.5.4"
     joi "17.9.1"
 
-"@web3-onboard/core@^2.19.1":
+"@web3-onboard/core@^2.19.2":
   version "2.19.2"
   resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.19.2.tgz#c79131a257e379c0b5760dd0f3810a724ae8b01d"
   integrity sha512-77FAJT5WbzgMbtIeLdEPAsJ5uUc0yBb17kQ8J6YtQAr51WIwmioCUBPehpeuQ36nNTy3VVobXF5Y/q3ztQfhDQ==
@@ -6350,13 +6350,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.3.3"
 
-"@web3-onboard/react@^2.8.3":
-  version "2.8.3"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.3.tgz#bd9669b649aec3666f2c4ffefb082a7ac044aec0"
-  integrity sha512-nzehO3JRWdVSh1tnRKgNnNUB+D8iu5Yu1/V41YipR47Cpm4D1cw8Ef80tEozLeIM8u6UvqHVSP/AO9tE2puDzw==
+"@web3-onboard/react@^2.8.4":
+  version "2.8.4"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.4.tgz#f88aee0336064de17b8fec8ecf72cd317fd434b8"
+  integrity sha512-F4jU3FhHpvZszPvAhYVU1dm5uRGMkajVGH/LvyX5x7wKtw71WNXuk7f8f+emzjuXui+aSd4tMnKS/JVYdqKl5g==
   dependencies:
     "@web3-onboard/common" "^2.3.3"
-    "@web3-onboard/core" "^2.19.1"
+    "@web3-onboard/core" "^2.19.2"
     use-sync-external-store "1.0.0"
 
 "@web3-onboard/sequence@^2.0.8":
