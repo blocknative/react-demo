@@ -323,7 +323,10 @@ export const initWeb3Onboard = init({
       }
     }
   },
-  theme: 'dark'
+  theme: 'dark',
+  containerElements: {
+    accountCenter: '#onboard-container'
+  }
 })
 
 // subscribe to a single chain for estimates using the default poll rate of 5 secs

@@ -7,6 +7,12 @@ body {
   margin: 0;
   padding: 0;
 }
+#onboard-container {
+  z-index: 300;
+  max-width: 315px;
+  width: 300px;
+  position: fixed;
+}
 
 main {
   height: 100vh;
