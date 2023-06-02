@@ -30,6 +30,7 @@ import zealModule from '@web3-onboard/zeal'
 import phantomModule from '@web3-onboard/phantom'
 import dcentModule from '@web3-onboard/dcent'
 import transactionPreviewModule from '@web3-onboard/transaction-preview'
+import venlyModule from '@web3-onboard/venly'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
@@ -151,6 +152,11 @@ const transactionPreview = transactionPreviewModule({
   requireTransactionApproval: true
 })
 
+const venly = venlyModule({
+  clientId: 'blocknative',
+  environment: 'staging'
+})
+
 export const initWeb3Onboard = init({
   connect: {
     autoConnectAllPreviousWallet: true
@@ -182,7 +188,8 @@ export const initWeb3Onboard = init({
     frontier,
     xdefi,
     frameWallet,
-    cedeStore
+    cedeStore,
+    venly
   ],
   chains: [
     {

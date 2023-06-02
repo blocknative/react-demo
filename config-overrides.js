@@ -15,6 +15,7 @@ module.exports = function override(config) {
     stream: require.resolve("stream-browserify"),
     url: require.resolve("url"),
     util: require.resolve("util"),
+    zlib: require.resolve('browserify-zlib')
   });
   config.resolve.fallback = fallback;
   config.resolve.alias = {
