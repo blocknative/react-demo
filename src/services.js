@@ -31,6 +31,7 @@ import phantomModule from '@web3-onboard/phantom'
 import dcentModule from '@web3-onboard/dcent'
 import transactionPreviewModule from '@web3-onboard/transaction-preview'
 import venlyModule from '@web3-onboard/venly'
+import bloctoModule from '@web3-onboard/blocto'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
@@ -157,6 +158,8 @@ const venly = venlyModule({
   environment: 'staging'
 })
 
+const blocto = bloctoModule()
+
 export const initWeb3Onboard = init({
   connect: {
     autoConnectAllPreviousWallet: true
@@ -189,9 +192,16 @@ export const initWeb3Onboard = init({
     xdefi,
     frameWallet,
     cedeStore,
-    venly
+    venly,
+    blocto
   ],
   chains: [
+    {
+      id: '0x13881',
+      token: 'MATIC',
+      label: 'Polygon - Mumbai',
+      rpcUrl: 'https://matic-mumbai.chainstacklabs.com	'
+    },
     {
       id: '0x1',
       token: 'ETH',
@@ -217,12 +227,12 @@ export const initWeb3Onboard = init({
       label: 'Goerli',
       rpcUrl: `https://goerli.infura.io/v3/${INFURA_ID}`
     },
-    {
-      id: '0x13881',
-      token: 'MATIC',
-      label: 'Polygon - Mumbai',
-      rpcUrl: 'https://matic-mumbai.chainstacklabs.com	'
-    },
+    // {
+    //   id: '0x13881',
+    //   token: 'MATIC',
+    //   label: 'Polygon - Mumbai',
+    //   rpcUrl: 'https://matic-mumbai.chainstacklabs.com	'
+    // },
     {
       id: '0x38',
       token: 'BNB',
