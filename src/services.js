@@ -31,6 +31,7 @@ import phantomModule from '@web3-onboard/phantom'
 import dcentModule from '@web3-onboard/dcent'
 import transactionPreviewModule from '@web3-onboard/transaction-preview'
 import venlyModule from '@web3-onboard/venly'
+import bloctoModule from '@web3-onboard/blocto'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
@@ -156,6 +157,7 @@ const venly = venlyModule({
   clientId: 'blocknative',
   environment: 'staging'
 })
+const blocto = bloctoModule()
 
 export const initWeb3Onboard = init({
   connect: {
@@ -189,7 +191,8 @@ export const initWeb3Onboard = init({
     xdefi,
     frameWallet,
     cedeStore,
-    venly
+    venly,
+    blocto
   ],
   chains: [
     {
