@@ -9,12 +9,15 @@
     <link rel="apple-touch-icon" href="logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Blocknative Demo</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQ8M55VX1Z"></script>
     <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', "UA-121780722-2", 'auto');
-      ga('send', 'pageview');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WQ8M55VX1Z');
     </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
   </head>
   <body style="width: 100%;">
     <noscript>You need to enable JavaScript to run this app.</noscript>
