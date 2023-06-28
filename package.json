@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.35.1-0.0.1",
+  "version": "0.35.1-0.0.2",
   "dependencies": {
     "@web3-onboard/blocto": "^2.0.0-alpha.1",
     "@web3-onboard/cede-store": "^2.0.2-alpha.2",
