@@ -39,7 +39,7 @@
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vconsole": "^3.3.4"
+    "vconsole": "^3.15.1"
   },
   "scripts": {
     "w3o-latest-prod": "yarn add '@web3-onboard/react' '@web3-onboard/coinbase' '@web3-onboard/transaction-preview' '@web3-onboard/dcent' '@web3-onboard/frontier' '@web3-onboard/fortmatic' '@web3-onboard/frame' '@web3-onboard/gas' '@web3-onboard/gnosis' '@web3-onboard/keepkey' '@web3-onboard/keystone' '@web3-onboard/ledger' '@web3-onboard/infinity-wallet' '@web3-onboard/injected-wallets' '@web3-onboard/magic' '@web3-onboard/phantom' '@web3-onboard/portis' '@web3-onboard/sequence' '@web3-onboard/trezor' '@web3-onboard/trust' '@web3-onboard/torus' '@web3-onboard/taho' '@web3-onboard/web3auth' '@web3-onboard/walletconnect' '@web3-onboard/enkrypt' '@web3-onboard/mew-wallet' '@web3-onboard/xdefi' '@web3-onboard/uauth' '@web3-onboard/zeal' '@web3-onboard/cede-store' '@web3-onboard/venly' '@web3-onboard/blocto' '@web3-onboard/arcana-auth'",
