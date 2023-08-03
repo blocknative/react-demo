@@ -32,6 +32,7 @@ import dcentModule from '@web3-onboard/dcent'
 import transactionPreviewModule from '@web3-onboard/transaction-preview'
 import venlyModule from '@web3-onboard/venly'
 import bloctoModule from '@web3-onboard/blocto'
+import arcanaAuthModule from '@web3-onboard/arcana-auth'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
@@ -147,6 +148,10 @@ const venly = venlyModule({
 })
 const blocto = bloctoModule()
 
+const arcanaAuth = arcanaAuthModule({
+  clientID: 'xar_test_c9c3bc702eb13255c58dab0e74cfa859711c13cb'
+})
+
 export const initWeb3Onboard = init({
   connect: {
     autoConnectAllPreviousWallet: true
@@ -180,7 +185,8 @@ export const initWeb3Onboard = init({
     frameWallet,
     cedeStore,
     venly,
-    blocto
+    blocto,
+    arcanaAuth
   ],
   chains: [
     {
