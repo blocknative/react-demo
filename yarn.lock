@@ -171,6 +171,15 @@
   resolved "https://registry.yarnpkg.com/@apocentre/alias-sampling/-/alias-sampling-0.5.3.tgz#897ff181b48ad7b2bcb4ecf29400214888244f08"
   integrity sha512-7UDWIIF9hIeJqfKXkNIzkVandlwLf1FWTSdrb9iXvOP8oF544JRXQjCbiTmCv2c9n44n/FIWtehhBfNuAx2CZA==
 
+"@arcana/auth@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@arcana/auth/-/auth-1.0.7.tgz#58ed216b3e7a9cbea4ce64ce638b56f8739003e0"
+  integrity sha512-QSbVntohr0iTRJ/+FHYulNAC1agooNJXJOotNTnR75hXUMy1w5DNluvxCpEwa0gToyaKWmjqw3zVW4D7UoWtRw==
+  dependencies:
+    "@metamask/safe-event-emitter" "^2.0.0"
+    eth-rpc-errors "^4.0.3"
+    penpal "^6.0.1"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.8.3":
   version "7.14.5"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.14.5.tgz#23b08d740e83f49c5e59945fbf1b43e80bbf4edb"
@@ -6340,6 +6349,14 @@
     "@walletconnect/window-getters" "^1.0.1"
     tslib "1.14.1"
 
+"@web3-onboard/arcana-auth@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/arcana-auth/-/arcana-auth-2.0.0.tgz#a3a041d10b91e74f6fe1f870c54a555b39f6adae"
+  integrity sha512-LvIFCKekgFtt1N4xcgDq1om57UU5SrWxr6H0HZjxQ8TFl8mqT/KNNjjva3cGJ/aaR3NM1gRWKtN0sZFkRGI93w==
+  dependencies:
+    "@arcana/auth" "^1.0.7"
+    "@web3-onboard/common" "2.3.3"
+
 "@web3-onboard/blocto@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@web3-onboard/blocto/-/blocto-2.0.0.tgz#eb631e911b7c13ad11089bb3574e97b673f14463"
@@ -6364,7 +6381,7 @@
     "@coinbase/wallet-sdk" "^3.7.1"
     "@web3-onboard/common" "^2.3.3"
 
-"@web3-onboard/common@^2.3.1", "@web3-onboard/common@^2.3.3":
+"@web3-onboard/common@2.3.3", "@web3-onboard/common@^2.3.1", "@web3-onboard/common@^2.3.3":
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/@web3-onboard/common/-/common-2.3.3.tgz#02096e967dbed272c0637cda955902b96a0fce06"
   integrity sha512-Ytppszqe77VY8WglRdr/Lfx+HmcZ2hXQEkBA23JaVYmzKvP/mC6j+sjGUD8CgXDpRRxyKoiRj6nz95GRABie6Q==
@@ -6373,10 +6390,10 @@
     ethers "5.5.4"
     joi "17.9.1"
 
-"@web3-onboard/core@^2.20.5":
-  version "2.20.5"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.20.5.tgz#78bf125d0ffea38642046a383bfb869c66b49457"
-  integrity sha512-Ybn7Kvv1kSi0iJ/Gj2nS9kBv3r6hLSB06mcTL9Dxi5f18tXx3BSU4O7npN/5zOtWhqcOvfIg+2C33cnLH+c1Yg==
+"@web3-onboard/core@^2.21.0":
+  version "2.21.0"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.21.0.tgz#9055a9320f862911453010ba9a430a361c66202c"
+  integrity sha512-owxmSbCILFV0nQA46OGxcRrVdeZGL8SabBXll/PR0GAGsrZBYqNSE608ISd0luPt2Npy+dT8f8xUruFau+k/BA==
   dependencies:
     "@web3-onboard/common" "^2.3.3"
     bignumber.js "^9.0.0"
@@ -6547,13 +6564,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.3.3"
 
-"@web3-onboard/react@^2.8.10":
-  version "2.8.10"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.10.tgz#05ee27a95efa3243b8674fb15efab4614900880f"
-  integrity sha512-N689pq+0ZWIwsTC1c37U8CyVn4XUkmjy9WgalqNsOkKKuwcACTI63kwHvXWEP42Vk5s3c99uDLsRV8PPo7puSg==
+"@web3-onboard/react@^2.8.11":
+  version "2.8.11"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.11.tgz#ce364bf11f09933baa609908a6bbff91be6537ca"
+  integrity sha512-wTvDQaIXKxe0xE++iykEzJ2Y9bY4XeJzptE23cgkZBQhlWbJZmVUKDBQrCbkdIM0+5Qq2AZYN6UMNgdoB3myxg==
   dependencies:
     "@web3-onboard/common" "^2.3.3"
-    "@web3-onboard/core" "^2.20.5"
+    "@web3-onboard/core" "^2.21.0"
     use-sync-external-store "1.0.0"
 
 "@web3-onboard/sequence@^2.0.8":
@@ -14212,6 +14229,11 @@ penpal@3.0.7:
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/penpal/-/penpal-3.0.7.tgz#d252711ed93b30f1d867eb82342785b3a95f5f75"
   integrity sha512-WSXiq5HnEvzvY05SHhaXcsviUmCvh4Ze8AiIZzvmdzaaYAAx4rx8c6Xq6+MaVDG/Nfve3VmGD8HyRP3CkPvPbQ==
+
+penpal@^6.0.1:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/penpal/-/penpal-6.2.2.tgz#20a0a0592881a959e8c87116d854f9528b1aa601"
+  integrity sha512-RQD7hTx14/LY7QoS3tQYO3/fzVtwvZI+JeS5udgsu7FPaEDjlvfK9HBcme9/ipzSPKnrxSgacI9PI7154W62YQ==
 
 performance-now@^2.1.0:
   version "2.1.0"
