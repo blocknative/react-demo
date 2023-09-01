@@ -6543,10 +6543,10 @@
     ethers "5.5.4"
     joi "17.9.1"
 
-"@web3-onboard/core@^2.21.0":
-  version "2.21.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.21.0.tgz#9055a9320f862911453010ba9a430a361c66202c"
-  integrity sha512-owxmSbCILFV0nQA46OGxcRrVdeZGL8SabBXll/PR0GAGsrZBYqNSE608ISd0luPt2Npy+dT8f8xUruFau+k/BA==
+"@web3-onboard/core@^2.21.1-alpha.2":
+  version "2.21.1-alpha.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.21.1-alpha.2.tgz#663039888f961bb006a84cce41a4f91610450b40"
+  integrity sha512-/NfYN4eQV3qk6UyIbg4WQ4R1EuWhhMLIjZv6ZRbYPDHk/I8KM5O9yvS4BmZK4OdSrMAcJuxIRqvl1YsNqq5DkQ==
   dependencies:
     "@web3-onboard/common" "^2.3.3"
     bignumber.js "^9.0.0"
@@ -6639,10 +6639,10 @@
   dependencies:
     "@infinitywallet/infinity-connector" "^1.0.6"
 
-"@web3-onboard/injected-wallets@^2.10.4":
-  version "2.10.4"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.10.4.tgz#792c75fd6a97b3b0582e0680d6dbe6e5cf35f40a"
-  integrity sha512-A0Uawe4X7o2mZD8S2UMqAWXjC33fIepB6SKKrH1XswEUWlg+hxs9vKjB/eIa3Fhly9lYVs5XyFUAx2mv4sZ/Xw==
+"@web3-onboard/injected-wallets@^2.10.6-alpha.1":
+  version "2.10.6-alpha.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.10.6-alpha.2.tgz#10f37ab38511271da80f5f85d00ab185b0e812cd"
+  integrity sha512-9WJBcQAwsXV2A34n2A6nTAtKhfE8aKSM6CaBQHy0zk1ejIGWH0Ae9FXKybLw/F5hMkEU/elZHyJs11zgSnSBsQ==
   dependencies:
     "@web3-onboard/common" "^2.3.3"
     joi "17.9.1"
@@ -6717,13 +6717,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.3.3"
 
-"@web3-onboard/react@^2.8.11":
-  version "2.8.11"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.11.tgz#ce364bf11f09933baa609908a6bbff91be6537ca"
-  integrity sha512-wTvDQaIXKxe0xE++iykEzJ2Y9bY4XeJzptE23cgkZBQhlWbJZmVUKDBQrCbkdIM0+5Qq2AZYN6UMNgdoB3myxg==
+"@web3-onboard/react@^2.8.12-alpha.2":
+  version "2.8.12-alpha.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.12-alpha.2.tgz#58516dbdedd807bd0b522b2f488913d8e08e0cd4"
+  integrity sha512-/Dp8dHGsFBnJdwJyP4+lo2pARfk1PIN94R0HzbhPQKimucrwgAHkDXWYxEoIjhdN1w/BF6DHvyu6uwDpF1eNOg==
   dependencies:
     "@web3-onboard/common" "^2.3.3"
-    "@web3-onboard/core" "^2.21.0"
+    "@web3-onboard/core" "^2.21.1-alpha.2"
     use-sync-external-store "1.0.0"
 
 "@web3-onboard/sequence@^2.0.8":

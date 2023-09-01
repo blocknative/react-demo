@@ -1,6 +1,6 @@
 {
   "name": "onboard-notify-react",
-  "version": "0.35.6",
+  "version": "0.35.6-0.0.1",
   "dependencies": {
     "@safe-global/safe-apps-provider": "^0.18.0",
     "@safe-global/safe-apps-sdk": "^8.1.0",
@@ -16,7 +16,7 @@
     "@web3-onboard/gas": "^2.1.8",
     "@web3-onboard/gnosis": "^2.1.10",
     "@web3-onboard/infinity-wallet": "^2.0.4",
-    "@web3-onboard/injected-wallets": "^2.10.4",
+    "@web3-onboard/injected-wallets": "^2.10.6-alpha.1",
     "@web3-onboard/keepkey": "^2.3.7",
     "@web3-onboard/keystone": "^2.3.7",
     "@web3-onboard/ledger": "^2.5.2",
@@ -24,7 +24,7 @@
     "@web3-onboard/mew-wallet": "^2.0.4",
     "@web3-onboard/phantom": "^2.0.3",
     "@web3-onboard/portis": "^2.1.7",
-    "@web3-onboard/react": "^2.8.11",
+    "@web3-onboard/react": "^2.8.12-alpha.2",
     "@web3-onboard/sequence": "^2.0.8",
     "@web3-onboard/taho": "^2.0.5",
     "@web3-onboard/torus": "^2.2.5",
