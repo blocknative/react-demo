@@ -5586,6 +5586,11 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.194.tgz#b71eb6f7a0ff11bff59fc987134a093029258a76"
   integrity sha512-r22s9tAS7imvBt2lyHC9B8AGwWnXaYb1tY09oyLkXDs4vArpYJzw09nj8MLx5VfciBPGIb+ZwG0ssYnEPJxn/g==
 
+"@types/long@^4.0.1":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.2.tgz#b74129719fc8d11c01868010082d483b7545591a"
+  integrity sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==
+
 "@types/mime@*":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-3.0.1.tgz#5f8f2bca0a5863cb69bc0b0acd88c96cb1d4ae10"
@@ -6554,10 +6559,10 @@
     ethers "5.5.4"
     joi "17.9.1"
 
-"@web3-onboard/core@^2.21.1":
-  version "2.21.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.21.1.tgz#addb6c07c376cbbed3ae1d9ea6aabf05b15a8309"
-  integrity sha512-2ETfh+MIcRdEq1fY3+hc4KDTVelJLzNK9SpiH58kZ43/G5ky5IuTRS22e0xpsn/4pq5a1Y0Pgc1tHQncyZpndw==
+"@web3-onboard/core@^2.21.2":
+  version "2.21.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.21.2.tgz#962683efc87b29ee9150ab8d7ea9568ea3b41dd5"
+  integrity sha512-apzVi2zWqs4ktZBBJ60x1e4odI1mSoZ2c69bXUg36A0xI0iRFQ9Od44peI3mfTDEru7hWsr81Nv6l+v3HRSKLw==
   dependencies:
     "@web3-onboard/common" "^2.3.3"
     bignumber.js "^9.0.0"
@@ -6726,13 +6731,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.3.3"
 
-"@web3-onboard/react@^2.8.12":
-  version "2.8.12"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.12.tgz#5ab28aa2a038d3a4ba66d4178b87fc27f2f5be92"
-  integrity sha512-OqG24441XLf+hisy2KkHR3ZmLnleVmRRXeCpa4KHf9j7LtcBhGWOZlIjwFpVq/tk+r6/9piteweOxiqANObAIA==
+"@web3-onboard/react@^2.8.13":
+  version "2.8.13"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.13.tgz#c58fae9ba73f343aaa4483d57b6b27b1b14d1851"
+  integrity sha512-RhdnbVNWxYrMFOwxZKRKV3ys7SKymdHa2cHsyzcVEQlHzZVhZVlKB6KWzvk6umcyuT4DF9W4edzd1clJwCmazg==
   dependencies:
     "@web3-onboard/common" "^2.3.3"
-    "@web3-onboard/core" "^2.21.1"
+    "@web3-onboard/core" "^2.21.2"
     use-sync-external-store "1.0.0"
 
 "@web3-onboard/sequence@^2.0.8":

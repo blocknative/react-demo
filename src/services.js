@@ -221,6 +221,24 @@ export const initWeb3Onboard = init({
       rpcUrl: 'https://matic-mumbai.chainstacklabs.com	'
     },
     {
+      id: 42161,
+      token: 'ETH',
+      label: 'Arbitrum One',
+      rpcUrl: 'https://rpc.ankr.com/arbitrum'
+    },
+    {
+      id: '0xa4ba',
+      token: 'ETH',
+      label: 'Arbitrum Nova',
+      rpcUrl: 'https://nova.arbitrum.io/rpc'
+    },
+    {
+      id: '0x2105',
+      token: 'ETH',
+      label: 'Base',
+      rpcUrl: 'https://mainnet.base.org'
+    },
+    {
       id: '0x38',
       token: 'BNB',
       label: 'Binance',
@@ -243,12 +261,6 @@ export const initWeb3Onboard = init({
       token: 'OETH',
       label: 'Optimism',
       rpcUrl: 'https://mainnet.optimism.io'
-    },
-    {
-      id: 42161,
-      token: 'ARB-ETH',
-      label: 'Arbitrum',
-      rpcUrl: 'https://rpc.ankr.com/arbitrum'
     },
     {
       id: 84531,
