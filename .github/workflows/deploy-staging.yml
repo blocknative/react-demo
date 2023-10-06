@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.13.1
+          node-version: 16.18.1
       - run: yarn w3o-latest-alpha
       - run: yarn build-staging
         env:
