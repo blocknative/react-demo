@@ -32,6 +32,7 @@ import dcentModule from '@web3-onboard/dcent'
 import transactionPreviewModule from '@web3-onboard/transaction-preview'
 import venlyModule from '@web3-onboard/venly'
 import bloctoModule from '@web3-onboard/blocto'
+import bitgetModule from '@web3-onboard/bitget'
 import arcanaAuthModule from '@web3-onboard/arcana-auth'
 
 // Replace with your DApp's Infura ID
@@ -109,6 +110,13 @@ const phantom = phantomModule()
 const trust = trustModule()
 const frontier = frontierModule()
 const cedeStore = cedeStoreModule()
+const dcent = dcentModule()
+const frameWallet = frameModule()
+const sequence = sequenceModule()
+const enkrypt = enkryptModule()
+const mewWallet = mewWalletModule()
+const blocto = bloctoModule()
+const bitget = bitgetModule()
 
 const trezorOptions = {
   email: 'test@test.com',
@@ -122,7 +130,7 @@ const uauthOptions = {
   walletConnectProjectId: 'f6bd6e2911b56f5ac3bc8b2d0e2d7ad5',
   redirectUri: 'http://localhost:8080/',
   scope:
-    'openid wallet email:optional humanity_check:optional profile:optional social:optional'
+  'openid wallet email:optional humanity_check:optional profile:optional social:optional'
 }
 const uauth = uauthModule(uauthOptions)
 
@@ -132,12 +140,6 @@ const magic = magicModule({
   // userEmail is optional - if user has already logged in and/or session is still active a login modal will not appear
   // for more info see the @web3-onboard/magic docs
 })
-
-const dcent = dcentModule()
-const frameWallet = frameModule()
-const sequence = sequenceModule()
-const enkrypt = enkryptModule()
-const mewWallet = mewWalletModule()
 const transactionPreview = transactionPreviewModule({
   requireTransactionApproval: true
 })
@@ -146,7 +148,6 @@ const venly = venlyModule({
   clientId: 'blocknative',
   environment: 'staging'
 })
-const blocto = bloctoModule()
 
 const arcanaAuth = arcanaAuthModule({
   clientID: 'xar_test_c9c3bc702eb13255c58dab0e74cfa859711c13cb'
@@ -166,6 +167,7 @@ export const initWeb3Onboard = init({
     gnosis,
     trust,
     taho,
+    bitget,
     enkrypt,
     infinityWallet,
     mewWallet,
