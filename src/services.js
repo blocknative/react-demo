@@ -33,6 +33,7 @@ import transactionPreviewModule from '@web3-onboard/transaction-preview'
 import venlyModule from '@web3-onboard/venly'
 import bloctoModule from '@web3-onboard/blocto'
 import bitgetModule from '@web3-onboard/bitget'
+import metamaskModule from '@web3-onboard/metamask'
 import arcanaAuthModule from '@web3-onboard/arcana-auth'
 
 // Replace with your DApp's Infura ID
@@ -117,6 +118,17 @@ const enkrypt = enkryptModule()
 const mewWallet = mewWalletModule()
 const blocto = bloctoModule()
 const bitget = bitgetModule()
+const metamask = metamaskModule({
+  options: {
+    extensionOnly: false,
+    i18nOptions: {
+      enabled: true
+    },
+    dappMetadata: {
+      name: 'Web3Onboard React Demo'
+    }
+  }
+})
 
 const trezorOptions = {
   email: 'test@test.com',
@@ -158,6 +170,7 @@ export const initWeb3Onboard = init({
     autoConnectAllPreviousWallet: true
   },
   wallets: [
+    metamask,
     injected,
     ledger,
     trezor,
