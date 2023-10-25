@@ -1683,10 +1683,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bitget-wallet/web3-sdk@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@bitget-wallet/web3-sdk/-/web3-sdk-0.0.6.tgz#f30f7fbdeb804ddc98b175ed977340bc856011ed"
-  integrity sha512-UfMxJGmIAyqJBIY90nS1IrhFZvOzAvvcPt2/QhsfRQBYya8PoIwXEBofIfFeMgyVD00E7oq130DheAwFUduadA==
+"@bitget-wallet/web3-sdk@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@bitget-wallet/web3-sdk/-/web3-sdk-0.0.8.tgz#1510b0b379654ff0de5e10ae19bef93fa86e46c3"
+  integrity sha512-WFk6URUxTCukKrU3YpTdWTCScrj6/wwd/0O7eSANeQl1KDbDs+yj/fAkN1Wy6ebI3NMcW6sqN9mrmfwz53dPMQ==
   dependencies:
     "@metamask/safe-event-emitter" "^3.0.0"
     "@solana/web3.js" "^1.78.0"
@@ -6839,12 +6839,12 @@
     "@arcana/auth" "^1.0.7"
     "@web3-onboard/common" "2.3.3"
 
-"@web3-onboard/bitget@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/bitget/-/bitget-2.0.0.tgz#5a4eac6e8346f80c05a8bf79fe36998b507de7d5"
-  integrity sha512-z+PheXI3iqSkixRGO/2qgLe6bPfWc4Qfhp7WWDrFlGZ6Ld+pQSQrP1iILSUcgm+5smw7HGpfVQ4QgSinkqmfQg==
+"@web3-onboard/bitget@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/bitget/-/bitget-2.0.1.tgz#70f8d8c756b0c4975e3588080f2352bdec0634fa"
+  integrity sha512-98NynzBzCu/BnOvc3myEkqvNDrz0/VBWLld/L84mCZxF6axoYFXvwGr/8OC7F2+SN+bHyz3OOitJgvbJOPFv8g==
   dependencies:
-    "@bitget-wallet/web3-sdk" "^0.0.6"
+    "@bitget-wallet/web3-sdk" "^0.0.8"
     "@web3-onboard/common" "^2.3.3"
 
 "@web3-onboard/blocto@^2.0.0":
@@ -7029,10 +7029,10 @@
     magic-sdk "^8.1.0"
     rxjs "^7.5.2"
 
-"@web3-onboard/metamask@^2.0.0-alpha.1":
-  version "2.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/metamask/-/metamask-2.0.0-alpha.1.tgz#6fd41f16a6cb570b8d287b1666edcd7b592eaae9"
-  integrity sha512-yuzB6oX4rY2Mf/NN+LWbaO+emGMm+QrlQRYhbnfqx36lrdQDxysFmzFOkqavE05xt+8B6vLEhtp1iwsLYPr5BA==
+"@web3-onboard/metamask@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/metamask/-/metamask-2.0.0.tgz#c2dae6413611e530bfe904335750e25728db0779"
+  integrity sha512-tZSGa1p9yRScGK0qSAjtvZK8pAZOL6B5j+OutAYLs5WpEFZiXxiJUkJwiEhlL0YI78RMA5K3/4GhY6GTC6ruiA==
   dependencies:
     "@metamask/sdk" "^0.10.0"
     "@web3-onboard/common" "^2.3.3"
