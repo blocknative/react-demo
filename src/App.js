@@ -26,7 +26,7 @@ let provider
 
 const App = () => {
   const [{ wallet }, connect, disconnect, updateBalances, setWalletModules] =
-    useConnectWallet()
+      useConnectWallet()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
   const [notifications, customNotification, updateNotify] = useNotifications()
   const connectedWallets = useWallets()
@@ -57,17 +57,17 @@ const App = () => {
     if (!connectedWallets.length) return
 
     const connectedWalletsLabelArray = connectedWallets.map(
-      ({ label }) => label
+        ({ label }) => label
     )
     // Check for Magic Wallet user session
     if (connectedWalletsLabelArray.includes('Magic Wallet')) {
       const [magicWalletProvider] = connectedWallets.filter(
-        provider => provider.label === 'Magic Wallet'
+          provider => provider.label === 'Magic Wallet'
       )
       async function setMagicUser() {
         try {
           const { email } =
-            await magicWalletProvider.instance.user.getMetadata()
+              await magicWalletProvider.instance.user.getMetadata()
           const magicUserEmail = localStorage.getItem('magicUserEmail')
           if (!magicUserEmail || magicUserEmail !== email)
             localStorage.setItem('magicUserEmail', email)
@@ -101,8 +101,8 @@ const App = () => {
       const cleanFees = {
         price: ethers.utils.formatUnits(fee.gasPrice, 'gwei'),
         maxPriorityFeePerGas: ethers.utils.formatUnits(
-          fee.maxPriorityFeePerGas,
-          'gwei'
+            fee.maxPriorityFeePerGas,
+            'gwei'
         ),
         maxFeePerGas: ethers.utils.formatUnits(fee.maxFeePerGas, 'gwei')
       }
@@ -113,17 +113,17 @@ const App = () => {
 
   const gasView = gasObj => {
     return Object.keys(gasObj)
-      .filter(prop => prop !== 'price')
-      .map(key => (
-        <section value={key} key={key}>
-          {key} : {gasObj[key]}
-        </section>
-      ))
+        .filter(prop => prop !== 'price')
+        .map(key => (
+            <section value={key} key={key}>
+              {key} : {gasObj[key]}
+            </section>
+        ))
   }
 
   const gasDiff = bnGas => {
     const priFeeDiff =
-      rpcInfuraGasPrices.maxPriorityFeePerGas - bnGas.maxPriorityFeePerGas
+        rpcInfuraGasPrices.maxPriorityFeePerGas - bnGas.maxPriorityFeePerGas
     const maxFeeDiff = rpcInfuraGasPrices.maxFeePerGas - bnGas.maxFeePerGas
     return priFeeDiff + maxFeeDiff
   }
@@ -194,505 +194,562 @@ const App = () => {
 
     // convert to hook when available
     const transactionHash =
-      await web3Onboard.state.actions.preflightNotifications({
-        sendTransaction,
-        gasPrice,
-        estimateGas,
-        balance: balanceValue,
-        txDetails: txDetails
-      })
+        await web3Onboard.state.actions.preflightNotifications({
+          sendTransaction,
+          gasPrice,
+          estimateGas,
+          balance: balanceValue,
+          txDetails: txDetails
+        })
     console.log(transactionHash)
+  }
+
+  const switchToPolygon = async () => {
+    await setChain({ chainId: '0x89', rpcUrl: 'https://polygon-rpc.com/' })
+  }
+  const switchToPolygonThroughRPCCall = async () => {
+    try {
+      const switchChainRequest = await wallet.provider.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: '0x89' }]
+      })
+      console.log(`switchChainRequest: ${switchChainRequest}`)
+    } catch (err) {
+      if (err.code === 4902 || err.code === -32603) {
+        wallet.provider
+            .request({
+              method: 'wallet_addEthereumChain',
+              params: [
+                {
+                  chainId: '0x89',
+                  chainName: 'Polygon',
+                  blockExplorerUrls: ['https://polygonscan.com'],
+                  nativeCurrency: { symbol: 'MATIC', decimals: 18 },
+                  rpcUrls: ['https://polygon-rpc.com/'],
+                },
+              ],
+            })
+            .then(() => {
+              console.log("Done.")
+            })
+            .catch((error) => {
+              console.log(error.message)
+            })
+      }
+    }
   }
 
   const renderNotifySettings = () => {
     if (window.innerWidth < 425) {
       return (
-        <div className={'conditional-ui-settings'}>
-          <h3>Notify Mobile Positioning</h3>
-          <button
-            className={`bn-demo-button ${
-              notifyPosition === 'topRight'
-                ? 'selected-toggle-btn'
-                : 'unselected-toggle-btn'
-            }`}
-            onClick={() => {
-              setNotifyPosition('topRight')
-              updateNotify({ position: 'topRight' })
-            }}
-          >
-            Top
-          </button>
-          <button
-            className={`bn-demo-button ${
-              notifyPosition === 'bottomRight'
-                ? 'selected-toggle-btn'
-                : 'unselected-toggle-btn'
-            }`}
-            onClick={() => {
-              setNotifyPosition('bottomRight')
-              updateNotify({ position: 'bottomRight' })
-            }}
-          >
-            Bottom
-          </button>
-        </div>
+          <div className={'conditional-ui-settings'}>
+            <h3>Notify Mobile Positioning</h3>
+            <button
+                className={`bn-demo-button ${
+                    notifyPosition === 'topRight'
+                        ? 'selected-toggle-btn'
+                        : 'unselected-toggle-btn'
+                }`}
+                onClick={() => {
+                  setNotifyPosition('topRight')
+                  updateNotify({ position: 'topRight' })
+                }}
+            >
+              Top
+            </button>
+            <button
+                className={`bn-demo-button ${
+                    notifyPosition === 'bottomRight'
+                        ? 'selected-toggle-btn'
+                        : 'unselected-toggle-btn'
+                }`}
+                onClick={() => {
+                  setNotifyPosition('bottomRight')
+                  updateNotify({ position: 'bottomRight' })
+                }}
+            >
+              Bottom
+            </button>
+          </div>
       )
     }
     return (
-      <div className={'conditional-ui-settings'}>
-        {' '}
-        <h3>Notify Positioning</h3>
-        <button
-          className={`bn-demo-button ${
-            notifyPosition === 'topLeft'
-              ? 'selected-toggle-btn'
-              : 'unselected-toggle-btn'
-          }`}
-          onClick={() => {
-            setNotifyPosition('topLeft')
-            updateNotify({ position: 'topLeft' })
-          }}
-        >
-          Top Left
-        </button>
-        <button
-          className={`bn-demo-button ${
-            notifyPosition === 'topRight'
-              ? 'selected-toggle-btn'
-              : 'unselected-toggle-btn'
-          }`}
-          onClick={() => {
-            setNotifyPosition('topRight')
-            updateNotify({ position: 'topRight' })
-          }}
-        >
-          Top Right
-        </button>
-        <button
-          className={`bn-demo-button ${
-            notifyPosition === 'bottomRight'
-              ? 'selected-toggle-btn'
-              : 'unselected-toggle-btn'
-          }`}
-          onClick={() => {
-            setNotifyPosition('bottomRight')
-            updateNotify({ position: 'bottomRight' })
-          }}
-        >
-          Bottom Right
-        </button>
-        <button
-          className={`bn-demo-button ${
-            notifyPosition === 'bottomLeft'
-              ? 'selected-toggle-btn'
-              : 'unselected-toggle-btn'
-          }`}
-          onClick={() => {
-            setNotifyPosition('bottomLeft')
-            updateNotify({ position: 'bottomLeft' })
-          }}
-        >
-          Bottom Left
-        </button>
-      </div>
+        <div className={'conditional-ui-settings'}>
+          {' '}
+          <h3>Notify Positioning</h3>
+          <button
+              className={`bn-demo-button ${
+                  notifyPosition === 'topLeft'
+                      ? 'selected-toggle-btn'
+                      : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setNotifyPosition('topLeft')
+                updateNotify({ position: 'topLeft' })
+              }}
+          >
+            Top Left
+          </button>
+          <button
+              className={`bn-demo-button ${
+                  notifyPosition === 'topRight'
+                      ? 'selected-toggle-btn'
+                      : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setNotifyPosition('topRight')
+                updateNotify({ position: 'topRight' })
+              }}
+          >
+            Top Right
+          </button>
+          <button
+              className={`bn-demo-button ${
+                  notifyPosition === 'bottomRight'
+                      ? 'selected-toggle-btn'
+                      : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setNotifyPosition('bottomRight')
+                updateNotify({ position: 'bottomRight' })
+              }}
+          >
+            Bottom Right
+          </button>
+          <button
+              className={`bn-demo-button ${
+                  notifyPosition === 'bottomLeft'
+                      ? 'selected-toggle-btn'
+                      : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setNotifyPosition('bottomLeft')
+                updateNotify({ position: 'bottomLeft' })
+              }}
+          >
+            Bottom Left
+          </button>
+        </div>
     )
   }
   const renderAccountCenterSettings = () => {
     if (window.innerWidth < 425) {
       return (
-        <div className={'conditional-ui-settings'}>
-          <h3>Account Center Mobile Positioning</h3>
-          <button
-            className={`bn-demo-button ${
-              accountCenterPosition === 'topRight'
-                ? 'selected-toggle-btn'
-                : 'unselected-toggle-btn'
-            }`}
-            onClick={() => {
-              setAccountCenterPosition('topRight')
-              updateAccountCenter({
-                position: 'topRight'
-              })
-            }}
-          >
-            Top
-          </button>
-          <button
-            className={`bn-demo-button ${
-              accountCenterPosition === 'bottomRight'
-                ? 'selected-toggle-btn'
-                : 'unselected-toggle-btn'
-            }`}
-            onClick={() => {
-              setAccountCenterPosition('bottomRight')
-              updateAccountCenter({
-                position: 'bottomRight'
-              })
-            }}
-          >
-            Bottom
-          </button>
-        </div>
+          <div className={'conditional-ui-settings'}>
+            <h3>Account Center Mobile Positioning</h3>
+            <button
+                className={`bn-demo-button ${
+                    accountCenterPosition === 'topRight'
+                        ? 'selected-toggle-btn'
+                        : 'unselected-toggle-btn'
+                }`}
+                onClick={() => {
+                  setAccountCenterPosition('topRight')
+                  updateAccountCenter({
+                    position: 'topRight'
+                  })
+                }}
+            >
+              Top
+            </button>
+            <button
+                className={`bn-demo-button ${
+                    accountCenterPosition === 'bottomRight'
+                        ? 'selected-toggle-btn'
+                        : 'unselected-toggle-btn'
+                }`}
+                onClick={() => {
+                  setAccountCenterPosition('bottomRight')
+                  updateAccountCenter({
+                    position: 'bottomRight'
+                  })
+                }}
+            >
+              Bottom
+            </button>
+          </div>
       )
     }
     return (
-      <div className={'conditional-ui-settings'}>
-        {' '}
-        <h3>Account Center Positioning</h3>
-        <button
-          className={`bn-demo-button ${
-            accountCenterPosition === 'topLeft'
-              ? 'selected-toggle-btn'
-              : 'unselected-toggle-btn'
-          }`}
-          onClick={() => {
-            setAccountCenterPosition('topLeft')
-            updateAccountCenter({
-              position: 'topLeft'
-            })
-          }}
-        >
-          Top Left
-        </button>
-        <button
-          className={`bn-demo-button ${
-            accountCenterPosition === 'topRight'
-              ? 'selected-toggle-btn'
-              : 'unselected-toggle-btn'
-          }`}
-          onClick={() => {
-            setAccountCenterPosition('topRight')
-            updateAccountCenter({
-              position: 'topRight'
-            })
-          }}
-        >
-          Top Right
-        </button>
-        <button
-          className={`bn-demo-button ${
-            accountCenterPosition === 'bottomRight'
-              ? 'selected-toggle-btn'
-              : 'unselected-toggle-btn'
-          }`}
-          onClick={() => {
-            setAccountCenterPosition('bottomRight')
-            updateAccountCenter({
-              position: 'bottomRight'
-            })
-          }}
-        >
-          Bottom Right
-        </button>
-        <button
-          className={`bn-demo-button ${
-            accountCenterPosition === 'bottomLeft'
-              ? 'selected-toggle-btn'
-              : 'unselected-toggle-btn'
-          }`}
-          onClick={() => {
-            setAccountCenterPosition('bottomLeft')
-            updateAccountCenter({
-              position: 'bottomLeft'
-            })
-          }}
-        >
-          Bottom Left
-        </button>
-      </div>
+        <div className={'conditional-ui-settings'}>
+          {' '}
+          <h3>Account Center Positioning</h3>
+          <button
+              className={`bn-demo-button ${
+                  accountCenterPosition === 'topLeft'
+                      ? 'selected-toggle-btn'
+                      : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setAccountCenterPosition('topLeft')
+                updateAccountCenter({
+                  position: 'topLeft'
+                })
+              }}
+          >
+            Top Left
+          </button>
+          <button
+              className={`bn-demo-button ${
+                  accountCenterPosition === 'topRight'
+                      ? 'selected-toggle-btn'
+                      : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setAccountCenterPosition('topRight')
+                updateAccountCenter({
+                  position: 'topRight'
+                })
+              }}
+          >
+            Top Right
+          </button>
+          <button
+              className={`bn-demo-button ${
+                  accountCenterPosition === 'bottomRight'
+                      ? 'selected-toggle-btn'
+                      : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setAccountCenterPosition('bottomRight')
+                updateAccountCenter({
+                  position: 'bottomRight'
+                })
+              }}
+          >
+            Bottom Right
+          </button>
+          <button
+              className={`bn-demo-button ${
+                  accountCenterPosition === 'bottomLeft'
+                      ? 'selected-toggle-btn'
+                      : 'unselected-toggle-btn'
+              }`}
+              onClick={() => {
+                setAccountCenterPosition('bottomLeft')
+                updateAccountCenter({
+                  position: 'bottomLeft'
+                })
+              }}
+          >
+            Bottom Left
+          </button>
+        </div>
     )
   }
 
   if (!web3Onboard) return <div>Loading...</div>
 
   return (
-    <main>
-      <Header
-        connectedChain={wallet ? connectedChain : null}
-        address={wallet?.accounts[0]?.address}
-        balance={wallet?.accounts[0]?.balance}
-        ens={wallet?.accounts[0]?.ens}
-      />
-      <section className="main">
-        <div className="main-content">
-          <div className="vertical-main-container">
-            <div className="container onboard">
-              <h2>Onboarding Users with Web3-Onboard</h2>
-              {wallet && (
-                <div className="network-select">
-                  <label>Switch Chains</label>
-                  {settingChain ? (
-                    <span>Switching Chains...</span>
-                  ) : (
-                    <select
-                      className="chain-select"
-                      onChange={({ target: { value } }) =>
-                        setChain({ chainId: value })
-                      }
-                      value={connectedChain?.id}
-                    >
-                      {chains.map(({ id, label }) => {
-                        return (
-                          <option value={id} key={id}>
-                            {label}
-                          </option>
-                        )
-                      })}
-                    </select>
-                  )}
-                </div>
-              )}
-              <div className="account-center-actions">
-                <div>
-                  {!wallet && (
-                    <button
-                      className="bn-demo-button"
-                      onClick={async () => {
-                        const walletsConnected = await connect()
-                        console.log('connected wallets: ', walletsConnected)
-                      }}
-                    >
-                      Select a Wallet
-                    </button>
-                  )}
-
-                  {wallet && (
-                    <button
-                      className="bn-demo-button"
-                      onClick={async () => {
-                        const walletsConnected = await connect()
-                        console.log('connected wallets: ', walletsConnected)
-                      }}
-                    >
-                      Connect Another Wallet
-                    </button>
-                  )}
-
-                  {wallet && (
-                    <button
-                      className="bn-demo-button"
-                      onClick={async () => {
-                        const walletsConnected = await disconnect(wallet)
-                        console.log('connected wallets: ', walletsConnected)
-                        window.localStorage.removeItem('connectedWallets')
-                      }}
-                    >
-                      Reset Wallet State
-                    </button>
-                  )}
-                  {wallet && wallet?.dashboard && (
-                    <button
-                      className="bn-demo-button"
-                      onClick={wallet?.dashboard}
-                    >
-                      Open Wallet Dashboard
-                    </button>
-                  )}
-                  {wallet &&
-                    wallet?.type === 'hardware' &&
-                    wallet.accounts[0].address && (
-                      <button
-                        className="bn-demo-button"
-                        onClick={web3Onboard.accountSelect}
-                      >
-                        Switch Account
-                      </button>
+      <main>
+        <Header
+            connectedChain={wallet ? connectedChain : null}
+            address={wallet?.accounts[0]?.address}
+            balance={wallet?.accounts[0]?.balance}
+            ens={wallet?.accounts[0]?.ens}
+        />
+        <section className="main">
+          <div className="main-content">
+            <div className="vertical-main-container">
+              <div className="container onboard">
+                <h2>Onboarding Users with Web3-Onboard</h2>
+                {wallet && (
+                    <div className="network-select">
+                      <label>Switch Chains</label>
+                      {settingChain ? (
+                          <span>Switching Chains...</span>
+                      ) : (
+                          <>
+                            <select
+                                className="chain-select"
+                                onChange={({ target: { value } }) =>
+                                    setChain({ chainId: value })
+                                }
+                                value={connectedChain?.id}
+                            >
+                              {chains.map(({ id, label }) => {
+                                return (
+                                    <option value={id} key={id}>
+                                      {label}
+                                    </option>
+                                )
+                              })}
+                            </select>
+                            <p></p>
+                            <label>Uses the web3onbaord hook to switch/add the chain</label>
+                            <button
+                                className="bn-demo-button"
+                                onClick={async () => {
+                                  await switchToPolygon()
+                                }}
+                            >
+                              Switch to Polygon
+                            </button>
+                            <p></p>
+                            <label>Switch / Adds polygon via RPC calls directly instead of hooks</label>
+                            <button
+                                className="bn-demo-button"
+                                onClick={async () => {
+                                  await switchToPolygonThroughRPCCall()
+                                }}
+                            >
+                              Switch to Polygon
+                            </button>
+                          </>
+                      )}
+                    </div>
+                )}
+                <div className="account-center-actions">
+                  <div>
+                    {!wallet && (
+                        <button
+                            className="bn-demo-button"
+                            onClick={async () => {
+                              const walletsConnected = await connect()
+                              console.log('connected wallets: ', walletsConnected)
+                            }}
+                        >
+                          Select a Wallet
+                        </button>
                     )}
-                </div>
-                <div>
-                  {wallet && (
-                    // If providing a DAppId w/ Notifications enabled within the
-                    // onboard initialization balances are updated automatically
-                    <button
-                      className="bn-demo-button"
-                      onClick={() => updateBalances}
-                    >
-                      Update Balances
-                    </button>
-                  )}
-                  {wallet && (
-                    <button
-                      className="bn-demo-button"
-                      onClick={e => {
-                        updateLocale(locale === 'es' ? 'en' : 'es')
-                        setLocale(locale === 'es' ? 'en' : 'es')
-                        updateAccountCenter({ expanded: true })
-                        e.stopPropagation()
-                      }}
-                    >
-                      Set Locale To {locale === 'es' ? 'English' : 'Spanish'}
-                    </button>
-                  )}
-                  {wallet && (
-                    <button
-                      className="bn-demo-button"
-                      onClick={e => {
-                        setAccountCenterSize(prevState => {
-                          return prevState === 'minimal'
-                            ? 'normal'
-                            : prevState === 'normal'
-                            ? 'expanded'
-                            : 'minimal'
-                        })
-                        updateAccountCenter(
-                          accountCenterSize === 'minimal'
-                            ? { minimal: false }
-                            : accountCenterSize === 'normal'
-                            ? { minimal: true, expanded: true }
-                            : { minimal: true, expanded: false }
-                        )
-                        e.stopPropagation()
-                      }}
-                    >
-                      Set Account Center To{' '}
-                      {accountCenterSize === 'minimal'
-                        ? 'Collapsed'
-                        : accountCenterSize === 'normal'
-                        ? 'Expanded'
-                        : 'Minimal'}
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="container notify">
-              <h2>Transaction Notifications with Notify</h2>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  marginBottom: '1rem'
-                }}
-              >
-                <div style={{ marginBottom: '1rem' }}>
-                  <label>
-                    Send 0.001{' '}
-                    <select
-                      onChange={({ target: { value } }) => setToChain(value)}
-                      value={toChain}
-                    >
-                      {chains.map(({ id, label }) => {
-                        if (label === 'Goerli' || label === 'Polygon - Mumbai') {
-                          return (
-                            <option value={id} key={id}>
-                              {label}
-                            </option>
-                          )
-                        }
-                        return null
-                      })}
-                    </select>{' '}
-                    Test Eth to:
-                  </label>
-                  <input
-                    type="text"
-                    style={{
-                      padding: '0.5rem',
-                      border: 'none',
-                      borderRadius: '10px',
-                      marginLeft: '0.5rem',
-                      width: '18rem'
-                    }}
-                    value={toAddress}
-                    placeholder="address"
-                    onChange={e => setToAddress(e.target.value)}
-                  />
-                </div>
-                <div className={'send-transaction-container'}>
-                  <button
-                    className="bn-demo-button"
-                    onClick={async () => {
-                      const ready = await readyToTransact()
-                      if (!ready) return
-                      sendHash()
-                    }}
-                  >
-                    Send
-                  </button>
-                  with in-flight notifications
-                </div>
-                <div className={'send-transaction-container'}>
-                  <button
-                    className="bn-demo-button"
-                    onClick={async () => {
-                      const ready = await readyToTransact()
-                      if (!ready) return
-                      sendTransaction()
-                    }}
-                  >
-                    Send
-                  </button>
-                  with pre-flight and in-flight notifications
-                </div>
-              </div>
-              <div>
-                <button
-                  className="bn-demo-button"
-                  onClick={() => {
-                    const { update, dismiss } = customNotification({
-                      eventCode: 'dbUpdate',
-                      type: 'hint',
-                      message: 'Custom hint notification created by the dapp',
-                      onClick: () => window.open(`https://www.blocknative.com`)
-                    })
-                    // Update your notification example below
-                    // setTimeout(
-                    //   () =>
-                    //     update({
-                    //       eventCode: 'dbUpdateSuccess',
-                    //       message: 'Hint notification reason resolved!',
-                    //       type: 'success',
-                    //       autoDismiss: 5000
-                    //     }),
-                    //   4000
-                    // )
-                    setTimeout(
-                      () =>
-                        // use the dismiss method returned or add an autoDismiss prop to the notification
-                        dismiss(),
-                      4000
-                    )
-                  }}
-                >
-                  Custom Hint Notification
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="container ui-settings">{renderNotifySettings()}</div>
-          <div className="container ui-settings">
-            {renderAccountCenterSettings()}
-          </div>
-        </div>
-        {bnGasPrices && (
-          <div className="bn-gas-container">
-            Web3-Onboard Gas Package Mainnet Pricing
-            <div className="bn-gas">
-              {bnGasPrices.map(conf => {
-                return (
-                  <div className="gas-container" key={conf.confidence}>
-                    {gasView(conf)}
-                    {rpcInfuraGasPrices && (
-                      <section>gwei saved : {gasDiff(conf).toFixed(3)}</section>
+
+                    {wallet && (
+                        <button
+                            className="bn-demo-button"
+                            onClick={async () => {
+                              const walletsConnected = await connect()
+                              console.log('connected wallets: ', walletsConnected)
+                            }}
+                        >
+                          Connect Another Wallet
+                        </button>
+                    )}
+
+                    {wallet && (
+                        <button
+                            className="bn-demo-button"
+                            onClick={async () => {
+                              const walletsConnected = await disconnect(wallet)
+                              console.log('connected wallets: ', walletsConnected)
+                              window.localStorage.removeItem('connectedWallets')
+                            }}
+                        >
+                          Reset Wallet State
+                        </button>
+                    )}
+                    {wallet && wallet?.dashboard && (
+                        <button
+                            className="bn-demo-button"
+                            onClick={wallet?.dashboard}
+                        >
+                          Open Wallet Dashboard
+                        </button>
+                    )}
+                    {wallet &&
+                        wallet?.type === 'hardware' &&
+                        wallet.accounts[0].address && (
+                            <button
+                                className="bn-demo-button"
+                                onClick={web3Onboard.accountSelect}
+                            >
+                              Switch Account
+                            </button>
+                        )}
+                  </div>
+                  <div>
+                    {wallet && (
+                        // If providing a DAppId w/ Notifications enabled within the
+                        // onboard initialization balances are updated automatically
+                        <button
+                            className="bn-demo-button"
+                            onClick={() => updateBalances}
+                        >
+                          Update Balances
+                        </button>
+                    )}
+                    {wallet && (
+                        <button
+                            className="bn-demo-button"
+                            onClick={e => {
+                              updateLocale(locale === 'es' ? 'en' : 'es')
+                              setLocale(locale === 'es' ? 'en' : 'es')
+                              updateAccountCenter({ expanded: true })
+                              e.stopPropagation()
+                            }}
+                        >
+                          Set Locale To {locale === 'es' ? 'English' : 'Spanish'}
+                        </button>
+                    )}
+                    {wallet && (
+                        <button
+                            className="bn-demo-button"
+                            onClick={e => {
+                              setAccountCenterSize(prevState => {
+                                return prevState === 'minimal'
+                                    ? 'normal'
+                                    : prevState === 'normal'
+                                        ? 'expanded'
+                                        : 'minimal'
+                              })
+                              updateAccountCenter(
+                                  accountCenterSize === 'minimal'
+                                      ? { minimal: false }
+                                      : accountCenterSize === 'normal'
+                                          ? { minimal: true, expanded: true }
+                                          : { minimal: true, expanded: false }
+                              )
+                              e.stopPropagation()
+                            }}
+                        >
+                          Set Account Center To{' '}
+                          {accountCenterSize === 'minimal'
+                              ? 'Collapsed'
+                              : accountCenterSize === 'normal'
+                                  ? 'Expanded'
+                                  : 'Minimal'}
+                        </button>
                     )}
                   </div>
-                )
-              })}
+                </div>
+              </div>
+              <div className="container notify">
+                <h2>Transaction Notifications with Notify</h2>
+                <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'flex-start',
+                      marginBottom: '1rem'
+                    }}
+                >
+                  <div style={{ marginBottom: '1rem' }}>
+                    <label>
+                      Send 0.001{' '}
+                      <select
+                          onChange={({ target: { value } }) => setToChain(value)}
+                          value={toChain}
+                      >
+                        {chains.map(({ id, label }) => {
+                          if (label === 'Goerli' || label === 'Polygon - Mumbai') {
+                            return (
+                                <option value={id} key={id}>
+                                  {label}
+                                </option>
+                            )
+                          }
+                          return null
+                        })}
+                      </select>{' '}
+                      Test Eth to:
+                    </label>
+                    <input
+                        type="text"
+                        style={{
+                          padding: '0.5rem',
+                          border: 'none',
+                          borderRadius: '10px',
+                          marginLeft: '0.5rem',
+                          width: '18rem'
+                        }}
+                        value={toAddress}
+                        placeholder="address"
+                        onChange={e => setToAddress(e.target.value)}
+                    />
+                  </div>
+                  <div className={'send-transaction-container'}>
+                    <button
+                        className="bn-demo-button"
+                        onClick={async () => {
+                          const ready = await readyToTransact()
+                          if (!ready) return
+                          sendHash()
+                        }}
+                    >
+                      Send
+                    </button>
+                    with in-flight notifications
+                  </div>
+                  <div className={'send-transaction-container'}>
+                    <button
+                        className="bn-demo-button"
+                        onClick={async () => {
+                          const ready = await readyToTransact()
+                          if (!ready) return
+                          sendTransaction()
+                        }}
+                    >
+                      Send
+                    </button>
+                    with pre-flight and in-flight notifications
+                  </div>
+                </div>
+                <div>
+                  <button
+                      className="bn-demo-button"
+                      onClick={() => {
+                        const { update, dismiss } = customNotification({
+                          eventCode: 'dbUpdate',
+                          type: 'hint',
+                          message: 'Custom hint notification created by the dapp',
+                          onClick: () => window.open(`https://www.blocknative.com`)
+                        })
+                        // Update your notification example below
+                        // setTimeout(
+                        //   () =>
+                        //     update({
+                        //       eventCode: 'dbUpdateSuccess',
+                        //       message: 'Hint notification reason resolved!',
+                        //       type: 'success',
+                        //       autoDismiss: 5000
+                        //     }),
+                        //   4000
+                        // )
+                        setTimeout(
+                            () =>
+                                // use the dismiss method returned or add an autoDismiss prop to the notification
+                                dismiss(),
+                            4000
+                        )
+                      }}
+                  >
+                    Custom Hint Notification
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="container ui-settings">{renderNotifySettings()}</div>
+            <div className="container ui-settings">
+              {renderAccountCenterSettings()}
             </div>
           </div>
-        )}
-        {rpcInfuraGasPrices && (
-          <div className="rpc-gas-container">
-            Ethers.js Mainnet Gas Pricing
-            <div className="gas-container rpc-gas">
-              {gasView(rpcInfuraGasPrices)}
-            </div>
-          </div>
-        )}
-      </section>
-      <Footer />
-    </main>
+          {bnGasPrices && (
+              <div className="bn-gas-container">
+                Web3-Onboard Gas Package Mainnet Pricing
+                <div className="bn-gas">
+                  {bnGasPrices.map(conf => {
+                    return (
+                        <div className="gas-container" key={conf.confidence}>
+                          {gasView(conf)}
+                          {rpcInfuraGasPrices && (
+                              <section>gwei saved : {gasDiff(conf).toFixed(3)}</section>
+                          )}
+                        </div>
+                    )
+                  })}
+                </div>
+              </div>
+          )}
+          {rpcInfuraGasPrices && (
+              <div className="rpc-gas-container">
+                Ethers.js Mainnet Gas Pricing
+                <div className="gas-container rpc-gas">
+                  {gasView(rpcInfuraGasPrices)}
+                </div>
+              </div>
+          )}
+        </section>
+        <Footer />
+      </main>
   )
 }
 
