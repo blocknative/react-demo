@@ -44,6 +44,7 @@ const App = () => {
   const [notifyPosition, setNotifyPosition] = useState('topRight')
   const [locale, setLocale] = useState('en')
   const [accountCenterSize, setAccountCenterSize] = useState('normal')
+  const [showConfirmation, setShowConfirmation] = useState(false)
 
   useEffect(() => {
     setWeb3Onboard(initWeb3Onboard)
@@ -209,34 +210,48 @@ const App = () => {
   }
   const switchToPolygonThroughRPCCall = async () => {
     try {
-      const switchChainRequest = await wallet.provider.request({
-        method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x89' }]
-      })
-      console.log(`switchChainRequest: ${switchChainRequest}`)
+        const switchChainRequest = await wallet.provider.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x89' }]
+        })
+        console.log(`switchChainRequest: ${switchChainRequest}`)
     } catch (err) {
       if (err.code === 4902 || err.code === -32603) {
-        wallet.provider
-            .request({
-              method: 'wallet_addEthereumChain',
-              params: [
-                {
-                  chainId: '0x89',
-                  chainName: 'Polygon',
-                  blockExplorerUrls: ['https://polygonscan.com'],
-                  nativeCurrency: { symbol: 'MATIC', decimals: 18 },
-                  rpcUrls: ['https://polygon-rpc.com/'],
-                },
-              ],
-            })
-            .then(() => {
-              console.log("Done.")
-            })
-            .catch((error) => {
-              console.log(error.message)
-            })
+        setShowConfirmation(true)
       }
     }
+  }
+
+  const addEthereumChainThroughRPCCall =  async () => {
+      try {
+          const switchChainRequest = await wallet.provider.request({
+              method: 'wallet_addEthereumChain',
+              params: [
+                  {
+                      chainId: '0x89',
+                      chainName: 'Polygon',
+                      blockExplorerUrls: ['https://polygonscan.com'],
+                      nativeCurrency: { symbol: 'MATIC', decimals: 18 },
+                      rpcUrls: ['https://polygon-rpc.com/'],
+                  },
+              ],
+          })
+          console.log(`switchChainRequest: ${switchChainRequest}`)
+      } catch (e) {
+          console.log('error adding chain')
+      }
+  }
+
+  const renderAddChainConfirmation = () => {
+      return (
+          <div>
+              <button
+                onClick={addEthereumChainThroughRPCCall}
+              >
+                  Add Polygon chain?
+              </button>
+          </div>
+      )
   }
 
   const renderNotifySettings = () => {
@@ -495,6 +510,9 @@ const App = () => {
                             >
                               Switch to Polygon
                             </button>
+                              {showConfirmation ?
+                                  renderAddChainConfirmation() : null
+                              }
                           </>
                       )}
                     </div>
