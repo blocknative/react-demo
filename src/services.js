@@ -302,11 +302,14 @@ export const initWeb3Onboard = init({
   },
   accountCenter: {
     desktop: {
-      position: 'topRight',
-      enabled: true,
-      minimal: false
+        enabled: true,
+        position: 'topRight',
+    },
+    mobile: {
+        enabled: true,
+        position: 'topRight'
     }
-  },
+},
   // example customizing copy
   i18n: {
     es: {
