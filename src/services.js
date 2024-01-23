@@ -35,6 +35,8 @@ import bloctoModule from '@web3-onboard/blocto'
 import bitgetModule from '@web3-onboard/bitget'
 import metamaskModule from '@web3-onboard/metamask'
 import arcanaAuthModule from '@web3-onboard/arcana-auth'
+import capsuleModule from '@web3-onboard/capsule'
+import { Environment } from '@web3-onboard/capsule'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
@@ -165,6 +167,11 @@ const arcanaAuth = arcanaAuthModule({
   clientID: 'xar_test_c9c3bc702eb13255c58dab0e74cfa859711c13cb'
 })
 
+const capsule = capsuleModule({
+  environment: Environment.DEVELOPMENT,
+  apiKey: '992bbd9146d5de8ad0419f141d9a7ca7'
+})
+
 export const initWeb3Onboard = init({
   connect: {
     autoConnectAllPreviousWallet: true
@@ -201,7 +208,8 @@ export const initWeb3Onboard = init({
     cedeStore,
     venly,
     blocto,
-    arcanaAuth
+    arcanaAuth,
+    capsule
   ],
   chains: [
     {
@@ -302,11 +310,14 @@ export const initWeb3Onboard = init({
   },
   accountCenter: {
     desktop: {
-      position: 'topRight',
-      enabled: true,
-      minimal: false
+        enabled: true,
+        position: 'topRight',
+    },
+    mobile: {
+        enabled: true,
+        position: 'topRight'
     }
-  },
+},
   // example customizing copy
   i18n: {
     es: {
