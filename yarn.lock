@@ -8241,12 +8241,21 @@
     ethers "5.5.4"
     joi "17.9.1"
 
-"@web3-onboard/core@^2.21.3-alpha.2":
-  version "2.21.3-alpha.2"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.21.3-alpha.2.tgz#90ccb574d0b1ec3e88f09cabf670743bbdc2bdaf"
-  integrity sha512-y6VBdhB9C0FOzV/nFrh7uxVpySLd8G2divl+zaoNKLDDPFquekPnAxVbsZi4/tYgo7JKy+nMsM1/LpyPc6pdSQ==
+"@web3-onboard/common@^2.3.4-alpha.1":
+  version "2.3.4-alpha.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/common/-/common-2.3.4-alpha.1.tgz#b402c9efbe8fd53f6349bf86fcbee7eaee00b192"
+  integrity sha512-MHPkZnRiUujxtTciS+XOlk/kCcKJUQZaUbwpsWJemsZS2j5dY431i/sZ+3aNYyejiwki88jYYOeLbQ90eDglEg==
   dependencies:
-    "@web3-onboard/common" "^2.3.3"
+    bignumber.js "^9.1.0"
+    ethers "5.5.4"
+    joi "17.9.1"
+
+"@web3-onboard/core@^2.21.3-alpha.3":
+  version "2.21.3-alpha.3"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.21.3-alpha.3.tgz#77bcd95ea8f9223a25bb30126028188df5a69bed"
+  integrity sha512-fHfs+gX/iwmBjy3iz5HnQVEq1tI7Upd40lxtwsOcvUVtmF9Oh9baZnRGc6sqCSCeS1TEZrwHPKqAHmKBUEvXEQ==
+  dependencies:
+    "@web3-onboard/common" "^2.3.4-alpha.1"
     bignumber.js "^9.0.0"
     bnc-sdk "^4.6.7"
     bowser "^2.11.0"
@@ -8317,13 +8326,24 @@
   dependencies:
     "@web3-onboard/common" "^2.3.3"
 
-"@web3-onboard/hw-common@^2.3.0", "@web3-onboard/hw-common@^2.3.0-alpha.2":
+"@web3-onboard/hw-common@^2.3.0-alpha.2":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@web3-onboard/hw-common/-/hw-common-2.3.0.tgz#715d35c4039515e3f8ec839643e6d4c49097891f"
   integrity sha512-ai5gwaXHxMOgov+TKuy2yUtBf7b2Vq8c28L9tSx4Hl8Q2IM6boGZQEqfW6Hw0GHu/Ez+MxRR5+M6nfwFBf8JRw==
   dependencies:
     "@ethereumjs/common" "2.6.2"
     "@web3-onboard/common" "^2.3.3"
+    ethers "5.5.4"
+    joi "17.9.1"
+    rxjs "^7.5.2"
+
+"@web3-onboard/hw-common@^2.3.1-alpha.1":
+  version "2.3.1-alpha.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/hw-common/-/hw-common-2.3.1-alpha.1.tgz#f2fae15b794944344f04ff4afa4afe72a88cdbf2"
+  integrity sha512-PKSDq5Rlg1/NzLo+sCBLPuO/LqZEernxazuX9JNM456b/6/7iAwujohbIi1sUqfilUSaNuGrdHTQegSEjgoAXg==
+  dependencies:
+    "@ethereumjs/common" "2.6.2"
+    "@web3-onboard/common" "^2.3.4-alpha.1"
     ethers "5.5.4"
     joi "17.9.1"
     rxjs "^7.5.2"
@@ -8344,28 +8364,28 @@
     joi "17.9.1"
     lodash.uniqby "^4.7.0"
 
-"@web3-onboard/keepkey@^2.3.7-alpha.2":
-  version "2.3.7-alpha.2"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/keepkey/-/keepkey-2.3.7-alpha.2.tgz#ffdbc82d94f4caba91311ee848886f06987c7ab4"
-  integrity sha512-EnRFmO22racS8VdLgD9lwJZExXhU/zumx86B45j/wSOOeSM24NdkctcrRzO0nb9ZlfgzKXHUJYp4l31vfhg7XA==
+"@web3-onboard/keepkey@^2.3.8-alpha.1":
+  version "2.3.8-alpha.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/keepkey/-/keepkey-2.3.8-alpha.1.tgz#debaf63488ea3338e7ea872642d862dc4941f59c"
+  integrity sha512-yVMtxvymtNZSM90Af9DaX0MTT3LSXFCYKPUspB3AU1WpEjfY/6H9VJAd4YEcyAxKZA2taTNUj4J7QK4SbqH0ww==
   dependencies:
     "@ethersproject/providers" "^5.5.0"
     "@shapeshiftoss/hdwallet-core" "^1.15.2"
     "@shapeshiftoss/hdwallet-keepkey-webusb" "^1.15.2"
-    "@web3-onboard/common" "^2.3.3-alpha.1"
-    "@web3-onboard/hw-common" "^2.3.0-alpha.2"
+    "@web3-onboard/common" "^2.3.4-alpha.1"
+    "@web3-onboard/hw-common" "^2.3.1-alpha.1"
     ethereumjs-util "^7.1.3"
 
-"@web3-onboard/keystone@^2.3.7-alpha.2":
-  version "2.3.7-alpha.2"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/keystone/-/keystone-2.3.7-alpha.2.tgz#11229c44a2798ed2882ac260e15792ad33f45324"
-  integrity sha512-RBeLiYo4azDNdrDn5DfhKBOdsWzhU9/jP3D0cPennjrxKmWMEXmiXWVg1HOou/3KX1uiJrtLhp4q4rTLnGD7AA==
+"@web3-onboard/keystone@^2.3.8-alpha.1":
+  version "2.3.8-alpha.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/keystone/-/keystone-2.3.8-alpha.1.tgz#a19b8df5d03bd195183b30798d872e42b8f5c3f2"
+  integrity sha512-OyDLOXtTj7D7Mhim72GH7rYX2FGyR9xJ0xRoUOuy6mm9Cc1C0b13YwAgxJA51U6QtcpWrx9GvoKNLHS/47wHkw==
   dependencies:
     "@ethereumjs/tx" "^3.4.0"
     "@ethersproject/providers" "^5.5.0"
     "@keystonehq/eth-keyring" "^0.14.00.3"
-    "@web3-onboard/common" "^2.3.3-alpha.1"
-    "@web3-onboard/hw-common" "^2.3.0-alpha.2"
+    "@web3-onboard/common" "^2.3.4-alpha.1"
+    "@web3-onboard/hw-common" "^2.3.1-alpha.1"
 
 "@web3-onboard/ledger@^2.6.0-alpha.1":
   version "2.6.0-alpha.1"
@@ -8421,13 +8441,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.3.3-alpha.1"
 
-"@web3-onboard/react@^2.8.14-alpha.2":
-  version "2.8.14-alpha.2"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.14-alpha.2.tgz#329a442d573937021d768319687296af157207e5"
-  integrity sha512-vq3zbFvsQNbj9FM6j+7JUtL23P877OW5cnmIumFwL9Y0UAUUuU1rkoRC8tdMX70j+4Gzl1e2qlm9owwXMOu3lQ==
+"@web3-onboard/react@^2.8.14-alpha.3":
+  version "2.8.14-alpha.3"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.14-alpha.3.tgz#b7272b7839c6a64b0c2079428cfd2dc9db32ef08"
+  integrity sha512-vZO9fCzay8Y7xWsYnjQwgYynLVApxc9gcZwRA9r8z02qMmM1MKpUvamxviO7cDz+FCHTcEd/omUdKW1mAM5z7Q==
   dependencies:
     "@web3-onboard/common" "^2.3.3"
-    "@web3-onboard/core" "^2.21.3-alpha.2"
+    "@web3-onboard/core" "^2.21.3-alpha.3"
     use-sync-external-store "1.0.0"
 
 "@web3-onboard/sequence@^2.0.8-alpha.1":
@@ -8468,16 +8488,16 @@
     svelte "^3.49.0"
     svelte-i18n "^3.3.13"
 
-"@web3-onboard/trezor@^2.4.3-alpha.1":
-  version "2.4.3-alpha.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/trezor/-/trezor-2.4.3-alpha.1.tgz#34c81f58402f227a7b9812d10b178d0eba58c451"
-  integrity sha512-LyRZIQK1rF5vbrFy9gfJKt8FZrQ/d40QDHwrtOALuI/OVX+kwyKYvqLnCZNxMK63DVTH7hQlAJO0fmOn/njjjg==
+"@web3-onboard/trezor@^2.4.4-alpha.1":
+  version "2.4.4-alpha.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/trezor/-/trezor-2.4.4-alpha.1.tgz#8a612ac04d961f2bc5ca5cb3214cdf154a934d64"
+  integrity sha512-YAKY3AaNKlGxdswp3AuVqfHtPMVMKVD4ZMeKvK5TSvJFoc2eKGcgtN8aECnhGEzj5L3T9xvF0cjXA0DbzCn2Ig==
   dependencies:
     "@ethereumjs/tx" "^3.4.0"
     "@ethersproject/providers" "^5.5.0"
     "@trezor/connect-web" "^9.0.11"
-    "@web3-onboard/common" "^2.3.3"
-    "@web3-onboard/hw-common" "^2.3.0"
+    "@web3-onboard/common" "^2.3.4-alpha.1"
+    "@web3-onboard/hw-common" "^2.3.1-alpha.1"
     buffer "^6.0.3"
     eth-crypto "^2.1.0"
     ethereumjs-util "^7.1.3"
