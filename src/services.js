@@ -197,7 +197,7 @@ export const initWeb3Onboard = init({
     fortmatic,
     portis,
     torus,
-    dcent,
+    // dcent,
     sequence,
     uauth,
     web3auth,
