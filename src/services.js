@@ -177,7 +177,7 @@ export const initWeb3Onboard = init({
     autoConnectAllPreviousWallet: true
   },
   wallets: [
-    // metamask,
+    metamask,
     injected,
     ledger,
     trezor,
