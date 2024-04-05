@@ -8274,10 +8274,10 @@
     ethers "5.5.4"
     joi "17.9.1"
 
-"@web3-onboard/core@^2.21.3":
-  version "2.21.3"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.21.3.tgz#12f1561da218bae9d9d4c48cd132fa6ebaf4beca"
-  integrity sha512-PVQtsk5eLHNIxrLqjEtbF+w8yDxovTmgIQobrJj0D4m3wZE0Cr7AQay1q5u+bC1FKmTvQ7ZVzEXMFdquPxjA2A==
+"@web3-onboard/core@^2.21.4":
+  version "2.21.4"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.21.4.tgz#0bf80a30c32f5fd8d5330cda4b6c6729c40ca316"
+  integrity sha512-+nOKj3hudHXfS5J8Ej5P5v/NWuG1b/863Ikaob/UHsCrulle5ILmBNrJqs2LESLdbHjZPFQBoJG+IxTPo7yIAA==
   dependencies:
     "@web3-onboard/common" "^2.3.4"
     bignumber.js "^9.0.0"
@@ -8293,15 +8293,15 @@
     svelte "^3.49.0"
     svelte-i18n "^3.3.13"
 
-"@web3-onboard/dcent@^2.2.7":
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/dcent/-/dcent-2.2.7.tgz#f7de77d85fde96158321635eab4baad911a0b9dd"
-  integrity sha512-ajGtg0OJh+QN0d4SZJaTOgbtPmbMT+VYqxRMIapNa8L+07cVoukwM4RaksqOc69AjosKuPK0TFQa2m5NPu4hpQ==
+"@web3-onboard/dcent@^2.2.8":
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/dcent/-/dcent-2.2.8.tgz#62d472d2540e064509a65aced44f3767eb88bfba"
+  integrity sha512-4eKbksa4JtbkTdhdMXgXuFb9goZDNWiUPDIvQO1VvhBVAyDXQg2178XctL9J0TvPLHPTjNf+3l+EjYxh6gM1rw==
   dependencies:
     "@ethereumjs/tx" "^3.4.0"
     "@ethersproject/providers" "^5.5.0"
-    "@web3-onboard/common" "^2.3.3"
-    "@web3-onboard/hw-common" "^2.3.0"
+    "@web3-onboard/common" "^2.3.4"
+    "@web3-onboard/hw-common" "^2.3.1"
     eth-dcent-keyring "^0.2.2"
 
 "@web3-onboard/enkrypt@^2.0.4":
@@ -8350,7 +8350,7 @@
   dependencies:
     "@web3-onboard/common" "^2.3.3"
 
-"@web3-onboard/hw-common@^2.3.0", "@web3-onboard/hw-common@^2.3.1":
+"@web3-onboard/hw-common@^2.3.1":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@web3-onboard/hw-common/-/hw-common-2.3.1.tgz#1a968a0b40e64bb6b82593810c15b1fa7f620306"
   integrity sha512-Dbztkmr+0iN3BJmwu7f3nvk7atbJEm9AmySlyyIYTqn+kuPWk88j8s1PAyHHOej2lLrtswyj1c3ER65O5S1M2g==
@@ -8368,10 +8368,10 @@
   dependencies:
     "@infinitywallet/infinity-connector" "^1.0.6"
 
-"@web3-onboard/injected-wallets@^2.10.13":
-  version "2.10.13"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.10.13.tgz#e82c5275db22f7711cce02c607e9e6e9ab144658"
-  integrity sha512-YnuwqbtlbAa6QyqJ/1YIkNLX92f8CkcFCt7HePjlZhYhaG9Gron/JzbAv2o7TcKQyySjahhwvvntvgXlABx8Ag==
+"@web3-onboard/injected-wallets@^2.10.14":
+  version "2.10.14"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.10.14.tgz#ad4f7585927651050caec232a62774f422fb9c01"
+  integrity sha512-lU/YCCYNr7+Qgg1lJ1vQofmJhMPZrkRTYO0lgkGsmLFVWZZ4rJIU1dm31h5iHm4nVUbw3ItYDICKsI1NgX46AQ==
   dependencies:
     "@web3-onboard/common" "^2.3.3"
     joi "17.9.1"
@@ -8454,13 +8454,13 @@
     "@portis/web3" "^4.0.6"
     "@web3-onboard/common" "^2.3.3"
 
-"@web3-onboard/react@^2.8.14":
-  version "2.8.14"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.14.tgz#565e2c5bf426cc14c2b410b3b232402dc929cdb1"
-  integrity sha512-OOiCB7E7BaON2qPKWxcEj8GKSOs1q4TVYBHfPEaspbhqxSwZJKNHCPo7ipnU5x7DhUrz+xftVG9fxgD/zYsxRQ==
+"@web3-onboard/react@^2.8.15":
+  version "2.8.15"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.8.15.tgz#629bee9ec81527fb03c03c13abd080ce25cdac61"
+  integrity sha512-DPrYe/a3eZ098vZ5d7rXrFGklmBgVxza/Qw2NNo5xlsrlPYpxxIgdgLleIC2DbrH3qcd1TPgJHd3SyHQoUtknA==
   dependencies:
     "@web3-onboard/common" "^2.3.3"
-    "@web3-onboard/core" "^2.21.3"
+    "@web3-onboard/core" "^2.21.4"
     use-sync-external-store "1.0.0"
 
 "@web3-onboard/sequence@^2.0.8":
