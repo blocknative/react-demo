@@ -1,7 +1,7 @@
 name: PR Status Checks
 
 on:
-  # Allows it to be manually triggered, used primarily for debugging 
+  # Allows it to be manually triggered, used primarily for debugging
   workflow_dispatch:
   pull_request:
     branches:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   checks:
-    name: "Checks"
+    name: 'Checks'
     runs-on: ubuntu-latest
 
     steps:
@@ -20,15 +20,14 @@ jobs:
       - name: Setup Nodejs and yarn
         uses: actions/setup-node@v2
         with:
-          node-version: "16"
+          node-version: '18'
           cache: yarn
 
       - name: Install dependencies
         run: yarn
-        
+
       - name: Check that it builds
         run: yarn build
         env:
-          NODE_OPTIONS: "--max_old_space_size=8192"
+          NODE_OPTIONS: '--max_old_space_size=8192'
           CI: false
-
