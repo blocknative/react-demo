@@ -32,6 +32,8 @@ import dcentModule from '@web3-onboard/dcent'
 import transactionPreviewModule from '@web3-onboard/transaction-preview'
 import venlyModule from '@web3-onboard/venly'
 import bloctoModule from '@web3-onboard/blocto'
+import bitgetModule from '@web3-onboard/bitget'
+import metamaskModule from '@web3-onboard/metamask'
 import arcanaAuthModule from '@web3-onboard/arcana-auth'
 import metamaskSDK from '@web3-onboard/metamask'
 import capsuleModule, {
@@ -86,8 +88,9 @@ const injected = injectedModule({
 const coinbase = coinbaseModule()
 
 const walletConnect = walletConnectModule({
+  handleUri: uri => console.log(uri),
   projectId: 'f6bd6e2911b56f5ac3bc8b2d0e2d7ad5',
-  dappUrl: 'https://reactdemo.blocknative.com/'
+  dappUrl: 'https://www.onboard.blocknative.com'
 })
 const portis = portisModule({
   apiKey: 'b2b7586f-2b1e-4c30-a7fb-c2d1533b153b'
@@ -115,6 +118,24 @@ const phantom = phantomModule()
 const trust = trustModule()
 const frontier = frontierModule()
 const cedeStore = cedeStoreModule()
+const dcent = dcentModule()
+const frameWallet = frameModule()
+const sequence = sequenceModule()
+const enkrypt = enkryptModule()
+const mewWallet = mewWalletModule()
+const blocto = bloctoModule()
+const bitget = bitgetModule()
+const metamask = metamaskModule({
+  options: {
+    extensionOnly: false,
+    i18nOptions: {
+      enabled: true
+    },
+    dappMetadata: {
+      name: 'Web3Onboard React Demo'
+    }
+  }
+})
 
 const trezorOptions = {
   email: 'test@test.com',
@@ -138,12 +159,6 @@ const magic = magicModule({
   // userEmail is optional - if user has already logged in and/or session is still active a login modal will not appear
   // for more info see the @web3-onboard/magic docs
 })
-
-const dcent = dcentModule()
-const frameWallet = frameModule()
-const sequence = sequenceModule()
-const enkrypt = enkryptModule()
-const mewWallet = mewWalletModule()
 const transactionPreview = transactionPreviewModule({
   requireTransactionApproval: true
 })
@@ -152,7 +167,6 @@ const venly = venlyModule({
   clientId: 'blocknative',
   environment: 'staging'
 })
-const blocto = bloctoModule()
 
 const arcanaAuth = arcanaAuthModule({
   clientID: 'xar_test_c9c3bc702eb13255c58dab0e74cfa859711c13cb'
@@ -189,6 +203,7 @@ export const initWeb3Onboard = init({
     autoConnectAllPreviousWallet: true
   },
   wallets: [
+    metamask,
     injected,
     ledger,
     trezor,
@@ -198,6 +213,7 @@ export const initWeb3Onboard = init({
     gnosis,
     trust,
     taho,
+    bitget,
     enkrypt,
     infinityWallet,
     mewWallet,
@@ -207,7 +223,7 @@ export const initWeb3Onboard = init({
     fortmatic,
     portis,
     torus,
-    dcent,
+    // dcent,
     sequence,
     uauth,
     web3auth,
@@ -321,9 +337,12 @@ export const initWeb3Onboard = init({
   },
   accountCenter: {
     desktop: {
-      position: 'topRight',
       enabled: true,
-      minimal: false
+      position: 'topRight'
+    },
+    mobile: {
+      enabled: true,
+      position: 'topRight'
     }
   },
   // example customizing copy
