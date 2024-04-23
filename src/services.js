@@ -33,10 +33,16 @@ import transactionPreviewModule from '@web3-onboard/transaction-preview'
 import venlyModule from '@web3-onboard/venly'
 import bloctoModule from '@web3-onboard/blocto'
 import arcanaAuthModule from '@web3-onboard/arcana-auth'
+import metamaskSDK from '@web3-onboard/metamask'
+import capsuleModule, {
+  Environment,
+  OAuthMethod,
+  Theme
+} from '@web3-onboard/capsule'
 
 // Replace with your DApp's Infura ID
-const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
-export const infuraRPC = `https://mainnet.infura.io/v3/${INFURA_ID}`
+const INFURA_ID = '80633e48116943128cbab25e402764ab'
+export const infuraRPC = `https://eth.llamarpc.com`
 
 const dappId = '937627e1-3507-44b8-af10-72728aa5f74b'
 
@@ -152,6 +158,32 @@ const arcanaAuth = arcanaAuthModule({
   clientID: 'xar_test_c9c3bc702eb13255c58dab0e74cfa859711c13cb'
 })
 
+const metamaskSDKWallet = metamaskSDK({
+  options: {
+    extensionOnly: false,
+    i18nOptions: {
+      enabled: true
+    },
+    dappMetadata: {
+      name: 'Demo Web3Onboard'
+    }
+  }
+})
+
+const capsule = capsuleModule({
+  environment: Environment.DEVELOPMENT,
+  apiKey: '992bbd9146d5de8ad0419f141d9a7ca7',
+  modalProps: {
+    oAuthMethods: [OAuthMethod.GOOGLE, OAuthMethod.TWITTER],
+    theme: Theme.dark
+  },
+  constructorOpts: {
+    portalBackgroundColor: '#5e5656',
+    portalPrimaryButtonColor: '#ff6700',
+    portalTextColor: '#ffffff'
+  }
+})
+
 export const initWeb3Onboard = init({
   connect: {
     autoConnectAllPreviousWallet: true
@@ -186,7 +218,9 @@ export const initWeb3Onboard = init({
     cedeStore,
     venly,
     blocto,
-    arcanaAuth
+    arcanaAuth,
+    metamaskSDKWallet,
+    capsule
   ],
   chains: [
     {
@@ -209,10 +243,10 @@ export const initWeb3Onboard = init({
       ]
     },
     {
-      id: '0x5',
+      id: 11155111,
       token: 'ETH',
-      label: 'Goerli',
-      rpcUrl: `https://goerli.infura.io/v3/${INFURA_ID}`
+      label: 'Sepolia',
+      rpcUrl: 'https://rpc.sepolia.org/'
     },
     {
       id: '0x13881',
@@ -334,7 +368,7 @@ export const initWeb3Onboard = init({
           // message: `Your transaction is pending, click <a href="https://goerli.etherscan.io/tx/${transaction.hash}" rel="noopener noreferrer" target="_blank">here</a> for more info.`,
           // or you could use onClick for when someone clicks on the notification itself
           onClick: () =>
-            window.open(`https://goerli.etherscan.io/tx/${transaction.hash}`)
+            window.open(`https://sepolia.etherscan.io/tx/${transaction.hash}`)
         }
       }
     }
