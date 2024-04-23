@@ -38,8 +38,8 @@ const App = () => {
   const [bnGasPrices, setBNGasPrices] = useState('')
   const [rpcInfuraGasPrices, setRPCInfuraGasPrices] = useState('')
   const [toAddress, setToAddress] = useState('')
-  // default test transaction to Goerli
-  const [toChain, setToChain] = useState('0x5')
+  // default test transaction to Sepolia
+  const [toChain, setToChain] = useState(11155111)
   const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
   const [notifyPosition, setNotifyPosition] = useState('topRight')
   const [locale, setLocale] = useState('en')
@@ -84,7 +84,6 @@ const App = () => {
       provider = null
     } else {
       provider = new ethers.providers.Web3Provider(wallet.provider, 'any')
-
     }
   }, [wallet])
 
@@ -573,7 +572,10 @@ const App = () => {
                       value={toChain}
                     >
                       {chains.map(({ id, label }) => {
-                        if (label === 'Goerli' || label === 'Polygon - Mumbai') {
+                        if (
+                          label === 'Sepolia' ||
+                          label === 'Polygon - Mumbai'
+                        ) {
                           return (
                             <option value={id} key={id}>
                               {label}
