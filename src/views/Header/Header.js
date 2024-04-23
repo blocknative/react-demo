@@ -24,7 +24,11 @@ const Header = props => {
             <img
               className="user-avatar"
               // This will change when we switch to Viem
-              src={(ens.avatar && ens.avatar.url) ? ens.avatar.url : avatarPlaceholder}
+              src={
+                ens.avatar && ens.avatar.url
+                  ? ens.avatar.url
+                  : avatarPlaceholder
+              }
               alt="avatar"
             ></img>
             <div
