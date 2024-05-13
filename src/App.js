@@ -97,8 +97,8 @@ const App = () => {
     async function getEtherGasFromRPC() {
       const customHttpProvider = new ethers.providers.JsonRpcProvider(infuraRPC)
       const fee = await customHttpProvider.getFeeData()
-      console.log(fee)
-      // Occasionally gasPrice is returned undefined
+
+      // Occasionally gas values are returned undefined
       if (
         !fee ||
         !fee.gasPrice ||
