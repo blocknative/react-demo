@@ -96,6 +96,7 @@ const App = () => {
   useEffect(() => {
     async function getEtherGasFromRPC() {
       const customHttpProvider = new ethers.providers.JsonRpcProvider(infuraRPC)
+      if (!customHttpProvider) return console.warn('No provider found')
       const fee = await customHttpProvider.getFeeData()
 
       // Occasionally gas values are returned undefined
