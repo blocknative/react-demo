@@ -6,7 +6,7 @@ import './Header.css'
 
 const Header = props => {
   const { connectedChain, address, balance, ens } = props
-  console.log('ens', ens)
+
   return (
     <header className="user-info-container">
       <a
