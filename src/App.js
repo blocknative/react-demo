@@ -95,31 +95,36 @@ const App = () => {
 
   useEffect(() => {
     async function getEtherGasFromRPC() {
-      const customHttpProvider = new ethers.providers.JsonRpcProvider(infuraRPC)
-      if (!customHttpProvider) return console.warn('No provider found')
-      const fee = await customHttpProvider.getFeeData()
+      try{
 
-      // Occasionally gas values are returned undefined
-      if (
-        !fee ||
-        !fee.gasPrice ||
-        !fee.maxPriorityFeePerGas ||
-        !fee.maxFeePerGas
-      )
-        return console.warn(
-          `Missing necessary gas properties in fee response - fee: ${JSON.stringify(
-            fee
-          )}`
+        const customHttpProvider = new ethers.providers.JsonRpcProvider(infuraRPC)
+        if (!customHttpProvider) return console.warn('No provider found')
+        const fee = await customHttpProvider.getFeeData()
+  
+        // Occasionally gas values are returned undefined
+        if (
+          !fee ||
+          !fee.gasPrice ||
+          !fee.maxPriorityFeePerGas ||
+          !fee.maxFeePerGas
         )
-      const cleanFees = {
-        price: ethers.utils.formatUnits(fee.gasPrice, 'gwei'),
-        maxPriorityFeePerGas: ethers.utils.formatUnits(
-          fee.maxPriorityFeePerGas,
-          'gwei'
-        ),
-        maxFeePerGas: ethers.utils.formatUnits(fee.maxFeePerGas, 'gwei')
+          return console.warn(
+            `Missing necessary gas properties in fee response - fee: ${JSON.stringify(
+              fee
+            )}`
+          )
+        const cleanFees = {
+          price: ethers.utils.formatUnits(fee.gasPrice, 'gwei'),
+          maxPriorityFeePerGas: ethers.utils.formatUnits(
+            fee.maxPriorityFeePerGas,
+            'gwei'
+          ),
+          maxFeePerGas: ethers.utils.formatUnits(fee.maxFeePerGas, 'gwei')
+        }
+        setRPCInfuraGasPrices(cleanFees)
+      } catch (err) {
+        console.error(err)
       }
-      setRPCInfuraGasPrices(cleanFees)
     }
     getEtherGasFromRPC()
   }, [bnGasPrices])
