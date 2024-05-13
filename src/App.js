@@ -97,6 +97,19 @@ const App = () => {
     async function getEtherGasFromRPC() {
       const customHttpProvider = new ethers.providers.JsonRpcProvider(infuraRPC)
       const fee = await customHttpProvider.getFeeData()
+      console.log(fee)
+      // Occasionally gasPrice is returned undefined
+      if (
+        !fee ||
+        !fee.gasPrice ||
+        !fee.maxPriorityFeePerGas ||
+        !fee.maxFeePerGas
+      )
+        return console.warn(
+          `Missing necessary gas properties in fee response - fee: ${JSON.stringify(
+            fee
+          )}`
+        )
       const cleanFees = {
         price: ethers.utils.formatUnits(fee.gasPrice, 'gwei'),
         maxPriorityFeePerGas: ethers.utils.formatUnits(

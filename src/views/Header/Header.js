@@ -6,7 +6,7 @@ import './Header.css'
 
 const Header = props => {
   const { connectedChain, address, balance, ens } = props
-
+  console.log('ens', ens)
   return (
     <header className="user-info-container">
       <a
@@ -21,16 +21,22 @@ const Header = props => {
       <div className="user-info">
         {ens?.name ? (
           <span>
-            <img
-              className="user-avatar"
-              // This will change when we switch to Viem
-              src={
-                ens.avatar && ens.avatar.url
-                  ? ens.avatar.url
-                  : avatarPlaceholder
-              }
-              alt="avatar"
-            ></img>
+            {ens && ens.avatar && (
+              <img
+                className="user-avatar"
+                // This will change when we switch to Viem
+                src={ens.avatar}
+                alt="avatar"
+              />
+            )}
+            {!ens && !ens?.avatar && (
+              <img
+                className="user-avatar"
+                // This will change when we switch to Viem
+                src={avatarPlaceholder}
+                alt="avatar"
+              />
+            )}
             <div
               style={{
                 marginLeft: '10px'
