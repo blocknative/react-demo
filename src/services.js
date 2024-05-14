@@ -35,7 +35,6 @@ import bloctoModule from '@web3-onboard/blocto'
 import bitgetModule from '@web3-onboard/bitget'
 import metamaskModule from '@web3-onboard/metamask'
 import arcanaAuthModule from '@web3-onboard/arcana-auth'
-import metamaskSDK from '@web3-onboard/metamask'
 import capsuleModule, {
   Environment,
   OAuthMethod,
@@ -172,18 +171,6 @@ const arcanaAuth = arcanaAuthModule({
   clientID: 'xar_test_c9c3bc702eb13255c58dab0e74cfa859711c13cb'
 })
 
-const metamaskSDKWallet = metamaskSDK({
-  options: {
-    extensionOnly: false,
-    i18nOptions: {
-      enabled: true
-    },
-    dappMetadata: {
-      name: 'Demo Web3Onboard'
-    }
-  }
-})
-
 const capsule = capsuleModule({
   environment: Environment.DEVELOPMENT,
   apiKey: '992bbd9146d5de8ad0419f141d9a7ca7',
@@ -205,9 +192,9 @@ export const initWeb3Onboard = init({
   wallets: [
     metamask,
     injected,
+    walletConnect,
     ledger,
     trezor,
-    walletConnect,
     coinbase,
     phantom,
     gnosis,
@@ -235,8 +222,7 @@ export const initWeb3Onboard = init({
     venly,
     blocto,
     arcanaAuth,
-    metamaskSDKWallet,
-    capsule
+    // capsule
   ],
   chains: [
     {
