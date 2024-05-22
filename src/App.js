@@ -12,7 +12,8 @@ import {
   useNotifications,
   useSetChain,
   useWallets,
-  useSetLocale
+  useSetLocale,
+  useWagmiConfig
 } from '@web3-onboard/react'
 import './App.css'
 import Header from './views/Header/Header.js'
@@ -27,6 +28,7 @@ let provider
 const App = () => {
   const [{ wallet }, connect, disconnect, updateBalances, setWalletModules] =
     useConnectWallet()
+  const wagmiConfig = useWagmiConfig()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
   const [notifications, customNotification, updateNotify] = useNotifications()
   const connectedWallets = useWallets()
@@ -92,6 +94,9 @@ const App = () => {
       setBNGasPrices(estimates[0].blockPrices[0].estimatedPrices)
     })
   }, [])
+  useEffect(() => {
+    console.log('wagmiConfig', wagmiConfig)
+  }, [wagmiConfig])
 
   useEffect(() => {
     async function getEtherGasFromRPC() {
