@@ -18,6 +18,13 @@ import {
 import './App.css'
 import Header from './views/Header/Header.js'
 import Footer from './views/Footer/Footer.js'
+import {
+  getConnectors,
+  disconnect as wagmiDisconnect,
+  switchChain,
+  sendTransaction as wagmiSendTransaction
+} from '@web3-onboard/wagmi'
+import { parseEther, isHex, fromHex } from 'viem'
 
 if (window.innerWidth < 700) {
   new VConsole()
@@ -173,23 +180,25 @@ const App = () => {
       return
     }
 
-    const signer = provider.getUncheckedSigner()
+    // const signer = provider.getUncheckedSigner()
 
     // To set gas using the Web3-Onboard Gas package(support Eth Mainnet and Polygon)
     // define desired confidence for transaction inclusion in block and set in transaction
     // const bnGasForTransaction = bnGasPrices.find(gas => gas.confidence === 90)
 
-    const rc = await signer.sendTransaction({
-      to: toAddress,
-      value: 1000000000000000
+    // const rc = await signer.sendTransaction({
+    //   to: toAddress,
+    //   value: 1000000000000000
 
-      // This will set the transaction gas based on desired confidence
-      // maxPriorityFeePerGas: gweiToWeiHex(
-      //   bnGasForTransaction.maxPriorityFeePerGas
-      // ),
-      // maxFeePerGas: gweiToWeiHex(bnGasForTransaction.maxFeePerGas)
-    })
-    console.log(rc)
+    //   // This will set the transaction gas based on desired confidence
+    //   // maxPriorityFeePerGas: gweiToWeiHex(
+    //   //   bnGasForTransaction.maxPriorityFeePerGas
+    //   // ),
+    //   // maxFeePerGas: gweiToWeiHex(bnGasForTransaction.maxFeePerGas)
+    // })
+    // console.log(rc)
+
+    sendTransactionWagmi()
   }
 
   const sendTransaction = async () => {
@@ -226,6 +235,30 @@ const App = () => {
         txDetails: txDetails
       })
     console.log(transactionHash)
+  }
+
+  // WAGMI functions
+  async function switchChainWagmi(chainId) {
+    let chainAsNumber
+    if (isHex(chainId)) {
+      chainAsNumber = fromHex(chainId, 'number')
+    } else if (!isHex(chainId) && typeof chainId === 'number') {
+      chainAsNumber = chainId
+    } else {
+      throw new Error('Invalid chainId')
+    }
+    await switchChain(wagmiConfig, { chainId: chainAsNumber })
+  }
+
+  const sendTransactionWagmi = async () => {
+    // current primary wallet - as multiple wallets can connect this value is the currently active
+    const result = await wagmiSendTransaction(wagmiConfig, {
+      to: toAddress,
+      // desired connector to send txn from
+      account: wallet.accounts[0],
+      value: parseEther('0.001')
+    })
+    console.log(result)
   }
 
   const renderNotifySettings = () => {
@@ -451,7 +484,8 @@ const App = () => {
                     <select
                       className="chain-select"
                       onChange={({ target: { value } }) =>
-                        setChain({ chainId: value })
+                        // setChain({ chainId: value })
+                      switchChainWagmi(value)
                       }
                       value={connectedChain?.id}
                     >
@@ -496,9 +530,13 @@ const App = () => {
                     <button
                       className="bn-demo-button"
                       onClick={async () => {
-                        const walletsConnected = await disconnect(wallet)
-                        console.log('connected wallets: ', walletsConnected)
-                        window.localStorage.removeItem('connectedWallets')
+                        // const walletsConnected = await disconnect(wallet)
+                        const disconnectThisWallet = getConnectors(
+                          wagmiConfig
+                        ).find(connector => connector.name === wallet.label)
+                        wagmiDisconnect(wagmiConfig, {
+                          connector: disconnectThisWallet
+                        })
                       }}
                     >
                       Reset Wallet State
@@ -645,7 +683,7 @@ const App = () => {
                     onClick={async () => {
                       const ready = await readyToTransact()
                       if (!ready) return
-                      sendTransaction()
+                      sendTransactionWagmi()
                     }}
                   >
                     Send
