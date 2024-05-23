@@ -7465,69 +7465,69 @@
     "@walletconnect/window-getters" "^1.0.1"
     tslib "1.14.1"
 
-"@web3-onboard/arcana-auth@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/arcana-auth/-/arcana-auth-2.1.0-wagmi.1.tgz#e14d6263cce15b2fe786e3db5e06caf3ce458a1d"
-  integrity sha512-2Kl+k8u2bXD8S1NrW2+xVjt0Bits0Zzkojf4kk5xIyI8BkSJWwmiU+IuwsqLEfdfPkMKOjrxXkE8Tjj4T7hxEw==
+"@web3-onboard/arcana-auth@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/arcana-auth/-/arcana-auth-2.1.0-wagmi.2.tgz#e95dcffffb81ba589466eb22ab05efc8ff7b3274"
+  integrity sha512-EZt6R3j2uX/be45FuFK+2SyLM/PNfN8qfXduby64qBd1uipkLuAg4x0+zb/U7SIZQ44S0yggHeS4JDzGp0Zp3w==
   dependencies:
     "@arcana/auth" "^1.0.10"
-    "@web3-onboard/common" "2.4.0-wagmi.1"
+    "@web3-onboard/common" "2.4.0-wagmi.2"
 
-"@web3-onboard/bitget@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/bitget/-/bitget-2.1.0-wagmi.1.tgz#a40952904cae4ff3a31f1396f834aa70d8ab6fa6"
-  integrity sha512-87C3IYHbn2jmItf6aR4hh8uI4lWSF1luCUncuQNftBZlWzHby+3LhB3thOONubP7tmvzkVXJl0e8oyo+imSmrQ==
+"@web3-onboard/bitget@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/bitget/-/bitget-2.1.0-wagmi.2.tgz#e6243cc519935a4d6f91849e86fb1e9e3f66f897"
+  integrity sha512-ro256/jBni/632DTUiMEpL+yEkm/sRHRUb57q2u8bwJDZYa1TX8UfR0z9+I72Nna75okYMdqXNeamNZUPRI9xA==
   dependencies:
     "@bitget-wallet/web3-sdk" "^0.0.8"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/blocto@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/blocto/-/blocto-2.1.0-wagmi.1.tgz#a7d4304a8544c53d0c43ea84afcd072dab0264b4"
-  integrity sha512-/JPY0lWNgndQZ7jCFtAKzUN5gMhVEC0nNayhwP2z5qNMbarwsquHVjd3hJDTtwZvjiikiqm09Qec5jeJ5CU7LQ==
+"@web3-onboard/blocto@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/blocto/-/blocto-2.1.0-wagmi.2.tgz#c3c0b390f058a33b43181f990f34bb4e20a03971"
+  integrity sha512-adwDbUs8NacfH7gm/o4e/znxhlFfgSQmAQbSQnQu3zb0db1XzqLm1Rpy+N/tbzUyOh+6z6W1l9h/us3FWhb/4A==
   dependencies:
     "@blocto/sdk" "^0.9.1"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/capsule@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/capsule/-/capsule-2.1.0-wagmi.1.tgz#37b566b98989bc2b727778e49a9e4ab82a2241b7"
-  integrity sha512-g3dHKA3HrdjAZoiMyoEp6lJeREio7iBqHjmxenuTUhVfqf009u1DH7Jvh+8Iz6VXSWyIPleDebX0TDxKU0cKtg==
+"@web3-onboard/capsule@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/capsule/-/capsule-2.1.0-wagmi.2.tgz#e5d086524240c183d2b156bd7af349fa21fdc096"
+  integrity sha512-oipKVpeTI3SDkkcAZrnQmQJIiCV/dypN2HEWzxaOFIZMNK+HOScvjkaIeaTSl8adsYIgtoadiGjVLyJCCtAboQ==
   dependencies:
     "@tanstack/react-query" "^5.29.0"
     "@usecapsule/react-sdk" "^2.3.1"
     "@usecapsule/wagmi-v2-integration" "^1.7.1"
     "@wagmi/chains" "^1.8.0"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     react-dom "^18.2.0"
     viem "2.9.15"
     wagmi "2.5.19"
 
-"@web3-onboard/cede-store@^2.3.0-wagmi.1":
-  version "2.3.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/cede-store/-/cede-store-2.3.0-wagmi.1.tgz#00b46c9899c9fced97aaee8211b6d2b946fbb5e0"
-  integrity sha512-8dydOAs1wGMhSqp+jImMKtEGKVvcIHWnLitmYvaIcOoK7TPkDvgYY9E2zFdJOioaKS3vp5Z43KIYvw4Pbi4GUA==
+"@web3-onboard/cede-store@^2.3.0-wagmi.2":
+  version "2.3.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/cede-store/-/cede-store-2.3.0-wagmi.2.tgz#884888bdb2854ab636d4bfa048cfff1058d1635e"
+  integrity sha512-TTXHCcuyj2x0CclJB34YV4kqdjGD1hDzimGing5xRXNUDkllihwCSeceoI/rIU5Z/zIvNg89Vu8M1OdlB+iEgQ==
   dependencies:
     "@cedelabs/providers" "^1.5.0"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/coinbase@^2.3.0-wagmi.1":
-  version "2.3.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/coinbase/-/coinbase-2.3.0-wagmi.1.tgz#9fa3b3bcd2da8077118d0daa2de6f8f6cefa2322"
-  integrity sha512-pDXo5OHZSZU9fulIhoYkvZdj00l7ki4luPgpcry+W+MpN7DJDCtGlwMJUineIjP4LOm2y5JwqbClnQEKZHoc8A==
+"@web3-onboard/coinbase@^2.3.0-wagmi.2":
+  version "2.3.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/coinbase/-/coinbase-2.3.0-wagmi.2.tgz#022225ae36a2fdc3b7e4cff856ca0b852771cdbd"
+  integrity sha512-6++6a5tLaGKDzFfpwTczuN4949U9TM00Cl2R5pLZXXkB6yLu1fkkEsfcoLTdmbD0m0F+kmmD0L1+Py5WGyzy8w==
   dependencies:
     "@coinbase/wallet-sdk" "3.9.2"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/common@2.4.0-wagmi.1", "@web3-onboard/common@^2.4.0-wagmi.1":
-  version "2.4.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/common/-/common-2.4.0-wagmi.1.tgz#0b5e37f38f44a887a08ae613e0a32dc730aafee5"
-  integrity sha512-hrFqkCrlUl6z9wXV9MumwO/ccKzJJc/LWL86V3Y87s8+UvLTgjO9Jpj55iD5l752qVx4ZZWROZG7TdseGCYwcw==
+"@web3-onboard/common@2.4.0-wagmi.2", "@web3-onboard/common@^2.4.0-wagmi.2":
+  version "2.4.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/common/-/common-2.4.0-wagmi.2.tgz#c4111840bc7025d4fed3c5122d8359d53a1512ce"
+  integrity sha512-ORgs6P9ylX2930csi7ShcqW6lbIZ09uaAeCboJfOAEF9/ASlGDaY9VkOZ1EJk7Bu2zr86BsfuHTStID0pJQfRA==
   dependencies:
     joi "17.9.1"
-    viem "2.10.5"
+    viem "2.12.0"
 
-"@web3-onboard/common@^2.3.3", "@web3-onboard/common@^2.3.4", "@web3-onboard/common@^2.3.4-alpha.1":
+"@web3-onboard/common@^2.3.4", "@web3-onboard/common@^2.3.4-alpha.1":
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/@web3-onboard/common/-/common-2.3.4.tgz#1ce41e090c19e8ac802c45737de3dda3dabea751"
   integrity sha512-LQM7ZA1LoJ4GirsVEWHkv9KNJcrIT+AplR957BP5O8tll+p/A1GCju89C7jAMnb3+9LShUCwHcbE4o8l8gVb9A==
@@ -7536,12 +7536,20 @@
     ethers "5.5.4"
     joi "17.9.1"
 
-"@web3-onboard/core@^2.22.0-wagmi.2":
-  version "2.22.0-wagmi.2"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.22.0-wagmi.2.tgz#0316dea9a23580048d8e61776a0afec9f37ca108"
-  integrity sha512-uzROuMIocJhYL1pucLiKl1K/++aKpc+vfKFMQSVoYenl6jN6GjBiMIbg/Qv9dN7OhiRERDo/S4e9Z7AptqhiDg==
+"@web3-onboard/common@^2.4.0-wagmi.1":
+  version "2.4.0-wagmi.1"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/common/-/common-2.4.0-wagmi.1.tgz#0b5e37f38f44a887a08ae613e0a32dc730aafee5"
+  integrity sha512-hrFqkCrlUl6z9wXV9MumwO/ccKzJJc/LWL86V3Y87s8+UvLTgjO9Jpj55iD5l752qVx4ZZWROZG7TdseGCYwcw==
   dependencies:
-    "@web3-onboard/common" "2.4.0-wagmi.1"
+    joi "17.9.1"
+    viem "2.10.5"
+
+"@web3-onboard/core@^2.22.0-wagmi.4":
+  version "2.22.0-wagmi.4"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/core/-/core-2.22.0-wagmi.4.tgz#3ea46b4da8ca83bb1d5058f1ad329bd288c69807"
+  integrity sha512-JR/qkFiPT5mXMrpCIYl89f5EzWQxxMw4OZG6n26AjjhgcbF5EcOzs42/dcXmWhtEk/VGoilA2FD/wYgaQhk6dA==
+  dependencies:
+    "@web3-onboard/common" "2.4.0-wagmi.2"
     bnc-sdk "^4.6.7"
     bowser "^2.11.0"
     eventemitter3 "^4.0.7"
@@ -7552,7 +7560,7 @@
     rxjs "^7.5.5"
     svelte "^3.49.0"
     svelte-i18n "^3.3.13"
-    viem "2.10.5"
+    viem "2.12.0"
 
 "@web3-onboard/dcent@^2.2.8-alpha.1":
   version "2.2.8-alpha.1"
@@ -7565,51 +7573,51 @@
     "@web3-onboard/hw-common" "^2.3.1"
     eth-dcent-keyring "^0.2.2"
 
-"@web3-onboard/enkrypt@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/enkrypt/-/enkrypt-2.1.0-wagmi.1.tgz#55534ff361b7dc1de2065510daa49fb293f3943a"
-  integrity sha512-0RNPvs9tRDoZthL1BpQ839TrnfjVULTcphdeMPRHgDNhoTQs0rIuG/QVc4PxwiS10qk2iAAwhEgj7VMdVG4T8A==
+"@web3-onboard/enkrypt@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/enkrypt/-/enkrypt-2.1.0-wagmi.2.tgz#1e01a8cc02f3b4a3f1d60fa87134da8725763ad4"
+  integrity sha512-hLNeXl69abYjT6D7IJxMVTHJ6TadC8+BuDX6HiYt+c7XkOHfV12sIL+MWpa9VW6ODyNfpxzje0gHHMvlRCZjCw==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/fortmatic@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/fortmatic/-/fortmatic-2.1.0-wagmi.1.tgz#8adda4771b45f778d0e7e9a439088006afcb575e"
-  integrity sha512-8DMMnZgpz45CmboLWCvPAPPHvu2Y1SR57hIrfaeZAXbsFXfrKjh8kcBvedZJXcDqPemkUyGzKzVFFSj/cQ3jwg==
+"@web3-onboard/fortmatic@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/fortmatic/-/fortmatic-2.1.0-wagmi.2.tgz#9557863671f0999cadf7ec466ff1c596100e679e"
+  integrity sha512-uxqLzBZBzy8HY4Pfe3CeSpwHI4X2e+Cog1U6THHjPAH5BKwpqcycXULvYuHL95gkUzuaAJTozd3nG4TEI7vbLw==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     fortmatic "^2.2.1"
 
-"@web3-onboard/frame@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/frame/-/frame-2.1.0-wagmi.1.tgz#c30b28decca6b8c1dd91071201a27baad32d3a73"
-  integrity sha512-xnNdkfmJw/pJbggbiJJsLhOjOnJuat2+39YGYOTdDdXmbRzoPeUqHsxSy0lnGVzQIbjWHwxZIZ578yjheQy7rg==
+"@web3-onboard/frame@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/frame/-/frame-2.1.0-wagmi.2.tgz#a5aac16e1ff2e7d9d490a8c76bee71e51dee27a8"
+  integrity sha512-uckuVzrxgBtm4Hv+0TBTNFapUd6mmziwjVDMswbu88u5eon6Vdo+BsqqqCWlWemjqQQUP85JazwMxHDG0AZ8RA==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     eth-provider "^0.13.6"
 
-"@web3-onboard/frontier@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/frontier/-/frontier-2.1.0-wagmi.1.tgz#38a55ff45be230f4a1b447c9a203e7bd494ca6d2"
-  integrity sha512-seAQjSbiOpo+etQvupwsYHA2i5yK9Jku/eADAKIizigvROhQELjzjq/88IMidBzYxrZFEaVjm/AdKMnXuuxg/A==
+"@web3-onboard/frontier@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/frontier/-/frontier-2.1.0-wagmi.2.tgz#f2645a9bfb32be6d00f09067a7854baec00587a1"
+  integrity sha512-/tfWkIBCPVNBU382V1X88mtrC78iuaPnrJ86VLzriLD6ESJvQRfOsU3nkkLKur99trorbvjmSv2c7nsrK/Tacg==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/gas@^2.2.0-wagmi.1":
-  version "2.2.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/gas/-/gas-2.2.0-wagmi.1.tgz#ffe71138362d1043f1ff13434c2696890f4a800d"
-  integrity sha512-kGWJQUYJvhUcDaX2/YVr8973yavAcp7+AhJPUL1N4MpTsA5ONR4lg05WBDA+MznhRlepngw87MKVGlARrD7LiA==
+"@web3-onboard/gas@^2.2.0-wagmi.2":
+  version "2.2.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/gas/-/gas-2.2.0-wagmi.2.tgz#763d991c9fcf1358879e3bf132502f386b37a05e"
+  integrity sha512-rRPT7y6wt7QeYBvpAHYKYiitttupZSaWIjadJvkavmjoQ695sylFasyKk+pfocUPRrnZ/kh+c9VYdQSEizTjSQ==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     joi "17.9.1"
     rxjs "^7.5.2"
 
-"@web3-onboard/gnosis@^2.3.0-wagmi.1":
-  version "2.3.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/gnosis/-/gnosis-2.3.0-wagmi.1.tgz#b45e4d09859b2598752843b9365f790fbf178f9b"
-  integrity sha512-nraaFJG4guIcmTgv+3RRKZ58K1MDnDW6v3ABSmwcFpdduQ95QpL84/l5t0OjGSrJBwJPp+ES2ybV9Cjcqlwg2A==
+"@web3-onboard/gnosis@^2.3.0-wagmi.2":
+  version "2.3.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/gnosis/-/gnosis-2.3.0-wagmi.2.tgz#9b5e37e871361e65b4ebd520b64abf7f5245ae51"
+  integrity sha512-5CbZ7tlUdbCn4r2ZF/u3GsUKhGTFfgzhqf1ARskjzhFuD7BWuSB3QBqRB9VGjsIyyWkkRXiM8+RhwI7Omt4+Eg==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
 "@web3-onboard/hw-common@^2.3.1", "@web3-onboard/hw-common@^2.3.1-alpha.1":
   version "2.3.1"
@@ -7622,19 +7630,19 @@
     joi "17.9.1"
     rxjs "^7.5.2"
 
-"@web3-onboard/infinity-wallet@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/infinity-wallet/-/infinity-wallet-2.1.0-wagmi.1.tgz#a292850a534ee3ad93f9188d049708d7908b18b8"
-  integrity sha512-inHk89/5FnwPMOk/1YLU65uHJBHUrK7zPlf4bv8VR3l3Gk1BEu4pdcPZuTVe8cG8bsC0wuebyrNiotKlV8cVuQ==
+"@web3-onboard/infinity-wallet@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/infinity-wallet/-/infinity-wallet-2.1.0-wagmi.2.tgz#b61e3fbc87d7e8295f6cdfd277b181d155123b0c"
+  integrity sha512-Pq5PBOn2RL5N7oXGTZS6/s26FSeclwGUR7aEJ6zPI3ISP7AH50D1wiapLiXX4FcVjeQ13nCD2bQ/puC5A0HDww==
   dependencies:
     "@infinitywallet/infinity-connector" "^1.0.6"
 
-"@web3-onboard/injected-wallets@^2.11.0-wagmi.1":
-  version "2.11.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.11.0-wagmi.1.tgz#009bc820fbeb1d0262d71027d1975b73019bb74e"
-  integrity sha512-7VoqWhX5x1QZBYR+7WwAy6hsiwaCS8r8XAym8QDqfWQrLvQhc5CD76vN3/RXjyFgoTz+Xh+kpBePwI/6DyYtQA==
+"@web3-onboard/injected-wallets@^2.11.0-wagmi.2":
+  version "2.11.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/injected-wallets/-/injected-wallets-2.11.0-wagmi.2.tgz#377a7e5a5f9cec77eb893c258128eeebb04e4482"
+  integrity sha512-zuaK/BcayMg9fSe1wae9q8dDLTctyMSj5O03VMnr014EMpWmAXJg5BcdVfo62bHCUexaEfUjUdNKw+81hFoAcQ==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     joi "17.9.1"
     lodash.uniqby "^4.7.0"
 
@@ -7661,99 +7669,99 @@
     "@web3-onboard/common" "^2.3.4-alpha.1"
     "@web3-onboard/hw-common" "^2.3.1-alpha.1"
 
-"@web3-onboard/ledger@^2.7.0-wagmi.1":
-  version "2.7.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/ledger/-/ledger-2.7.0-wagmi.1.tgz#edd4069a4a42878912b74164d9487ba7af081e02"
-  integrity sha512-nGxN8rASukOGsT2UY8NNx4ArjpUohqoJQCiLVq2WgnISB5I1mctZMIgUTMxQfrMinp5/Gnf9YbQqP5sGzH1Qbg==
+"@web3-onboard/ledger@^2.7.0-wagmi.2":
+  version "2.7.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/ledger/-/ledger-2.7.0-wagmi.2.tgz#ed6ee7e6b31870a1feffd9fffb8d2022680cba33"
+  integrity sha512-mdO4Uds6fGUFeLQqxRIHboMBoy+4CpE0aCyRxJZ67K4Xax71xmZM8le5W6UCGtPLmy8xp69rdeH8FPSBK0x4mA==
   dependencies:
     "@ledgerhq/connect-kit" "1.1.12"
     "@walletconnect/client" "^1.8.0"
     "@walletconnect/ethereum-provider" "2.9.1"
     "@walletconnect/modal" "2.6.1"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     rxjs "^7.5.2"
 
-"@web3-onboard/magic@^2.2.0-wagmi.1":
-  version "2.2.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/magic/-/magic-2.2.0-wagmi.1.tgz#3197628f7b5a5a1fada80eb90f572db835ee2881"
-  integrity sha512-TKOb5RW+vToW+gWAi/YqLYVMYNVWv7w+aKITB1BeuYXxbcXbSj2gHYHRz1xtl86ZQDuFQfOYirhdqCiLZqqjLQ==
+"@web3-onboard/magic@^2.2.0-wagmi.2":
+  version "2.2.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/magic/-/magic-2.2.0-wagmi.2.tgz#38fd97e0f2a1a9e389787f644885b5894e8c89d6"
+  integrity sha512-ZmJ42IfiRQjRnkOIBJwXobHkh6tbFC0YvjZ6CBoy/zC8ktSxrQV9/KPlTF+HNv89Axsm657gTtfxl+0CCt7chA==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     joi "17.9.1"
     magic-sdk "^8.1.0"
     rxjs "^7.5.2"
 
-"@web3-onboard/metamask@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/metamask/-/metamask-2.1.0-wagmi.1.tgz#4aa97b22e9e26c0bf9aadde6008983fabafa9c32"
-  integrity sha512-fJBzpEsYvg4nEGfqocvZDkteJxjq5yz4cCodApELXaiXGXjHY+aFvViLo5rlz2U8fOu3bg0JeE+fVNZBDtqG/w==
+"@web3-onboard/metamask@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/metamask/-/metamask-2.1.0-wagmi.2.tgz#1be2d548b5048f42f2496e932a683bfe17b6424f"
+  integrity sha512-5Fmcf5DumM40wu3jN9al2E9PjKm60wxLjGIpg2gHZq2popQAMT2s20vdFb/DS/HR3rvZvQFOAsrHkcYp8KQw9Q==
   dependencies:
     "@metamask/sdk" "^0.20.3"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/mew-wallet@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/mew-wallet/-/mew-wallet-2.1.0-wagmi.1.tgz#5489c158d4622922791b9baf54334d0c0c8767a0"
-  integrity sha512-OMdC9C8OzjjnEHC+bcIGP7WcD9DEQfQ0SMXTc14kf3G9aPrcYaEF8XyvcTdVb5udHGEKZ4fh9aXzyf0YWi8jBQ==
+"@web3-onboard/mew-wallet@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/mew-wallet/-/mew-wallet-2.1.0-wagmi.2.tgz#04ea16dc214a13f3873313616d6d0f85d8be346e"
+  integrity sha512-EyFp5SvZYB7Vf8w3PgfOj8aFo2RXH8Ek/RbQZqbba4+TvejP7JYXj+fXiq3nQCsuOfgtbtDtJb8z3olRLGzngg==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     lodash.uniqby "^4.7.0"
 
-"@web3-onboard/phantom@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/phantom/-/phantom-2.1.0-wagmi.1.tgz#bcfb6115ac46b64a92227545c774cf5768b5cba8"
-  integrity sha512-PK1K2a9NdrhLXtxCto08lX4u2AT8U7J6osi11/TPKy/gFwsfa+Bej3teEhg4gZN7BAfJA2szeN7V1W+1NTm2Og==
+"@web3-onboard/phantom@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/phantom/-/phantom-2.1.0-wagmi.2.tgz#d5c146dc70a149d6ab67b1fd127a716581e9c1f9"
+  integrity sha512-vaIwfPtia0H+M7JS61bzgNG2F5P41BQilzgnVEEyfLd1hh8KI9Ci04gVBM9sdYg6H50KIUQ3N4EvgkKBZsVa2g==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/portis@^2.2.0-wagmi.1":
-  version "2.2.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/portis/-/portis-2.2.0-wagmi.1.tgz#3625775ed1ecd9478423c0caccf369dcbe0c934f"
-  integrity sha512-w7Zne0JKpgDsBNdhxGxA0qDIlxGxLv9QPLWDSKlGYRyUmq5zHDRt2b7zXocGHkZnhPG6ng/aIBRHDjpKHz5i7w==
+"@web3-onboard/portis@^2.2.0-wagmi.2":
+  version "2.2.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/portis/-/portis-2.2.0-wagmi.2.tgz#3d05328f364682e5a87a9b25bdfc0afd57ed95fe"
+  integrity sha512-jzH1po1Cse9ZjgB2Bbri81gHSaX4MpUF7iMH236wH3Z4aHH7RxjmzPt4m/8IU3CK9fG1iE7NEcg7yUnQ+W4Sqg==
   dependencies:
     "@portis/web3" "^4.0.6"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/react@^2.9.0-wagmi.2":
-  version "2.9.0-wagmi.2"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.9.0-wagmi.2.tgz#203938c55c89221c5de404e1c2de4f849eade763"
-  integrity sha512-hTMLR6ikE3jAaMnvQhgKbDw1OH/vPqCGknaiRxcjHrXD/ujx7zjiWHecK1rBcYOiVYOM6Q/Xl5taeB1V5yFq1w==
+"@web3-onboard/react@^2.9.0-wagmi.4":
+  version "2.9.0-wagmi.4"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/react/-/react-2.9.0-wagmi.4.tgz#2bceca2421bb13c419de5c337faaf5bac542d653"
+  integrity sha512-wvDo+Fk6sX4GGkq9Etowu6jq4Ob80xvi4799Gjnb8qE7dRVVxG622tI8g7TNoeEFKv8R3jpRRj+hGFmYBrBAyQ==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
-    "@web3-onboard/core" "^2.22.0-wagmi.2"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
+    "@web3-onboard/core" "^2.22.0-wagmi.4"
     use-sync-external-store "1.0.0"
 
-"@web3-onboard/sequence@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/sequence/-/sequence-2.1.0-wagmi.1.tgz#f69f15867e16a82b8a9107845b25fa70c50b54e4"
-  integrity sha512-BiQbzrffCAP4mDwHJgqAqZeXP0OIg5t5CfpKZnqCO3nUa8dQixzFtOyVhO7SGcijbRrGL4lTkSDe1XXh1i2New==
+"@web3-onboard/sequence@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/sequence/-/sequence-2.1.0-wagmi.2.tgz#1db7970c735256a564ee823dbae1d3c8613b89ed"
+  integrity sha512-mlMCTRutRJSKpCjPnGDtgJcoa2OjZYRtB+DiE20W5xTkZS38dvk6HUXGTHfQ4VsMCYQma+0YS1IJYvzlA6H37g==
   dependencies:
     "0xsequence" "^0.43.1"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/taho@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/taho/-/taho-2.1.0-wagmi.1.tgz#b13be1f637e6b105206dd96d2ce06a60e0ba6a01"
-  integrity sha512-9iOhPXSTeVaAjSrpaDLy0S68Gw9Osz4VSyN7SijjNf3cv85qi0eD14Cjd7ddJpwCwfbewtEe/9OKIr5IlSB5yQ==
+"@web3-onboard/taho@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/taho/-/taho-2.1.0-wagmi.2.tgz#74ae23e4c881f059e0a9ab641f081a5248d3f7a8"
+  integrity sha512-xucRP3QexkCeq448BMBQz3bJUAvPbh3Y+Okru0wxCtIgXsC2Tpqn7XMO3hOcb+JkhqZsjLZ6yB9OBH096t6zyA==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     tallyho-detect-provider "^1.0.0"
     tallyho-onboarding "^1.0.2"
 
-"@web3-onboard/torus@^2.3.0-wagmi.1":
-  version "2.3.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/torus/-/torus-2.3.0-wagmi.1.tgz#c0ab840420fb9753cbe4a5dc28bdcba1ace1b64c"
-  integrity sha512-i3MCxzcKgA+rAdyVKUCn764qtE3NY8LaxD+qJsog22g1StEtjQdpJ/1PSnJyu/+sQc5S6rKXslOJS2gP880HLA==
+"@web3-onboard/torus@^2.3.0-wagmi.2":
+  version "2.3.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/torus/-/torus-2.3.0-wagmi.2.tgz#c9121550114243b1e7e1f2a7dbee93d6a2547cc2"
+  integrity sha512-VBMX0iTpWCBT7VhX+O7cbEJdW+EklCgeXApK8rjHVsOm2no5mjgmBZZVwAe7AngUv9GOMEpnwAZI/giQVPnvkA==
   dependencies:
     "@toruslabs/torus-embed" "2.2.9"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/transaction-preview@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/transaction-preview/-/transaction-preview-2.1.0-wagmi.1.tgz#01e605c9096deeeac350397e4a68ece3ef0de569"
-  integrity sha512-amEgSq2LNri7/HVuNg0x1M43CsGI+5EkbU9iSsKNNgVZVVm0J+6/s2LJ79HRFCKqq2BMGk9WaHskwCxwguBzhA==
+"@web3-onboard/transaction-preview@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/transaction-preview/-/transaction-preview-2.1.0-wagmi.2.tgz#f17d39e1bea1b14a5f00123f39ebb3a89a2b3203"
+  integrity sha512-HJap/T1T4kTaRnXvm+coDhY9eMdIp0GXbmeA84v7BSX6hTUgi7RSrhe7okdL6wvF66VUYdAlRhYKo9ePw68nIQ==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     bnc-sdk "^4.6.7"
     bowser "^2.11.0"
     joi "17.9.1"
@@ -7776,34 +7784,34 @@
     ethereumjs-util "^7.1.3"
     hdkey "^2.0.1"
 
-"@web3-onboard/trust@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/trust/-/trust-2.1.0-wagmi.1.tgz#61dc57ad46b75483ad232b6089cd78eb3cf04e38"
-  integrity sha512-wEqGKMFfwd0L3aG6JWCyDocKTDlzbb9pkAOEakgoHcKEqkGuNOTEiCfro9DZF0qHyVyo+vJzpqD8Yhnv2A9rfw==
+"@web3-onboard/trust@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/trust/-/trust-2.1.0-wagmi.2.tgz#b4f8421aeda7e2bad14bce16290f3e3119979a86"
+  integrity sha512-l/zWaFGYgTxoxO8oLgMPgPjOzomEkUP5OtJvZDrxXmQYPyX1XCTnBZPl1x9dCCopb7rvuZDZlIf4rNn+veWwmg==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/uauth@^2.2.0-wagmi.1":
-  version "2.2.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/uauth/-/uauth-2.2.0-wagmi.1.tgz#c6c129e48ce0dfc3d5d267671ebddbc286cad483"
-  integrity sha512-rmAq1C2dUM8A7o/iDo/eCrSKyapcvmyUWZIfpe6fXJoZ2THHpIk1ev25BP1D430xLYukqZXOmmrDeUQLcoOtQw==
+"@web3-onboard/uauth@^2.2.0-wagmi.2":
+  version "2.2.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/uauth/-/uauth-2.2.0-wagmi.2.tgz#cd808966582f9ed2d48429d0060512cb53177b64"
+  integrity sha512-liWOgAfLAAoVi3QzQA+82UdSvxJTSBNqZTsNNzDMEDWA4D3sHdSyvdN31BZMvmo4JNsi9G2ErdlDSGZVHAsauw==
   dependencies:
     "@uauth/js" "^2.4.0"
     "@walletconnect/client" "^1.8.0"
     "@walletconnect/ethereum-provider" "2.9.1"
     "@walletconnect/modal" "2.6.1"
     "@walletconnect/qrcode-modal" "^1.8.0"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     joi "17.9.1"
     rxjs "^7.5.2"
 
-"@web3-onboard/venly@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/venly/-/venly-2.1.0-wagmi.1.tgz#f66f7818cf3ffd5687e11318ba36ebb8cc273d7e"
-  integrity sha512-e1QGwcQaN/ulhrTSNTBzNU5CNo4Tbv6gnYTtfs71LS4cHd+bbLfwfBEePZ4ST3V0lWCimF6IY8lJ61J8ZOV5dg==
+"@web3-onboard/venly@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/venly/-/venly-2.1.0-wagmi.2.tgz#54c261766b5ada5275e52c59b83848eb6211da91"
+  integrity sha512-zhS8k3cd2FHd3WIYbKprAyicg3cb+fnTA/DMwbuV2qEZPVF/SxyQhmEWOoo4KsZaMgbSBTqKCtdaA7Ufb49flg==
   dependencies:
     "@venly/web3-provider" "^3.5.3"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
 "@web3-onboard/wagmi@^2.0.0-wagmi.2":
   version "2.0.0-wagmi.2"
@@ -7816,40 +7824,40 @@
     joi "17.9.1"
     viem "2.10.5"
 
-"@web3-onboard/walletconnect@^2.5.6-alpha.1":
-  version "2.5.6-alpha.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/walletconnect/-/walletconnect-2.5.6-alpha.1.tgz#d0920e22c5944fdec8fd3342702caf65e3105230"
-  integrity sha512-fyv0ogwqfEn6jzUtu7FpBHqq90v43H6h0goTVC4qWR2TmRvRecP1RLkXca7Vp9fe7bNYQ3o1jaw2Ic0tYNlRnA==
+"@web3-onboard/walletconnect@^2.6.0-wagmi.2":
+  version "2.6.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/walletconnect/-/walletconnect-2.6.0-wagmi.2.tgz#15603d44ca838cdf6850774aac1d4c5b710bc614"
+  integrity sha512-9rC9ZQOdVX0AgKh+feHDdEKKJR7Mzm6fZIP9QcJ6m0Ju6P7E99yKUDHAVpNpWOuxyG03yruFWaN/6KY3VnU0tw==
   dependencies:
     "@walletconnect/ethereum-provider" "^2.13.0"
-    "@web3-onboard/common" "^2.3.3"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     joi "17.9.1"
     rxjs "^7.5.2"
 
-"@web3-onboard/web3auth@^2.3.0-wagmi.1":
-  version "2.3.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/web3auth/-/web3auth-2.3.0-wagmi.1.tgz#5a729e41d358de87b3a3c927c520c288ccbd84cb"
-  integrity sha512-bXb36MMJViqJWlCiwrhGjYuG1ohNprTUYcQbCZ0Iv+1UrgHoYcKqO47o4PtCWCHtMMsDYmxfYR3pobXb7wGXtg==
+"@web3-onboard/web3auth@^2.3.0-wagmi.2":
+  version "2.3.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/web3auth/-/web3auth-2.3.0-wagmi.2.tgz#261bb9ac623affd7f8fe4602ce6ebc333805a584"
+  integrity sha512-66o+UgGFn+ukO7S6PkjXUR/zPwLBgKaGctwHRDfkEVt3IxJ1hjQa9pBj+9Ig3JrWi1GsLGcdrULeLtpegGpWLw==
   dependencies:
     "@solana/web3.js" "^1.73.0"
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
     "@web3auth/base" "^5.0.1"
     "@web3auth/modal" "^5.0.1"
     react-dom "^18.2.0"
 
-"@web3-onboard/xdefi@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/xdefi/-/xdefi-2.1.0-wagmi.1.tgz#782e73e1ea1f72347c73f6b36fd4accb7a8e5d45"
-  integrity sha512-IDRMISspEkyWfIeVKvXQgeFHu4uOvNH4NbrBnfhMnVcV82v5gTPRLbOJBLEhuox74QgSFTu+iOpKwCkNVv53NA==
+"@web3-onboard/xdefi@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/xdefi/-/xdefi-2.1.0-wagmi.2.tgz#0a2f530081b7db6c3a4a03576e9fa1c69dc41a4f"
+  integrity sha512-30qQ2H4StsNpy2b2QQ00uRwkNHS0J/Zsz4y+bvOPdPlvAg7M6ypxEwJQTqfHgwyQOO1sKhudDmwIyx7uSiDGoQ==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
-"@web3-onboard/zeal@^2.1.0-wagmi.1":
-  version "2.1.0-wagmi.1"
-  resolved "https://registry.yarnpkg.com/@web3-onboard/zeal/-/zeal-2.1.0-wagmi.1.tgz#3895b81b02d6b4ebbfc0a1c4fba2467e4fc892fa"
-  integrity sha512-JOjwFS2WqeGbqetFcQ32voeGUBJDntFvdOMT7b3rc9MbI4WnPX/PwD2uBx6mXnmI1KIBRW+ZebPVNrctYiG8lA==
+"@web3-onboard/zeal@^2.1.0-wagmi.2":
+  version "2.1.0-wagmi.2"
+  resolved "https://registry.yarnpkg.com/@web3-onboard/zeal/-/zeal-2.1.0-wagmi.2.tgz#ebeba02146834d230f0ee4fb3daf7b11e4023056"
+  integrity sha512-G05klvloSkbuQXAZyP36QDfvSD13aEaRvU5Pi7KEYUJxz8LkeTfVyI0ochjwvEEX/4hFF7Y6H1ajPMfj1RrGEw==
   dependencies:
-    "@web3-onboard/common" "^2.4.0-wagmi.1"
+    "@web3-onboard/common" "^2.4.0-wagmi.2"
 
 "@web3-react/abstract-connector@^6.0.7":
   version "6.0.7"
@@ -19867,6 +19875,20 @@ viem@2.10.5:
     "@scure/bip39" "1.2.1"
     abitype "1.0.0"
     isows "1.0.3"
+    ws "8.13.0"
+
+viem@2.12.0, viem@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/viem/-/viem-2.12.0.tgz#699ba326a1ce0df81042dc8b6f22fa751f9cefce"
+  integrity sha512-XBvORspE4x2/gfy7idH6IVFwkJiXirygFCU3lxUH6fttsj8zufLtgiokfvZF/LAZUEDvdxSgL08whSYgffM2fw==
+  dependencies:
+    "@adraffy/ens-normalize" "1.10.0"
+    "@noble/curves" "1.2.0"
+    "@noble/hashes" "1.3.2"
+    "@scure/bip32" "1.3.2"
+    "@scure/bip39" "1.2.1"
+    abitype "1.0.0"
+    isows "1.0.4"
     ws "8.13.0"
 
 viem@2.9.15:
