@@ -251,12 +251,17 @@ const App = () => {
   }
 
   const sendTransactionWagmi = async () => {
+    const {label} = wallet
+    const transactWithThisWallet = getConnectors(wagmiConfig).find(
+      connector => connector.name === label
+    )
+    console.log('transactWithThisWallet', transactWithThisWallet)
     // current primary wallet - as multiple wallets can connect this value is the currently active
     const result = await wagmiSendTransaction(wagmiConfig, {
       to: toAddress,
       // desired connector to send txn from
-      account: wallet.accounts[0],
-      value: parseEther('0.001')
+      value: parseEther('0.001'),
+      connector: transactWithThisWallet
     })
     console.log(result)
   }
