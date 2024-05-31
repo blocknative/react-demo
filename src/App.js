@@ -240,6 +240,9 @@ const App = () => {
   // WAGMI functions
   async function switchChainWagmi(chainId) {
     let chainAsNumber
+    const { wagmiConnector } = wallet
+
+    console.log('wagmiConnector', wagmiConnector)
     if (isHex(chainId)) {
       chainAsNumber = fromHex(chainId, 'number')
     } else if (!isHex(chainId) && typeof chainId === 'number') {
@@ -247,21 +250,22 @@ const App = () => {
     } else {
       throw new Error('Invalid chainId')
     }
-    await switchChain(wagmiConfig, { chainId: chainAsNumber })
+    await switchChain(wagmiConfig, {
+      chainId: chainAsNumber,
+      connector: wagmiConnector
+    })
   }
 
   const sendTransactionWagmi = async () => {
-    const {label} = wallet
-    const transactWithThisWallet = getConnectors(wagmiConfig).find(
-      connector => connector.name === label
-    )
-    console.log('transactWithThisWallet', transactWithThisWallet)
+    const { wagmiConnector } = wallet
+
+    console.log('transactWithThisWallet', wagmiConnector)
     // current primary wallet - as multiple wallets can connect this value is the currently active
     const result = await wagmiSendTransaction(wagmiConfig, {
       to: toAddress,
-      // desired connector to send txn from
       value: parseEther('0.001'),
-      connector: transactWithThisWallet
+      // desired connector to send txn from
+      connector: wagmiConnector
     })
     console.log(result)
   }
@@ -490,7 +494,7 @@ const App = () => {
                       className="chain-select"
                       onChange={({ target: { value } }) =>
                         // setChain({ chainId: value })
-                      switchChainWagmi(value)
+                        switchChainWagmi(value)
                       }
                       value={connectedChain?.id}
                     >

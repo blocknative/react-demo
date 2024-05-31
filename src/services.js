@@ -192,11 +192,11 @@ export const initWeb3Onboard = init({
   },
   wallets: [
     metamask,
+    coinbase,
     injected,
     walletConnect,
     ledger,
     trezor,
-    coinbase,
     phantom,
     gnosis,
     trust,
