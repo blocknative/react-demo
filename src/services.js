@@ -34,8 +34,8 @@ import venlyModule from '@web3-onboard/venly'
 import bloctoModule from '@web3-onboard/blocto'
 import bitgetModule from '@web3-onboard/bitget'
 import metamaskModule from '@web3-onboard/metamask'
+import wagmi from '@web3-onboard/wagmi'
 import arcanaAuthModule from '@web3-onboard/arcana-auth'
-import metamaskSDK from '@web3-onboard/metamask'
 import capsuleModule, {
   Environment,
   OAuthMethod,
@@ -85,8 +85,6 @@ const injected = injectedModule({
   // walletUnavailableMessage: wallet => `Oops ${wallet.label} is unavailable!`
 })
 
-const coinbase = coinbaseModule()
-
 const walletConnect = walletConnectModule({
   handleUri: uri => console.log(uri),
   projectId: 'f6bd6e2911b56f5ac3bc8b2d0e2d7ad5',
@@ -105,6 +103,7 @@ const web3auth = web3authModule({
     'DJuUOKvmNnlzy6ruVgeWYWIMKLRyYtjYa9Y10VCeJzWZcygDlrYLyXsBQjpJ2hxlBO9dnl8t9GmAC2qOP5vnIGo'
 })
 
+const coinbase = coinbaseModule()
 const torus = torusModule()
 const infinityWallet = infinityWalletModule()
 const ledger = ledgerModule({ projectId: 'f6bd6e2911b56f5ac3bc8b2d0e2d7ad5' })
@@ -172,18 +171,6 @@ const arcanaAuth = arcanaAuthModule({
   clientID: 'xar_test_c9c3bc702eb13255c58dab0e74cfa859711c13cb'
 })
 
-const metamaskSDKWallet = metamaskSDK({
-  options: {
-    extensionOnly: false,
-    i18nOptions: {
-      enabled: true
-    },
-    dappMetadata: {
-      name: 'Demo Web3Onboard'
-    }
-  }
-})
-
 const capsule = capsuleModule({
   environment: Environment.DEVELOPMENT,
   apiKey: '992bbd9146d5de8ad0419f141d9a7ca7',
@@ -199,16 +186,17 @@ const capsule = capsuleModule({
 })
 
 export const initWeb3Onboard = init({
+  wagmi,
   connect: {
     autoConnectAllPreviousWallet: true
   },
   wallets: [
     metamask,
+    coinbase,
     injected,
+    walletConnect,
     ledger,
     trezor,
-    walletConnect,
-    coinbase,
     phantom,
     gnosis,
     trust,
@@ -234,9 +222,8 @@ export const initWeb3Onboard = init({
     cedeStore,
     venly,
     blocto,
-    arcanaAuth,
-    metamaskSDKWallet,
-    capsule
+    arcanaAuth
+    // capsule
   ],
   chains: [
     {

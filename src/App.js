@@ -12,11 +12,19 @@ import {
   useNotifications,
   useSetChain,
   useWallets,
-  useSetLocale
+  useSetLocale,
+  useWagmiConfig
 } from '@web3-onboard/react'
 import './App.css'
 import Header from './views/Header/Header.js'
 import Footer from './views/Footer/Footer.js'
+import {
+  getConnectors,
+  disconnect as wagmiDisconnect,
+  switchChain,
+  sendTransaction as wagmiSendTransaction
+} from '@web3-onboard/wagmi'
+import { parseEther, isHex, fromHex } from 'viem'
 
 if (window.innerWidth < 700) {
   new VConsole()
@@ -27,6 +35,7 @@ let provider
 const App = () => {
   const [{ wallet }, connect, disconnect, updateBalances, setWalletModules] =
     useConnectWallet()
+  const wagmiConfig = useWagmiConfig()
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
   const [notifications, customNotification, updateNotify] = useNotifications()
   const connectedWallets = useWallets()
@@ -92,20 +101,43 @@ const App = () => {
       setBNGasPrices(estimates[0].blockPrices[0].estimatedPrices)
     })
   }, [])
+  useEffect(() => {
+    console.log('wagmiConfig', wagmiConfig)
+  }, [wagmiConfig])
 
   useEffect(() => {
     async function getEtherGasFromRPC() {
-      const customHttpProvider = new ethers.providers.JsonRpcProvider(infuraRPC)
-      const fee = await customHttpProvider.getFeeData()
-      const cleanFees = {
-        price: ethers.utils.formatUnits(fee.gasPrice, 'gwei'),
-        maxPriorityFeePerGas: ethers.utils.formatUnits(
-          fee.maxPriorityFeePerGas,
-          'gwei'
-        ),
-        maxFeePerGas: ethers.utils.formatUnits(fee.maxFeePerGas, 'gwei')
+      try {
+        const customHttpProvider = new ethers.providers.JsonRpcProvider(
+          infuraRPC
+        )
+        if (!customHttpProvider) return console.warn('No provider found')
+        const fee = await customHttpProvider.getFeeData()
+
+        // Occasionally gas values are returned undefined
+        if (
+          !fee ||
+          !fee.gasPrice ||
+          !fee.maxPriorityFeePerGas ||
+          !fee.maxFeePerGas
+        )
+          return console.warn(
+            `Missing necessary gas properties in fee response - fee: ${JSON.stringify(
+              fee
+            )}`
+          )
+        const cleanFees = {
+          price: ethers.utils.formatUnits(fee.gasPrice, 'gwei'),
+          maxPriorityFeePerGas: ethers.utils.formatUnits(
+            fee.maxPriorityFeePerGas,
+            'gwei'
+          ),
+          maxFeePerGas: ethers.utils.formatUnits(fee.maxFeePerGas, 'gwei')
+        }
+        setRPCInfuraGasPrices(cleanFees)
+      } catch (err) {
+        console.error(err)
       }
-      setRPCInfuraGasPrices(cleanFees)
     }
     getEtherGasFromRPC()
   }, [bnGasPrices])
@@ -148,23 +180,25 @@ const App = () => {
       return
     }
 
-    const signer = provider.getUncheckedSigner()
+    // const signer = provider.getUncheckedSigner()
 
     // To set gas using the Web3-Onboard Gas package(support Eth Mainnet and Polygon)
     // define desired confidence for transaction inclusion in block and set in transaction
     // const bnGasForTransaction = bnGasPrices.find(gas => gas.confidence === 90)
 
-    const rc = await signer.sendTransaction({
-      to: toAddress,
-      value: 1000000000000000
+    // const rc = await signer.sendTransaction({
+    //   to: toAddress,
+    //   value: 1000000000000000
 
-      // This will set the transaction gas based on desired confidence
-      // maxPriorityFeePerGas: gweiToWeiHex(
-      //   bnGasForTransaction.maxPriorityFeePerGas
-      // ),
-      // maxFeePerGas: gweiToWeiHex(bnGasForTransaction.maxFeePerGas)
-    })
-    console.log(rc)
+    //   // This will set the transaction gas based on desired confidence
+    //   // maxPriorityFeePerGas: gweiToWeiHex(
+    //   //   bnGasForTransaction.maxPriorityFeePerGas
+    //   // ),
+    //   // maxFeePerGas: gweiToWeiHex(bnGasForTransaction.maxFeePerGas)
+    // })
+    // console.log(rc)
+
+    sendTransactionWagmi()
   }
 
   const sendTransaction = async () => {
@@ -201,6 +235,39 @@ const App = () => {
         txDetails: txDetails
       })
     console.log(transactionHash)
+  }
+
+  // WAGMI functions
+  async function switchChainWagmi(chainId) {
+    let chainAsNumber
+    const { wagmiConnector } = wallet
+
+    console.log('wagmiConnector', wagmiConnector)
+    if (isHex(chainId)) {
+      chainAsNumber = fromHex(chainId, 'number')
+    } else if (!isHex(chainId) && typeof chainId === 'number') {
+      chainAsNumber = chainId
+    } else {
+      throw new Error('Invalid chainId')
+    }
+    await switchChain(wagmiConfig, {
+      chainId: chainAsNumber,
+      connector: wagmiConnector
+    })
+  }
+
+  const sendTransactionWagmi = async () => {
+    const { wagmiConnector } = wallet
+
+    console.log('transactWithThisWallet', wagmiConnector)
+    // current primary wallet - as multiple wallets can connect this value is the currently active
+    const result = await wagmiSendTransaction(wagmiConfig, {
+      to: toAddress,
+      value: parseEther('0.001'),
+      // desired connector to send txn from
+      connector: wagmiConnector
+    })
+    console.log(result)
   }
 
   const renderNotifySettings = () => {
@@ -426,7 +493,8 @@ const App = () => {
                     <select
                       className="chain-select"
                       onChange={({ target: { value } }) =>
-                        setChain({ chainId: value })
+                        // setChain({ chainId: value })
+                        switchChainWagmi(value)
                       }
                       value={connectedChain?.id}
                     >
@@ -471,9 +539,13 @@ const App = () => {
                     <button
                       className="bn-demo-button"
                       onClick={async () => {
-                        const walletsConnected = await disconnect(wallet)
-                        console.log('connected wallets: ', walletsConnected)
-                        window.localStorage.removeItem('connectedWallets')
+                        // const walletsConnected = await disconnect(wallet)
+                        const disconnectThisWallet = getConnectors(
+                          wagmiConfig
+                        ).find(connector => connector.name === wallet.label)
+                        wagmiDisconnect(wagmiConfig, {
+                          connector: disconnectThisWallet
+                        })
                       }}
                     >
                       Reset Wallet State
@@ -620,7 +692,7 @@ const App = () => {
                     onClick={async () => {
                       const ready = await readyToTransact()
                       if (!ready) return
-                      sendTransaction()
+                      sendTransactionWagmi()
                     }}
                   >
                     Send
