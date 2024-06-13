@@ -539,13 +539,18 @@ const App = () => {
                     <button
                       className="bn-demo-button"
                       onClick={async () => {
-                        // const walletsConnected = await disconnect(wallet)
-                        const disconnectThisWallet = getConnectors(
-                          wagmiConfig
-                        ).find(connector => connector.name === wallet.label)
-                        wagmiDisconnect(wagmiConfig, {
-                          connector: disconnectThisWallet
-                        })
+                        // Disconnect using web3-onboard hook
+                        await disconnect(wallet)
+                        
+                        
+                        // Disconnect using WAGMI
+
+                        // const disconnectThisWallet = getConnectors(
+                        //   wagmiConfig
+                        // ).find(connector => connector.name === wallet.label)
+                        // wagmiDisconnect(wagmiConfig, {
+                        //   connector: disconnectThisWallet
+                        // })
                       }}
                     >
                       Reset Wallet State
