@@ -38,8 +38,7 @@ import wagmi from '@web3-onboard/wagmi'
 import arcanaAuthModule from '@web3-onboard/arcana-auth'
 import capsuleModule, {
   Environment,
-  OAuthMethod,
-  Theme
+  OAuthMethod
 } from '@web3-onboard/capsule'
 
 // Replace with your DApp's Infura ID
