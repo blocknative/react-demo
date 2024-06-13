@@ -174,8 +174,7 @@ const capsule = capsuleModule({
   environment: Environment.DEVELOPMENT,
   apiKey: '992bbd9146d5de8ad0419f141d9a7ca7',
   modalProps: {
-    oAuthMethods: [OAuthMethod.GOOGLE, OAuthMethod.TWITTER],
-    theme: Theme.dark
+    oAuthMethods: [OAuthMethod.GOOGLE, OAuthMethod.TWITTER]
   },
   constructorOpts: {
     portalBackgroundColor: '#5e5656',
